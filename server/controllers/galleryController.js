@@ -2,8 +2,6 @@ const { Gallery } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const uuid = require('uuid');
 const pathN = require('path');
-const { off } = require('process');
-const { where } = require('sequelize');
 
 class GalleryController {
     async create(req, res, next) {
