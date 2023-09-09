@@ -14,9 +14,16 @@ const Gallery = sequelize.define('gallery', {
     size: { type: DataTypes.STRING },
 })
 
+const Users = sequelize.define('users', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    email: { type: DataTypes.STRING, unique: true, allowNull: false },
+    password: { type: DataTypes.STRING, allowNull: false },
+    role: { type: DataTypes.STRING, defaultValue: 'USER' }
+})
+
 Tours.hasOne(Gallery);
 Gallery.belongsTo(Tours);
 
 module.exports = {
-    Tours, Gallery
+    Tours, Gallery, Users
 }
