@@ -2,6 +2,7 @@ const ApiError = require('../error/ApiError');
 const { Users } = require('../models/models');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
+const { validationResult, body } = require('express-validator');
 
 const generateJwt = (id, email, role) => {
     return jsonwebtoken.sign(
@@ -14,20 +15,23 @@ const generateJwt = (id, email, role) => {
 class UsersController {
     async registration(req, res, next) {
         try {
-            const { email, password, role } = req.body;
-            if (!email || !password) {
-                return next(ApiError.badRequest('Некорректный email или пароль'))
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ message: 'Ошибка при регистрации', errors });
             }
+            const { email, password, role } = req.body;
+
             const candidate = await Users.findOne({ where: { email } })
             if (candidate) {
                 return next(ApiError.badRequest('Пользователь с такой почтой уже существует'))
             }
-            const hashPassword = await bcrypt.hash(password, 5);
+            const hashPassword = bcrypt.hashSync(password, 7);
             const user = await Users.create({
                 email: email,
+                password: hashPassword,
                 role: role,
-                password: hashPassword
             })
+            await user.save();
             const token = generateJwt(user.id, user.email, user.role);
             return res.json({ token });
         } catch (error) {
@@ -37,8 +41,12 @@ class UsersController {
 
     async login(req, res, next) {
         try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ message: 'Ошибка при регистрации', errors });
+            }
             const { email, password } = req.body;
-            const user = Users.findOne({ where: { email } })
+            const user = await Users.findOne({ where: { email } })
             if (!user) {
                 next(ApiError.badRequest('Пользователь с таким email не найден'))
             }
@@ -54,11 +62,12 @@ class UsersController {
     }
 
     async check(req, res, next) {
-        const { id } = req.query;
-        if (!id) {
-            return next(ApiError.badRequest('Не указан id'));
+        try {
+            const token = generateJwt(req.user.id, req.user.email, req.user.role);
+            return res.json({ token });
+        } catch (error) {
+            next(ApiError.badRequest(error.message))
         }
-        res.json(id);
     }
 }
 
