@@ -5,9 +5,12 @@ import Input from '../components/Input/Input';
 import { login } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { ContextMain } from '..';
+import { redirect, useNavigate } from 'react-router-dom';
+import { ADMIN_ROUTE } from '../utils/consts';
 
 const Auth = observer(() => {
     const { user } = useContext(ContextMain);
+    const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -17,6 +20,7 @@ const Auth = observer(() => {
             data = await login(email, password);
             user.setUser(user);
             user.setIsAuth(true);
+            history.push(ADMIN_ROUTE);
         } catch (error) {
             alert(error.response.data.message);
         }
