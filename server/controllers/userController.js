@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError');
 const { Users } = require('../models/models');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
-const { validationResult, body } = require('express-validator');
+const { validationResult } = require('express-validator');
 
 const generateJwt = (id, email, role) => {
     return jsonwebtoken.sign(
