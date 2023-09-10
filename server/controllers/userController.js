@@ -29,7 +29,7 @@ class UsersController {
             const user = await Users.create({
                 email: email,
                 password: hashPassword,
-                role: role,
+                role: 'ADMIN',
             })
             await user.save();
             const token = generateJwt(user.id, user.email, user.role);
@@ -52,7 +52,7 @@ class UsersController {
             }
             let comparePassword = bcrypt.compareSync(password, user.password)
             if (!comparePassword) {
-                next(ApiError.badRequest('Неверный пароль'));
+                return next(ApiError.badRequest('Неверный пароль'));
             }
             const token = generateJwt(user.id, user.email, user.role);
             return res.json({ token })
