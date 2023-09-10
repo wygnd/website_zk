@@ -1,0 +1,85 @@
+@import '_includes.scss';
+
+.header {
+    padding: 20px 0;
+    box-shadow: none;
+
+    &.header_home {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 100px;
+    }
+
+}
+
+.header_holder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.logo_holder {
+    width: 200px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav_menu_element {
+    margin: 0;
+
+    a {
+        @include body;
+        color: var(--text1);
+        text-decoration: none;
+        transition: color .4s ease-out;
+    }
+
+    &.active {
+        a {
+            color: var(--primary);
+        }
+    }
+
+    &:hover {
+        a {
+            color: var(--primary);
+        }
+    }
+}
+
+.btn {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 20px 35px;
+    border-radius: 5px;
+    color: var(--bg1);
+    @include bodyS;
+    cursor: pointer;
+    transition: background .4s ease-out, color .4s ease-out;
+
+    &:hover {
+        background: transparent;
+        color: var(--primary);
+    }
+
+    &.invert {
+        background: transparent;
+        color: var(--primary);
+
+        &:hover {
+            background: var(--primary);
+            color: var(--bg1);
+        }
+    }
+}

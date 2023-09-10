@@ -1,22 +1,21 @@
 import React, { useContext } from 'react';
 import { ContextMain } from '..';
-import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import headerClasses from '../styles/Header.module.css';
 
-const NavBar = () => {
+const NavBar = observer(() => {
 
     const { menuElements } = useContext(ContextMain);
 
-    console.log(menuElements);
-
     return (
-        <ul className='menu'>
-            {menuElements.map(el =>
-                <li key={el.id} className='nav-menu-element'>
-                    <Link to={el.link}>{el.title}</Link>
+        <ul className={headerClasses.menu}>
+            {menuElements.elements.map(el =>
+                <li key={el.id} className={headerClasses.nav_menu_element}>
+                    <a href={el.link}>{el.title}</a>
                 </li>
             )}
         </ul>
     );
-};
+});
 
 export default NavBar;

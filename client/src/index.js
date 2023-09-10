@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserStore from './store/UserStore';
 import NavBarStore from './store/NavBarStore';
+import './styles/main.css';
 
 export const ContextMain = createContext(null);
 

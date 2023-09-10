@@ -1,0 +1,39 @@
+@font-face {
+	font-display: swap;
+	font-family: "TildaSans-Black";
+	font-style: normal;
+	font-weight: 400;
+	src: url("TildaSans-Black-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "TildaSans-Black";
+	font-style: normal;
+	font-weight: 500;
+	src: url("TildaSans-Black-Medium.ttf") format("truetype");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "TildaSans-Black";
+	font-style: normal;
+	font-weight: 600;
+	src: url("TildaSans-Black-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "TildaSans-Black";
+	font-style: normal;
+	font-weight: 700;
+	src: url("TildaSans-Black-Bold.ttf") format("truetype");
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "TildaSans-Black";
+	font-style: normal;
+	font-weight: 900;
+	src: url("TildaSans-Black-ExtraBold.ttf") format("truetype");
+}

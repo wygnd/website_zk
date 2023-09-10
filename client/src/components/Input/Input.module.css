@@ -1,0 +1,40 @@
+/*============= COLORS ===============*/
+:root {
+  --primary: #CF7B3E;
+  --text1: #0A1C27;
+  --text2: #47555D;
+  --bg1: #fff;
+  --bg2: #CED2D4;
+  --bg5: #F2F3F4;
+  --black: #000;
+}
+
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+.input {
+  padding: 20px 30px;
+  background: var(--bg1);
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+}
+.input:focus {
+  outline: none;
+}
+.input::-moz-placeholder {
+  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+  color: var(--text2);
+}
+.input::placeholder {
+  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 130%;
+  color: var(--text2);
+}/*# sourceMappingURL=Input.module.css.map */

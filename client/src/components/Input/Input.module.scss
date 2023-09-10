@@ -1,0 +1,19 @@
+@import '../../styles/_includes';
+
+.input {
+    padding: 20px 30px;
+    background: var(--bg1);
+    border-radius: 5px;
+    border: 1px solid var(--primary);
+    @include bodyS;
+
+
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        @include bodyS;
+        color: var(--text2);
+    }
+}

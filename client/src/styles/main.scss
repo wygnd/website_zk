@@ -1,0 +1,26 @@
+@import '_includes.scss';
+
+html {
+    box-sizing: border-box;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'TildaSans', sans-serif;
+    font-weight: 400;
+    box-sizing: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+body {
+    background: var(--bg1);
+}
+
