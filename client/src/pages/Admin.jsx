@@ -2,9 +2,10 @@ import React from 'react';
 
 const Admin = () => {
     return (
-        <div>
-        
-        </div>
+        <h1
+         style={{textAlign: 'center'}}>
+            ADMIN PANEL
+        </h1>
     );
 };
 
