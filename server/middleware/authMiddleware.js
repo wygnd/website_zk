@@ -5,14 +5,14 @@ module.exports = function (req, res, next) {
         next();
     }
     try {
-        const token = req.headers.authorization.split(' ')[1];
+        const token = req.headers.authorization.split(' ')[1] // Bearer asfasnfkajsfnjk
         if (!token) {
-            res.status(401).json({ message: 'Не авторизован' })
+            return res.status(401).json({ message: "Не авторизован" })
         }
-        const decoded = jwt.verify(token, process.env.SEKRET_KEY);
-        req.user = decoded;
-        next();
-    } catch (error) {
-        res.status(401).json({ message: 'Не авторизован' })
+        const decoded = jwt.verify(token, process.env.SECRET_KEY)
+        req.user = decoded
+        next()
+    } catch (e) {
+        return res.status(401).json({ message: "Не авторизован" })
     }
 }
