@@ -19,7 +19,7 @@ class UsersController {
             if (!errors.isEmpty()) {
                 return res.status(400).json({ message: 'Ошибка при регистрации', errors });
             }
-            const { email, password, role } = req.body;
+            const { email, password } = req.body;
 
             const candidate = await Users.findOne({ where: { email } })
             if (candidate) {
@@ -56,7 +56,7 @@ class UsersController {
     async check(req, res, next) {
         try {
             const token = generateJwt(req.user.id, req.user.email, req.user.role)
-            return res.json(req)
+            return res.json({ token })
         } catch (error) {
             next(ApiError.badRequest(error.message))
         }
