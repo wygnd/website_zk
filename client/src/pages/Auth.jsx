@@ -5,7 +5,7 @@ import Input from '../components/Input/Input';
 import { observer } from 'mobx-react-lite';
 import { ContextMain } from '..';
 import { useNavigate } from 'react-router-dom';
-import { MAIN_ROUTE } from '../utils/consts';
+import { ADMIN_ROUTE } from '../utils/consts';
 
 const Auth = observer(() => {
     const { userStore } = useContext(ContextMain);
@@ -16,10 +16,15 @@ const Auth = observer(() => {
 
     const clickHandler = async () => {
         try {
-            userStore.login(email, password)
-
+            await userStore.login(email, password)
+            if (userStore.isAuth) {
+                history(ADMIN_ROUTE);
+            } else {
+                setEmail('');
+                setPassword('');
+            }
         } catch (error) {
-            alert(error.response.data.message);
+            alert(error);
         }
     }
 

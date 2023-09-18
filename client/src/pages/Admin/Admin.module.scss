@@ -1,0 +1,27 @@
+@import '../../styles/_includes';
+
+
+
+.page__title {
+    margin-top: 50px;
+    @include h2;
+    color: var(--text1);
+}
+
+.admin__holder {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.admin__side {
+    width: 70%;
+}
+
+.logo__holder {
+    
+}
+
+.admin__bar {
+    width: 30%;
+}

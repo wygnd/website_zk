@@ -1,6 +1,6 @@
 import $api from "../http";
 
-export default class AuthService {
+export default class UserService {
     static fetchUsers() {
         return $api.get('/users');
     }

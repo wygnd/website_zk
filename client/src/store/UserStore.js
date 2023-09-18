@@ -7,6 +7,8 @@ export default class UserStore {
     constructor() {
         this._isAuth = false;
         this._user = {};
+        this._isLoading = false;
+
         makeAutoObservable(this);
     }
 
@@ -18,15 +20,18 @@ export default class UserStore {
         this._user = user;
     }
 
+    setLoading(bool) {
+        this._isLoading = bool;
+    }
+
     async login(email, password) {
         try {
             const response = await AuthService.login(email, password);
-            console.log(response);
             localStorage.setItem('token', response.data.accessToken);
             this.setIsAuth(true);
             this.setUser(response.data.user);
         } catch (error) {
-            console.log(error.response?.data?.message);
+            alert(error.response?.data?.message);
         }
     }
 
@@ -44,26 +49,18 @@ export default class UserStore {
     async logout() {
         try {
             const response = await AuthService.logout();
+            console.log(response);
             localStorage.removeItem('token');
             this.setIsAuth(false);
             this.setUser({});
         } catch (error) {
-            console.log(error.response?.data?.message);
+            alert(error.response?.data?.message);
         }
     }
 
-    async registretion(email, password) {
-        try {
-            const response = await AuthService.registration(email, password);
-            localStorage.setItem('token', response.data.accessToken);
-            this.setIsAuth(true);
-            this.setUser(response.data.user);
-        } catch (error) {
-            console.log(error.response?.data?.message);
-        }
-    }
 
     async checkAuth() {
+        this.setLoading(true);
         try {
             const response = await axios.get(`${API_URL}/users/refresh`, { withCredentials: true });
             console.log(response);
@@ -72,6 +69,8 @@ export default class UserStore {
             this.setUser(response.data.user);
         } catch (error) {
             console.log(error.response?.data?.message);
+        } finally {
+            this.setLoading(false);
         }
     }
 
@@ -81,5 +80,9 @@ export default class UserStore {
 
     get user() {
         return this._user;
+    }
+
+    get isLoading() {
+        return this._isLoading;
     }
 }
