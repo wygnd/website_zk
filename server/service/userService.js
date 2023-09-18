@@ -36,16 +36,16 @@ class UserService {
         return { ...tokens, user: userDto };
     }
 
-    async logout(refreshToken) {
-       const token = await tokenService.removeToken(refreshToken);
+    async logout(tokenRef) {
+       const token = await tokenService.removeToken(tokenRef);
        return token;
     }
-    async refresh(refreshToken) {
-        if (!refreshToken) {
+    async refresh(tokenRef) {
+        if (!tokenRef) {
             throw ApiError.UnauthorizedError();
         }
-        const userData = tokenService.validateRefreshToken(refreshToken);
-        const tokenFromDB = await tokenService.findToken(refreshToken);
+        const userData = tokenService.validateRefreshToken(tokenRef);
+        const tokenFromDB = await tokenService.findToken(tokenRef);
         if (!userData || !tokenFromDB) {
             throw ApiError.UnauthorizedError();
         }
