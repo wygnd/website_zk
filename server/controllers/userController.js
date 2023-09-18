@@ -61,16 +61,16 @@ class UsersController {
             res.cookie('tokenRef', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
             return res.json(userData);
         } catch (error) {
-            next(error);
+            next(ApiError.BadRequest(error.message));
         }
     }
-
+    
     async getAll(req, res, next) {
         try {
             const userData = await userService.getAll();
             return res.json(userData);
         } catch (error) {
-            next(error)
+            next(ApiError.BadRequest(error.message));
         }
     }
 }

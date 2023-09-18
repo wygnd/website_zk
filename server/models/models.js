@@ -10,8 +10,7 @@ const Tours = sequelize.define('tours', {
 
 const Gallery = sequelize.define('gallery', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    path: { type: DataTypes.STRING },
-    size: { type: DataTypes.STRING },
+    fileName: { type: DataTypes.STRING },
 })
 
 const Users = sequelize.define('users', {
@@ -27,8 +26,6 @@ const Tokens = sequelize.define('tokens', {
     refreshToken: { type: DataTypes.STRING }
 })
 
-Tours.hasOne(Gallery);
-Gallery.belongsTo(Tours);
 
 Users.hasMany(Tokens)
 Tokens.belongsTo(Users);

@@ -3,7 +3,7 @@ const GalleryController = require('../controllers/galleryController');
 const checkRoleMiddleware = require('../middleware/checkRoleMiddleware');
 const router = new Router();
 
-router.post('/create',  checkRoleMiddleware("ADMIN"), GalleryController.create)
+router.post('/create', GalleryController.create)
 router.get('/', GalleryController.getAll)
 router.get('/:id', GalleryController.getOne)
 

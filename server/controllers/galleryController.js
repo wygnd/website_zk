@@ -1,18 +1,16 @@
 const { Gallery } = require('../models/models');
 const ApiError = require('../error/ApiError');
-const uuid = require('uuid');
-const pathN = require('path');
+const galleryService = require('../service/galleryService');
 
 class GalleryController {
     async create(req, res, next) {
         try {
-            const { path } = req.files;
-            let fileName = uuid.v4() + ".png";
-            path.mv(pathN.resolve(__dirname, '..', 'static', fileName));
-            const gallery = await Gallery.create({ path: fileName })
-            return res.json(gallery);
+            const { fileName } = req.files;
+            console.log(req.files);
+            const galleryData = await galleryService.create(fileName);
+            return res.json(galleryData);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(ApiError.BadRequest(error.message));
         }
     }
 
@@ -28,7 +26,8 @@ class GalleryController {
             });
             return res.json(gallery);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(ApiError.BadRequest(error.message));
+
         }
     }
 
