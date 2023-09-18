@@ -53,6 +53,17 @@ class UsersController {
             next(ApiError.badRequest(error.message))
         }
     }
+
+    async refresh(req, res, next) {
+        try {
+            const { tokenRef } = req.cookies;
+            const userData = await userService.refresh(tokenRef);
+            res.cookie('tokenRef', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true });
+            return res.json(userData);
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = new UsersController();
