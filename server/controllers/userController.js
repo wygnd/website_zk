@@ -64,6 +64,15 @@ class UsersController {
             next(error);
         }
     }
+
+    async getAll(req, res, next) {
+        try {
+            const userData = await userService.getAll();
+            return res.json(userData);
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = new UsersController();

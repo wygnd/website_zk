@@ -1,4 +1,4 @@
-const { Users, Tokens } = require("../models/models");
+const { Users } = require("../models/models");
 const ApiError = require("../error/ApiError");
 const bcrypt = require('bcrypt');
 const UserDto = require("../dtos/userDto");
@@ -55,6 +55,14 @@ class UserService {
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
         return { ...tokens, user: userDto };
+    }
+
+    async getAll() {
+        const usersData = Users.findAll();
+        if(!usersData) {
+            throw ApiError.BadRequest('Пользователей не найдено');
+        }
+        return usersData;
     }
 }
 
