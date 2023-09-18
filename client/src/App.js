@@ -8,16 +8,13 @@ import { check } from "./http/userAPI";
 
 const App = observer(() => {
 
-  const { user } = useContext(ContextMain);
+  const { userStore } = useContext(ContextMain);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    check().then(data => {
-      user.setUser(true);
-      user.setIsAuth(true);
-    })
-    .catch((e) => console.log(e.message))
-    .finally(() => setLoading(false))
+    if (localStorage.getItem('token')) {
+      userStore.checkAuth();
+    }
   }, [])
 
   return (

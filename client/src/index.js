@@ -5,12 +5,15 @@ import UserStore from './store/UserStore';
 import NavBarStore from './store/NavBarStore';
 import './styles/main.css';
 
-export const ContextMain = createContext(null);
+const userStore = new UserStore();
+export const ContextMain = createContext({
+    userStore,
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ContextMain.Provider value={{
-        user: new UserStore(),
+        userStore,
         menuElements: new NavBarStore(),
     }}>
         <App />

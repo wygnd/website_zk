@@ -1,21 +1,14 @@
 import axios from 'axios';
+import { API_URL } from '../utils/consts';
 
-const $host = axios.create({
-    baseURL: 'http://localhost:5000'
+const $api = axios.create({
+    withCredentials: true,
+    baseURL: API_URL
 })
 
-const $authHost = axios.create({
-    baseURL: 'http://localhost:5000'
-})
-
-const authInterceptor = config => {
+$api.interceptors.request.use(config => {
     config.headers.authorization = `Bearer ${localStorage.getItem('token')}`
     return config;
-}
+});
 
-$authHost.interceptors.request.use(authInterceptor);
-
-export {
-    $host,
-    $authHost
-}
+export default $api;

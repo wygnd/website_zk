@@ -9,7 +9,7 @@ import { ADMIN_ROUTE, MAIN_ROUTE } from '../utils/consts';
 
 const Header = () => {
 
-    const { user } = useContext(ContextMain);
+    const { userStore } = useContext(ContextMain);
     const location = useLocation();
     const isMainPage = location.pathname !== MAIN_ROUTE;
     const history = useNavigate();
@@ -20,7 +20,7 @@ const Header = () => {
                 <div className={headerClasses.header_holder}>
                     <Logo />
                     <NavBar />
-                    {user.isAuth && <Button invert onClick={() => history(ADMIN_ROUTE)}>Админ панель</Button>}
+                    {userStore.isAuth && <Button invert onClick={() => history(ADMIN_ROUTE)}>Админ панель</Button>}
                 </div>
             </div>
         </header>

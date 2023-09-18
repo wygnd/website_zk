@@ -2,27 +2,22 @@ import React, { useContext, useState } from 'react';
 import authPageStyles from '../styles/Auth.module.css';
 import Button from '../components/Button';
 import Input from '../components/Input/Input';
-import { login } from '../http/userAPI';
 import { observer } from 'mobx-react-lite';
 import { ContextMain } from '..';
 import { useNavigate } from 'react-router-dom';
-import { ADMIN_ROUTE, MAIN_ROUTE } from '../utils/consts';
+import { MAIN_ROUTE } from '../utils/consts';
 
 const Auth = observer(() => {
-    const { user } = useContext(ContextMain);
+    const { userStore } = useContext(ContextMain);
     const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
 
-    const singIn = async () => {
+    const clickHandler = async () => {
         try {
-            let data;
-            data = await login(email, password);
-            console.log(data);
-            user.setUser(data);
-            user.setIsAuth(true);
-            history(MAIN_ROUTE);
+            userStore.login(email, password)
+
         } catch (error) {
             alert(error.response.data.message);
         }
@@ -46,7 +41,7 @@ const Auth = observer(() => {
                             type="password"
                             placeholder="Пароль"
                             required />
-                        <Button onClick={singIn}>Вход</Button>
+                        <Button onClick={clickHandler}>Вход</Button>
                     </div>
                 </div>
             </div>
