@@ -16,7 +16,7 @@ class GalleryController {
     async getAll(req, res, next) {
         try {
             let { limit, page } = req.query;
-            const galleryData = galleryService.getAll(limit, page);
+            const galleryData = await galleryService.getAll(limit, page);
             return res.json(galleryData);
         } catch (error) {
             next(ApiError.BadRequest(error.message));
@@ -24,10 +24,14 @@ class GalleryController {
         }
     }
 
-    async getOne(req, res) {
-        const { id } = req.params;
-        const galleryData = galleryService.getOne(id);
-        return res.json(galleryData);
+    async getOne(req, res, next) {
+        try {
+            const { id } = req.params;
+            const galleryData = await galleryService.getOne(id);
+            return res.json(galleryData);
+        } catch (e) {
+            next(ApiError.BadRequest(e.message));
+        }
     }
 }
 

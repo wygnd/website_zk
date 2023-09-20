@@ -25,7 +25,7 @@ class GalleryService {
     }
 
     async getOne(id) {
-        const gallery = await Gallery.findOne({ where: { id } })
+        const gallery = await Gallery.findByPk(id);
         return gallery;
     }
 
