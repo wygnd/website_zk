@@ -6,7 +6,6 @@ class GalleryController {
     async create(req, res, next) {
         try {
             const { fileName } = req.files;
-            console.log(req.files);
             const galleryData = await galleryService.create(fileName);
             return res.json(galleryData);
         } catch (error) {
@@ -17,14 +16,8 @@ class GalleryController {
     async getAll(req, res, next) {
         try {
             let { limit, page } = req.query;
-            page = page || 1;
-            limit = limit || 9;
-            let offset = page * limit - limit;
-            const gallery = await Gallery.findAndCountAll({
-                offset: offset,
-                limit: Number(limit),
-            });
-            return res.json(gallery);
+            const galleryData = galleryService.getAll(limit, page);
+            return res.json(galleryData);
         } catch (error) {
             next(ApiError.BadRequest(error.message));
 
@@ -33,12 +26,8 @@ class GalleryController {
 
     async getOne(req, res) {
         const { id } = req.params;
-        const gallery = await Gallery.findOne(
-            {
-                where: { id },
-            }
-        )
-        return res.json(gallery);
+        const galleryData = galleryService.getOne(id);
+        return res.json(galleryData);
     }
 }
 

@@ -12,6 +12,23 @@ class GalleryService {
         return gallery;
     }
 
+    async getAll(page, limit) {
+        page = page || 1;
+        limit = limit || 9;
+        let offset = page * limit - limit;
+        const gallery = await Gallery.findAndCountAll({
+            offset: offset,
+            limit: Number(limit),
+        });
+
+        return gallery;
+    }
+
+    async getOne(id) {
+        const gallery = await Gallery.findOne({ where: { id } })
+        return gallery;
+    }
+
 }
 
 module.exports = new GalleryService();
