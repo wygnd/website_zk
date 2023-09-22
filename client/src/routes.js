@@ -1,6 +1,6 @@
 import Admin from "./pages/Admin/Admin"
 import Auth from "./pages/Auth"
-import Main from "./pages/Main"
+import Main from "./pages/Main/Main"
 import NotFound from "./pages/NotFound"
 import { ADMIN_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, NOTFOUND_ROUTE } from "./utils/consts"
 
