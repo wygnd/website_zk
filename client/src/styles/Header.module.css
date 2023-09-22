@@ -1,12 +1,14 @@
 /*============= COLORS ===============*/
 :root {
   --primary: #CF7B3E;
+  --primaryH: #aa6432;
   --text1: #0A1C27;
   --text2: #47555D;
   --bg1: #fff;
   --bg2: #CED2D4;
   --bg5: #F2F3F4;
   --black: #000;
+  --error: red;
 }
 
 /*============= FUNCTIONS ===============*/
@@ -16,7 +18,7 @@
   box-shadow: none;
 }
 .header.header_home {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 100px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 50px;
 }
 
 .header_holder {
@@ -86,5 +88,13 @@
 }
 .btn.invert:hover {
   background: var(--primary);
+  color: var(--bg1);
+}
+.btn.error {
+  background: var(--error);
+  border-color: var(--error);
+  cursor: no-drop;
+}
+.btn.error:hover {
   color: var(--bg1);
 }/*# sourceMappingURL=Header.module.css.map */

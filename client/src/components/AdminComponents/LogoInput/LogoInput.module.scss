@@ -1,0 +1,124 @@
+@import '../../../styles/includes';
+
+
+.logoHolder {
+    width: 100%;
+}
+
+.logoTitle {
+    @include bodyM;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.logoItem {
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--bg2);
+    object-fit: contain;
+    display: block;
+    padding: 5px;
+}
+
+.inputFile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: fit-content;
+
+    span {
+        background: var(--primary);
+        border: 1px solid var(--primary);
+        padding: 15px 30px;
+        border-radius: 5px;
+        width: fit-content;
+        color: var(--white);
+        cursor: pointer;
+        color: var(--bg1);
+        transition: background .4s ease-out, color .4s ease-out;
+    }
+
+    button {
+        width: fit-content;
+    }
+
+    &:hover {
+        span {
+            background: transparent;
+            color: var(--primary);
+        }
+    }
+}
+
+.modalTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+.modalTitle {
+    @include h3;
+    color: var(--black);
+    font-weight: 400;
+}
+
+.galleryHolder {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 15px;
+}
+
+.galleryItem {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--bg2);
+    padding: 5px;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+.input_file {
+    position: relative;
+    display: inline-block;
+
+
+    div {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        color: var(--bg1);
+        border-radius: 5px;
+        background: var(--primary);
+        padding: 10px 30px;
+        box-sizing: border-box;
+        border: none;
+        margin: 0;
+        @include body;
+        transition: background 0.4s, color .4s ease-out;
+
+        &:hover {
+            background: var(--primaryH);
+        }
+    }
+
+    input[type=file] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+}

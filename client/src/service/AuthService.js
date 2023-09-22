@@ -1,4 +1,4 @@
-import $api from "../http";
+import { $api } from "../http";
 
 export default class AuthService {
     static async login(email, password) {
@@ -11,5 +11,5 @@ export default class AuthService {
 
     static async logout() {
         return $api.post('/users/logout');
-}
+    }
 }

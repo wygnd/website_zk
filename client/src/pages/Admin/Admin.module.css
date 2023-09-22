@@ -1,18 +1,20 @@
 /*============= COLORS ===============*/
 :root {
   --primary: #CF7B3E;
+  --primaryH: #aa6432;
   --text1: #0A1C27;
   --text2: #47555D;
   --bg1: #fff;
   --bg2: #CED2D4;
   --bg5: #F2F3F4;
   --black: #000;
+  --error: red;
 }
 
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
 .page__title {
-  margin-top: 50px;
+  margin: 50px 0;
   font-size: calc(0.01625 * 100vw + 14.8px);
   font-style: normal;
   font-weight: 800;
@@ -22,14 +24,7 @@
 
 .admin__holder {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 30px;
-}
-
-.admin__side {
-  width: 70%;
-}
-
-.admin__bar {
-  width: 30%;
 }/*# sourceMappingURL=Admin.module.css.map */

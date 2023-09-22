@@ -1,0 +1,17 @@
+.phonesHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.phonesWrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.phonesChanged {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

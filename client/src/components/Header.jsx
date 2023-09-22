@@ -26,11 +26,16 @@ const Header = observer(() => {
                 <div className={headerClasses.header_holder}>
                     <Logo />
                     <NavBar />
-                    {userStore.isAuth &&
+                    {userStore.isAuth
+    ?
                         <>
                             <Button invert onClick={() => history(ADMIN_ROUTE)}>Админ панель</Button>
                             <Button onClick={logoutClickHandler}>Выйти</Button>
                         </>
+                        :
+                        <>
+                        </>
+                        
                     }
                 </div>
             </div>
