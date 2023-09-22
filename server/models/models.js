@@ -26,10 +26,20 @@ const Tokens = sequelize.define('tokens', {
     refreshToken: { type: DataTypes.STRING }
 })
 
+const MainBlock = sequelize.define('mainBock', {
+    title: { type: DataTypes.STRING },
+    desc: { type: DataTypes.STRING },
+    buttonVisible: { type: DataTypes.BOOLEAN, defaultValue: true },
+    linkButton: { type: DataTypes.STRING },
+})
 
-Users.hasMany(Tokens)
+
+Users.hasOne(Tokens)
 Tokens.belongsTo(Users);
 
+Gallery.hasOne(MainBlock);
+MainBlock.belongsTo(Gallery);
+
 module.exports = {
-    Tours, Gallery, Users, Tokens
+    Tours, Gallery, Users, Tokens, MainBlock
 }

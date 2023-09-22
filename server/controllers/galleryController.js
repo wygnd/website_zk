@@ -1,4 +1,3 @@
-const { Gallery } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const galleryService = require('../service/galleryService');
 
