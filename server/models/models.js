@@ -30,6 +30,7 @@ const MainBlock = sequelize.define('mainBock', {
     title: { type: DataTypes.STRING },
     desc: { type: DataTypes.STRING },
     buttonVisible: { type: DataTypes.BOOLEAN, defaultValue: true },
+    textButton: { type: DataTypes.STRING },
     linkButton: { type: DataTypes.STRING },
 })
 

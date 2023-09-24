@@ -6,8 +6,18 @@ class mainBlockController {
 
     async create(req, res, next) {
         try {
-            const { title, desc, buttonVisible, linkButton, galleryId } = req.body;
-            const blockData = await mainBlockService.create(title, desc, buttonVisible, linkButton, galleryId);
+            const { title, desc, buttonVisible, textButton, linkButton, galleryId } = req.body;
+            const blockData = await mainBlockService.create(title, desc, buttonVisible, textButton, linkButton, galleryId);
+            return res.json(blockData);
+        } catch (error) {
+            next(ApiError.BadRequest(error.message))
+        }
+    }
+
+    async save(req, res, next) {
+        try {
+            const {id, title, desc, buttonVisible, textButton, linkButton, galleryId } = req.body;
+            const blockData = await mainBlockService.save(id, title, desc, buttonVisible, textButton, linkButton, galleryId);
             return res.json(blockData);
         } catch (error) {
             next(ApiError.BadRequest(error.message))

@@ -4,12 +4,31 @@ const { Op, sequelize } = require("sequelize");
 
 class MainBlockService {
 
-    async create(title, desc, buttonVisible, linkButton, galleryId) {
+    async create(title, desc, buttonVisible, textButton, linkButton, galleryId) {
         const image = await Gallery.findByPk(galleryId);
         if (!image) {
             throw ApiError.BadRequest('Такой картинки не найдено');
         }
-        const data = await MainBlock.create({ title, desc, buttonVisible, linkButton, galleryId })
+        const data = await MainBlock.create({ title, desc, buttonVisible, textButton, linkButton, galleryId })
+        return data;
+    }
+
+    async save(id, title, desc, buttonVisible, textButton, linkButton, galleryId) {
+        const image = await Gallery.findByPk(galleryId);
+        if (!image) {
+            throw ApiError.BadRequest('Такой картинки не найдено');
+        }
+        const data = await MainBlock.findByPk(id)
+        if(!data) {
+            throw ApiError.BadRequest('Такой записи не найдено');
+        }
+        data.title = title;
+        data.desc = desc;
+        data.buttonVisible = buttonVisible;
+        data.textButton = textButton;
+        data.linkButton = linkButton;
+        data.galleryId = galleryId;
+        await data.save();
         return data;
     }
 
