@@ -1,11 +1,3 @@
 .basicHolder {
-  width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 40px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  position: relative;
 }/*# sourceMappingURL=Basic.module.css.map */

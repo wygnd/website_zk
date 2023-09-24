@@ -6,19 +6,19 @@ import NavBarStore from './store/NavBarStore';
 import './styles/main.css';
 import GalleryStore from './store/galleryStore';
 import BasicStore from './store/basicStore';
+import MainBlockStore from './store/mainBlockStore';
 
-const userStore = new UserStore();
-const basicStore = new BasicStore()
 
 export const ContextMain = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ContextMain.Provider value={{
-        userStore,
+        userStore: new UserStore(),
         menuElements: new NavBarStore(),
         galleryStore: new GalleryStore(),
-        basicStore,
+        basicStore: new BasicStore(),
+        mainBlockStore: new MainBlockStore(),
     }}>
         <App />
     </ContextMain.Provider>

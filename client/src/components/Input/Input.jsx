@@ -1,9 +1,9 @@
 import React from 'react';
 import inputClasses from './Input.module.css';
 
-const Input = ({ ...props }) => {
+const Input = ({extend, full, ...props }) => {
     return (
-        <input {...props} className={inputClasses.input} />
+        <input {...props} className={[inputClasses.input, extend && inputClasses.extend, full && inputClasses.full].join(' ')} />
     );
 };
 

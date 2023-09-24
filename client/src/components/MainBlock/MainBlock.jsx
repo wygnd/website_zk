@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { observer } from 'mobx-react-lite';
@@ -8,14 +8,15 @@ import 'swiper/css';
 
 import { fetchSlides } from '../../http/mainBlockAPI';
 import { SERVER_URL } from '../../utils/consts';
+import { ContextMain } from '../..';
 
 const MainBlock = observer(() => {
 
-    const [slides, setSlides] = useState([]);
+    const { mainBlockStore } = useContext(ContextMain);
 
-    useEffect(() => {
-        fetchSlides().then(data => setSlides(data));
-    }, []);
+    if (mainBlockStore.slides.length === 0) {
+        return;
+    }
 
     return (
         <section className={cl.mainBlock}>
@@ -27,6 +28,7 @@ const MainBlock = observer(() => {
                 }}
                 loop={true}
                 className="swiperMainBlock"
+                allowTouchMove={false}
                 navigation={{
                     nextEl: ".arrow__next",
                     prevEl: ".arrow__prev",
@@ -35,7 +37,7 @@ const MainBlock = observer(() => {
                 modules={[Autoplay, Navigation]}
 
             >
-                {slides.map(slide =>
+                {mainBlockStore.slides.map(slide =>
                     <SwiperSlide key={slide.id}>
                         <div className={cl.mainItem}>
                             <div className="container">

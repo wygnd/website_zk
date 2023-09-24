@@ -1,0 +1,64 @@
+@import '../../../styles/includes';
+
+.mainEdit {
+    // display: flex;
+    // flex-direction: column;
+    // gap: 10px;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.mainEditHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.editTitle {
+    @include h5;
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.checkLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    label {
+        cursor: pointer;
+        @include bodyS;
+        color: var(--black);
+    }
+}
+
+.imageHolder {
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid var(--bg2);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+.buttonAdd {
+    width: 100%;
+    margin: 20px auto 0;
+}
+
+.modalSuccessTitle {
+    @include h6;
+    text-align: center;
+}
+
+.modalSuccessIcon {
+    width: fit-content;
+    margin: 0 auto 20px;
+}
