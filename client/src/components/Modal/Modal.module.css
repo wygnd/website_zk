@@ -45,4 +45,7 @@
 }
 .modalContent.contentVisible {
   transform: translate(-50%, -50%) scale(1);
+}
+.modalContent.overflowY {
+  overflow-y: auto;
 }/*# sourceMappingURL=Modal.module.css.map */

@@ -18,12 +18,15 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
         fetchData().then(response => {
             galleryStore.setImages(response.rows);
         });
-    }, [open]);
+    }, [open, galleryStore.update]);
 
     async function inputChangeHandler(e) {
         const formData = new FormData()
         formData.append('fileName', e.target.files[0])
-        await addImage(formData).then(data => setOpen(false));
+        await addImage(formData).then(data => {
+            setOpen(false);
+            galleryStore.setUpdate(!galleryStore.update);
+        });
     }
 
     function selectImage(e) {
@@ -43,7 +46,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
             <div className={cl.galleryHolder}>
                 {galleryStore.gallery.map(el =>
                     <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
-                        <img  data-id={el.id} src={`${SERVER_URL}/${el.fileName}`} />
+                        <img data-id={el.id} src={`${SERVER_URL}/${el.fileName}`} />
                     </div>
                 )}
             </div>

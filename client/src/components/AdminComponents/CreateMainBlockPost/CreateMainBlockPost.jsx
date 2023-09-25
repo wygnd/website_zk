@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import cl from './CreateMainBlockPost.module.css';
 import { SERVER_URL } from '../../../utils/consts';
 import Button from '../../Button';
@@ -8,21 +8,23 @@ import Textarea from '../../Textarea/Textarea';
 import { observer } from 'mobx-react-lite';
 import { getImageById } from '../../../http/galleryAPI';
 import { createSlide } from '../../../http/mainBlockAPI';
-import Modal from '../../Modal/Modal';
-import { CiCircleCheck } from 'react-icons/ci';
+import ModalSuccess from '../ModalSuccess/ModalSuccess';
+import { ContextMain } from '../../..';
 
 
-const CreateMainBlockPost = observer(() => {
+const CreateMainBlockPost = observer(({ clickButtonCreate }) => {
 
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
     const [buttonVisible, setbuttonVisible] = useState(false);
     const [textButton, setTextButton] = useState('');
     const [linkButton, setLinkButton] = useState('');
-    const [galleryId, setGalleryId] = useState(0);
+    const [galleryId, setGalleryId] = useState(1);
     const [open, setOpen] = useState(false);
     const [image, setImage] = useState('');
     const [isCreatedSucces, setIsCreatedSucces] = useState(false);
+    const { mainBlockStore } = useContext(ContextMain);
+
 
     const clickHandlerImage = () => {
         setOpen(false);
@@ -40,9 +42,17 @@ const CreateMainBlockPost = observer(() => {
         }
         await createSlide(title, desc, buttonVisible, textButton, linkButton, galleryId).then(data => {
             setIsCreatedSucces(true);
+            mainBlockStore.setUpdate(!mainBlockStore.update);
+            setTitle('');
+            setDesc('');
+            setbuttonVisible(!buttonVisible);
+            setLinkButton('');
+            setGalleryId(1);
+            setImage('');
             setTimeout(() => {
                 setIsCreatedSucces(false);
-            }, 3000);
+                clickButtonCreate();
+            }, 1500);
         })
     }
 
@@ -79,12 +89,7 @@ const CreateMainBlockPost = observer(() => {
                 </div>
                 <Button className={cl.buttonAdd} onClick={addPost}>Создать</Button>
             </div>
-            <Modal open={isCreatedSucces} clickHandler={clickHandlerModalSuccess}>
-                <div className={cl.modalSuccessIcon}>
-                    <CiCircleCheck color='green' size="60px"/>
-                </div>
-                <div className={cl.modalSuccessTitle}>Пост успешно создан</div>
-            </Modal>
+            <ModalSuccess isSuccess={isCreatedSucces} clickHandlerModalSuccess={clickHandlerModalSuccess}>Пост успешно создан</ModalSuccess>
         </>
     );
 });

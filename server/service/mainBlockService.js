@@ -19,7 +19,7 @@ class MainBlockService {
             throw ApiError.BadRequest('Такой картинки не найдено');
         }
         const data = await MainBlock.findByPk(id)
-        if(!data) {
+        if (!data) {
             throw ApiError.BadRequest('Такой записи не найдено');
         }
         data.title = title;
@@ -50,15 +50,11 @@ class MainBlockService {
     }
 
     async removeItem(id) {
-        try {
-            const item = await MainBlock.destroy({ where: { id } });
-            if (item) {
-                return res.json({ message: "Итем удален успешно" });
-            } else {
-                res.json({ message: "Что-то пошло не так" });
-            }
-        } catch (error) {
-            next(ApiError.BadRequest(error.message));
+        const item = await MainBlock.destroy({ where: { id } });
+        if (item) {
+            return { message: "Итем удален успешно" };
+        } else {
+            return { message: "Что-то пошло не так" };
         }
     }
 

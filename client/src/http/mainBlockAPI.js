@@ -16,3 +16,8 @@ export async function saveSlide(title, desc, buttonVisible, textButton, linkButt
         { title, desc, buttonVisible, textButton, linkButton, galleryId });
     return data;
 }
+
+export async function removeSlide(id) {
+    const { data } = await $apiAuth.post(`/mainBlock/remove/${id}`);
+    return data;
+}

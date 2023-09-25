@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from "./components/AppRouter";
 import Header from './components/Header';
@@ -9,18 +9,18 @@ import { fetchSlides } from "./http/mainBlockAPI";
 const App = observer(() => {
 
   const { userStore, mainBlockStore } = useContext(ContextMain);
+  
   useEffect(() => {
     if (localStorage.getItem('token')) {
       userStore.checkAuth();
     }
   }, [])
 
-  useMemo(() => {
-    console.log('memo');
+  useEffect(() => {
     fetchSlides().then(data => {
       mainBlockStore.setSlides(data);
     });
-  });
+  }, [mainBlockStore.update]);
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>
