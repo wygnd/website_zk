@@ -13,12 +13,49 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-height: 0;
+    height: 0;
+    overflow: hidden;
+    transition: height .4s ease-out, max-height .4s ease-out, overflow .4s ease-out;
+
+    &.mainEditHolderOpen {
+        max-height: fit-content;
+        height: fit-content;
+        overflow: visible;
+    }
 }
 
+
 .editTitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     @include h5;
     color: var(--black);
     margin-bottom: 20px;
+    cursor: pointer;
+    background: var(--bg5);
+    padding: 20px;
+    border-radius: 5px;
+    transition: color .4s ease-out;
+
+    svg {
+        transition: transform .4s ease-out, fill .4s ease-out;
+    }
+
+    &:hover {
+        color: var(--primary);
+
+        svg {
+            fill: var(--primary);
+        }
+    }
+
+    &.editTitleActive {
+        svg {
+            transform: rotate(-180deg);
+        }
+    }
 }
 
 .checkLabel {

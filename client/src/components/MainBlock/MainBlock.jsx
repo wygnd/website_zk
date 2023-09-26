@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { observer } from 'mobx-react-lite';
 import cl from './MainBlock.module.css';
-
 import 'swiper/css';
 
 import { SERVER_URL } from '../../utils/consts';
@@ -25,11 +24,11 @@ const MainBlock = observer(() => {
                 autoplay={{
                     delay: 5000,
                     disableOnInteraction: false,
+                    stopOnLastSlide: true,
                 }}
                 onSwiper={(swiper) => {
                     setSwiperMainBlock(swiper);
                 }}
-                loop={true}
                 className="swiperMainBlock"
                 allowTouchMove={false}
                 navigation={{
@@ -53,7 +52,9 @@ const MainBlock = observer(() => {
                                 </div>
                             </div>
                             <div className={cl.imageBackground}>
-                                <img src={`${SERVER_URL}/${slide.gallery.fileName}`} />
+                                <img
+                                    src={`${SERVER_URL}/${slide.gallery.fileName}`}
+                                />
                             </div>
                         </div>
                     </SwiperSlide>

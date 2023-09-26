@@ -14,8 +14,16 @@
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
 .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  z-index: 100;
   padding: 20px 0;
   box-shadow: none;
+  background: var(--bg1);
 }
 .header.header_home {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 50px;
@@ -97,4 +105,10 @@
 }
 .btn.error:hover {
   color: var(--bg1);
+}
+
+@media (max-width: 1100px) {
+  .menu {
+    display: none;
+  }
 }/*# sourceMappingURL=Header.module.css.map */

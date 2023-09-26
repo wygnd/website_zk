@@ -10,9 +10,10 @@ import { getImageById } from '../../../http/galleryAPI';
 import { createSlide } from '../../../http/mainBlockAPI';
 import ModalSuccess from '../ModalSuccess/ModalSuccess';
 import { ContextMain } from '../../..';
+import { FaArrowDown } from 'react-icons/fa'
 
 
-const CreateMainBlockPost = observer(({ clickButtonCreate }) => {
+const CreateMainBlockPost = observer(({ }) => {
 
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
@@ -24,6 +25,7 @@ const CreateMainBlockPost = observer(({ clickButtonCreate }) => {
     const [image, setImage] = useState('');
     const [isCreatedSucces, setIsCreatedSucces] = useState(false);
     const { mainBlockStore } = useContext(ContextMain);
+    const [accIsOpen, setAccOpen] = useState(false);
 
 
     const clickHandlerImage = () => {
@@ -45,13 +47,13 @@ const CreateMainBlockPost = observer(({ clickButtonCreate }) => {
             mainBlockStore.setUpdate(!mainBlockStore.update);
             setTitle('');
             setDesc('');
-            setbuttonVisible(!buttonVisible);
+            setbuttonVisible(false);
             setLinkButton('');
             setGalleryId(1);
             setImage('');
+            setAccOpen(false);
             setTimeout(() => {
                 setIsCreatedSucces(false);
-                clickButtonCreate();
             }, 1500);
         })
     }
@@ -64,12 +66,17 @@ const CreateMainBlockPost = observer(({ clickButtonCreate }) => {
     return (
         <>
             <div className={cl.mainEdit}>
-                <div className={cl.editTitle}>Создать пост</div>
-                <div className={cl.mainEditHolder}>
+                <div
+                    className={[cl.editTitle, accIsOpen && cl.editTitleActive].join(' ')}
+                    onClick={() => setAccOpen(!accIsOpen)}>
+                    Создать пост
+                    <FaArrowDown />
+                </div>
+                <div className={[cl.mainEditHolder, accIsOpen && cl.mainEditHolderOpen].join(' ')}>
                     <Input type="text" placeholder="Заголовок" full value={title} onChange={(e) => setTitle(e.target.value)} />
                     <Textarea placeholder="Описание" full value={desc} onChange={(e) => setDesc(e.target.value)} />
                     <div className={cl.checkLabel} >
-                        <Input id="buttonVisible" type="checkbox" value={buttonVisible} onChange={() => setbuttonVisible(!buttonVisible)} />
+                        <Input id="buttonVisible" type="checkbox" checked={buttonVisible} onChange={() => setbuttonVisible(!buttonVisible)} />
                         <label htmlFor="buttonVisible">Кнопка</label>
                     </div>
                     {buttonVisible &&
@@ -86,8 +93,8 @@ const CreateMainBlockPost = observer(({ clickButtonCreate }) => {
 
                     <Button onClick={() => setOpen(true)}>Выбрать изображение</Button>
                     <ModalGallery open={open} setOpen={setOpen} clickHandler={clickHandlerImage} title="Выбрать изображение" getImageId={selectHandler} />
+                    <Button className={cl.buttonAdd} onClick={addPost}>Создать</Button>
                 </div>
-                <Button className={cl.buttonAdd} onClick={addPost}>Создать</Button>
             </div>
             <ModalSuccess isSuccess={isCreatedSucces} clickHandlerModalSuccess={clickHandlerModalSuccess}>Пост успешно создан</ModalSuccess>
         </>

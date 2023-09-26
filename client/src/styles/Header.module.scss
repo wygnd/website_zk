@@ -1,8 +1,15 @@
 @import '_includes.scss';
 
 .header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 100;
     padding: 20px 0;
     box-shadow: none;
+    background: var(--bg1);
 
     &.header_home {
         box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 50px
@@ -91,5 +98,11 @@
         &:hover {
             color: var(--bg1);
         }
+    }
+}
+
+@media (max-width: 1100px) {
+    .menu {
+        display: none;
     }
 }

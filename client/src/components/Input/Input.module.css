@@ -22,9 +22,11 @@
   font-style: normal;
   font-weight: 600;
   line-height: 130%;
+  transition: border 0.4s ease-out;
 }
 .input:focus {
   outline: none;
+  transition: border 0.4s ease-out;
 }
 .input::-moz-placeholder {
   font-size: calc(0.00125 * 100vw + 13.6px);
@@ -47,6 +49,9 @@
 .input.full {
   width: 100%;
   max-width: 100%;
+}
+.input.notBorder {
+  border: none;
 }
 
 input[type=checkbox] {

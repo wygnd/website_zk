@@ -32,6 +32,16 @@ class GalleryController {
             next(ApiError.BadRequest(e.message));
         }
     }
+
+    async remove(req, res, next) {
+        try {
+            const { id } = req.params;
+            const galleryData = await galleryService.remove(id);
+            return res.json(galleryData);
+        } catch (e) {
+            next(ApiError.BadRequest(e.message));
+        }
+    }
 }
 
 module.exports = new GalleryController();

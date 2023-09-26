@@ -5,7 +5,7 @@ import { CiCircleCheck } from 'react-icons/ci';
 
 const ModalSuccess = ({ isSuccess, clickHandlerModalSuccess, children }) => {
     return (
-        <Modal open={isSuccess} onClick={() => clickHandlerModalSuccess()}>
+        <Modal open={isSuccess} clickHandler={() => clickHandlerModalSuccess()}>
             <div className={cl.modalSuccessIcon}>
                 <CiCircleCheck color='green' size="60px" />
             </div>

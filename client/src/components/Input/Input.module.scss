@@ -6,9 +6,11 @@
     border-radius: 5px;
     border: 1px solid var(--primary);
     @include bodyS;
+    transition: border .4s ease-out;
 
     &:focus {
         outline: none;
+        transition: border .4s ease-out;
     }
 
     &::placeholder {
@@ -25,6 +27,12 @@
         width: 100%;
         max-width: 100%;
     }
+
+    &.notBorder {
+        border: none;
+    }
+
+    
 }
 
 input[type="checkbox"] {
@@ -58,7 +66,7 @@ input[type="checkbox"] {
         background: var(--primary);
         transition: transform .2s ease-out;
     }
-    
+
     &:checked {
         &::after {
             transform: translate(-50%, -50%) scale(1);

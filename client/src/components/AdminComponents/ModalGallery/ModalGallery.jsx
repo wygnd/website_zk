@@ -3,9 +3,9 @@ import cl from './ModalGallery.module.css';
 import { SERVER_URL } from '../../../utils/consts';
 import { observer } from 'mobx-react-lite';
 import { ContextMain } from '../../..';
-import { addImage, fetchImages } from '../../../http/galleryAPI';
+import { addImage, fetchImages, removeImageByID } from '../../../http/galleryAPI';
 import Modal from '../../Modal/Modal';
-import $ from 'jquery';
+import { BsFillTrashFill } from 'react-icons/bs'
 
 const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Галерея', getImageId }) => {
 
@@ -24,15 +24,29 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
         const formData = new FormData()
         formData.append('fileName', e.target.files[0])
         await addImage(formData).then(data => {
-            setOpen(false);
+            console.log(data);
             galleryStore.setUpdate(!galleryStore.update);
         });
     }
 
     function selectImage(e) {
-        getImageId(e.target.dataset.id);
+        getImageId(e.target.children[0].dataset.id);
         setOpen(false);
     }
+
+    const deleteItem = async (e) => {
+        try {
+            e.stopPropagation();
+            await removeImageByID(e.currentTarget.dataset.id).then(data => {
+                console.log(data);
+                galleryStore.setUpdate(!galleryStore.update);
+            })
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <Modal open={open} clickHandler={() => clickHandler()} className={cl.modal}>
@@ -47,6 +61,14 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                 {galleryStore.gallery.map(el =>
                     <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
                         <img data-id={el.id} src={`${SERVER_URL}/${el.fileName}`} />
+                        <div className={cl.hoverHolder}>
+                            <BsFillTrashFill
+                                color='red' size="35"
+                                className={cl.deleteItem}
+                                onClick={deleteItem}
+                                data-id={el.id}
+                            />
+                        </div>
                     </div>
                 )}
             </div>

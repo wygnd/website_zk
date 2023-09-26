@@ -1,6 +1,7 @@
 const { Gallery } = require("../models/models");
 const uuid = require('uuid');
 const path = require('path');
+const fs = require('fs');
 
 class GalleryService {
 
@@ -27,6 +28,16 @@ class GalleryService {
     async getOne(id) {
         const gallery = await Gallery.findByPk(id);
         return gallery;
+    }
+
+    async remove(id) {
+        const image = await Gallery.findByPk(id);
+        const errorDelete = {};
+        fs.unlink(path.resolve(__dirname, '..', 'static', image.fileName), err => {
+            if (err) errorDelete =  err;
+        })
+        const gallery = await Gallery.destroy({ where: { id } });
+        return {gallery, errorDelete};
     }
 
 }

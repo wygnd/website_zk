@@ -14,3 +14,8 @@ export async function getImageById(id) {
     const { data } = await $apiAuth.get(`/gallery/${id}`);
     return data;
 }
+
+export async function removeImageByID(id) {
+    const { data } = await $apiAuth.post(`/gallery/remove/${id}`);
+    return data;
+}

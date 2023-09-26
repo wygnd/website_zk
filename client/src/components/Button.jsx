@@ -9,7 +9,8 @@ const Button = ({ children, invert, error, className, ...props }) => {
             className={
                 [headerClasses.btn,
                 invert && headerClasses.invert,
-                error && headerClasses.error, className].join(' ')}
+                error && headerClasses.error,
+                    className].join(' ')}
         >{children}</button>
     );
 };
