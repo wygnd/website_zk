@@ -18,7 +18,7 @@ const MainItemPreview = ({ title, desc, galleryId }) => {
     return (
         <div className={cl.itemPreview}>
             <div className={cl.titleItem}>{title}</div>
-            <div className={cl.descItem}>{desc}</div>
+            {/* <div className={cl.descItem}>{desc}</div>
             <Fancybox>
                 <a href={`${SERVER_URL}/${fileName}`} className={cl.imageItem}>
                     <img
@@ -27,7 +27,7 @@ const MainItemPreview = ({ title, desc, galleryId }) => {
                         data-fancybox={`galleryImage-${galleryId}`}
                         alt="" />
                 </a>
-            </Fancybox>
+            </Fancybox> */}
         </div>
     );
 };

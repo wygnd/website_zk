@@ -1,0 +1,92 @@
+@import '../../styles/includes';
+
+.phonesHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.phonesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: fit-content;
+}
+
+.phoneItemHolder {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.phoneItem {
+    @include h5;
+    color: var(--text1);
+}
+
+
+.phonesChanged {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include h5;
+    color: var(--text1);
+}
+
+.savePhone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color .4s ease-out;
+
+
+    &:hover {
+        color: green;
+    }
+}
+
+.changePhone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color .4s ease-out;
+    margin-left: 30px;
+
+    &:hover {
+        color: var(--primary);
+    }
+
+}
+
+.deletePhone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color .4s ease-out;
+
+    &:hover {
+        color: red;
+    }
+}
+
+.modalChangePhone {
+    @include h4;
+    color: var(--text1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modalChangeHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.errorTitleNotFoundPhones {
+    text-align: center;
+    @include h6;
+    color: var(--text1);
+}

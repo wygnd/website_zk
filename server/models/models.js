@@ -34,6 +34,11 @@ const MainBlock = sequelize.define('mainBock', {
     linkButton: { type: DataTypes.STRING },
 })
 
+const Settings = sequelize.define('settings', {
+    metaKey: { type: DataTypes.STRING, allowNull: false },
+    metaValue: { type: DataTypes.STRING, allowNull: false },
+})
+
 
 Users.hasOne(Tokens)
 Tokens.belongsTo(Users);
@@ -42,5 +47,5 @@ Gallery.hasOne(MainBlock);
 MainBlock.belongsTo(Gallery);
 
 module.exports = {
-    Tours, Gallery, Users, Tokens, MainBlock
+    Tours, Gallery, Users, Tokens, MainBlock, Settings
 }

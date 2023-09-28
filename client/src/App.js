@@ -5,15 +5,20 @@ import Header from './components/Header';
 import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
+import { fetchLogo, fetchPhones } from "./http/basicAPI";
 
 const App = observer(() => {
 
-  const { userStore, mainBlockStore } = useContext(ContextMain);
-  
+  const { userStore, mainBlockStore, basicStore } = useContext(ContextMain);
+
   useEffect(() => {
     if (localStorage.getItem('token')) {
       userStore.checkAuth();
     }
+    fetchPhones()
+      .then(data => {
+        basicStore.setPhones(data);
+      })
   }, [])
 
   useEffect(() => {
@@ -21,6 +26,13 @@ const App = observer(() => {
       mainBlockStore.setSlides(data);
     });
   }, [mainBlockStore.update]);
+
+  useEffect(() => {
+    fetchLogo().then(data => {
+      console.log('effect');
+      basicStore.setLogo(data[0]);
+    })
+  }, [basicStore.update]);
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

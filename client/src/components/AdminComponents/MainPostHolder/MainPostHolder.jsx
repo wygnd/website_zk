@@ -15,6 +15,7 @@ const MainPostHolder = observer(() => {
     const { mainBlockStore } = useContext(ContextMain);
     const [successDelete, setSuccessDelete] = useState(false);
     const historyItem = useNavigate();
+    
     const removeitem = async (e) => {
         await removeSlide(e.target.dataset.item)
             .then(data => {

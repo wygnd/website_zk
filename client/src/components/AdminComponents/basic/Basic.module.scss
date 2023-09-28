@@ -1,3 +1,19 @@
+@import '../../../styles/includes';
+
 .basicHolder {
    position: relative;
+}
+
+.titleHolder {
+   @include h3;
+   color: var(--text1);
+   margin-bottom: 20px;
+   text-align: center;
+
+}
+
+.basicWrapper {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap: 30px;
 }

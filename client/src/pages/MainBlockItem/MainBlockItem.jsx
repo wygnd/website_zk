@@ -80,6 +80,7 @@ const MainBlockItem = observer(() => {
         }
         try {
             await saveSlide(id, title, desc, buttonVisible, textButton, linkButton, galleryId).then(response => {
+                mainBlockStore.setUpdate(!mainBlockStore.update);
                 setMessageSuccess('Запись успешно сохранена');
                 setModalSucces(true);
                 setTimeout(() => {

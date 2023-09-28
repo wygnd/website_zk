@@ -2,27 +2,43 @@ import { makeAutoObservable } from "mobx";
 
 export default class BasicStore {
     constructor() {
-        this._phones = [
-            { id: 1, value: '+7 999 999-99-99', name: 'Телефон 1' },
-            { id: 2, value: '+7 999 999-99-99', name: 'Телефон 2' },
-        ];
+        this._logo = [];
+        this._phones = [];
+        this._update = false;
 
         makeAutoObservable(this);
     }
 
-    static setPhones(phones) {
+    setPhones(phones) {
         this._phones = phones;
     }
 
-    static addPhone(phone) {
+    setUpdate(bool) {
+        this._update = bool;
+    }
+
+    addPhone(phone) {
         this._phones = this._phones.push(phone);
     }
 
-    static removePhone(id) {
-        this._phones = this._phones.filter(el => el.id !== id);
+    setLogo(logo) {
+        this._logo = logo;
     }
 
     get phones() {
         return this._phones;
     }
+
+    getPhone(id) {
+        return this.phones.filter(p => p.id !== id);
+    }
+
+    get update() {
+        return this._update;
+    }
+
+    get logo() {
+        return this._logo;
+    }
+
 }

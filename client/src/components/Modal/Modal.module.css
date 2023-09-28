@@ -23,6 +23,7 @@
   opacity: 0;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  z-index: 9999;
 }
 .modalOverView.openModal {
   opacity: 0.5;
@@ -42,6 +43,7 @@
   background: var(--bg5);
   border-radius: 20px;
   padding: 40px;
+  z-index: 99999;
 }
 .modalContent.contentVisible {
   transform: translate(-50%, -50%) scale(1);

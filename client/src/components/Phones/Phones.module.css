@@ -13,22 +13,21 @@
 
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
-.basicHolder {
-  position: relative;
+.phonesHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.titleHolder {
-  font-size: calc(0.00875 * 100vw + 15.2px);
+.phoneItem {
+  font-size: calc(0.00375 * 100vw + 12.8px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
   color: var(--text1);
-  margin-bottom: 20px;
-  text-align: center;
+  text-decoration: none;
+  transition: color 0.4s ease-out;
 }
-
-.basicWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 30px;
-}/*# sourceMappingURL=Basic.module.css.map */
+.phoneItem:hover {
+  color: var(--primary);
+}/*# sourceMappingURL=Phones.module.css.map */
