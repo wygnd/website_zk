@@ -1,8 +1,9 @@
 import React from 'react';
 import cl from './Basic.module.css';
 import LogoInput from '../LogoInput/LogoInput';
-import PhonesHolder from '../../PhonesHolder/PhonesHolder';
 import { observer } from 'mobx-react-lite';
+import PhonesHolder from '../PhonesHolder/PhonesHolder';
+import SocialsHolder from '../SocialsHolder/SocialsHolder';
 
 const Basic = observer(({ className }) => {
     return (
@@ -11,7 +12,7 @@ const Basic = observer(({ className }) => {
             <div className={cl.basicWrapper}>
                 <LogoInput />
                 <PhonesHolder />
-                
+                <SocialsHolder />
             </div>
         </div>
     );

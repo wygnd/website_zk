@@ -29,6 +29,7 @@ const MainBlock = observer(() => {
                 onSwiper={(swiper) => {
                     setSwiperMainBlock(swiper);
                 }}
+                loop={true}
                 className="swiperMainBlock"
                 allowTouchMove={false}
                 navigation={{

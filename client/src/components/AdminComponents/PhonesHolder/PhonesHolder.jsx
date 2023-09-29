@@ -1,15 +1,15 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { ContextMain } from '../..';
+import React, { useContext, useMemo, useState } from 'react';
+import { ContextMain } from '../../..';
 import cl from './PhonesHolder.module.css';
-import Input from '../Input/Input';
-import Button from '../Button';
-import { addPhone, changePhone, fetchPhones, removePhone } from '../../http/basicAPI';
-import ModalError from '../AdminComponents/ModalError/ModalError';
+import Input from '../../Input/Input';
+import Button from '../../Button';
+import { addPhone, changePhone, fetchPhones, removePhone } from '../../../http/basicAPI';
+import ModalError from '../../AdminComponents/ModalError/ModalError';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
-import ModalSuccess from '../AdminComponents/ModalSuccess/ModalSuccess';
-import Modal from '../Modal/Modal';
+import ModalSuccess from '../../AdminComponents/ModalSuccess/ModalSuccess';
+import Modal from '../../Modal/Modal';
 
 const PhonesHolder = observer(() => {
 

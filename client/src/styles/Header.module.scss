@@ -65,6 +65,12 @@
     }
 }
 
+.btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .btn {
     background: var(--primary);
     border: 1px solid var(--primary);
@@ -73,16 +79,38 @@
     color: var(--bg1);
     @include bodyS;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
     transition: background .4s ease-out, color .4s ease-out;
+
+    svg {
+        display: none;
+    }
+
+    span {
+        color: var(--bg1);
+        @include bodyS;
+    }
 
     &:hover {
         background: transparent;
         color: var(--primary);
+
+        span {
+            color: var(--primary);
+        }
     }
 
     &.invert {
         background: transparent;
         color: var(--primary);
+
+        span {
+            color: var(--primary);
+            @include bodyS;
+        }
 
         &:hover {
             background: var(--primary);
@@ -105,5 +133,19 @@
 @media (max-width: 1100px) {
     .menu {
         display: none;
+    }
+}
+
+@media (max-width: 660px) {
+    .btn {
+        padding: 20px;
+
+        svg {
+            display: block;
+        }
+
+        span {
+            display: none;
+        }
     }
 }

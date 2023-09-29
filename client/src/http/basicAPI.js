@@ -29,3 +29,23 @@ export async function changePhone(metaKey, metaValue) {
     const { data } = await $apiAuth.post(`/settings/changePhone`, { metaKey, metaValue })
     return data;
 }
+
+export async function fetchSocials() {
+    const { data } = await $apiAuth.post(`/settings`, { name: 'soc' })
+    return data;
+}
+
+export async function removeSocial(metaKey) {
+    const { data } = await $apiAuth.post(`/settings/remove/${metaKey}`)
+    return data;
+}
+
+export async function addSocial(metaValue) {
+    const { data } = await $apiAuth.post(`/settings/create/`, { metaKey: 'soc', metaValue })
+    return data;
+}
+
+export async function changeSocial(metaKey, metaValue) {
+    const { data } = await $apiAuth.post(`/settings/create/`, { metaKey, metaValue })
+    return data;
+}

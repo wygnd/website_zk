@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from "./components/AppRouter";
 import Header from './components/Header';
@@ -29,10 +29,13 @@ const App = observer(() => {
 
   useEffect(() => {
     fetchLogo().then(data => {
-      console.log('effect');
       basicStore.setLogo(data[0]);
     })
   }, [basicStore.update]);
+
+  useEffect(() => {
+      
+  }, []);
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

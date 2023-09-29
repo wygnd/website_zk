@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 import cl from './ModalGallery.module.css';
 import { SERVER_URL } from '../../../utils/consts';
 import { observer } from 'mobx-react-lite';

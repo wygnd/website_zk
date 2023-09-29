@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ADMIN_ROUTE, MAIN_ROUTE } from '../utils/consts';
 import { observer } from 'mobx-react-lite';
 import Phones from './Phones/Phones';
+import { RiLogoutBoxRLine, RiAdminFill } from 'react-icons/ri';
+import SocialsHolder from './AdminComponents/SocialsHolder/SocialsHolder';
 
 const Header = observer(() => {
 
@@ -21,7 +23,6 @@ const Header = observer(() => {
         history(MAIN_ROUTE);
     }
 
-
     return (
         <header className={[headerClasses.header, !isMainPage && headerClasses.header_home].join(' ')}>
             <div className="container">
@@ -30,14 +31,20 @@ const Header = observer(() => {
                     <NavBar />
                     {userStore.isAuth
                         ?
-                        <>
-                            <Button invert onClick={() => history(ADMIN_ROUTE)}>Админ панель</Button>
-                            <Button onClick={logoutClickHandler}>Выйти</Button>
-                        </>
+                        <div className={headerClasses.btns}>
+                            <Button invert onClick={() => history(ADMIN_ROUTE)}>
+                                <RiAdminFill size={20} />
+                                <span>Админ панель</span>
+                            </Button>
+                            <Button onClick={logoutClickHandler}>
+                                <RiLogoutBoxRLine size={20} />
+                                <span>Выйти</span>
+                            </Button>
+                        </div>
                         :
                         <>
-                        
-                        <Phones />
+                          
+                            <Phones />
                         </>
                     }
                 </div>
