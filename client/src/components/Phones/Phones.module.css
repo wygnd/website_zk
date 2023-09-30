@@ -13,7 +13,8 @@
 
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
-.phonesHolder {
+.phonesHolder,
+.phonesHolderMobile {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -30,4 +31,10 @@
 }
 .phoneItem:hover {
   color: var(--primary);
+}
+
+@media (max-width: 560px) {
+  .phonesHolder {
+    display: none;
+  }
 }/*# sourceMappingURL=Phones.module.css.map */

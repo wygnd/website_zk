@@ -29,6 +29,6 @@
 
 .basicWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 2fr 2fr;
   gap: 30px;
 }/*# sourceMappingURL=Basic.module.css.map */

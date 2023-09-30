@@ -44,12 +44,12 @@ class SettingsService {
     }
 
     async remove(metaKey) {
-        const candidate = await Settings.findOne({ where: { metaKey } });
-        if (!candidate) {
-            throw ApiError.BadRequest('Такого поля не существует');
-        }
         const dataSettings = await Settings.destroy({ where: { metaKey } })
-        return dataSettings;
+        if (dataSettings) {
+            return { message: "Итем удален успешно", dataSettings };
+        } else {
+            return { message: "Что-то пошло не так", dataSettings };
+        }
     }
 
     async changePhone(metaKey, metaValue) {

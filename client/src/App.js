@@ -5,7 +5,8 @@ import Header from './components/Header';
 import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
-import { fetchLogo, fetchPhones } from "./http/basicAPI";
+import { fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
+import { getImageById } from "./http/galleryAPI";
 
 const App = observer(() => {
 
@@ -15,10 +16,6 @@ const App = observer(() => {
     if (localStorage.getItem('token')) {
       userStore.checkAuth();
     }
-    fetchPhones()
-      .then(data => {
-        basicStore.setPhones(data);
-      })
   }, [])
 
   useEffect(() => {
@@ -31,10 +28,28 @@ const App = observer(() => {
     fetchLogo().then(data => {
       basicStore.setLogo(data[0]);
     })
+    fetchPhones()
+      .then(data => {
+        basicStore.setPhones(data);
+      })
+    fetchSocials()
+      .then(data => {
+        const dataRequest = [];
+        data.forEach(soc => {
+          const dataSoc = {
+            metaKey: soc.metaKey,
+            metaValue: soc.metaValue.split('+')[0],
+            iconId: soc.metaValue.split('+')[1],
+          }
+
+          dataRequest.push(dataSoc);
+        });
+        basicStore.setSocials(dataRequest);
+      })
   }, [basicStore.update]);
 
   useEffect(() => {
-      
+
   }, []);
 
   if (userStore.isLoading) {

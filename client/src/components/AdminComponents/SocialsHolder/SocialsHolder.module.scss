@@ -1,1 +1,13 @@
 @import '../../../styles/includes';
+
+.socialWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.socialsHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

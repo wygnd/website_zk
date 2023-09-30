@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Logo from './Logo';
 import { ContextMain } from '..';
 import NavBar from './NavBar';
@@ -9,7 +9,8 @@ import { ADMIN_ROUTE, MAIN_ROUTE } from '../utils/consts';
 import { observer } from 'mobx-react-lite';
 import Phones from './Phones/Phones';
 import { RiLogoutBoxRLine, RiAdminFill } from 'react-icons/ri';
-import SocialsHolder from './AdminComponents/SocialsHolder/SocialsHolder';
+import Socials from './Socials/Socials';
+import Burger from './Burger/Burger';
 
 const Header = observer(() => {
 
@@ -17,7 +18,7 @@ const Header = observer(() => {
     const location = useLocation();
     const isMainPage = location.pathname === MAIN_ROUTE;
     const history = useNavigate();
-
+    const [openBurger, setOpenBurger] = useState(false);
     const logoutClickHandler = () => {
         userStore.logout()
         history(MAIN_ROUTE);
@@ -28,7 +29,7 @@ const Header = observer(() => {
             <div className="container">
                 <div className={headerClasses.header_holder}>
                     <Logo />
-                    <NavBar />
+                    <NavBar mobile={false} />
                     {userStore.isAuth
                         ?
                         <div className={headerClasses.btns}>
@@ -43,9 +44,16 @@ const Header = observer(() => {
                         </div>
                         :
                         <>
-                          
+                            <Socials />
                             <Phones />
                         </>
+                    }
+                    {isMainPage &&
+                        <Burger
+                            isOpen={openBurger}
+                            onClick={() => setOpenBurger(!openBurger)}
+                            closeMenu={() => setOpenBurger(false)}
+                        />
                     }
                 </div>
             </div>

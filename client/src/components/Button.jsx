@@ -1,7 +1,7 @@
 import React from 'react';
 import headerClasses from '../styles/Header.module.css';
 
-const Button = ({ children, invert, error, className, ...props }) => {
+const Button = ({ children, invert, error, className, svg, ...props }) => {
 
 
     return (
@@ -10,6 +10,7 @@ const Button = ({ children, invert, error, className, ...props }) => {
                 [headerClasses.btn,
                 invert && headerClasses.invert,
                 error && headerClasses.error,
+                svg && headerClasses.svg,
                     className].join(' ')}
         >{children}</button>
     );

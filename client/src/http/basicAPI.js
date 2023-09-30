@@ -40,12 +40,12 @@ export async function removeSocial(metaKey) {
     return data;
 }
 
-export async function addSocial(metaValue) {
-    const { data } = await $apiAuth.post(`/settings/create/`, { metaKey: 'soc', metaValue })
+export async function addSocial(metaValue, iconId) {
+    const { data } = await $apiAuth.post(`/settings/create/`, { metaKey: 'soc', metaValue: `${metaValue}+${iconId}` })
     return data;
 }
 
-export async function changeSocial(metaKey, metaValue) {
-    const { data } = await $apiAuth.post(`/settings/create/`, { metaKey, metaValue })
+export async function changeSocial(metaKey, metaValue, imageId) {
+    const { data } = await $apiAuth.post(`/settings/changePhone/`, { metaKey, metaValue: `${metaValue}+${imageId}` })
     return data;
 }
