@@ -6,11 +6,11 @@ import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
 import { fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
-import { getImageById } from "./http/galleryAPI";
+import { fetchTours } from "./http/toursAPI";
 
 const App = observer(() => {
 
-  const { userStore, mainBlockStore, basicStore } = useContext(ContextMain);
+  const { userStore, mainBlockStore, basicStore, tourStore } = useContext(ContextMain);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -49,8 +49,11 @@ const App = observer(() => {
   }, [basicStore.update]);
 
   useEffect(() => {
-
-  }, []);
+    fetchTours()
+      .then(data => {
+        tourStore.setTours(data);
+      })
+  }, [tourStore.update]);
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

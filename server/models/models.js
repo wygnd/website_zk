@@ -4,8 +4,8 @@ const { DataTypes } = require('sequelize');
 const Tours = sequelize.define('tours', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    description: { type: DataTypes.STRING },
-    image: { type: DataTypes.STRING },
+    textButton: { type: DataTypes.STRING },
+    linkButton: { type: DataTypes.STRING },
 })
 
 const Gallery = sequelize.define('gallery', {
@@ -45,6 +45,9 @@ Tokens.belongsTo(Users);
 
 Gallery.hasOne(MainBlock);
 MainBlock.belongsTo(Gallery);
+
+Gallery.hasOne(Tours);
+Tours.belongsTo(Gallery);
 
 module.exports = {
     Tours, Gallery, Users, Tokens, MainBlock, Settings

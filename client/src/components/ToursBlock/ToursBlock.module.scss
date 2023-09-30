@@ -1,0 +1,17 @@
+@import '../../styles/includes';
+
+.tourBlock {
+    padding: 60px 0
+}
+
+.blockTitle {
+    @include h2;
+    color: var(--text1);
+    margin-bottom: 40px;
+}
+
+.toursHolder {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
