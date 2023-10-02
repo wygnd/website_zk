@@ -42,8 +42,12 @@ class TourService {
     }
 
     async remove(id) {
-        const tour = await Tours.destroy({ where: id });
-        return tour;
+        const tour = await Tours.destroy({ where: { id } });
+        if (tour) {
+            return { message: "Итем удален успешно" };
+        } else {
+            return { message: "Что-то пошло не так" };
+        }
     }
 }
 

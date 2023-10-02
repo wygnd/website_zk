@@ -4,7 +4,6 @@ const { Op } = require('sequelize')
 
 class SettingsService {
     async create(metaKey, metaValue) {
-        console.log(metaKey);
         const candidate = await Settings.findAll({
             where: {
                 metaKey: {
@@ -25,6 +24,10 @@ class SettingsService {
         const imageData = await Gallery.findByPk(id);
         if (!imageData) {
             throw ApiError.BadRequest('Такого изображения не существует');
+        }
+        if (!dataSettings) {
+            const dataLogo = await Settings.create({ metaKey: 'logo', metaValue: imageData.fileName })
+            return dataLogo;
         }
         dataSettings.metaValue = imageData.fileName;
         await dataSettings.save();
@@ -60,6 +63,12 @@ class SettingsService {
 
         candidate.metaValue = metaValue;
         await candidate.save();
+        return candidate;
+    }
+
+    async findOne(metaKey) {
+        const candidate = await Settings.findOne({ where: { metaKey } });
+        if (!candidate) throw ApiError.BadRequest('Такой записи не существует');
         return candidate;
     }
 }

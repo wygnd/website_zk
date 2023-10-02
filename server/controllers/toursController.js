@@ -1,5 +1,4 @@
 const ApiError = require('../error/ApiError');
-const { Tours, Gallery } = require('../models/models');
 const tourService = require('../service/tourService');
 
 class ToursController {
@@ -9,7 +8,7 @@ class ToursController {
             const dataTour = await tourService.create(name, textButton, linkButton, galleryId);
             res.json(dataTour);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(error)
         }
     }
 
@@ -19,7 +18,7 @@ class ToursController {
             const dataTour = await tourService.getOne(id);
             return res.json(dataTour);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(error)
         }
     }
 
@@ -28,7 +27,7 @@ class ToursController {
             const dataTour = await tourService.getAll();
             return res.json(dataTour);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(error)
         }
     }
 
@@ -38,7 +37,7 @@ class ToursController {
             const dataTour = await tourService.change(id, name, textButton, linkButton, galleryId);
             return res.json(dataTour);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(error)
         }
     }
 
@@ -46,13 +45,9 @@ class ToursController {
         try {
             const { id } = req.params;
             const dataTour = await tourService.remove(id);
-            if (dataTour) {
-                return res.json({ message: "Запись удалена успешна", dataTour });
-            } else {
-                return res.json({ message: "Что-то пошло не так", dataTour });
-            }
+            return res.json(dataTour);
         } catch (error) {
-            next(ApiError.badRequest(error.message))
+            next(error)
         }
     }
 }

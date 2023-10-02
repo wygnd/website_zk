@@ -50,6 +50,16 @@ class SettingsController {
             next(error);
         }
     }
+
+    async findOne(req, res, next) {
+        try {
+            const { metaKey } = req.body;
+            const response = await settingsService.findOne(metaKey);
+            return res.json(response);
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = new SettingsController();
