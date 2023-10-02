@@ -16,7 +16,9 @@ const SocialItem = observer(({ link, imageId, className }) => {
 
     return (
         <a href={link} className={className} target='_blank'>
-            <img src={`${SERVER_URL}/${fileName}`} alt="" />
+            {fileName &&
+                <img src={`${SERVER_URL}/${fileName}`} alt="" />
+            }
         </a>
     );
 });

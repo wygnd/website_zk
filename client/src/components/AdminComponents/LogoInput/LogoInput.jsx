@@ -24,13 +24,16 @@ const LogoInput = observer(() => {
         })
     }, [imageId]);
 
+
     return (
         <>
             <div className={classes.logoHolder} >
                 <div className={classes.inputFile}>
-                    <img
-                        src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}
-                        className={classes.logoItem} />
+                    {basicStore?.logo?.metaValue &&
+                        <img
+                            src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}
+                            className={classes.logoItem} />
+                    }
                     <Button onClick={() => setModalGallery(true)}>Выбрать логотип</Button>
                 </div>
             </div>

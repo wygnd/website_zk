@@ -69,7 +69,9 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
         <>
             <div className={cl.socItemHolder}>
                 <div className={cl.socItem} >
-                    <img src={`${SERVER_URL}/${icon}`} alt="" />
+                    {icon &&
+                        <img src={`${SERVER_URL}/${icon}`} alt="" />
+                    }
                     <div className={cl.linkItem}>{link}</div>
                 </div>
                 <FaPen
@@ -87,7 +89,9 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
                     clickHandler={() => setModal(false)}
                 >
                     <div className={cl.modalHolder}>
-                        <img src={`${SERVER_URL}/${icon}`} onClick={() => setModalGallery(true)} />
+                        {icon &&
+                            <img src={`${SERVER_URL}/${icon}`} onClick={() => setModalGallery(true)} />
+                        }
                         <Input
                             placeholder={itemValue}
                             value={itemValue}
