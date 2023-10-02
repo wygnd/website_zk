@@ -11,7 +11,7 @@ const Logo = observer(() => {
 
     return (
         <Link to='/' className={headerClasses.logo_holder}>
-            <img src={`${SERVER_URL}/${basicStore.logo.metaValue}`}/>
+            <img src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}/>
         </Link>
     );
 });

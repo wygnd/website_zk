@@ -1,0 +1,19 @@
+@import '../../styles/includes';
+
+#footer {
+    background: var(--text1);
+    padding: 40px 0;
+}
+
+.footerHolder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.privacyLink {
+    @include assistant;
+    color: var(--bg1);
+    text-decoration: underline;
+}

@@ -1,0 +1,35 @@
+/*============= COLORS ===============*/
+:root {
+  --primary: #CF7B3E;
+  --primaryH: #aa6432;
+  --text1: #0A1C27;
+  --text2: #47555D;
+  --bg1: #fff;
+  --bg2: #CED2D4;
+  --bg5: #F2F3F4;
+  --black: #000;
+  --error: red;
+}
+
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+#footer {
+  background: var(--text1);
+  padding: 40px 0;
+}
+
+.footerHolder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.privacyLink {
+  font-size: calc(0 * 100vw + 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: var(--bg1);
+  text-decoration: underline;
+}/*# sourceMappingURL=Footer.module.css.map */

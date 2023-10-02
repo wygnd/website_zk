@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import cl from './CreateMainBlockPost.module.css';
-import { SERVER_URL } from '../../../utils/consts';
-import Button from '../../Button';
-import ModalGallery from '../ModalGallery/ModalGallery';
-import Input from '../../Input/Input';
-import Textarea from '../../Textarea/Textarea';
+import { SERVER_URL } from '../../../../utils/consts';
+import Button from '../../../Button';
+import ModalGallery from '../../ModalGallery/ModalGallery';
+import Input from '../../../Input/Input';
+import Textarea from '../../../Textarea/Textarea';
 import { observer } from 'mobx-react-lite';
-import { getImageById } from '../../../http/galleryAPI';
-import { createSlide } from '../../../http/mainBlockAPI';
-import ModalSuccess from '../ModalSuccess/ModalSuccess';
-import { ContextMain } from '../../..';
+import { getImageById } from '../../../../http/galleryAPI';
+import { createSlide } from '../../../../http/mainBlockAPI';
+import ModalSuccess from '../../ModalSuccess/ModalSuccess';
+import { ContextMain } from '../../../..';
 import { FaArrowDown } from 'react-icons/fa'
 
 

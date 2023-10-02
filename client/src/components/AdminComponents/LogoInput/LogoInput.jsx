@@ -10,40 +10,26 @@ import { getImageById } from '../../../http/galleryAPI';
 
 const LogoInput = observer(() => {
 
-    const { basicStore } = useContext(ContextMain);
-    const [open, setOpen] = useState(false);
-    const [imageId, setImageId] = useState();
+    const { basicStore, galleryStore } = useContext(ContextMain);
+    // const [imageId, setImageId] = useState();
 
     useMemo(() => {
-        getImageById(imageId).then(data => {
+        getImageById(galleryStore.imageId).then(data => {
             if (!data) return;
-            setLogo(imageId).then(dataImage => {
+            setLogo(galleryStore.imageId).then(dataImage => {
                 basicStore.setLogo(dataImage);
                 basicStore.setUpdate(!basicStore.update);
             })
         })
-    }, [imageId]);
-
-    const buttonClickHandler = async () => {
-        setOpen(true);
-
-    }
-
-    const clickHandler = () => {
-        setOpen(false);
-    }
+    }, [galleryStore.imageId]);
 
     return (
         <div className={classes.logoHolder} >
             <div className={classes.inputFile}>
                 <img
-                    src={`${SERVER_URL}/${basicStore.logo.metaValue}`}
+                    src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}
                     className={classes.logoItem} />
-                <Button onClick={buttonClickHandler}>Выбрать логотип</Button>
-                <ModalGallery open={open} clickHandler={clickHandler} setOpen={setOpen} title="Выберите логотип" getImageId={(id) => {
-                    console.log('get id from modal ' + id);
-                    setImageId(id)
-                }} />
+                <Button onClick={() => galleryStore.setModal(true)}>Выбрать логотип</Button>
             </div>
         </div>
     );

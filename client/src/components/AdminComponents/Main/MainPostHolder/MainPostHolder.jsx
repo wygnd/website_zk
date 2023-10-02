@@ -1,13 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useState } from 'react';
 import cl from './MainPostHolder.module.css';
-import { ContextMain } from '../../..';
+import { ContextMain } from '../../../..';
 import MainItemPreview from '../MainItemPreview/MainItemPreview';
 import { FaPen } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
-import { removeSlide } from '../../../http/mainBlockAPI';
-import ModalSuccess from '../ModalSuccess/ModalSuccess';
-import { MAIN_BLOCK_ITEM_ROUTE } from '../../../utils/consts';
+import { removeSlide } from '../../../../http/mainBlockAPI';
+import ModalSuccess from '../../ModalSuccess/ModalSuccess';
+import { MAIN_BLOCK_ITEM_ROUTE } from '../../../../utils/consts';
 import { useNavigate } from 'react-router-dom';
 
 const MainPostHolder = observer(() => {

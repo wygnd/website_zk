@@ -6,7 +6,8 @@ import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
 import { fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
-import { fetchTours } from "./http/toursAPI";
+import { fetchLastItem, fetchTours } from "./http/toursAPI";
+import Footer from "./components/Footer/Footer";
 
 const App = observer(() => {
 
@@ -53,6 +54,11 @@ const App = observer(() => {
       .then(data => {
         tourStore.setTours(data);
       })
+    // fetchLastItem('lastItemTour')
+    // .then(data => {
+    //   console.log(data);
+    //   tourStore.setLastItem(data[0]);
+    // })
   }, [tourStore.update]);
 
   if (userStore.isLoading) {
@@ -63,6 +69,7 @@ const App = observer(() => {
     <BrowserRouter>
       <Header />
       <AppRouter />
+      <Footer />
     </BrowserRouter>
   );
 });

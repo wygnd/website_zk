@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import cl from './Main.module.css';
 import { ContextMain } from '../../..';
-import CreateMainBlockPost from '../CreateMainBlockPost/CreateMainBlockPost';
-import MainPostHolder from '../MainPostHolder/MainPostHolder';
+import CreateMainBlockPost from './CreateMainBlockPost/CreateMainBlockPost';
+import MainPostHolder from './MainPostHolder/MainPostHolder';
 
 const Main = observer(({ className }) => {
 

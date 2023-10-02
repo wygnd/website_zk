@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserStore from './store/UserStore';
@@ -7,7 +7,7 @@ import './styles/main.css';
 import GalleryStore from './store/galleryStore';
 import BasicStore from './store/basicStore';
 import MainBlockStore from './store/mainBlockStore';
-import TourStore from './store/TourStoure';
+import TourStore from './store/TourStore';
 
 
 export const ContextMain = createContext(null);
@@ -20,7 +20,7 @@ root.render(
         galleryStore: new GalleryStore(),
         basicStore: new BasicStore(),
         mainBlockStore: new MainBlockStore(),
-        tourStore: new TourStore()
+        tourStore: new TourStore(),
     }}>
         <App />
     </ContextMain.Provider>

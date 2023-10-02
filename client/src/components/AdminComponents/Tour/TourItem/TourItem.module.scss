@@ -1,0 +1,6 @@
+@import '../../../../styles/includes';
+
+.name {
+    @include h6;
+    color: var(--text1);
+}

@@ -16,6 +16,7 @@
 .tourItem {
   width: 100%;
   min-height: 410px;
+  height: 410px;
   border-radius: 5px;
   overflow: hidden;
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import cl from './ModalGallery.module.css';
 import { SERVER_URL } from '../../../utils/consts';
 import { observer } from 'mobx-react-lite';
@@ -6,19 +6,28 @@ import { ContextMain } from '../../..';
 import { addImage, fetchImages, removeImageByID } from '../../../http/galleryAPI';
 import Modal from '../../Modal/Modal';
 import { BsFillTrashFill } from 'react-icons/bs'
+import Button from '../../Button';
 
 const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Галерея', getImageId }) => {
 
     const { galleryStore } = useContext(ContextMain);
-    const fetchData = async () => {
-        return fetchImages();
-    }
 
     useMemo(() => {
-        fetchData().then(response => {
-            galleryStore.setImages(response.rows);
-        });
+        fetchImages(1, galleryStore.limit)
+            .then(response => {
+                galleryStore.setImages(response.rows);
+                galleryStore.setTotalCount(response.count);
+            });
     }, [open, galleryStore.update]);
+
+    useEffect(() => {
+        if (galleryStore.page === 1) return;
+        fetchImages(galleryStore.page, galleryStore.limit)
+            .then(response => {
+                galleryStore.setImages([...galleryStore.gallery, ...response.rows]);
+                galleryStore.setTotalCount(response.count);
+            });
+    }, [galleryStore.page])
 
     async function inputChangeHandler(e) {
         const formData = new FormData()
@@ -31,15 +40,15 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
 
     function selectImage(e) {
         getImageId(e.target.children[0].dataset.id);
-        setOpen(false);
+        galleryStore.setModal(false);
     }
 
     const deleteItem = async (e) => {
         try {
             e.stopPropagation();
             await removeImageByID(e.currentTarget.dataset.id).then(data => {
-                console.log(data);
                 galleryStore.setUpdate(!galleryStore.update);
+                galleryStore.setModal(false);
             })
 
         } catch (error) {
@@ -49,7 +58,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
 
 
     return (
-        <Modal open={open} clickHandler={() => clickHandler()} className={cl.modal}>
+        <Modal open={galleryStore.modal} clickHandler={() => clickHandler()} className={cl.modal}>
             <div className={cl.modalTop}>
                 <h4 className={cl.modalTitle}>{title}</h4>
                 <label className={cl.input_file}>
@@ -72,6 +81,17 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                     </div>
                 )}
             </div>
+            {galleryStore.totalCount > 12 &&
+                <div className={cl.moreImages}>
+                    <div className={cl.countLoadedImages}>
+                        Загружено {galleryStore.loaded} из {galleryStore.totalCount}
+                    </div>
+                    <Button onClick={() => {
+                        galleryStore.setPage(galleryStore.page + 1)
+                        // galleryStore.setLoaded(galleryStore.loaded + galleryStore.limit);
+                    }}>Загрузить еще</Button>
+                </div>
+            }
         </Modal>
     );
 });

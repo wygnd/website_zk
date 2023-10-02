@@ -12,6 +12,7 @@
     pointer-events: none;
     z-index: 9999;
 
+
     &.openModal {
         opacity: .5;
         pointer-events: all;
@@ -33,6 +34,7 @@
     border-radius: 20px;
     padding: 40px;
     z-index: 99999;
+    overflow-y: auto;
 
     &.contentVisible {
         transform: translate(-50%, -50%) scale(1);

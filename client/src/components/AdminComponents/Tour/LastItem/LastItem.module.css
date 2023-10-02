@@ -1,0 +1,47 @@
+/*============= COLORS ===============*/
+:root {
+  --primary: #CF7B3E;
+  --primaryH: #aa6432;
+  --text1: #0A1C27;
+  --text2: #47555D;
+  --bg1: #fff;
+  --bg2: #CED2D4;
+  --bg5: #F2F3F4;
+  --black: #000;
+  --error: red;
+}
+
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+.titleBlock {
+  font-size: calc(0.00875 * 100vw + 15.2px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--text1);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.lastItemHolder {
+  position: relative;
+}
+
+.lastItemWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: transparent;
+  border: 2px solid var(--bg5);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.nameitem {
+  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--black);
+}/*# sourceMappingURL=LastItem.module.css.map */

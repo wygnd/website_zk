@@ -1,7 +1,8 @@
 import React from 'react';
 import cl from './Modal.module.css';
+import { observer } from 'mobx-react-lite';
 
-const Modal = ({ open, clickHandler, children, overflowY }) => {
+const Modal = observer(({ open, clickHandler, children, overflowY }) => {
 
     return (
         <>
@@ -11,6 +12,6 @@ const Modal = ({ open, clickHandler, children, overflowY }) => {
             </div>
         </>
     );
-};
+});
 
 export default Modal;

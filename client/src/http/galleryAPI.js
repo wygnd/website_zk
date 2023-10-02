@@ -1,7 +1,12 @@
 import { $api, $apiAuth } from './index';
 
-export async function fetchImages() {
-    const { data } = await $api.get('/gallery');
+export async function fetchImages(page, limit = 12) {
+    const { data } = await $api.get('/gallery', {
+        params: {
+            page,
+            limit
+        }
+    });
     return data;
 }
 

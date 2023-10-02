@@ -161,19 +161,25 @@ const PhonesHolder = observer(() => {
                         console.log(value);
                     }} />
                 <Button onClick={clickButtonToAddPhone} error={isCorrect}>Добавить</Button>
+                {isCorrect &&
                 <ModalError isError={isCorrect} clickCloseModal={clickCLoseModal}>{messageModal}</ModalError>
+                }
+                {successModal &&
                 <ModalSuccess isSuccess={successModal} clickHandlerModalSuccess={() => setModal(false)}>{messageModal}</ModalSuccess>
-                <Modal open={modal} clickHandler={closeModal} >
-                    <h4 className={cl.modalChangePhone}>Изменить телефон</h4>
-                    <div className={cl.modalChangeHolder}>
-                        <Input
-                            mask
-                            placeholder={phoneValue}
-                            onChange={(e) => setPhoneValue(e.target.value)}
-                        />
-                        <Button onClick={saveChangedPhone}>Сохранить</Button>
-                    </div>
-                </Modal>
+                }
+                {modal &&
+                    <Modal open={modal} clickHandler={closeModal} >
+                        <h4 className={cl.modalChangePhone}>Изменить телефон</h4>
+                        <div className={cl.modalChangeHolder}>
+                            <Input
+                                mask
+                                placeholder={phoneValue}
+                                onChange={(e) => setPhoneValue(e.target.value)}
+                            />
+                            <Button onClick={saveChangedPhone}>Сохранить</Button>
+                        </div>
+                    </Modal>
+                }
             </div>
         </div >
     );

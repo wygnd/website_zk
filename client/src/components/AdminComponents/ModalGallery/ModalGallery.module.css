@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 40px;
-  gap: 10px;
+  gap: 60px;
 }
 
 .modalTitle {
@@ -126,4 +126,20 @@
   display: block;
   width: 0;
   height: 0;
+}
+
+.moreImages {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.countLoadedImages {
+  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--text2);
 }/*# sourceMappingURL=ModalGallery.module.css.map */
