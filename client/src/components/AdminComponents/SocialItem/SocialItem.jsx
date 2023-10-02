@@ -7,29 +7,28 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
 import { changeSocial, removeSocial } from '../../../http/basicAPI';
 import { ContextMain } from '../../..';
-import ModalSuccess from '../ModalSuccess/ModalSuccess';
-import ModalError from '../ModalError/ModalError';
 import Modal from '../../Modal/Modal';
 import Input from '../../Input/Input';
 import Button from '../../Button';
+import ModalGallery from '../ModalGallery/ModalGallery';
 
 const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
 
-    const { basicStore } = useContext(ContextMain);
+    const { basicStore, galleryStore } = useContext(ContextMain);
+    const [id, setId] = useState(iconId);
     const [icon, setIcon] = useState();
-    const [openSuccess, setOpenSuccess] = useState(false);
-    const [openError, setOpenError] = useState(false);
-    const [messageModal, setMessageModal] = useState('');
     const [modal, setModal] = useState(false);
     const [itemValue, setItemValue] = useState(link);
-
+    const [modalGallery, setModalGallery] = useState(false);
 
     useEffect(() => {
-        getImageById(iconId)
+        if (!id) return;
+        getImageById(id)
             .then(data => {
                 setIcon(data.fileName);
             });
-    }, [basicStore.update])
+    }, [basicStore.update, id])
+
 
 
     const removeItem = async () => {
@@ -37,23 +36,19 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
             .then(data => {
                 console.log(data);
                 basicStore.setUpdate(!basicStore.update)
-                setMessageModal(data.message);
-                setOpenSuccess(true);
+                galleryStore.setModalMsg(data.message);
+                galleryStore.setModalSucc(true);
                 setTimeout(() => {
-                    setOpenSuccess(false);
+                    galleryStore.setModalSucc(false);
                 }, 2000);
             })
-            // .catch(error => {
-            //     setOpenError(true);
-            //     setMessageModal(error.message);
-            //     setTimeout(() => {
-            //         setOpenError(false);
-            //     }, 2000);
-            // });
-        }
-
-    const handlerCloseModal = () => {
-        setOpenSuccess(false);
+            .catch(error => {
+                galleryStore.setModalMsg(error.message);
+                galleryStore.setModalErr(true);
+                setTimeout(() => {
+                    galleryStore.setModalErr(false);
+                }, 2000);
+            });
     }
 
     const clickSaveItem = async () => {
@@ -62,55 +57,55 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
                 console.log(data);
                 basicStore.setUpdate(!basicStore.update)
                 setModal(false);
-                setMessageModal('Соц. сеть успешно изменена');
-                setOpenSuccess(true);
+                galleryStore.setModalMsg('Соц. сеть успешно изменена');
+                galleryStore.setModalSucc(true);
                 setTimeout(() => {
-                    setOpenSuccess(false);
+                    galleryStore.setModalSucc(false);
                 }, 2000);
             })
     }
 
     return (
-        <div className={cl.socItemHolder}>
-            <div className={cl.socItem}>
-                <img src={`${SERVER_URL}/${icon}`} alt="" />
-                <div className={cl.linkItem}>{link}</div>
-            </div>
-            <FaPen
-                size={25}
-                className={cl.changeSoc}
-                onClick={() => setModal(true)}
-            />
-            <BsFillTrashFill
-                size={25}
-                className={cl.deleteSoc}
-                onClick={removeItem}
-            />
-            <ModalSuccess
-                isSuccess={openSuccess}
-                clickHandlerModalSuccess={handlerCloseModal}
-            >{messageModal}</ModalSuccess>
-            <ModalError
-                isError={openError}
-                clickCloseModal={setOpenError}
-            >{messageModal}</ModalError>
-            <Modal
-                open={modal}
-                clickHandler={() => setModal(false)}
-            >
-                <div className={cl.modalHolder}>
-                    <img src={`${SERVER_URL}/${icon}`} />
-                    <Input
-                        placeholder={itemValue}
-                        value={itemValue}
-                        onChange={(e) => setItemValue(e.target.value)}
-                    />
-                    <Button onClick={clickSaveItem}>Сохранить</Button>
+        <>
+            <div className={cl.socItemHolder}>
+                <div className={cl.socItem} >
+                    <img src={`${SERVER_URL}/${icon}`} alt="" />
+                    <div className={cl.linkItem}>{link}</div>
                 </div>
+                <FaPen
+                    size={25}
+                    className={cl.changeSoc}
+                    onClick={() => setModal(true)}
+                />
+                <BsFillTrashFill
+                    size={25}
+                    className={cl.deleteSoc}
+                    onClick={removeItem}
+                />
+                <Modal
+                    open={modal}
+                    clickHandler={() => setModal(false)}
+                >
+                    <div className={cl.modalHolder}>
+                        <img src={`${SERVER_URL}/${icon}`} onClick={() => setModalGallery(true)} />
+                        <Input
+                            placeholder={itemValue}
+                            value={itemValue}
+                            onChange={(e) => setItemValue(e.target.value)}
+                        />
+                        <Button onClick={clickSaveItem}>Сохранить</Button>
+                    </div>
 
 
-            </Modal>
-        </div>
+                </Modal>
+            </div>
+            <ModalGallery
+                open={modalGallery}
+                clickHandler={() => setModalGallery(false)}
+                setOpen={() => setModalGallery(false)}
+                getImageId={(id) => setId(id)}
+            />
+        </>
     );
 });
 

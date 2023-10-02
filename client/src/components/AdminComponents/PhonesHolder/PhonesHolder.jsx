@@ -5,22 +5,19 @@ import cl from './PhonesHolder.module.css';
 import Input from '../../Input/Input';
 import Button from '../../Button';
 import { addPhone, changePhone, fetchPhones, removePhone } from '../../../http/basicAPI';
-import ModalError from '../../AdminComponents/ModalError/ModalError';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
-import ModalSuccess from '../../AdminComponents/ModalSuccess/ModalSuccess';
 import Modal from '../../Modal/Modal';
 
 const PhonesHolder = observer(() => {
 
-    const { basicStore } = useContext(ContextMain);
+    const { basicStore, galleryStore } = useContext(ContextMain);
     const [value, setValue] = useState('');
     const [isCorrect, setCorrect] = useState(false);
-    const [messageModal, setMessage] = useState('');
-    const [successModal, setModal] = useState(false);
     const [modal, setOpenModal] = useState(false);
     const [phoneValue, setPhoneValue] = useState('');
     const [phoneKey, setPhoneKey] = useState('');
+    const [errorValue, setErrorValue] = useState(false);
 
     useMemo(() => {
         fetchPhones().then(data => {
@@ -31,8 +28,10 @@ const PhonesHolder = observer(() => {
     const clickButtonToAddPhone = async (e) => {
         if (value === '') {
             setCorrect(true);
-            setMessage('Неправильно указан номер');
+            galleryStore.setModalErr(true);
+            galleryStore.setModalMsg('Неправильно указан номер');
             setTimeout(() => {
+                galleryStore.setModalErr(false);
                 setCorrect(false);
             }, 3000);
             return;
@@ -41,17 +40,13 @@ const PhonesHolder = observer(() => {
                 .then(data => {
                     basicStore.setUpdate(!basicStore.update);
                     setValue('');
-                    setModal(true);
-                    setMessage('Номер успешно создан');
+                    galleryStore.setModalSucc(true);
+                    galleryStore.setModalMsg('Номер успешно удален');
                     setTimeout(() => {
-                        setModal(false);
+                        galleryStore.setModalSucc(false);
                     }, 3000);
                 })
         }
-    }
-
-    const clickCLoseModal = () => {
-        setCorrect(false);
     }
 
     const deletePhone = async (event) => {
@@ -60,19 +55,19 @@ const PhonesHolder = observer(() => {
             await removePhone(metaKey)
                 .then(data => {
                     basicStore.setUpdate(!basicStore.update);
-                    setModal(true);
-                    setMessage('Номер успешно удален');
+                    galleryStore.setModalSucc(true);
+                    galleryStore.setModalMsg('Номер успешно удален');
                     setTimeout(() => {
-                        setModal(false);
+                        galleryStore.setModalSucc(false);
                     }, 3000);
 
                 })
         } catch (error) {
-            setCorrect(true);
+            galleryStore.setModalErr(true);
             console.log(error);
-            setMessage(error.message);
+            galleryStore.setModalMsg(error.message);
             setTimeout(() => {
-                setCorrect(false);
+                galleryStore.setModalErr(false);
             }, 3000);
         }
     }
@@ -86,11 +81,10 @@ const PhonesHolder = observer(() => {
     const saveChangedPhone = async () => {
         try {
             if (phoneValue === '') {
-                setCorrect(true);
-                setMessage('Неправильно указан номер');
+                setErrorValue(true);
                 setTimeout(() => {
-                    setCorrect(false);
-                }, 3000);
+                    setErrorValue(false);
+                }, 2000);
                 return;
             } else {
                 await changePhone(phoneKey, phoneValue)
@@ -98,19 +92,19 @@ const PhonesHolder = observer(() => {
                         basicStore.setUpdate(!basicStore.update);
                         setPhoneValue('');
                         setOpenModal(false);
-                        setModal(true);
-                        setMessage('Номер успешно удален');
+                        galleryStore.setModalSucc(true);
+                        galleryStore.setModalMsg('Номер успешно изменен');
                         setTimeout(() => {
-                            setModal(false);
-                        }, 2000);
+                            galleryStore.setModalSucc(false);
+                        }, 3000);
                     })
             }
         } catch (error) {
-            setCorrect(true);
+            galleryStore.setModalErr(true);
             console.log(error);
-            setMessage(error.message);
+            galleryStore.setModalMsg(error.message);
             setTimeout(() => {
-                setCorrect(false);
+                galleryStore.setModalErr(false);
             }, 3000);
         }
 
@@ -161,25 +155,19 @@ const PhonesHolder = observer(() => {
                         console.log(value);
                     }} />
                 <Button onClick={clickButtonToAddPhone} error={isCorrect}>Добавить</Button>
-                {isCorrect &&
-                <ModalError isError={isCorrect} clickCloseModal={clickCLoseModal}>{messageModal}</ModalError>
-                }
-                {successModal &&
-                <ModalSuccess isSuccess={successModal} clickHandlerModalSuccess={() => setModal(false)}>{messageModal}</ModalSuccess>
-                }
-                {modal &&
-                    <Modal open={modal} clickHandler={closeModal} >
-                        <h4 className={cl.modalChangePhone}>Изменить телефон</h4>
-                        <div className={cl.modalChangeHolder}>
-                            <Input
-                                mask
-                                placeholder={phoneValue}
-                                onChange={(e) => setPhoneValue(e.target.value)}
-                            />
-                            <Button onClick={saveChangedPhone}>Сохранить</Button>
-                        </div>
-                    </Modal>
-                }
+
+                <Modal open={modal} clickHandler={closeModal} >
+                    <h4 className={cl.modalChangePhone}>Изменить телефон</h4>
+                    <div className={cl.modalChangeHolder}>
+                        <Input
+                            mask
+                            placeholder={phoneValue}
+                            onChange={(e) => setPhoneValue(e.target.value)}
+                            error={errorValue}
+                        />
+                        <Button onClick={saveChangedPhone}>Сохранить</Button>
+                    </div>
+                </Modal>
             </div>
         </div >
     );

@@ -11,6 +11,7 @@ import Button from '../../Button';
 const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Галерея', getImageId }) => {
 
     const { galleryStore } = useContext(ContextMain);
+    const [images, setImages] = useState([]);
 
     useMemo(() => {
         fetchImages(1, galleryStore.limit)
@@ -18,16 +19,18 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                 galleryStore.setImages(response.rows);
                 galleryStore.setTotalCount(response.count);
             });
-    }, [open, galleryStore.update]);
+    }, [open]);
 
     useEffect(() => {
+        if (!open) return;
         if (galleryStore.page === 1) return;
         fetchImages(galleryStore.page, galleryStore.limit)
             .then(response => {
-                galleryStore.setImages([...galleryStore.gallery, ...response.rows]);
+                galleryStore.setLoaded(galleryStore.loaded + response.rows.length);
+                setImages([...images, ...response.rows]);
                 galleryStore.setTotalCount(response.count);
             });
-    }, [galleryStore.page])
+    }, [open, galleryStore.page])
 
     async function inputChangeHandler(e) {
         const formData = new FormData()
@@ -40,7 +43,9 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
 
     function selectImage(e) {
         getImageId(e.target.children[0].dataset.id);
-        galleryStore.setModal(false);
+        setOpen(false);
+        galleryStore.setPage(1);
+        setImages([]);
     }
 
     const deleteItem = async (e) => {
@@ -48,17 +53,25 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
             e.stopPropagation();
             await removeImageByID(e.currentTarget.dataset.id).then(data => {
                 galleryStore.setUpdate(!galleryStore.update);
-                galleryStore.setModal(false);
+                setOpen(false);
             })
 
         } catch (error) {
-            console.log(error);
+            galleryStore.setModalErr(true)
+            galleryStore.setModalMsg(error.message);
+            setTimeout(() => {
+                galleryStore.setModalErr(false)
+            }, 2000);
         }
     }
 
 
     return (
-        <Modal open={galleryStore.modal} clickHandler={() => clickHandler()} className={cl.modal}>
+        <Modal open={open} clickHandler={() => {
+            clickHandler()
+            galleryStore.setPage(1);
+            setImages([]);
+        }} className={cl.modal}>
             <div className={cl.modalTop}>
                 <h4 className={cl.modalTitle}>{title}</h4>
                 <label className={cl.input_file}>
@@ -80,6 +93,21 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                         </div>
                     </div>
                 )}
+                {images &&
+                    images.map(el =>
+                        <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
+                            <img data-id={el.id} src={`${SERVER_URL}/${el.fileName}`} />
+                            <div className={cl.hoverHolder}>
+                                <BsFillTrashFill
+                                    color='red' size="35"
+                                    className={cl.deleteItem}
+                                    onClick={deleteItem}
+                                    data-id={el.id}
+                                />
+                            </div>
+                        </div>
+                    )
+                }
             </div>
             {galleryStore.totalCount > 12 &&
                 <div className={cl.moreImages}>
@@ -88,7 +116,6 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                     </div>
                     <Button onClick={() => {
                         galleryStore.setPage(galleryStore.page + 1)
-                        // galleryStore.setLoaded(galleryStore.loaded + galleryStore.limit);
                     }}>Загрузить еще</Button>
                 </div>
             }

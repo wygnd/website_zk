@@ -3,6 +3,8 @@ import React, { useContext } from 'react';
 import cl from './Footer.module.css';
 import { ContextMain } from '../..';
 import ModalGallery from '../AdminComponents/ModalGallery/ModalGallery';
+import ModalError from '../AdminComponents/ModalError/ModalError';
+import ModalSuccess from '../AdminComponents/ModalSuccess/ModalSuccess';
 
 const Footer = observer(() => {
 
@@ -19,11 +21,15 @@ const Footer = observer(() => {
                 </div>
 
             </div>
-            <ModalGallery
-                open={galleryStore.modal}
-                clickHandler={() => galleryStore.setModal(false)}
-                getImageId={(id) => galleryStore.setImageId(id)}
-            ></ModalGallery>
+            <ModalError
+                isError={galleryStore.modalErr} clickCloseModal={() => galleryStore.setModalErr(false)}
+            >{galleryStore.messageModal}</ModalError>
+            <ModalSuccess
+            isSuccess={galleryStore.modalSucc} 
+            clickHandlerModalSuccess={() => galleryStore.setModalSucc(false)}
+            >
+                {galleryStore.messageModal}
+            </ModalSuccess>
         </>
     );
 });

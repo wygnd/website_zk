@@ -9,13 +9,11 @@ import { getImageById } from '../../http/galleryAPI';
 import { SERVER_URL } from '../../utils/consts';
 import Fancybox from '../../components/Fancybox';
 import Button from '../../components/Button';
-import ModalError from '../../components/AdminComponents/ModalError/ModalError';
 import ModalGallery from '../../components/AdminComponents/ModalGallery/ModalGallery';
-import ModalSuccess from '../../components/AdminComponents/ModalSuccess/ModalSuccess';
 
 const MainBlockItem = observer(() => {
 
-    const { mainBlockStore } = useContext(ContextMain);
+    const { mainBlockStore, galleryStore } = useContext(ContextMain);
     const { id } = useParams();
     const [title, setTitle] = useState('');
     const [desc, setDesc] = useState('');
@@ -25,10 +23,6 @@ const MainBlockItem = observer(() => {
     const [galleryId, setGalleryId] = useState('');
     const [image, setImage] = useState('');
     const [modalImages, setModalImages] = useState(false);
-    const [modalError, setModalError] = useState(false);
-    const [messageModal, setMessageModal] = useState('');
-    const [modalSuccessOpen, setModalSucces] = useState(false);
-    const [messageSuccess, setMessageSuccess] = useState(false);
 
     useEffect(() => {
         fetchOneSlide(id).then(data => {
@@ -51,17 +45,10 @@ const MainBlockItem = observer(() => {
         });
     }
 
-    const closeModal = () => {
-        setModalError(false);
-    }
 
     const closeGalleryModal = () => {
         setModalImages(false);
 
-    }
-
-    const closeModalSuccess = () => {
-        setModalSucces(false);
     }
 
     const saveItem = async () => {
@@ -71,28 +58,27 @@ const MainBlockItem = observer(() => {
             mainBlockStore.slide.textButton === textButton &&
             mainBlockStore.slide.linkButton === linkButton &&
             mainBlockStore.slide.galleryId === galleryId) {
-            setMessageModal('Вы ничего не изменили');
-            setModalError(true);
+            galleryStore.setModalMsg('Вы ничего не изменили');
+            galleryStore.setModalErr(true)
             setTimeout(() => {
-                setModalError(false);
+                galleryStore.setModalErr(false)
             }, 2000);
             return;
         }
         try {
             await saveSlide(id, title, desc, buttonVisible, textButton, linkButton, galleryId).then(response => {
                 mainBlockStore.setUpdate(!mainBlockStore.update);
-                setMessageSuccess('Запись успешно сохранена');
-                setModalSucces(true);
+                galleryStore.setModalSucc(true)
+                galleryStore.setModalMsg('Запись успешно сохранена')
                 setTimeout(() => {
-                    setModalSucces(false);
+                    galleryStore.setModalSucc(false);
                 }, 2000);
             })
         } catch (error) {
-            setModalError(true);
-            setMessageModal('Произошла непредвиденная ошибка');
-            console.log(error);
+            galleryStore.setModalMsg('Произошла непредвиденная ошибка ' + error.message);
+            galleryStore.setModalErr(true)
             setTimeout(() => {
-                setModalError(false);
+                galleryStore.setModalErr(false)
             }, 2000);
         }
     }
@@ -148,8 +134,6 @@ const MainBlockItem = observer(() => {
                 }
                 <Button className={cl.itemButton} onClick={saveItem}>Сохранить</Button>
             </div>
-            <ModalSuccess isSuccess={modalSuccessOpen} clickHandlerModalSuccess={closeModalSuccess}>{messageSuccess}</ModalSuccess>
-            <ModalError isError={modalError} clickCloseModal={closeModal}>{messageModal}</ModalError>
         </main>
     );
 });

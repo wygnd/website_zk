@@ -15,14 +15,11 @@ import ModalError from '../ModalError/ModalError';
 
 const CreateSocItem = observer(() => {
 
-    const { basicStore } = useContext(ContextMain);
+    const { basicStore, galleryStore } = useContext(ContextMain);
     const [imagePreview, setImagePreview] = useState();
     const [modalGallery, setModalGallery] = useState(false);
     const [imageId, setImageId] = useState();
     const [linkValue, setLinkValue] = useState('');
-    const [messageModal, setMessageModal] = useState('');
-    const [modalSucc, setModalSucc] = useState(false);
-    const [modalError, setModalError] = useState(false);
 
     const closeModalGallery = () => {
         setModalGallery(false);
@@ -39,18 +36,18 @@ const CreateSocItem = observer(() => {
 
     const createSoc = async () => {
         if (!linkValue) {
-            setModalError(true);
-            setMessageModal('Ссылка пустая');
+            galleryStore.setModalErr(true);
+            galleryStore.setModalMsg('Ссылка пустая');
             setTimeout(() => {
-                setModalError(false);
+                galleryStore.setModalErr(false);
             }, 2000);
             return;
         }
         if (!imageId) {
-            setModalError(true);
-            setMessageModal('Изображение не выбрано');
+            galleryStore.setModalErr(true);
+            galleryStore.setModalMsg('Изображение не выбрано');
             setTimeout(() => {
-                setModalError(false);
+                galleryStore.setModalErr(false);
             }, 2000);
             return;
         }
@@ -59,16 +56,16 @@ const CreateSocItem = observer(() => {
                 basicStore.setUpdate(!basicStore.update);
                 setImagePreview();
                 setLinkValue('');
-                setMessageModal('Соц. сеть добавлена успешно')
-                setModalSucc(true);
+                galleryStore.setModalMsg('Соц. сеть добавлена успешно');
+                galleryStore.setModalSucc(true);
                 setTimeout(() => {
-                    setModalSucc(false);
+                    galleryStore.setModalSucc(false);
                 }, 2000);
             })
     }
 
     const closeModalError = () => {
-        setModalError(false);
+        galleryStore.setModalErr(false);
     }
 
     return (
@@ -78,10 +75,7 @@ const CreateSocItem = observer(() => {
                     <img src={`${SERVER_URL}/${imagePreview}`} />
                 </div>
             }
-            <Button
-                onClick={() => setModalGallery(true)}
-                svg
-            >
+            <Button svg onClick={() => setModalGallery(true)}>
                 {<BiImageAlt size={20} />}
             </Button>
             <Input placeholder="Ссылка" value={linkValue} onChange={(e) => setLinkValue(e.target.value)} />
@@ -94,16 +88,6 @@ const CreateSocItem = observer(() => {
                 setOpen={setModalGallery}
                 getImageId={(id) => setImageId(id)}
             />
-            <ModalSuccess
-                isSuccess={modalSucc}
-                clickHandlerModalSuccess={setModalSucc}
-            >{messageModal}</ModalSuccess>
-            <ModalError
-                isError={modalError}
-                clickCloseModal={closeModalError}
-            >
-                {messageModal}
-            </ModalError>
         </div >
     );
 });

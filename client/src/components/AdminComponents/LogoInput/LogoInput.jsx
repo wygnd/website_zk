@@ -11,27 +11,36 @@ import { getImageById } from '../../../http/galleryAPI';
 const LogoInput = observer(() => {
 
     const { basicStore, galleryStore } = useContext(ContextMain);
-    // const [imageId, setImageId] = useState();
+    const [imageId, setImageId] = useState();
+    const [modalGallery, setModalGallery] = useState(false);
 
     useMemo(() => {
-        getImageById(galleryStore.imageId).then(data => {
+        getImageById(imageId).then(data => {
             if (!data) return;
-            setLogo(galleryStore.imageId).then(dataImage => {
+            setLogo(imageId).then(dataImage => {
                 basicStore.setLogo(dataImage);
                 basicStore.setUpdate(!basicStore.update);
             })
         })
-    }, [galleryStore.imageId]);
+    }, [imageId]);
 
     return (
-        <div className={classes.logoHolder} >
-            <div className={classes.inputFile}>
-                <img
-                    src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}
-                    className={classes.logoItem} />
-                <Button onClick={() => galleryStore.setModal(true)}>Выбрать логотип</Button>
+        <>
+            <div className={classes.logoHolder} >
+                <div className={classes.inputFile}>
+                    <img
+                        src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}
+                        className={classes.logoItem} />
+                    <Button onClick={() => setModalGallery(true)}>Выбрать логотип</Button>
+                </div>
             </div>
-        </div>
+            <ModalGallery
+                open={modalGallery}
+                clickHandler={() => setModalGallery(false)}
+                setOpen={() => setModalGallery(false)}
+                getImageId={(id) => setImageId(id)}
+            />
+        </>
     );
 });
 

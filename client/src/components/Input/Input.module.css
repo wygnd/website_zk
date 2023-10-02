@@ -87,4 +87,7 @@ input[type=checkbox]::after {
 }
 input[type=checkbox]:checked::after {
   transform: translate(-50%, -50%) scale(1);
+}
+input[type=checkbox].errorValid {
+  border-color: var(--error);
 }/*# sourceMappingURL=Input.module.css.map */

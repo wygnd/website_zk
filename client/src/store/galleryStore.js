@@ -11,6 +11,9 @@ export default class GalleryStore {
         this._limit = 12;
         this._loaded = 12;
         this._modal = false;
+        this._sucModal = false;
+        this._errModal = false;
+        this._messageModal = '';
         this._imageId = 0;
 
         makeAutoObservable(this);
@@ -44,6 +47,18 @@ export default class GalleryStore {
         this._modal = bool;
     }
 
+    setModalSucc(bool) {
+        this._sucModal = bool;
+    }
+
+    setModalErr(bool) {
+        this._errModal = bool;
+    }
+
+    setModalMsg(msg) {
+        this._messageModal = msg;
+    }
+
     setImageId(imageId) {
         this._imageId = imageId;
     }
@@ -74,6 +89,18 @@ export default class GalleryStore {
 
     get modal() {
         return this._modal;
+    }
+
+    get modalSucc() {
+        return this._sucModal;
+    }
+
+    get modalErr() {
+        return this._errModal;
+    }
+
+    get messageModal() {
+        return this._messageModal;
     }
 
     get imageId() {
