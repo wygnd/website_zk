@@ -1,6 +1,4 @@
 import { makeAutoObservable } from "mobx";
-import GalleryService from "../service/galleryService";
-import { SERVER_URL } from "../utils/consts";
 
 export default class GalleryStore {
     constructor() {

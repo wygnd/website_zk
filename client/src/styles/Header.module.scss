@@ -10,6 +10,7 @@
     padding: 20px 0;
     box-shadow: none;
     background: var(--bg1);
+    z-index: 999;
 
     &.header_home {
         box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 50px
@@ -119,11 +120,16 @@
         span {
             color: var(--primary);
             @include bodyS;
+            transition: color .4s ease-out;
         }
 
         &:hover {
             background: var(--primary);
             color: var(--bg1);
+
+            span {
+                color: var(--bg1);
+            }
         }
     }
 

@@ -5,6 +5,7 @@ export default class TourStore {
         this._tours = [];
         this._update = false;
         this._lastItem = {};
+        this.lastItemVisible = false;
         makeAutoObservable(this);
     }
 

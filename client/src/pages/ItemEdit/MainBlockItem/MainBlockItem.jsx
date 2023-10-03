@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { fetchOneSlide, saveSlide } from '../../http/mainBlockAPI';
+import { fetchOneSlide, saveSlide } from '../../../http/mainBlockAPI';
 import { observer } from 'mobx-react-lite';
-import { ContextMain } from '../..';
+import { ContextMain } from '../../..';
 import { useParams } from 'react-router-dom';
 import cl from './MainBlockItem.module.css';
-import Input from '../../components/Input/Input';
-import { getImageById } from '../../http/galleryAPI';
-import { SERVER_URL } from '../../utils/consts';
-import Fancybox from '../../components/Fancybox';
-import Button from '../../components/Button';
-import ModalGallery from '../../components/AdminComponents/ModalGallery/ModalGallery';
+import Input from '../../../components/Input/Input';
+import { getImageById } from '../../../http/galleryAPI';
+import { SERVER_URL } from '../../../utils/consts';
+import Fancybox from '../../../components/Fancybox';
+import Button from '../../../components/Button';
+import ModalGallery from '../../../components/AdminComponents/ModalGallery/ModalGallery';
 
 const MainBlockItem = observer(() => {
 

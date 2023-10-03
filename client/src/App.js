@@ -54,11 +54,16 @@ const App = observer(() => {
       .then(data => {
         tourStore.setTours(data);
       })
-    // fetchLastItem('lastItemTour')
-    // .then(data => {
-    //   console.log(data);
-    //   tourStore.setLastItem(data[0]);
-    // })
+    fetchLastItem('lastItemTour')
+      .then(data => {
+        const dataItem = {
+          metaKey: data.metaKey,
+          name: data.metaValue.split('+')[0],
+          link: data.metaValue.split('+')[1],
+          imageId: data.metaValue.split('+')[2],
+        };
+        tourStore.setLastItem(dataItem);
+      })
   }, [tourStore.update]);
 
   if (userStore.isLoading) {

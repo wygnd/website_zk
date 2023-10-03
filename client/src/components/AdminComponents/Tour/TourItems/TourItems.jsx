@@ -7,6 +7,8 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import ModalSuccess from '../../ModalSuccess/ModalSuccess';
 import ModalError from '../../ModalError/ModalError';
 import { removeTour } from '../../../../http/toursAPI';
+import { useNavigate } from 'react-router-dom';
+import { TOUR_BLOCK_ITEM_ROUTE } from '../../../../utils/consts';
 
 const TourItems = observer(({ }) => {
 
@@ -14,6 +16,7 @@ const TourItems = observer(({ }) => {
     const [modalSucc, setModalSucc] = useState(false);
     const [modalErr, setModalErr] = useState(false);
     const [messageModal, setMessageModal] = useState('');
+    const historyItem = useNavigate();
 
     const removeItem = async (e) => {
         await removeTour(e.currentTarget.dataset.item)
@@ -51,6 +54,7 @@ const TourItems = observer(({ }) => {
                     <div className={cl.changedItems}>
                         <FaPen
                             className={cl.itemChange}
+                            onClick={() => historyItem(TOUR_BLOCK_ITEM_ROUTE + '/' + t.id)}
                         />
                         <FaTrash
                             className={cl.itemDelete}

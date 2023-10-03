@@ -24,6 +24,7 @@
   padding: 20px 0;
   box-shadow: none;
   background: var(--bg1);
+  z-index: 999;
 }
 .header.header_home {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 50px;
@@ -131,9 +132,13 @@
   font-style: normal;
   font-weight: 600;
   line-height: 130%;
+  transition: color 0.4s ease-out;
 }
 .btn.invert:hover {
   background: var(--primary);
+  color: var(--bg1);
+}
+.btn.invert:hover span {
   color: var(--bg1);
 }
 .btn.error {

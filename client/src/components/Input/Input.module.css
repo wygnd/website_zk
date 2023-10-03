@@ -53,6 +53,10 @@
 .input.notBorder {
   border: none;
 }
+.input.bottomBorder {
+  border: none;
+  border-bottom: 1px solid var(--primary);
+}
 
 input[type=checkbox] {
   -webkit-appearance: none;
