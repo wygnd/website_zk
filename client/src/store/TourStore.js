@@ -5,7 +5,8 @@ export default class TourStore {
         this._tours = [];
         this._update = false;
         this._lastItem = {};
-        this.lastItemVisible = false;
+        this._lastItemVisible = false;
+        this._updateLastItem = false;
         makeAutoObservable(this);
     }
 
@@ -21,6 +22,14 @@ export default class TourStore {
         this._lastItem = data;
     }
 
+    setLastItemVisible(bool) {
+        this._lastItemVisible = bool;
+    }
+
+    setUpdateLastItem(bool) {
+        this._updateLastItem = bool;
+    }
+
     get tours() {
         return this._tours;
     }
@@ -31,5 +40,13 @@ export default class TourStore {
 
     get lastItem() {
         return this._lastItem;
+    }
+
+    get lastItemVisible() {
+        return this._lastItemVisible;
+    }
+
+    get updateLastItem() {
+        return this._updateLastItem;
     }
 }

@@ -5,19 +5,21 @@ import Header from './components/Header';
 import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
-import { fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
-import { fetchLastItem, fetchTours } from "./http/toursAPI";
+import { fetchItem, fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
+import { fetchTours } from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
+import { getImageById } from "./http/galleryAPI";
 
 const App = observer(() => {
 
-  const { userStore, mainBlockStore, basicStore, tourStore } = useContext(ContextMain);
+  const { userStore, mainBlockStore, basicStore, tourStore, collections } = useContext(ContextMain);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
       userStore.checkAuth();
     }
   }, [])
+
 
   useEffect(() => {
     fetchSlides().then(data => {
@@ -54,7 +56,10 @@ const App = observer(() => {
       .then(data => {
         tourStore.setTours(data);
       })
-    fetchLastItem('lastItemTour')
+  }, [tourStore.update]);
+
+  useEffect(() => {
+    fetchItem('lastItemTour')
       .then(data => {
         const dataItem = {
           metaKey: data.metaKey,
@@ -64,7 +69,45 @@ const App = observer(() => {
         };
         tourStore.setLastItem(dataItem);
       })
-  }, [tourStore.update]);
+
+  }, [tourStore.updateLastItem])
+
+  useEffect(() => {
+    fetchItem('lastItemTourVisible')
+      .then(data => {
+        if (data.metaValue === '0') {
+          tourStore.setLastItemVisible(false);
+        } else {
+          tourStore.setLastItemVisible(true);
+        }
+      })
+  }, [tourStore.lastItemVisible])
+
+  useEffect(() => {
+    fetchItem('collectionsTitle')
+      .then(data => {
+        collections.setName(data.metaValue);
+      })
+
+    fetchItem('collectionsDesc')
+      .then(data => {
+        collections.setDesc(data.metaValue);
+      })
+
+    fetchItem('collectionsImages')
+      .then(data => {
+        const arrayImages = data.metaValue.split('+');
+        arrayImages.map(async img => {
+          await getImageById(img)
+            .then(response => {
+              collections.setGallery([...collections.gallery, { id: response.id, fileName: response.fileName }]);
+            })
+        })
+        
+        collections.setCountImages(data.metaValue.split('+').length);
+      })
+  }, [])
+
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

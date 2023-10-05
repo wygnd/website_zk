@@ -80,3 +80,29 @@
     }
 
 }
+
+.hiddenText {
+    text-align: center;
+    @include h6;
+    color: var(--error);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--error);
+    width: fit-content;
+    padding-bottom: 5px;
+    margin: 0 auto 20px auto;
+}
+
+.modalHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.imageHolder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}

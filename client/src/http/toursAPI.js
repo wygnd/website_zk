@@ -15,11 +15,6 @@ export async function createTour(name, textButton, linkButton, galleryId) {
     return data;
 }
 
-export async function fetchLastItem(metaKey) {
-    const { data } = await $api.post('/settings/setting', { metaKey });
-    return data;
-}
-
 export async function fetchOneTour(id) {
     const { data } = await $api.post(`/tours/tour/${id}`);
     return data;
@@ -27,5 +22,10 @@ export async function fetchOneTour(id) {
 
 export async function changeTour(id, name, textButton, linkButton, galleryId) {
     const { data } = await $apiAuth.post('/tours/change', { id, name, textButton, linkButton, galleryId });
+    return data;
+}
+
+export async function changeOne(metaKey, metaValue) {
+    const { data } = await $apiAuth.post('/settings/change', { metaKey, metaValue });
     return data;
 }

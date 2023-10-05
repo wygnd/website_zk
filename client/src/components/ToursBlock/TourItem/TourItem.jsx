@@ -16,9 +16,11 @@ const TourItem = ({ name, textButton, linkButton, galleryId }) => {
 
     return (
         <div className={cl.tourItem}>
-            <div className={cl.image}>
-                <img src={`${SERVER_URL}/${fileName}`} />
-            </div>
+            {fileName &&
+                <div className={cl.image}>
+                    <img src={`${SERVER_URL}/${fileName}`} />
+                </div>
+            }
             <div className={cl.bodyItem}>
                 <div className={cl.topSide}>
                     <div className={cl.nameItem}>{name}</div>
@@ -26,7 +28,7 @@ const TourItem = ({ name, textButton, linkButton, galleryId }) => {
                         <path d="M7 7L17 17M17 17V9M17 17H9" stroke="#0A1C27" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </div>
-                <a href={linkButton} className={cl.linkButton}>{textButton}</a>
+                <a href={linkButton} className={cl.linkButton} target='_blank'>{textButton}</a>
             </div>
         </div>
     );

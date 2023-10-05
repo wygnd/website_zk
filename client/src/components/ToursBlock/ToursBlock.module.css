@@ -14,7 +14,7 @@
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
 .tourBlock {
-  padding: 60px 0;
+  padding: 60px 0 30px;
 }
 
 .blockTitle {
@@ -30,4 +30,107 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+}
+
+.lastItem {
+  background: var(--bg5);
+  border-radius: 10px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+}
+.lastItem .lastItemName {
+  font-size: calc(0.00875 * 100vw + 15.2px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--text1);
+  transition: color 0.4s ease-out;
+}
+.lastItem:hover .lastItemName {
+  color: var(--primary);
+}
+
+.lastItemImage {
+  margin-left: auto;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.lastItemImage::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background: var(--primary);
+  opacity: 0.5;
+  z-index: -1;
+  animation: pulsing 2s infinite;
+}
+.lastItemImage::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 100%;
+  background: var(--primary);
+  opacity: 0.2;
+  z-index: -2;
+  animation: pulsing 2s infinite;
+  animation-delay: 0.1s;
+}
+@keyframes pulsing {
+  0% {
+    transform: translate(-50%, -50%) scale(0.75, 0.75);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1, 1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.75, 0.75);
+  }
+}
+@media (max-width: 992px) {
+  .tourBlock {
+    padding: 40px 0;
+  }
+  .blockTitle {
+    margin-bottom: 20px;
+  }
+  .toursHolder {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .lastItem {
+    padding: 40px 20px;
+  }
+  .lastItemImage {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 520px) {
+  .toursHolder {
+    grid-template-columns: 100%;
+    gap: 15px;
+  }
+  .lastItem {
+    min-height: 310px;
+  }
 }/*# sourceMappingURL=ToursBlock.module.css.map */

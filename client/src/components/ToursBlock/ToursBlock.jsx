@@ -1,12 +1,23 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import cl from './ToursBlock.module.css';
 import { ContextMain } from '../..';
 import TourItem from './TourItem/TourItem';
+import { getImageById } from '../../http/galleryAPI';
+import { SERVER_URL } from '../../utils/consts';
 
 const ToursBlock = observer(() => {
 
     const { tourStore } = useContext(ContextMain);
+    const [fileName, setFileName] = useState('');
+
+    useEffect(() => {
+        if(!tourStore?.lastItem?.imageId) return;
+        getImageById(tourStore?.lastItem?.imageId)
+            .then(res => {
+                setFileName(res.fileName)
+            });
+    }, [tourStore?.lastItem?.imageId])
 
     return (
         <div id='tours__block' className={cl.tourBlock}>
@@ -23,6 +34,16 @@ const ToursBlock = observer(() => {
                                 galleryId={t.galleryId}
                             />
                         )}
+                        {tourStore.lastItemVisible &&
+                            <a href={tourStore.lastItem.link} className={cl.lastItem} target='_blank'>
+                                <div className={cl.lastItemName}>{tourStore?.lastItem?.name}</div>
+                                {fileName &&
+                                    <div className={cl.lastItemImage}>
+                                        <img src={`${SERVER_URL}/${fileName}`} alt="" />
+                                    </div>
+                                }
+                            </a>
+                        }
                     </div>
                 }
             </div>

@@ -96,4 +96,14 @@
 }
 .tourItem:hover .linkButton {
   transform: translateY(0) scale(1);
+}
+
+@media (max-width: 992px) {
+  .tourItem {
+    min-height: 310px;
+    height: 310px;
+  }
+  .tourItem .bodyItem {
+    padding: 20px 15px;
+  }
 }/*# sourceMappingURL=TourItem.module.css.map */

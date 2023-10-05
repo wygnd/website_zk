@@ -8,6 +8,7 @@ import GalleryStore from './store/galleryStore';
 import BasicStore from './store/basicStore';
 import MainBlockStore from './store/mainBlockStore';
 import TourStore from './store/TourStore';
+import CollectionsStore from './store/collectionsStore';
 
 
 export const ContextMain = createContext(null);
@@ -21,6 +22,7 @@ root.render(
         basicStore: new BasicStore(),
         mainBlockStore: new MainBlockStore(),
         tourStore: new TourStore(),
+        collections: new CollectionsStore()
     }}>
         <App />
     </ContextMain.Provider>

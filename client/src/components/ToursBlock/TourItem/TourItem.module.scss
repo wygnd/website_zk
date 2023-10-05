@@ -98,3 +98,15 @@
         }
     }
 }
+
+
+@media (max-width: 992px) {
+    .tourItem {
+        min-height: 310px;
+        height: 310px;
+        
+        .bodyItem {
+            padding: 20px 15px;
+        }
+    }
+}

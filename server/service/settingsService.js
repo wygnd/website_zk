@@ -71,6 +71,14 @@ class SettingsService {
         if (!candidate) throw ApiError.BadRequest('Такой записи не существует');
         return candidate;
     }
+
+    async changeOne(metaKey, metaValue) {
+        const candidate = await Settings.findOne({ where: { metaKey } });
+        if (!candidate) throw ApiError.BadRequest('Такой записи не существует');
+        candidate.metaValue = metaValue;
+        await candidate.save();
+        return candidate;
+    }
 }
 
 module.exports = new SettingsService();

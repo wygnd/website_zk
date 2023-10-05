@@ -5,6 +5,11 @@ export async function fetchPhones() {
     return data;
 }
 
+export async function fetchItem(metaKey) {
+    const { data } = await $api.post('/settings/setting', { metaKey });
+    return data;
+}
+
 export async function fetchLogo() {
     const { data } = await $api.post('/settings', { name: 'logo' });
     return data;

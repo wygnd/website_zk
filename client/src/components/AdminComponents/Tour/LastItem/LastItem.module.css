@@ -98,4 +98,33 @@
 }
 .rightItem svg:hover {
   background: var(--bg2);
+}
+
+.hiddenText {
+  text-align: center;
+  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--error);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--error);
+  width: -moz-fit-content;
+  width: fit-content;
+  padding-bottom: 5px;
+  margin: 0 auto 20px auto;
+}
+
+.modalHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.imageHolder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }/*# sourceMappingURL=LastItem.module.css.map */
