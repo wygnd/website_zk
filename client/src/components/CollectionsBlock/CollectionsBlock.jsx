@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from 'react';
 import cl from './CollectionsBlock.module.css';
 import { ContextMain } from '../..';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation,  } from 'swiper/modules';
 import { SERVER_URL } from '../../utils/consts';
 import Fancybox from '../Fancybox';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -36,14 +36,19 @@ const CollectionsBlock = observer(() => {
                                 onSwiper={(swiper) => {
                                     setSwiperCollections(swiper);
                                 }}
+                                lazy={true.toString()}
                                 speed={800}
                                 className={cl.swiperCollectionsBlock}
                                 spaceBetween={30}
                                 navigation={{
                                     prevEl: navigationPrevRef.current,
                                     nextEl: navigationNextRef.current,
+                                    disabledClass: cl.swiperDisabled
                                 }}
-
+                                onBeforeInit={(swiper) => {
+                                    swiper.params.navigation.prevEl = navigationPrevRef.current;
+                                    swiper.params.navigation.nextEl = navigationNextRef.current;
+                               }}
                             >
                                 {collections.gallery.map(item =>
                                     <SwiperSlide key={item.id}>
@@ -52,7 +57,8 @@ const CollectionsBlock = observer(() => {
                                                 src={`${SERVER_URL}/${item.fileName}`}
                                                 alt={item.fileName}
                                                 data-src={`${SERVER_URL}/${item.fileName}`}
-                                                data-fancybox="galleryCollections"
+                                                data-fancybox={`galleryCollections-${item.id}`}
+                                                className='swiper-lazy'
                                             />
                                             <div className={cl.hoverImage}>
                                                 <AiOutlineEye size={80} color='white' />
@@ -67,14 +73,14 @@ const CollectionsBlock = observer(() => {
                             <div className={cl.sliderTheme}>
                                 <div
                                     ref={navigationPrevRef}
-                                    className={[cl.slidePrev, 'arrow__prev'].join(' ')}>
+                                    className={cl.slidePrev}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                         <path d="M21.3555 12.2539H3.35547M3.35547 12.2539L8.35547 17.2539M3.35547 12.2539L8.35547 7.25391" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </div>
                                 <div
-                                ref={navigationNextRef}
-                                className={[cl.slideNext, 'arrow__next'].join(' ')}>
+                                    ref={navigationNextRef}
+                                    className={cl.slideNext}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                                         <path d="M3.35547 12.2539L21.3555 12.2539M21.3555 12.2539L16.3555 7.25391M21.3555 12.2539L16.3555 17.2539" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>

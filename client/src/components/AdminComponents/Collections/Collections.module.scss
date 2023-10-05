@@ -1,0 +1,25 @@
+@import '../../../styles/includes';
+
+.titleBlock {
+    @include h3;
+    color: var(--text1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notFound {
+    @include h4;
+    color: var(--black);
+    text-align: center;
+}
+
+.blockHolder {
+  position: relative;
+}
+
+.galleryHolder {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}

@@ -46,4 +46,7 @@
 .textarea.full {
   width: 100%;
   max-width: 100%;
+}
+.textarea.h200 {
+  height: 200px;
 }/*# sourceMappingURL=Textarea.module.css.map */
