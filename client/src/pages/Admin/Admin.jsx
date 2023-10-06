@@ -6,6 +6,7 @@ import Basic from '../../components/AdminComponents/basic/Basic';
 import Main from '../../components/AdminComponents/Main/Main';
 import Tour from '../../components/AdminComponents/Tour/Tour';
 import Collections from '../../components/AdminComponents/Collections/Collections';
+import About from '../../components/AdminComponents/About/About';
 
 const Admin = observer(() => {
 
@@ -17,6 +18,7 @@ const Admin = observer(() => {
                 <Main className={AdminClasses.admin__item} />
                 <Tour className={AdminClasses.admin__item} />
                 <Collections className={AdminClasses.admin__item} />
+                <About className={AdminClasses.admin__item} />
             </div>
         </div>
     );

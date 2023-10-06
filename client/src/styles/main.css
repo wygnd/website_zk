@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*============= COLORS ===============*/
 :root {
   --primary: #CF7B3E;
@@ -41,5 +42,28 @@ body {
 
 main {
   min-height: 83vh;
-  padding-bottom: 40px;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  /* ширина всей полосы прокрутки */
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--bg2);
+  /* цвет зоны отслеживания */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  /* цвет бегунка */
+  border-radius: 10px;
+  /* округлось бегунка */
+  border: 3px solid var(--bg2);
+  /* отступ вокруг бегунка */
+}
+
+body {
+  scrollbar-width: thin; /* "auto" или "thin" */
+  scrollbar-color: var(--primary) var(--bg2); /* цвет бегунка и зоны отслеживания */
 }/*# sourceMappingURL=main.css.map */

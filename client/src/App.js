@@ -9,10 +9,11 @@ import { fetchItem, fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI
 import { fetchTours } from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
 import { getImageById } from "./http/galleryAPI";
+import uuid from 'react-uuid';
 
 const App = observer(() => {
 
-  const { userStore, mainBlockStore, basicStore, tourStore, collections } = useContext(ContextMain);
+  const { userStore, mainBlockStore, basicStore, tourStore, collections, about } = useContext(ContextMain);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -100,14 +101,28 @@ const App = observer(() => {
         arrayImages.map(async img => {
           await getImageById(img)
             .then(response => {
-              collections.setGallery([...collections.gallery, { id: response.id, fileName: response.fileName }]);
+              collections.setGallery([...collections.gallery, { imageId: response.id, fileName: response.fileName, uuId: uuid() }]);
             })
         })
-        
+
         collections.setCountImages(data.metaValue.split('+').length);
       })
-  }, [])
+  }, [collections.update])
 
+  useEffect(() => {
+    fetchItem('aboutDesc')
+      .then(data => {
+        about.setDesc(data.metaValue);
+      })
+
+    fetchItem('aboutImage')
+      .then(data => {
+        getImageById(data.metaValue)
+          .then(res => {
+            about.setImage({ id: res.id, fileName: res.fileName });
+          })
+      })
+  }, [about.update])
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

@@ -4,6 +4,7 @@ import cl from './Main.module.css';
 import ToursBlock from '../../components/ToursBlock/ToursBlock';
 import { observer } from 'mobx-react-lite';
 import CollectionsBlock from '../../components/CollectionsBlock/CollectionsBlock';
+import AboutBlock from '../../components/AboutBlock/AboutBlock';
 
 const Main = observer(() => {
     return (
@@ -11,6 +12,7 @@ const Main = observer(() => {
             <MainBlock />
             <ToursBlock />
             <CollectionsBlock />
+            <AboutBlock />
         </main>
     );
 });

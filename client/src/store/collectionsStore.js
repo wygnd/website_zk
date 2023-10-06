@@ -6,6 +6,7 @@ export default class CollectionsStore {
         this._desc = '';
         this._gallery = [];
         this._countImages = 0;
+        this._blockUpdate = false;
         makeAutoObservable(this);
     }
 
@@ -25,6 +26,10 @@ export default class CollectionsStore {
         this._countImages = count;
     }
 
+    setUpdate(bool) {
+        this._blockUpdate = bool;
+    }
+
     get name() {
         return this._name;
     }
@@ -39,5 +44,9 @@ export default class CollectionsStore {
 
     get countImages() {
         return this._countImages;
+    }
+
+    get update() {
+        return this._blockUpdate;
     }
 }

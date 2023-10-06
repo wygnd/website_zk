@@ -51,13 +51,13 @@ const CollectionsBlock = observer(() => {
                                }}
                             >
                                 {collections.gallery.map(item =>
-                                    <SwiperSlide key={item.id}>
+                                    <SwiperSlide key={item.uuId}>
                                         <Fancybox className={cl.imageItem}>
                                             <img
                                                 src={`${SERVER_URL}/${item.fileName}`}
                                                 alt={item.fileName}
                                                 data-src={`${SERVER_URL}/${item.fileName}`}
-                                                data-fancybox={`galleryCollections-${item.id}`}
+                                                data-fancybox={`galleryCollections-${item.imageId}`}
                                                 className='swiper-lazy'
                                             />
                                             <div className={cl.hoverImage}>
