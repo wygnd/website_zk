@@ -11,7 +11,7 @@ export async function fetchItem(metaKey) {
 }
 
 export async function fetchLogo() {
-    const { data } = await $api.post('/settings', { name: 'logo' });
+    const { data } = await $api.post('/settings/setting', { metaKey: 'logo' });
     return data;
 }
 

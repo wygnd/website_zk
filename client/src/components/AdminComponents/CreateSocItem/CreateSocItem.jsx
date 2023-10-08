@@ -10,8 +10,6 @@ import ModalGallery from '../ModalGallery/ModalGallery';
 import { getImageById } from '../../../http/galleryAPI';
 import { SERVER_URL } from '../../../utils/consts';
 import { addSocial } from '../../../http/basicAPI';
-import ModalSuccess from '../ModalSuccess/ModalSuccess';
-import ModalError from '../ModalError/ModalError';
 
 const CreateSocItem = observer(() => {
 
@@ -29,8 +27,8 @@ const CreateSocItem = observer(() => {
         if (!imageId) return;
         getImageById(imageId)
             .then(data => {
+                setImagePreview(data.size);
                 console.log(data);
-                setImagePreview(data.fileName);
             })
     }, [imageId])
 
@@ -72,7 +70,7 @@ const CreateSocItem = observer(() => {
         <div className={cl.createSocItem}>
             {imagePreview &&
                 <div className={cl.imagePreview}>
-                    <img src={`${SERVER_URL}/${imagePreview}`} />
+                    <img src={`${SERVER_URL}/${imagePreview.full}`} />
                 </div>
             }
             <Button svg onClick={() => setModalGallery(true)}>

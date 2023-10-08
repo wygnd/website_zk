@@ -6,31 +6,31 @@ import SocialItem from '../SocialItem';
 
 const Socials = observer(({ mobile }) => {
     const { basicStore } = useContext(ContextMain);
-
+    
     return (
         mobile
-        ?
-        <div className={cl.socHolderMobile}>
-            {basicStore.socials.map(soc =>
-                <SocialItem
-                    key={soc.metaKey}
-                    link={soc.metaValue}
-                    imageId={soc.iconId}
-                    className={cl.socItem}
-                />
-            )}
-        </div>
-        :
-        <div className={cl.socHolder}>
-            {basicStore.socials.map(soc =>
-                <SocialItem
-                    key={soc.metaKey}
-                    link={soc.metaValue}
-                    imageId={soc.iconId}
-                    className={cl.socItem}
-                />
-            )}
-        </div>
+            ?
+            <div className={cl.socHolderMobile}>
+                {basicStore.socials.map(soc =>
+                    <SocialItem
+                        key={soc.metaKey}
+                        link={soc.metaValue}
+                        imageId={soc.iconId}
+                        className={cl.socItem}
+                    />
+                )}
+            </div>
+            :
+            <div className={cl.socHolder}>
+                {basicStore.socials.map(soc =>
+                    <SocialItem
+                        key={soc.metaKey}
+                        link={soc.metaValue}
+                        imageId={soc.iconId}
+                        className={cl.socItem}
+                    />
+                )}
+            </div>
     );
 });
 

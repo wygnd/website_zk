@@ -63,7 +63,7 @@ class SettingsController {
 
     async changeOne(req, res, next) {
         try {
-            const {metaKey, metaValue} = req.body;
+            const { metaKey, metaValue } = req.body;
             const response = await settingsService.changeOne(metaKey, metaValue);
             return res.json(response);
         } catch (error) {

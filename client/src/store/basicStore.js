@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 
 export default class BasicStore {
     constructor() {
-        this._logo = [];
+        this._logo = {};
         this._phones = [];
         this._socials = [];
         this._update = false;

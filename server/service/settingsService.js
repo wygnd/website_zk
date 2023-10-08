@@ -1,5 +1,5 @@
 const ApiError = require("../error/ApiError");
-const { Settings, Gallery } = require("../models/models");
+const { Settings, Gallery, Sizes } = require("../models/models");
 const { Op } = require('sequelize')
 
 class SettingsService {
@@ -26,10 +26,10 @@ class SettingsService {
             throw ApiError.BadRequest('Такого изображения не существует');
         }
         if (!dataSettings) {
-            const dataLogo = await Settings.create({ metaKey: 'logo', metaValue: imageData.fileName })
+            const dataLogo = await Settings.create({ metaKey: 'logo', metaValue: imageData.id })
             return dataLogo;
         }
-        dataSettings.metaValue = imageData.fileName;
+        dataSettings.metaValue = imageData.id;
         await dataSettings.save();
         return dataSettings;
     }

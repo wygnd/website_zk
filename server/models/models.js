@@ -10,7 +10,13 @@ const Tours = sequelize.define('tours', {
 
 const Gallery = sequelize.define('gallery', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+})
+
+const Sizes = sequelize.define('sizes', {
     fileName: { type: DataTypes.STRING },
+    full: { type: DataTypes.STRING },
+    medium: { type: DataTypes.STRING },
+    thumbnail: { type: DataTypes.STRING }
 })
 
 const Users = sequelize.define('users', {
@@ -39,6 +45,7 @@ const Settings = sequelize.define('settings', {
     metaValue: { type: DataTypes.STRING, allowNull: false },
 })
 
+const GalleryBlock = sequelize.define('galleryBlock', {})
 
 Users.hasOne(Tokens)
 Tokens.belongsTo(Users);
@@ -49,6 +56,12 @@ MainBlock.belongsTo(Gallery);
 Gallery.hasOne(Tours);
 Tours.belongsTo(Gallery);
 
+Sizes.hasOne(Gallery);
+Gallery.belongsTo(Sizes);
+
+Gallery.hasOne(GalleryBlock);
+GalleryBlock.belongsTo(Gallery);
+
 module.exports = {
-    Tours, Gallery, Users, Tokens, MainBlock, Settings
+    Tours, Gallery, Sizes, Users, Tokens, MainBlock, Settings, GalleryBlock
 }

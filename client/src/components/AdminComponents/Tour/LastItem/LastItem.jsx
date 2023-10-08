@@ -32,7 +32,7 @@ const LastItem = observer(() => {
         if (!imageId) return;
         getImageById(imageId)
             .then(res => {
-                setImage(res.fileName);
+                setImage(res.size);
             })
     }, [imageId]);
 
@@ -84,7 +84,7 @@ const LastItem = observer(() => {
                     <div className={cl.linkItem}>{link}</div>
                     {image &&
                         <div className={cl.imageItem}>
-                            <img src={`${SERVER_URL}/${image}`} alt="" />
+                            <img src={`${SERVER_URL}/${image.full}`} alt="" />
                         </div>
                     }
                 </div>
@@ -125,7 +125,7 @@ const LastItem = observer(() => {
                 <div className={cl.imageHolder}>
                     {image &&
                         <div className={cl.imageItem}>
-                            <img src={`${SERVER_URL}/${image}`} alt="" />
+                            <img src={`${SERVER_URL}/${image.full}`} alt="" />
                         </div>
                     }
                     <Button invert onClick={() => setModalGallery(true)}>Выбрать иконку</Button>

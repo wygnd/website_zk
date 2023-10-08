@@ -15,15 +15,16 @@ const ToursBlock = observer(() => {
         if(!tourStore?.lastItem?.imageId) return;
         getImageById(tourStore?.lastItem?.imageId)
             .then(res => {
-                setFileName(res.fileName)
+                setFileName(res.size)
             });
     }, [tourStore?.lastItem?.imageId])
 
     return (
         <div id='tours__block' className={cl.tourBlock}>
             <div className="container">
-                <h2 className={cl.blockTitle}>Экскурсии</h2>
                 {tourStore.tours &&
+                <>
+                <h2 className={cl.blockTitle}>Экскурсии</h2>
                     <div className={cl.toursHolder}>
                         {tourStore.tours.map(t =>
                             <TourItem
@@ -39,12 +40,13 @@ const ToursBlock = observer(() => {
                                 <div className={cl.lastItemName}>{tourStore?.lastItem?.name}</div>
                                 {fileName &&
                                     <div className={cl.lastItemImage}>
-                                        <img src={`${SERVER_URL}/${fileName}`} alt="" />
+                                        <img src={`${SERVER_URL}/${fileName.full}`} alt={fileName.fileName} />
                                     </div>
                                 }
                             </a>
                         }
                     </div>
+                </>
                 }
             </div>
         </div>

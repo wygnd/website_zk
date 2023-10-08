@@ -96,6 +96,14 @@
   animation: pulsing 2s infinite;
   animation-delay: 0.1s;
 }
+.lastItemImage img {
+  width: 70%;
+  height: 70%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+  padding: 10px;
+}
 @keyframes pulsing {
   0% {
     transform: translate(-50%, -50%) scale(0.75, 0.75);

@@ -21,13 +21,14 @@ const About = observer(({ className }) => {
         if (!about.desc && !about.image) return;
         setDesc(about.desc);
         setImage(about.image);
+        setImageId(about.image.id);
     }, [about.update, about.desc, about.image])
 
     useMemo(() => {
         if (!imageId) return;
         getImageById(imageId)
             .then(data => {
-                setImage({ id: data.id, fileName: data.fileName })
+                setImage({ id: data.id, size: data.size })
             })
     }, [imageId])
 
@@ -40,6 +41,7 @@ const About = observer(({ className }) => {
             }, 2000);
             return;
         }
+        
         await saveBlockDesc(desc)
             .catch(error => {
                 galleryStore.setModalErr(true)
@@ -76,10 +78,10 @@ const About = observer(({ className }) => {
                     full
                 />
                 <div className={cl.imageHolder}>
-                    {image.fileName
+                    {image
                         ?
                         <div className={cl.image}>
-                            <img src={`${SERVER_URL}/${image.fileName}`} alt={image.fileName} />
+                            <img src={`${SERVER_URL}/${image?.size?.full}`} alt={image?.size?.fileName} />
                         </div>
                         :
                         <h4 className={cl.notFound}>Изображения не найдено</h4>

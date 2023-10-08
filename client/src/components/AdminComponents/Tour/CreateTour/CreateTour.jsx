@@ -30,7 +30,7 @@ const CreateTour = observer(() => {
         if (!galleryId) return;
         getImageById(galleryId)
             .then(data => {
-                setFileName(data.fileName);
+                setFileName(data.size);
             })
             .catch(err => console.log(err));
     }, [galleryId])
@@ -79,7 +79,7 @@ const CreateTour = observer(() => {
                 />
                 {fileName &&
                     <div className={cl.imageChoice}>
-                        <img src={`${SERVER_URL}/${fileName}`} alt="" />
+                        <img src={`${SERVER_URL}/${fileName.medium}`} alt="" />
                     </div>
                 }
                 <Button onClick={() => setOpenModal(true)}>Выбрать изображение</Button>

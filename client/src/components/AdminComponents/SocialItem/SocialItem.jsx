@@ -25,7 +25,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
         if (!id) return;
         getImageById(id)
             .then(data => {
-                setIcon(data.fileName);
+                setIcon(data.size);
             });
     }, [basicStore.update, id])
 
@@ -70,7 +70,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
             <div className={cl.socItemHolder}>
                 <div className={cl.socItem} >
                     {icon &&
-                        <img src={`${SERVER_URL}/${icon}`} alt="" />
+                        <img src={`${SERVER_URL}/${icon.full}`} alt="" />
                     }
                     <div className={cl.linkItem}>{link}</div>
                 </div>
@@ -90,7 +90,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
                 >
                     <div className={cl.modalHolder}>
                         {icon &&
-                            <img src={`${SERVER_URL}/${icon}`} onClick={() => setModalGallery(true)} />
+                            <img src={`${SERVER_URL}/${icon.full}`} onClick={() => setModalGallery(true)} />
                         }
                         <Input
                             placeholder={itemValue}

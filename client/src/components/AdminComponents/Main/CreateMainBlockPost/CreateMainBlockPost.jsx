@@ -34,7 +34,7 @@ const CreateMainBlockPost = observer(({ }) => {
 
     const selectHandler = async (id) => {
         const dataImage = await getImageById(id);
-        setImage(dataImage.fileName);
+        setImage(dataImage.size);
         setGalleryId(id);
     }
 
@@ -87,7 +87,7 @@ const CreateMainBlockPost = observer(({ }) => {
                     }
                     {image &&
                         <div className={cl.imageHolder}>
-                            <img src={`${SERVER_URL}/${image}`} alt={image} />
+                            <img src={`${SERVER_URL}/${image.thumbnail}`} alt={image.fileName} />
                         </div>
                     }
 

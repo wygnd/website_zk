@@ -15,7 +15,6 @@ class GalleryController {
     async getAll(req, res, next) {
         try {
             let { page, limit } = req.query;
-            console.log(limit + page);
             const galleryData = await galleryService.getAll(page, limit);
             return res.json(galleryData);
         } catch (error) {

@@ -10,14 +10,14 @@ const SocialItem = observer(({ link, imageId, className }) => {
     useEffect(() => {
         getImageById(imageId)
             .then(data => {
-                setFileName(data.fileName);
+                setFileName(data.size);
             })
     }, []);
 
     return (
         <a href={link} className={className} target='_blank'>
             {fileName &&
-                <img src={`${SERVER_URL}/${fileName}`} alt="" />
+                <img src={`${SERVER_URL}/${fileName.full}`} alt="" />
             }
         </a>
     );

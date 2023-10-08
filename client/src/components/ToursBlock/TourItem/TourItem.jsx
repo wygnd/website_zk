@@ -10,7 +10,7 @@ const TourItem = ({ name, textButton, linkButton, galleryId }) => {
     useEffect(() => {
         getImageById(galleryId)
             .then(data => {
-                setFileName(data.fileName);
+                setFileName(data.size);
             })
     }, [])
 
@@ -18,7 +18,7 @@ const TourItem = ({ name, textButton, linkButton, galleryId }) => {
         <div className={cl.tourItem}>
             {fileName &&
                 <div className={cl.image}>
-                    <img src={`${SERVER_URL}/${fileName}`} />
+                    <img src={`${SERVER_URL}/${fileName.medium}`} />
                 </div>
             }
             <div className={cl.bodyItem}>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { observer } from 'mobx-react-lite';
@@ -55,7 +55,7 @@ const MainBlock = observer(() => {
                             </div>
                             <div className={cl.imageBackground}>
                                 <img
-                                    src={`${SERVER_URL}/${slide.gallery.fileName}`}
+                                    src={`${SERVER_URL}/${slide.gallery.size.full}`}
                                 />
                             </div>
                         </div>

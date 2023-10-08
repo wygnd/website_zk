@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from 'react';
 import cl from './CollectionsBlock.module.css';
 import { ContextMain } from '../..';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation,  } from 'swiper/modules';
+import { Navigation, } from 'swiper/modules';
 import { SERVER_URL } from '../../utils/consts';
 import Fancybox from '../Fancybox';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -20,9 +20,7 @@ const CollectionsBlock = observer(() => {
     return (
         <div id='collections__block' className={cl.collectionsBlock}>
             <div className="container">
-                {collections.name &&
-                    <h2 className={cl.blockTitle}>{collections.name}</h2>
-                }
+                <h2 className={cl.blockTitle}>Коллекция</h2>
                 <div className={cl.collectionsHolder}>
                     {collections.desc &&
                         <div className={cl.leftSide}>
@@ -48,16 +46,16 @@ const CollectionsBlock = observer(() => {
                                 onBeforeInit={(swiper) => {
                                     swiper.params.navigation.prevEl = navigationPrevRef.current;
                                     swiper.params.navigation.nextEl = navigationNextRef.current;
-                               }}
+                                }}
                             >
                                 {collections.gallery.map(item =>
                                     <SwiperSlide key={item.uuId}>
                                         <Fancybox className={cl.imageItem}>
                                             <img
-                                                src={`${SERVER_URL}/${item.fileName}`}
-                                                alt={item.fileName}
-                                                data-src={`${SERVER_URL}/${item.fileName}`}
-                                                data-fancybox={`galleryCollections-${item.imageId}`}
+                                                src={`${SERVER_URL}/${item.size.medium}`}
+                                                alt={item.size.fileName}
+                                                data-src={`${SERVER_URL}/${item.size.full}`}
+                                                data-fancybox="galleryCollections"
                                                 className='swiper-lazy'
                                             />
                                             <div className={cl.hoverImage}>

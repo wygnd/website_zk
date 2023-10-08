@@ -14,6 +14,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
     const [images, setImages] = useState([]);
 
     useMemo(() => {
+        if (!open) return;
         fetchImages(1, galleryStore.limit)
             .then(response => {
                 galleryStore.setImages(response.rows);
@@ -31,12 +32,11 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                 galleryStore.setTotalCount(response.count);
             });
     }, [open, galleryStore.page])
-
+    
     async function inputChangeHandler(e) {
         const formData = new FormData()
         formData.append('fileName', e.target.files[0])
         await addImage(formData).then(data => {
-            console.log(data);
             galleryStore.setUpdate(!galleryStore.update);
         });
     }
@@ -53,7 +53,6 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
             e.stopPropagation();
             await removeImageByID(e.currentTarget.dataset.id).then(data => {
                 galleryStore.setUpdate(!galleryStore.update);
-                setOpen(false);
             })
 
         } catch (error) {
@@ -70,6 +69,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
         <Modal open={open} clickHandler={() => {
             clickHandler()
             galleryStore.setPage(1);
+            galleryStore.setLoaded(12);
             setImages([]);
         }} className={cl.modal}>
             <div className={cl.modalTop}>
@@ -82,7 +82,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
             <div className={cl.galleryHolder}>
                 {galleryStore.gallery.map(el =>
                     <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
-                        <img data-id={el.id} src={`${SERVER_URL}/${el.fileName}`} />
+                        <img data-id={el.id} src={`${SERVER_URL}/${el.size.full}`} />
                         <div className={cl.hoverHolder}>
                             <BsFillTrashFill
                                 color='red' size="35"
@@ -96,7 +96,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                 {images &&
                     images.map(el =>
                         <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
-                            <img data-id={el.id} src={`${SERVER_URL}/${el.fileName}`} />
+                            <img data-id={el.id} src={`${SERVER_URL}/${el.size.full}`} />
                             <div className={cl.hoverHolder}>
                                 <BsFillTrashFill
                                     color='red' size="35"
@@ -114,9 +114,11 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                     <div className={cl.countLoadedImages}>
                         Загружено {galleryStore.loaded} из {galleryStore.totalCount}
                     </div>
-                    <Button onClick={() => {
-                        galleryStore.setPage(galleryStore.page + 1)
-                    }}>Загрузить еще</Button>
+                    {galleryStore.loaded !== galleryStore.totalCount &&
+                        <Button onClick={() => {
+                            galleryStore.setPage(galleryStore.page + 1)
+                        }}>Загрузить еще</Button>
+                    }
                 </div>
             }
         </Modal>

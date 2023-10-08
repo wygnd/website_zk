@@ -13,16 +13,15 @@ const AboutBlock = observer(() => {
     return (
         <div id="about__block" className={cl.aboutBlock}>
             <div className="container">
-
                 <h2 className={cl.blockTitle}>О проекте</h2>
                 <div className={cl.aboutHolder}>
-                    {about.image.fileName &&
+                    {about.image.size &&
                         <Fancybox className={cl.leftSide}>
                             <img
-                                src={`${SERVER_URL}/${about.image.fileName}`}
-                                data-src={`${SERVER_URL}/${about.image.fileName}`}
+                                src={`${SERVER_URL}/${about?.image?.size?.medium}`}
+                                data-src={`${SERVER_URL}/${about?.image?.size?.full}`}
                                 data-fancybox="imageAbout"
-                                alt={about.image.fileName}
+                                alt={about?.image?.size?.fileName}
                             />
                             <div className={cl.hoverImage}>
                                 <AiOutlineEye size={80} color='white' />

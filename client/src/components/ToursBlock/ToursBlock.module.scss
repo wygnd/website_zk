@@ -84,6 +84,14 @@
         animation: pulsing 2s infinite;
         animation-delay: .1s;
     }
+
+    img {
+        width: 70%;
+        height: 70%;
+        object-fit: contain;
+        display: block;
+        padding: 10px;
+    }
 }
 
 @-webkit-keyframes pulsing {

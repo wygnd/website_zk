@@ -38,7 +38,7 @@ const TourItem = observer(() => {
         if (!imageId) return;
         getImageById(imageId)
             .then(dataImage => {
-                setFileName(dataImage.fileName);
+                setFileName(dataImage.size);
             })
     }, [imageId]);
 
@@ -100,8 +100,8 @@ const TourItem = observer(() => {
                         <div className={cl.imageHolder}>
                             <Fancybox className={cl.imageItem}>
                                 <img
-                                    src={`${SERVER_URL}/${fileName}`}
-                                    data-src={`${SERVER_URL}/${fileName}`}
+                                    src={`${SERVER_URL}/${fileName.medium}`}
+                                    data-src={`${SERVER_URL}/${fileName.full}`}
                                     data-fancybox="tourImage"
                                     alt=""
                                 />

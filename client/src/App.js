@@ -10,17 +10,17 @@ import { fetchTours } from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
 import { getImageById } from "./http/galleryAPI";
 import uuid from 'react-uuid';
+import { fetchGallery } from "./http/galleryBlockAPI";
 
 const App = observer(() => {
 
-  const { userStore, mainBlockStore, basicStore, tourStore, collections, about } = useContext(ContextMain);
+  const { userStore, mainBlockStore, basicStore, tourStore, collections, about, galleryBlock } = useContext(ContextMain);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
       userStore.checkAuth();
     }
   }, [])
-
 
   useEffect(() => {
     fetchSlides().then(data => {
@@ -30,7 +30,10 @@ const App = observer(() => {
 
   useEffect(() => {
     fetchLogo().then(data => {
-      basicStore.setLogo(data[0]);
+      getImageById(data.metaValue)
+        .then(res => {
+          basicStore.setLogo(res.size);
+        })
     })
     fetchPhones()
       .then(data => {
@@ -85,11 +88,6 @@ const App = observer(() => {
   }, [tourStore.lastItemVisible])
 
   useEffect(() => {
-    fetchItem('collectionsTitle')
-      .then(data => {
-        collections.setName(data.metaValue);
-      })
-
     fetchItem('collectionsDesc')
       .then(data => {
         collections.setDesc(data.metaValue);
@@ -98,10 +96,10 @@ const App = observer(() => {
     fetchItem('collectionsImages')
       .then(data => {
         const arrayImages = data.metaValue.split('+');
-        arrayImages.map(async img => {
-          await getImageById(img)
+        arrayImages.map(img => {
+          getImageById(img)
             .then(response => {
-              collections.setGallery([...collections.gallery, { imageId: response.id, fileName: response.fileName, uuId: uuid() }]);
+              collections.setGallery([...collections.gallery, { imageId: response.id, size: response.size, uuId: uuid() }]);
             })
         })
 
@@ -119,10 +117,22 @@ const App = observer(() => {
       .then(data => {
         getImageById(data.metaValue)
           .then(res => {
-            about.setImage({ id: res.id, fileName: res.fileName });
+            about.setImage({ id: res.id, size: res.size });
           })
       })
   }, [about.update])
+  useEffect(() => {
+    fetchGallery()
+      .then(res => {
+        res.map(el => {
+          getImageById(el.galleryId)
+            .then(res => {
+              galleryBlock.setGallery([...galleryBlock.images, { id: el.id, size: res.size }])
+            })
+        })
+      })
+  }, [galleryBlock.update])
+
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

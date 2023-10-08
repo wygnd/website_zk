@@ -9,7 +9,7 @@ import { getImageById } from '../../../http/galleryAPI';
 import { BsFillPlusSquareFill, BsFillTrashFill } from 'react-icons/bs';
 import uuid from 'react-uuid';
 import Button from '../../Button';
-import { saveBlock, saveBlockDesc, saveBlockGallery } from '../../../http/collectionsAPI';
+import { saveBlockDesc, saveBlockGallery } from '../../../http/collectionsAPI';
 
 const Collections = observer(({ className }) => {
 
@@ -25,8 +25,8 @@ const Collections = observer(({ className }) => {
     useMemo(() => {
         if (!imageId) return;
         getImageById(imageId)
-            .then(res => {
-                collections.setGallery([...collections.gallery, { imageId: res.id, fileName: res.fileName, uuId: uuid() }])
+            .then(response => {
+                collections.setGallery([...collections.gallery, { imageId: response.id, size: response.size, uuId: uuid() }]);
             })
     }, [imageId])
 
@@ -63,6 +63,7 @@ const Collections = observer(({ className }) => {
         collections.setGallery([]);
         galleryStore.setModalSucc(true);
         galleryStore.setModalMsg('Блок успешно сохранен');
+        setImageId();
         setTimeout(() => {
             galleryStore.setModalSucc(false);
         }, 2000)
@@ -98,7 +99,7 @@ const Collections = observer(({ className }) => {
     return (
         <>
             <div className={className}>
-                <h2 className={cl.titleBlock}>Блок: {collections.name}</h2>
+                <h2 className={cl.titleBlock}>Блок: Коллекция</h2>
                 <div className={cl.blockHolder}>
                     <Textarea value={desc} onChange={e => setDesc(e.target.value)} full h200 />
                     {collections.gallery
@@ -106,7 +107,7 @@ const Collections = observer(({ className }) => {
                         <div className={cl.galleryHolder}>
                             {collections.gallery.map(el =>
                                 <div className={cl.galleryItemHolder} key={el.uuId}>
-                                    <CollectionsItem fileName={el.fileName} id={el.imageId} />
+                                    <CollectionsItem image={el.size.medium} fileName={el.size.fileName} id={el.imageId} />
                                     <BsFillTrashFill
                                         color='red'
                                         size={40}

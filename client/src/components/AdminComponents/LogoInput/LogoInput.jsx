@@ -4,34 +4,31 @@ import { observer } from 'mobx-react-lite';
 import { ContextMain } from '../../..';
 import Button from '../../Button';
 import ModalGallery from '../ModalGallery/ModalGallery';
-import { fetchLogo, setLogo } from '../../../http/basicAPI';
+import { setLogo } from '../../../http/basicAPI';
 import { SERVER_URL } from '../../../utils/consts';
-import { getImageById } from '../../../http/galleryAPI';
 
 const LogoInput = observer(() => {
 
-    const { basicStore, galleryStore } = useContext(ContextMain);
+    const { basicStore } = useContext(ContextMain);
     const [imageId, setImageId] = useState();
     const [modalGallery, setModalGallery] = useState(false);
 
     useMemo(() => {
-        getImageById(imageId).then(data => {
-            if (!data) return;
-            setLogo(imageId).then(dataImage => {
-                basicStore.setLogo(dataImage);
-                basicStore.setUpdate(!basicStore.update);
-            })
+        if (!imageId) return;
+        setLogo(imageId).then(dataImage => {
+            console.log(dataImage);
+            basicStore.setLogo(dataImage);
+            basicStore.setUpdate(!basicStore.update);
         })
     }, [imageId]);
-
 
     return (
         <>
             <div className={classes.logoHolder} >
                 <div className={classes.inputFile}>
-                    {basicStore?.logo?.metaValue &&
+                    {basicStore?.logo?.medium &&
                         <img
-                            src={`${SERVER_URL}/${basicStore?.logo?.metaValue}`}
+                            src={`${SERVER_URL}/${basicStore?.logo?.thumbnail}`}
                             className={classes.logoItem} />
                     }
                     <Button onClick={() => setModalGallery(true)}>Выбрать логотип</Button>

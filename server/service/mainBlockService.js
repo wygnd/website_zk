@@ -1,6 +1,6 @@
+const { model } = require("../db");
 const ApiError = require("../error/ApiError");
-const { MainBlock, Gallery } = require("../models/models");
-const { Op, sequelize } = require("sequelize");
+const { MainBlock, Gallery, Sizes } = require("../models/models");
 
 class MainBlockService {
 
@@ -34,9 +34,14 @@ class MainBlockService {
 
     async getAll() {
         const data = await MainBlock.findAll({
-            include: [{
-                model: Gallery,
-            }]
+            include: [
+                {
+                    model: Gallery,
+                    include: [
+                        { model: Sizes }
+                    ]
+                }
+            ]
         });
         return data;
     }

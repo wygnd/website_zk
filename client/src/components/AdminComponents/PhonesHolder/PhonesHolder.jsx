@@ -19,12 +19,6 @@ const PhonesHolder = observer(() => {
     const [phoneKey, setPhoneKey] = useState('');
     const [errorValue, setErrorValue] = useState(false);
 
-    useMemo(() => {
-        fetchPhones().then(data => {
-            basicStore.setPhones(data);
-        })
-    }, [basicStore.update])
-
     const clickButtonToAddPhone = async (e) => {
         if (value === '') {
             setCorrect(true);
@@ -150,10 +144,7 @@ const PhonesHolder = observer(() => {
                     type="text"
                     placeholder="+7 (___) ___-__-__"
                     value={value}
-                    onChange={(e) => {
-                        setValue(e.target.value);
-                        console.log(value);
-                    }} />
+                    onChange={(e) => setValue(e.target.value)} />
                 <Button onClick={clickButtonToAddPhone} error={isCorrect}>Добавить</Button>
 
                 <Modal open={modal} clickHandler={closeModal} >
