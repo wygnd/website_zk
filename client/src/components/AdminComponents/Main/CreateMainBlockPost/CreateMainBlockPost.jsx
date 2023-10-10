@@ -48,6 +48,7 @@ const CreateMainBlockPost = observer(({ }) => {
             setTitle('');
             setDesc('');
             setbuttonVisible(false);
+            setTextButton('');
             setLinkButton('');
             setGalleryId(1);
             setImage('');

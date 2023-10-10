@@ -25,7 +25,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
         if (!id) return;
         getImageById(id)
             .then(data => {
-                setIcon(data.size);
+                setIcon(data?.size);
             });
     }, [basicStore.update, id])
 
@@ -54,7 +54,6 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
     const clickSaveItem = async () => {
         await changeSocial(metaKey, itemValue, iconId)
             .then(data => {
-                console.log(data);
                 basicStore.setUpdate(!basicStore.update)
                 setModal(false);
                 galleryStore.setModalMsg('Соц. сеть успешно изменена');

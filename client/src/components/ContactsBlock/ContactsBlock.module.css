@@ -1,0 +1,18 @@
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+.contactsBlock {
+  padding: 30px 0;
+}
+
+.blockTitle {
+  font-size: calc(0.01625 * 100vw + 14.8px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+  color: var(--text1);
+  margin-bottom: 40px;
+}
+
+.blockHolder {
+  position: relative;
+}/*# sourceMappingURL=ContactsBlock.module.css.map */

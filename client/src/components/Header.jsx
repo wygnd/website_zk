@@ -12,6 +12,7 @@ import { RiLogoutBoxRLine, RiAdminFill } from 'react-icons/ri';
 import Socials from './Socials/Socials';
 import Burger from './Burger/Burger';
 
+
 const Header = observer(() => {
 
     const { userStore } = useContext(ContextMain);
@@ -23,6 +24,8 @@ const Header = observer(() => {
         userStore.logout()
         history(MAIN_ROUTE);
     }
+
+   
 
     return (
         <header className={[headerClasses.header, !isMainPage && headerClasses.header_home].join(' ')}>

@@ -1,0 +1,92 @@
+@import '../../../styles/includes';
+
+.titleBlock {
+    @include h3;
+    color: var(--text1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notFound {
+    @include h4;
+    color: var(--black);
+    text-align: center;
+}
+
+.blockHolder {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+}
+
+.addImage {
+    color: var(--primary);
+    transition: color .4s ease-out;
+    cursor: pointer;
+
+    &:hover {
+        color: var(--primaryH);
+    }
+}
+
+.imageItem {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4906337535014006) 33%, rgba(0, 0, 0, 0.6530987394957983) 88%);
+        opacity: 0;
+        transition: opacity .4s ease-out;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &:hover {
+
+        &::before {
+            opacity: 1;
+        }
+
+        .deleteItem {
+            transform: translate(-50%, 0) scale(1);
+        }
+    }
+}
+
+.deleteItem {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0) scale(0);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg1);
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 10;
+    transition: transform .4s ease-out, background .4s ease-out;
+
+    &:hover {
+        background: var(--bg2);
+    }
+}

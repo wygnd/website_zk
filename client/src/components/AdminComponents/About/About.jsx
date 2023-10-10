@@ -78,7 +78,7 @@ const About = observer(({ className }) => {
                     full
                 />
                 <div className={cl.imageHolder}>
-                    {image
+                    {image.size
                         ?
                         <div className={cl.image}>
                             <img src={`${SERVER_URL}/${image?.size?.full}`} alt={image?.size?.fileName} />

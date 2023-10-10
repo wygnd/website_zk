@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import CollectionsBlock from '../../components/CollectionsBlock/CollectionsBlock';
 import AboutBlock from '../../components/AboutBlock/AboutBlock';
 import GalleryBlock from '../../components/GalleryBlock/GalleryBlock';
+import ContactsBlock from '../../components/ContactsBlock/ContactsBlock';
 
 const Main = observer(() => {
     return (
@@ -15,6 +16,7 @@ const Main = observer(() => {
             <CollectionsBlock />
             <AboutBlock />
             <GalleryBlock />
+            <ContactsBlock />
         </main>
     );
 });

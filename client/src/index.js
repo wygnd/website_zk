@@ -11,6 +11,7 @@ import TourStore from './store/TourStore';
 import CollectionsStore from './store/collectionsStore';
 import aboutStore from './store/aboutStore';
 import GalleryBlockStore from './store/galleryBlockStore';
+import ContactsStore from './store/contactsStore';
 
 export const ContextMain = createContext(null);
 
@@ -25,7 +26,8 @@ root.render(
         tourStore: new TourStore(),
         collections: new CollectionsStore(),
         about: new aboutStore(),
-        galleryBlock: new GalleryBlockStore()
+        galleryBlock: new GalleryBlockStore(),
+        contactsStore: new ContactsStore()
     }}>
         <App />
     </ContextMain.Provider>

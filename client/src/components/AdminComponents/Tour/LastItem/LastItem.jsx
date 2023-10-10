@@ -32,7 +32,7 @@ const LastItem = observer(() => {
         if (!imageId) return;
         getImageById(imageId)
             .then(res => {
-                setImage(res.size);
+                setImage(res?.size);
             })
     }, [imageId]);
 

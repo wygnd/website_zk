@@ -53,23 +53,37 @@
 
 .nav_menu_element {
     margin: 0;
+}
 
-    a {
-        @include body;
-        color: var(--text1);
-        text-decoration: none;
-        transition: color .4s ease-out;
-    }
+.navLink {
+    cursor: pointer;
+    @include body;
+    color: var(--text1);
+    text-decoration: none;
+    position: relative;
+    transition: color .4s ease-out;
 
-    &.active {
-        a {
-            color: var(--primary);
-        }
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 0;
+        transition: width .3s ease-out;
+        height: 2px;
+        background: var(--primary);
     }
 
     &:hover {
-        a {
-            color: var(--primary);
+        color: var(--hover);
+    }
+
+    &.activeNavLink {
+        color: var(--primary);
+
+        &::before {
+            width: 100%;
         }
     }
 }

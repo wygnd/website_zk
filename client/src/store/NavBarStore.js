@@ -3,11 +3,11 @@ import { makeAutoObservable } from "mobx";
 export default class NavBarStore {
 
     elements = [
-        { id: 1, title: 'Экскурсии', link: '#tours' },
-        { id: 2, title: 'Колекция', link: '#collections' },
-        { id: 3, title: 'О проекте', link: '#about' },
-        { id: 4, title: 'Галлерея', link: '#gallery' },
-        { id: 5, title: 'Контакты', link: '#contacts' },
+        { id: 1, title: 'Экскурсии', link: 'tours__block' },
+        { id: 2, title: 'Колекция', link: 'collections__block' },
+        { id: 3, title: 'О проекте', link: 'about__block' },
+        { id: 4, title: 'Галлерея', link: 'gallery__block' },
+        { id: 5, title: 'Контакты', link: 'contacts__block' },
     ];
 
     constructor() {

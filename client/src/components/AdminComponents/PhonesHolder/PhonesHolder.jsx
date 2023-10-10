@@ -118,22 +118,24 @@ const PhonesHolder = observer(() => {
                     {basicStore.phones.map(p =>
                         <div key={p.metaKey} className={cl.phoneItemHolder}>
                             <div className={cl.phoneItem}>{p.metaValue}</div>
-                            <FaPen
-                                size={25}
-                                className={cl.changePhone}
-                                data-id={p.id}
-                                data-key={p.metaKey}
-                                data-value={p.metaValue}
-                                onClick={openChangePhoneModal}
-                            />
-                            <BsFillTrashFill
-                                onClick={deletePhone}
-                                size={25}
-                                className={cl.deletePhone}
-                                data-id={p.id}
-                                data-key={p.metaKey}
-                                data-value={p.metaValue}
-                            />
+                            <div className={cl.itemEdit}>
+                                <FaPen
+                                    size={25}
+                                    className={cl.changePhone}
+                                    data-id={p.id}
+                                    data-key={p.metaKey}
+                                    data-value={p.metaValue}
+                                    onClick={openChangePhoneModal}
+                                />
+                                <BsFillTrashFill
+                                    onClick={deletePhone}
+                                    size={25}
+                                    className={cl.deletePhone}
+                                    data-id={p.id}
+                                    data-key={p.metaKey}
+                                    data-value={p.metaValue}
+                                />
+                            </div>
                         </div>
                     )}
                 </div>

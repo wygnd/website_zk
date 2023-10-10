@@ -28,7 +28,6 @@ const CreateSocItem = observer(() => {
         getImageById(imageId)
             .then(data => {
                 setImagePreview(data.size);
-                console.log(data);
             })
     }, [imageId])
 

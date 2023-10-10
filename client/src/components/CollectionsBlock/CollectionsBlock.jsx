@@ -29,43 +29,53 @@ const CollectionsBlock = observer(() => {
                     }
                     <div className={cl.rightSide}>
                         {collections.gallery &&
-                            <Swiper
-                                modules={[Navigation]}
-                                onSwiper={(swiper) => {
-                                    setSwiperCollections(swiper);
-                                }}
-                                lazy={true.toString()}
-                                speed={800}
-                                className={cl.swiperCollectionsBlock}
-                                spaceBetween={30}
-                                navigation={{
-                                    prevEl: navigationPrevRef.current,
-                                    nextEl: navigationNextRef.current,
-                                    disabledClass: cl.swiperDisabled
-                                }}
-                                onBeforeInit={(swiper) => {
-                                    swiper.params.navigation.prevEl = navigationPrevRef.current;
-                                    swiper.params.navigation.nextEl = navigationNextRef.current;
+                            <Fancybox
+                                options={{
+                                    Carousel: {
+                                        infinite: false,
+                                    },
                                 }}
                             >
-                                {collections.gallery.map(item =>
-                                    <SwiperSlide key={item.uuId}>
-                                        <Fancybox className={cl.imageItem}>
-                                            <img
-                                                src={`${SERVER_URL}/${item.size.medium}`}
-                                                alt={item.size.fileName}
-                                                data-src={`${SERVER_URL}/${item.size.full}`}
+                                <Swiper
+                                    modules={[Navigation]}
+                                    onSwiper={(swiper) => {
+                                        setSwiperCollections(swiper);
+                                    }}
+                                    lazy={true.toString()}
+                                    speed={800}
+                                    className={cl.swiperCollectionsBlock}
+                                    spaceBetween={30}
+                                    navigation={{
+                                        prevEl: navigationPrevRef.current,
+                                        nextEl: navigationNextRef.current,
+                                        disabledClass: cl.swiperDisabled
+                                    }}
+                                    onBeforeInit={(swiper) => {
+                                        swiper.params.navigation.prevEl = navigationPrevRef.current;
+                                        swiper.params.navigation.nextEl = navigationNextRef.current;
+                                    }}
+                                >
+                                    {collections.gallery.map(item =>
+                                        <SwiperSlide key={item.uuId}>
+                                            <a
                                                 data-fancybox="galleryCollections"
-                                                className='swiper-lazy'
-                                            />
-                                            <div className={cl.hoverImage}>
-                                                <AiOutlineEye size={80} color='white' />
-                                                Посмотреть
-                                            </div>
-                                        </Fancybox>
-                                    </SwiperSlide>
-                                )}
-                            </Swiper>
+                                                href={`${SERVER_URL}/${item.size.full}`}
+                                                className={cl.imageItem}
+                                            >
+                                                <img
+                                                    src={`${SERVER_URL}/${item.size.medium}`}
+                                                    alt={item.size.fileName}
+                                                    className='swiper-lazy'
+                                                />
+                                                <div className={cl.hoverImage}>
+                                                    <AiOutlineEye size={80} color='white' />
+                                                    Посмотреть
+                                                </div>
+                                            </a>
+                                        </SwiperSlide>
+                                    )}
+                                </Swiper>
+                            </Fancybox>
                         }
                         {swiperCollections &&
                             <div className={cl.sliderTheme}>

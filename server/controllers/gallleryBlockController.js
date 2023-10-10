@@ -5,8 +5,8 @@ class GallleryBlockController {
 
     async create(req, res, next) {
         try {
-            const { galleryId } = req.body;
-            const imageData = await galleryBlockService.create(galleryId);
+            const { id } = req.body;
+            const imageData = await galleryBlockService.create(id);
             return res.json(imageData);
         } catch (error) {
             next(ApiError.BadRequest(error.message));

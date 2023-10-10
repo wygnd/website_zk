@@ -121,13 +121,14 @@ const App = observer(() => {
           })
       })
   }, [about.update])
+
   useEffect(() => {
     fetchGallery()
       .then(res => {
         res.map(el => {
-          getImageById(el.galleryId)
+          getImageById(el?.galleryId)
             .then(res => {
-              galleryBlock.setGallery([...galleryBlock.images, { id: el.id, size: res.size }])
+              galleryBlock.setGallery([...galleryBlock.images, { id: el?.id, size: res?.size }])
             })
         })
       })

@@ -1,16 +1,3 @@
-/*============= COLORS ===============*/
-:root {
-  --primary: #CF7B3E;
-  --primaryH: #aa6432;
-  --text1: #0A1C27;
-  --text2: #47555D;
-  --bg1: #fff;
-  --bg2: #CED2D4;
-  --bg5: #F2F3F4;
-  --black: #000;
-  --error: red;
-}
-
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
 .tourItem {

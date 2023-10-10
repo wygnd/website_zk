@@ -1,0 +1,15 @@
+@import '../../styles/includes';
+
+.contactsBlock {
+    padding: 30px 0;
+}
+
+.blockTitle {
+    @include h2;
+    color: var(--text1);
+    margin-bottom: 40px;
+}
+
+.blockHolder {
+    position: relative;
+}

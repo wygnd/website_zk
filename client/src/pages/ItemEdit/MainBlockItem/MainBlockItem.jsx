@@ -33,13 +33,13 @@ const MainBlockItem = observer(() => {
             setTextButton(data.textButton);
             setLinkButton(data.linkButton);
             setGalleryId(data.galleryId);
-            getImageById(data.galleryId).then(dataImage => setImage(dataImage.size));
+            getImageById(data.galleryId).then(dataImage => setImage(dataImage?.size));
         })
     }, []);
 
     const getImageId = (id) => {
         getImageById(id).then(data => {
-            setImage(data.size);
+            setImage(data?.size);
             setGalleryId(data.id)
         });
     }
@@ -122,9 +122,9 @@ const MainBlockItem = observer(() => {
                     <Fancybox>
                         <div className={cl.itemImage}>
                             <img
-                                src={`${SERVER_URL}/${image.medium}`}
-                                alt={image.medium}
-                                data-src={`${SERVER_URL}/${image.full}`}
+                                src={`${SERVER_URL}/${image?.medium}`}
+                                alt={image?.medium}
+                                data-src={`${SERVER_URL}/${image?.full}`}
                                 data-fancybox={`postItem-${id}`}
                             />
                         </div>

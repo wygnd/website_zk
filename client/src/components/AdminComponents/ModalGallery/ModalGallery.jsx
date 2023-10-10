@@ -20,7 +20,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                 galleryStore.setImages(response.rows);
                 galleryStore.setTotalCount(response.count);
             });
-    }, [open]);
+    }, [open, galleryStore.update]);
 
     useEffect(() => {
         if (!open) return;
@@ -32,13 +32,14 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                 galleryStore.setTotalCount(response.count);
             });
     }, [open, galleryStore.page])
-    
+
     async function inputChangeHandler(e) {
         const formData = new FormData()
         formData.append('fileName', e.target.files[0])
-        await addImage(formData).then(data => {
-            galleryStore.setUpdate(!galleryStore.update);
-        });
+        await addImage(formData)
+            .then(data => {
+                galleryStore.setUpdate(!galleryStore.update);
+            });
     }
 
     function selectImage(e) {
