@@ -18,17 +18,22 @@
     justify-content: center;
     padding: 12px;
     overflow: hidden;
-    transition: transform .4s ease-out;
+    transition: background .4s ease-out;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         display: block;
+        transition: filter .4s ease-out;
     }
 
     &:hover {
-        transform: scale(1.1);
+        background: var(--primary);
+
+        img {
+            filter: brightness(0) invert(1);
+        }
     }
 }
 

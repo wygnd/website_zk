@@ -10,13 +10,14 @@ const Footer = observer(() => {
 
     const { galleryStore } = useContext(ContextMain);
 
-
     return (
         <>
             <div id={cl.footer} onClick={() => galleryStore.setModal(true)}>
                 <div className="container">
                     <div className={cl.footerHolder}>
                         <a href='/' className={cl.privacyLink} >Политика конфиденциальности</a>
+                        <p className={cl.comment}>Проект реализуется при поддержке Президентского фонда культурных инициатив.</p>
+                        <div className={cl.copyWrite}>© 2023. Компания «СЗД-СТРОЙ»</div>
                     </div>
                 </div>
 
@@ -25,8 +26,8 @@ const Footer = observer(() => {
                 isError={galleryStore.modalErr} clickCloseModal={() => galleryStore.setModalErr(false)}
             >{galleryStore.messageModal}</ModalError>
             <ModalSuccess
-            isSuccess={galleryStore.modalSucc} 
-            clickHandlerModalSuccess={() => galleryStore.setModalSucc(false)}
+                isSuccess={galleryStore.modalSucc}
+                clickHandlerModalSuccess={() => galleryStore.setModalSucc(false)}
             >
                 {galleryStore.messageModal}
             </ModalSuccess>

@@ -14,7 +14,7 @@ import { fetchGallery } from "./http/galleryBlockAPI";
 
 const App = observer(() => {
 
-  const { userStore, mainBlockStore, basicStore, tourStore, collections, about, galleryBlock } = useContext(ContextMain);
+  const { userStore, mainBlockStore, basicStore, tourStore, collections, about, galleryBlock, contactsStore } = useContext(ContextMain);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -134,6 +134,12 @@ const App = observer(() => {
       })
   }, [galleryBlock.update])
 
+  useEffect(() => {
+    fetchItem('map')
+      .then(res => {
+        contactsStore.setMap([res.metaValue.split('+')[0], res.metaValue.split('+')[1]])
+      })
+  }, [])
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

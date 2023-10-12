@@ -17,5 +17,22 @@
 .basicWrapper {
   display: grid;
   grid-template-columns: 1.5fr 2fr 2fr;
-  gap: 30px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 60px;
+}
+
+.mapName {
+  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--black);
+  margin-bottom: 10px;
+}
+
+.mapWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }/*# sourceMappingURL=Basic.module.css.map */

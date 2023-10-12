@@ -40,6 +40,11 @@ export async function fetchSocials() {
     return data;
 }
 
+export async function setItem(metaKey, metaValue) {
+    const {data} = await $apiAuth.post('/settings/change', {metaKey, metaValue});
+    return data;
+}
+
 export async function removeSocial(metaKey) {
     const { data } = await $apiAuth.post(`/settings/remove/${metaKey}`)
     return data;

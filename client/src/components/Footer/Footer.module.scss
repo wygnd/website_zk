@@ -16,4 +16,23 @@
     @include assistant;
     color: var(--bg1);
     text-decoration: underline;
+    text-align: center;
+    transition: color .4s ease-out;
+    
+    &:hover {
+        color: var(--primary)
+    }
+}
+
+.copyWrite,
+.comment {
+    @include assistant;
+    color: var(--bg1);
+    text-align: center;
+}
+
+@media (max-width: 1100px) {
+    .footerHolder {
+        flex-direction: column;
+    }
 }

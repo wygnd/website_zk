@@ -18,7 +18,7 @@
   justify-content: center;
   padding: 12px;
   overflow: hidden;
-  transition: transform 0.4s ease-out;
+  transition: background 0.4s ease-out;
 }
 .socItem img {
   width: 100%;
@@ -26,9 +26,13 @@
   -o-object-fit: contain;
      object-fit: contain;
   display: block;
+  transition: filter 0.4s ease-out;
 }
 .socItem:hover {
-  transform: scale(1.1);
+  background: var(--primary);
+}
+.socItem:hover img {
+  filter: brightness(0) invert(1);
 }
 
 @media (max-width: 560px) {
