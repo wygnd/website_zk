@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from "./components/AppRouter";
 import Header from './components/Header';
 import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
-import { fetchItem, fetchItems, fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
+import { fetchItem, fetchItems } from "./http/basicAPI";
 import { fetchTours } from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
 import { getImageById } from "./http/galleryAPI";
@@ -15,6 +16,8 @@ import { fetchGallery } from "./http/galleryBlockAPI";
 const App = observer(() => {
 
   const { userStore, mainBlockStore, basicStore, tourStore, collections, about, galleryBlock, contactsStore } = useContext(ContextMain);
+  const [siteTitle, setSiteTitle] = useState('');
+  const [siteDesc, setSiteDesc] = useState('');
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -29,17 +32,17 @@ const App = observer(() => {
   }, [mainBlockStore.update]);
 
   useEffect(() => {
-    fetchLogo().then(data => {
+    fetchItem('logo').then(data => {
       getImageById(data.metaValue)
         .then(res => {
           basicStore.setLogo(res.size);
         })
     })
-    fetchPhones()
+    fetchItems('phone')
       .then(data => {
         basicStore.setPhones(data);
       })
-    fetchSocials()
+    fetchItems('soc')
       .then(data => {
         const dataRequest = [];
         data.forEach(soc => {
@@ -148,16 +151,48 @@ const App = observer(() => {
       })
   }, [basicStore.update])
 
+  useEffect(() => {
+    fetchItem('siteTitle')
+      .then(data => {
+        basicStore.setSiteTitle(data);
+        setSiteTitle(data.metaValue);
+      })
+
+    fetchItem('siteDesc')
+      .then(data => {
+        basicStore.setSiteDesc(data);
+        setSiteDesc(data.metaValue);
+      })
+  })
+
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>
   }
 
   return (
-    <BrowserRouter>
-      <Header />
-      <AppRouter />
-      <Footer />
-    </BrowserRouter>
+    <>
+      <Helmet>
+        <title>{siteTitle}</title>
+        <html lang="ru" />
+        <meta name="author" content="Denis Nekrasov" />
+        <meta
+          name="description"
+          content={siteDesc} />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta
+          property="og:image"
+          content="https://developer.mozilla.org/mdn-social-share.png" />
+        <meta
+          property="og:description"
+          content="Экспозиция «В бутылочку» - пролог современного музейного пространства, посвященного гастрокультуре Русского Севера." />
+        <meta property="og:title" content="Заречный квартал" />
+      </Helmet>
+      <BrowserRouter>
+        <Header />
+        <AppRouter />
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 });
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import cl from './Basic.module.css';
 import LogoInput from '../LogoInput/LogoInput';
-import { observer } from 'mobx-react-lite';
 import PhonesHolder from '../PhonesHolder/PhonesHolder';
 import SocialsHolder from '../SocialsHolder/SocialsHolder';
 import MapHolder from '../MapHolder/MapHolder';

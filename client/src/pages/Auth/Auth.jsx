@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
-import authPageStyles from '../styles/Auth.module.css';
-import Button from '../components/Button';
-import Input from '../components/Input/Input';
+import authPageStyles from './Auth.module.css';
+import Button from '../../components/Button';
+import Input from '../../components/Input/Input';
 import { observer } from 'mobx-react-lite';
-import { ContextMain } from '..';
+import { ContextMain } from '../..';
 import { useNavigate } from 'react-router-dom';
-import { ADMIN_ROUTE } from '../utils/consts';
+import { ADMIN_ROUTE } from '../../utils/consts';
 
 const Auth = observer(() => {
-    const { userStore } = useContext(ContextMain);
+    const { userStore, galleryStore } = useContext(ContextMain);
     const history = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +17,14 @@ const Auth = observer(() => {
     const clickHandler = async () => {
         try {
             await userStore.login(email, password)
+                .catch(err => {
+                    galleryStore.setModalErr(true);
+                    galleryStore.setModalMsg(err);
+                    setTimeout(() => {
+                        galleryStore.setModalErr(false);
+                    }, 2000);
+                    return;
+                })
             if (userStore.isAuth) {
                 history(ADMIN_ROUTE);
             } else {
@@ -24,7 +32,12 @@ const Auth = observer(() => {
                 setPassword('');
             }
         } catch (error) {
-            alert(error);
+            galleryStore.setModalErr(true);
+            galleryStore.setModalMsg(error);
+            setTimeout(() => {
+                galleryStore.setModalErr(false);
+            }, 2000);
+            return;
         }
     }
 
@@ -35,10 +48,12 @@ const Auth = observer(() => {
                     <h2 className={authPageStyles.page_title}>Авторизация</h2>
                     <div className={authPageStyles.auth_holder}>
                         <Input
+                            name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             type="text"
                             placeholder="example@email.ru"
+                            autocomplete="on"
                             required />
                         <Input
                             value={password}

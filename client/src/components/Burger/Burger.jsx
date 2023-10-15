@@ -16,7 +16,7 @@ const Burger = ({ isOpen, closeMenu, ...props }) => {
             <div className={[cl.mobileMenu, isOpen && cl.mobileActive].join(' ')}>
                 <div className={cl.closeMobileMenu} onClick={() => closeMenu()}>&times;</div>
                 <Logo />
-                <NavBar mobile={true} />
+                <NavBar mobile={true} closeMenu={closeMenu} />
                 <Phones mobile />
                 <Socials mobile />
             </div>

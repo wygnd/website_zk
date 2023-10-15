@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { ContextMain } from '..';
 import { observer } from 'mobx-react-lite';
 import headerClasses from '../styles/Header.module.css';
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
-const NavBar = observer(({ mobile }) => {
+const NavBar = observer(({ mobile, closeMenu }) => {
 
     const { menuElements } = useContext(ContextMain);
 
@@ -15,12 +15,12 @@ const NavBar = observer(({ mobile }) => {
                 {menuElements.elements.map(el =>
                     <li key={el.id} className={headerClasses.nav_menu_element}>
                         <Link
+                            onClick={() => closeMenu()}
                             to={el.link}
                             className={headerClasses.navLink}
-                            activeClass={headerClasses.activeNavLink}
                             spy={true}
                             smooth={true}
-                            offset={-60}
+                            offset={-100}
                             duration={800}
 
                         >{el.title}</Link>
@@ -33,7 +33,6 @@ const NavBar = observer(({ mobile }) => {
                     <li key={el.id} className={headerClasses.nav_menu_element}>
                         <Link
                             to={el.link}
-                            activeClass={headerClasses.activeNavLink}
                             spy={true}
                             smooth={true}
                             offset={-60}

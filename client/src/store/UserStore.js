@@ -31,7 +31,7 @@ export default class UserStore {
             this.setIsAuth(true);
             this.setUser(response.data.user);
         } catch (error) {
-            alert(error.response?.data?.message);
+            throw error.response?.data?.message;
         }
     }
 
@@ -50,10 +50,12 @@ export default class UserStore {
         try {
             const response = await AuthService.logout();
             localStorage.removeItem('token');
+            console.log(response);
             this.setIsAuth(false);
             this.setUser({});
+            return response.data.message;
         } catch (error) {
-            alert(error.response?.data?.message);
+            throw error.response?.data?.message;
         }
     }
 

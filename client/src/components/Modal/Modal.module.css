@@ -38,4 +38,14 @@
 }
 .modalContent.overflowY {
   overflow-y: auto;
+}
+
+@media (max-width: 640px) {
+  .modalContent {
+    width: 100%;
+    height: -moz-fit-content;
+    height: fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+  }
 }/*# sourceMappingURL=Modal.module.css.map */

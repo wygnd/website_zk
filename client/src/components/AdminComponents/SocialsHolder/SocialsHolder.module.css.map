@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../../styles/_includes.scss","SocialsHolder.module.scss","SocialsHolder.module.css"],"names":[],"mappings":"AACA,0CAAA;AAYA,uCAAA;ACXA;EACI,aAAA;EACA,sBAAA;EACA,8BAAA;ACCJ;;ADEA;EACI,aAAA;EACA,sBAAA;EACA,SAAA;ACCJ","file":"SocialsHolder.module.css"}
+{"version":3,"sources":["../../../styles/_includes.scss","SocialsHolder.module.scss","SocialsHolder.module.css"],"names":[],"mappings":"AACA,0CAAA;AAYA,uCAAA;ACXA;EACI,aAAA;EACA,sBAAA;EACA,8BAAA;EACA,SAAA;ACCJ;;ADEA;EACI,aAAA;EACA,sBAAA;EACA,SAAA;ACCJ","file":"SocialsHolder.module.css"}

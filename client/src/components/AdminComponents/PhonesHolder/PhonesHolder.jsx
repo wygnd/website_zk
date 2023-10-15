@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { ContextMain } from '../../..';
 import cl from './PhonesHolder.module.css';
 import Input from '../../Input/Input';
 import Button from '../../Button';
-import { addPhone, changePhone, fetchPhones, removePhone } from '../../../http/basicAPI';
+import { createItem, setItem, removeItem } from '../../../http/basicAPI';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
 import Modal from '../../Modal/Modal';
@@ -30,7 +30,7 @@ const PhonesHolder = observer(() => {
             }, 3000);
             return;
         } else {
-            await addPhone(value)
+            await createItem('phone', value)
                 .then(data => {
                     basicStore.setUpdate(!basicStore.update);
                     setValue('');
@@ -46,7 +46,7 @@ const PhonesHolder = observer(() => {
     const deletePhone = async (event) => {
         try {
             const metaKey = event.currentTarget.dataset.key;
-            await removePhone(metaKey)
+            await removeItem(metaKey)
                 .then(data => {
                     basicStore.setUpdate(!basicStore.update);
                     galleryStore.setModalSucc(true);
@@ -68,8 +68,9 @@ const PhonesHolder = observer(() => {
 
     const openChangePhoneModal = (e) => {
         setOpenModal(true);
-        setPhoneValue(basicStore.getPhone(e.currentTarget.dataset.id)[0].metaValue);
-        setPhoneKey(basicStore.getPhone(e.currentTarget.dataset.id)[0].metaKey);
+        console.log();
+        setPhoneValue(e.currentTarget.dataset.value);
+        setPhoneKey(e.currentTarget.dataset.key);
     }
 
     const saveChangedPhone = async () => {
@@ -81,7 +82,7 @@ const PhonesHolder = observer(() => {
                 }, 2000);
                 return;
             } else {
-                await changePhone(phoneKey, phoneValue)
+                await setItem(phoneKey, phoneValue)
                     .then(data => {
                         basicStore.setUpdate(!basicStore.update);
                         setPhoneValue('');

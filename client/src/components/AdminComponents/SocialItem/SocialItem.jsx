@@ -5,7 +5,7 @@ import { getImageById } from '../../../http/galleryAPI';
 import { SERVER_URL } from '../../../utils/consts';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { FaPen } from 'react-icons/fa';
-import { changeSocial, removeSocial } from '../../../http/basicAPI';
+import { setItem, removeItem } from '../../../http/basicAPI';
 import { ContextMain } from '../../..';
 import Modal from '../../Modal/Modal';
 import Input from '../../Input/Input';
@@ -31,8 +31,8 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
 
 
 
-    const removeItem = async () => {
-        await removeSocial(metaKey)
+    const removeItemHandler = async () => {
+        await removeItem(metaKey)
             .then(data => {
                 console.log(data);
                 basicStore.setUpdate(!basicStore.update)
@@ -52,7 +52,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
     }
 
     const clickSaveItem = async () => {
-        await changeSocial(metaKey, itemValue, iconId)
+        await setItem(metaKey, `${itemValue}+${iconId}`)
             .then(data => {
                 basicStore.setUpdate(!basicStore.update)
                 setModal(false);
@@ -69,7 +69,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
             <div className={cl.socItemHolder}>
                 <div className={cl.socItem} >
                     {icon &&
-                        <img src={`${SERVER_URL}/${icon.full}`} alt="" />
+                        <img src={`${SERVER_URL}/${icon.full}`} alt={`${SERVER_URL}/${icon.fileName}`} />
                     }
                     <div className={cl.linkItem}>{link}</div>
                 </div>
@@ -81,7 +81,7 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
                 <BsFillTrashFill
                     size={25}
                     className={cl.deleteSoc}
-                    onClick={removeItem}
+                    onClick={removeItemHandler}
                 />
                 <Modal
                     open={modal}
@@ -89,7 +89,11 @@ const SocialItem = observer(({ iconId, link, metaKey, ...props }) => {
                 >
                     <div className={cl.modalHolder}>
                         {icon &&
-                            <img src={`${SERVER_URL}/${icon.full}`} onClick={() => setModalGallery(true)} />
+                            <img
+                                src={`${SERVER_URL}/${icon.full}`}
+                                onClick={() => setModalGallery(true)}
+                                alt={`${SERVER_URL}/${icon.fileName}`}
+                            />
                         }
                         <Input
                             placeholder={itemValue}

@@ -7,7 +7,6 @@ import Modal from '../../Modal/Modal';
 import Input from '../../Input/Input';
 import Button from '../../Button';
 import { createItem, setItem, removeItem } from '../../../http/basicAPI';
-import { BsPlusSquareFill } from 'react-icons/bs';
 
 const EmailsHolder = observer(() => {
 
@@ -19,7 +18,7 @@ const EmailsHolder = observer(() => {
     const [newEmail, setNewEmail] = useState('');
 
     const saveItem = async () => {
-        if (stockValue == changedValue) {
+        if (stockValue === changedValue) {
             galleryStore.setModalErr(true);
             galleryStore.setModalMsg('Вы ничего не изменили');
             setTimeout(() => {

@@ -6,6 +6,8 @@ export default class BasicStore {
         this._phones = [];
         this._socials = [];
         this._emails = [];
+        this._siteTitle = {};
+        this._siteDesc = {};
         this._update = false;
 
         makeAutoObservable(this);
@@ -38,6 +40,14 @@ export default class BasicStore {
         this._emails = emails;
     }
 
+    setSiteTitle(data) {
+        this._siteTitle = data;
+    }
+
+    setSiteDesc(data) {
+        this._siteDesc = data;
+    }
+
     get phones() {
         return this._phones;
     }
@@ -56,5 +66,13 @@ export default class BasicStore {
 
     get emails() {
         return this._emails;
+    }
+
+    get siteTitle() {
+        return this._siteTitle;
+    }
+
+    get siteDesc() {
+        return this._siteDesc;
     }
 }

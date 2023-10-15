@@ -1,0 +1,56 @@
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+.NotFoundHolder {
+  padding-bottom: 80px;
+  position: relative;
+}
+
+.errorHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+
+.holderTop {
+  font-size: calc(0.125 * 100vw + 80px);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 90%;
+  color: var(--primary);
+}
+
+.holderBottom {
+  max-width: 670px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nameBottom {
+  font-size: calc(0.00875 * 100vw + 15.2px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--text1);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.descBottom {
+  text-align: center;
+  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--text2);
+}
+
+.linkBottom {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 40px auto 0;
+  text-decoration: none;
+}/*# sourceMappingURL=NotFound.module.css.map */

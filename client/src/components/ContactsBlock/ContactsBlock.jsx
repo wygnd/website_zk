@@ -9,7 +9,7 @@ import Emails from '../Emails/Emails';
 
 const ContactsBlock = observer(() => {
 
-    const { contactsStore, emailsStore, basicStore } = useContext(ContextMain);
+    const { contactsStore, basicStore } = useContext(ContextMain);
 
 
     return (

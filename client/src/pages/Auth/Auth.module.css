@@ -35,4 +35,13 @@
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+  .page_auth_holder {
+    padding: 40px 20px;
+  }
+  .page_title {
+    margin-bottom: 20px;
+  }
 }/*# sourceMappingURL=Auth.module.css.map */

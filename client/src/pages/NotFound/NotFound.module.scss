@@ -1,0 +1,49 @@
+@import '../../styles/includes';
+
+.NotFoundHolder {
+    padding-bottom: 80px;
+    position: relative;
+}
+
+.errorHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.holderTop {
+    font-size: calcFluidFontSize(120, 320, 320, 1920);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 90%;
+    color: var(--primary);
+}
+
+.holderBottom {
+    max-width: 670px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.nameBottom {
+    @include h3;
+    color: var(--text1);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.descBottom {
+    text-align: center;
+    @include h6;
+    color: var(--text2);
+}
+
+.linkBottom {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 0;
+    text-decoration: none;
+}

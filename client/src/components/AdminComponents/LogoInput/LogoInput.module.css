@@ -1,9 +1,5 @@
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
-.logoHolder {
-  width: 100%;
-}
-
 .logoTitle {
   font-size: calc(0.00375 * 100vw + 12.8px);
   font-style: normal;

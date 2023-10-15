@@ -15,17 +15,29 @@ import Burger from './Burger/Burger';
 
 const Header = observer(() => {
 
-    const { userStore } = useContext(ContextMain);
+    const { userStore, galleryStore } = useContext(ContextMain);
     const location = useLocation();
     const isMainPage = location.pathname === MAIN_ROUTE;
     const history = useNavigate();
     const [openBurger, setOpenBurger] = useState(false);
-    const logoutClickHandler = () => {
-        userStore.logout()
+    const logoutClickHandler = async () => {
+        await userStore.logout()
+            .then(data => {
+                galleryStore.setModalSucc(true);
+                galleryStore.setModalMsg(data);
+                setTimeout(() => {
+                    galleryStore.setModalSucc(false);
+                }, 2000);
+            })
+            .catch(err => {
+                galleryStore.setModalErr(true);
+                galleryStore.setModalMsg(err);
+                setTimeout(() => {
+                    galleryStore.setModalErr(false);
+                }, 2000);
+            })
         history(MAIN_ROUTE);
     }
-
-
 
     return (
         <header className={[headerClasses.header, !isMainPage && headerClasses.header_home].join(' ')}>

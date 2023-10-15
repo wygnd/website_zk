@@ -76,16 +76,13 @@
     }
 
     &:hover {
-        color: var(--hover);
-    }
-
-    &.activeNavLink {
-        color: var(--primary);
+        color: var(--primaryH);
 
         &::before {
             width: 100%;
         }
     }
+
 }
 
 .btns {

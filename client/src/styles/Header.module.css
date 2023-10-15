@@ -76,12 +76,9 @@
   background: var(--primary);
 }
 .navLink:hover {
-  color: var(--hover);
+  color: var(--primaryH);
 }
-.navLink.activeNavLink {
-  color: var(--primary);
-}
-.navLink.activeNavLink::before {
+.navLink:hover::before {
   width: 100%;
 }
 

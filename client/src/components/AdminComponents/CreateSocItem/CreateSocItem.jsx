@@ -9,7 +9,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 import ModalGallery from '../ModalGallery/ModalGallery';
 import { getImageById } from '../../../http/galleryAPI';
 import { SERVER_URL } from '../../../utils/consts';
-import { addSocial } from '../../../http/basicAPI';
+import { createItem } from '../../../http/basicAPI';
 
 const CreateSocItem = observer(() => {
 
@@ -48,7 +48,7 @@ const CreateSocItem = observer(() => {
             }, 2000);
             return;
         }
-        await addSocial(linkValue, imageId)
+        await createItem('soc', `${linkValue}+${imageId}`)
             .then(data => {
                 basicStore.setUpdate(!basicStore.update);
                 setImagePreview();
@@ -61,22 +61,21 @@ const CreateSocItem = observer(() => {
             })
     }
 
-    const closeModalError = () => {
-        galleryStore.setModalErr(false);
-    }
-
     return (
         <div className={cl.createSocItem}>
             {imagePreview &&
                 <div className={cl.imagePreview}>
-                    <img src={`${SERVER_URL}/${imagePreview.full}`} />
+                    <img
+                        src={`${SERVER_URL}/${imagePreview.full}`}
+                        alt={`${SERVER_URL}/${imagePreview.fileName}`}
+                    />
                 </div>
             }
-            <Button svg onClick={() => setModalGallery(true)}>
+            <Button svg onClick={() => setModalGallery(true)} className={cl.Button}>
                 {<BiImageAlt size={20} />}
             </Button>
-            <Input placeholder="Ссылка" value={linkValue} onChange={(e) => setLinkValue(e.target.value)} />
-            <Button svg invert onClick={createSoc}>
+            <Input placeholder="Ссылка" value={linkValue} onChange={(e) => setLinkValue(e.target.value)} className={cl.input} />
+            <Button svg invert onClick={createSoc} className={cl.createButton}>
                 <BsFillPlusCircleFill />
             </Button>
             <ModalGallery

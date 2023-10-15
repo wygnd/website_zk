@@ -15,7 +15,8 @@
 }
 
 .basicWrapper {
-  display: grid;
-  grid-template-columns: 1.5fr 2fr 2fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 60px;
 }/*# sourceMappingURL=Basic.module.css.map */

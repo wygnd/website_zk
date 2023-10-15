@@ -38,7 +38,7 @@ const ToursBlock = observer(() => {
                         />
                     )}
                     {tourStore.lastItemVisible &&
-                        <a href={tourStore.lastItem.link} className={cl.lastItem} target='_blank'>
+                        <a href={tourStore.lastItem.link} className={cl.lastItem} target="_blank">
                             <div className={cl.lastItemName}>{tourStore?.lastItem?.name}</div>
                             {fileName &&
                                 <div className={cl.lastItemImage}>
