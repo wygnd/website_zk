@@ -1,29 +1,22 @@
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
-.phonesHolder,
-.phonesHolderMobile {
+.emailsHolder {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.phoneItem {
+.emailItem {
   font-size: calc(0.00375 * 100vw + 12.8px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
   color: var(--text1);
-  text-decoration: none;
   width: -moz-fit-content;
   width: fit-content;
+  text-decoration: none;
   transition: color 0.4s ease-out;
 }
-.phoneItem:hover {
+.emailItem:hover {
   color: var(--primary);
-}
-
-@media (max-width: 560px) {
-  .phonesHolder {
-    display: none;
-  }
-}/*# sourceMappingURL=Phones.module.css.map */
+}/*# sourceMappingURL=Emails.module.css.map */

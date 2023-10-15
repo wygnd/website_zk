@@ -5,7 +5,7 @@ import Header from './components/Header';
 import { observer } from "mobx-react-lite";
 import { ContextMain } from ".";
 import { fetchSlides } from "./http/mainBlockAPI";
-import { fetchItem, fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
+import { fetchItem, fetchItems, fetchLogo, fetchPhones, fetchSocials } from "./http/basicAPI";
 import { fetchTours } from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
 import { getImageById } from "./http/galleryAPI";
@@ -140,6 +140,13 @@ const App = observer(() => {
         contactsStore.setMap([res.metaValue.split('+')[0], res.metaValue.split('+')[1]])
       })
   }, [])
+
+  useEffect(() => {
+    fetchItems('email')
+      .then(data => {
+        basicStore.setEmails(data);
+      })
+  }, [basicStore.update])
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>

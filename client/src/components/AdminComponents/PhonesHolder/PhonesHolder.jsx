@@ -154,7 +154,7 @@ const PhonesHolder = observer(() => {
                     <div className={cl.modalChangeHolder}>
                         <Input
                             mask
-                            placeholder={phoneValue}
+                            value={phoneValue}
                             onChange={(e) => setPhoneValue(e.target.value)}
                             error={errorValue}
                         />

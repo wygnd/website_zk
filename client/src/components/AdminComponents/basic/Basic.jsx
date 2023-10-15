@@ -1,39 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import cl from './Basic.module.css';
 import LogoInput from '../LogoInput/LogoInput';
 import { observer } from 'mobx-react-lite';
 import PhonesHolder from '../PhonesHolder/PhonesHolder';
 import SocialsHolder from '../SocialsHolder/SocialsHolder';
-import { ContextMain } from '../../..';
-import Input from '../../Input/Input';
-import Button from '../../Button';
-import { setItem } from '../../../http/basicAPI';
+import MapHolder from '../MapHolder/MapHolder';
+import EmailsHolder from '../EmailsHolder/EmailsHolder';
 
-const Basic = observer(({ className }) => {
-
-    const { contactsStore, galleryStore } = useContext(ContextMain);
-    const [mapValue, setMapValue] = useState();
-
-    const saveMap = async () => {
-        if (!mapValue) {
-            galleryStore.setModalErr(true);
-            galleryStore.setModalMsg('Пустое поле');
-            setTimeout(() => {
-                galleryStore.setModalErr(false);
-            }, 2000);
-            return;
-        }
-
-        await setItem('map', `${mapValue.split(',')[0].trim()}+${mapValue.split(',')[1].trim()}`)
-            .then(data => {
-                galleryStore.setModalSucc(true);
-                galleryStore.setModalMsg('Карта успешно сохранена');
-                contactsStore.setUpdate(!contactsStore.update);
-                setTimeout(() => {
-                    galleryStore.setModalSucc(false);
-                }, 2000);
-            })
-    }
+const Basic = ({ className }) => {
 
     return (
         <div className={[cl.basicHolder, className].join(' ')}>
@@ -42,16 +16,11 @@ const Basic = observer(({ className }) => {
                 <LogoInput />
                 <PhonesHolder />
                 <SocialsHolder />
-                <div className={cl.mapHolder}>
-                    <div className={cl.mapName}>Координаты карты</div>
-                    <div className={cl.mapWrapper}>
-                        <Input placeholder={`${contactsStore.map[0]}, ${contactsStore.map[1]}`} onChange={(e) => setMapValue(e.target.value)} />
-                        <Button onClick={saveMap}>Сохранить</Button>
-                    </div>
-                </div>
+                <EmailsHolder />
+                <MapHolder />
             </div>
         </div>
     );
-});
+};
 
 export default Basic;

@@ -1,39 +1,39 @@
 @font-face {
 	font-display: swap;
-	font-family: "TildaSans-Black";
+	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 400;
-	src: url("TildaSans-Black-Regular.ttf") format("truetype");
+	src: url("TildaSans-Black-Regular.otf") format("OpenType");
 }
 
 @font-face {
 	font-display: swap;
-	font-family: "TildaSans-Black";
+	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 500;
-	src: url("TildaSans-Black-Medium.ttf") format("truetype");
+	src: url("TildaSans-Black-Medium.otf") format("OpenType");
 }
 
 @font-face {
 	font-display: swap;
-	font-family: "TildaSans-Black";
+	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 600;
-	src: url("TildaSans-Black-SemiBold.ttf") format("truetype");
+	src: url("TildaSans-Black-SemiBold.otf") format("OpenType");
 }
 
 @font-face {
 	font-display: swap;
-	font-family: "TildaSans-Black";
+	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 700;
-	src: url("TildaSans-Black-Bold.ttf") format("truetype");
+	src: url("TildaSans-Black-Bold.otf") format("OpenType");
 }
 
 @font-face {
 	font-display: swap;
-	font-family: "TildaSans-Black";
+	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 900;
-	src: url("TildaSans-Black-ExtraBold.ttf") format("truetype");
+	src: url("TildaSans-Black-ExtraBold.otf") format("OpenType");
 }

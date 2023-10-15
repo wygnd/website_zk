@@ -42,7 +42,7 @@ const ToursBlock = observer(() => {
                             <div className={cl.lastItemName}>{tourStore?.lastItem?.name}</div>
                             {fileName &&
                                 <div className={cl.lastItemImage}>
-                                    <img src={`${SERVER_URL}/${fileName.full}`} alt={fileName.fileName} />
+                                    <img src={`${SERVER_URL}/${fileName.medium}`} alt={fileName.fileName} />
                                 </div>
                             }
                         </a>

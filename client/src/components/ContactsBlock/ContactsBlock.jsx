@@ -5,10 +5,11 @@ import Phones from '../Phones/Phones';
 import Socials from '../Socials/Socials';
 import { observer } from 'mobx-react-lite';
 import { ContextMain } from '../..';
+import Emails from '../Emails/Emails';
 
 const ContactsBlock = observer(() => {
 
-    const { contactsStore } = useContext(ContextMain);
+    const { contactsStore, emailsStore, basicStore } = useContext(ContextMain);
 
 
     return (
@@ -16,14 +17,23 @@ const ContactsBlock = observer(() => {
             <div className={cl.blockHolder}>
                 <div className={cl.leftSide}>
                     <h2 className={cl.blockTitle}>Контакты</h2>
-                    <div className={cl.phonesHolder}>
-                        <div className={cl.nameHolder}>Номер телефона</div>
-                        <Phones mobile />
-                    </div>
-
-                    <div className={cl.socHolder}>
-                        <Socials mobile />
-                    </div>
+                    {basicStore.phones.length !== 0 &&
+                        <div className={cl.phonesHolder}>
+                            <div className={cl.nameHolder}>Номер телефона</div>
+                            <Phones mobile />
+                        </div>
+                    }
+                    {basicStore.emails.length !== 0 &&
+                        <div className={cl.emailsHolder}>
+                            <div className={cl.nameHolder}>Электронная почта</div>
+                            <Emails />
+                        </div>
+                    }
+                    {basicStore.socials.length !== 0 &&
+                        <div className={cl.socHolder}>
+                            <Socials mobile />
+                        </div>
+                    }
                 </div>
                 <YMaps
                     className={cl.mapHolder}
@@ -40,7 +50,7 @@ const ContactsBlock = observer(() => {
                             controls: ["zoomControl", "fullscreenControl"]
                         }}
                         width="100%"
-                        height={400}
+                        height={520}
                         modules={["control.ZoomControl", "control.FullscreenControl"]}
                     >
                         <Placemark geometry={contactsStore.map} />

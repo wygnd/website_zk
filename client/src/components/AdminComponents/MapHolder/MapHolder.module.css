@@ -1,0 +1,16 @@
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+.mapName {
+  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--black);
+  margin-bottom: 10px;
+}
+
+.mapWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}/*# sourceMappingURL=MapHolder.module.css.map */

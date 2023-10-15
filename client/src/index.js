@@ -27,7 +27,7 @@ root.render(
         collections: new CollectionsStore(),
         about: new aboutStore(),
         galleryBlock: new GalleryBlockStore(),
-        contactsStore: new ContactsStore()
+        contactsStore: new ContactsStore(),
     }}>
         <App />
     </ContextMain.Provider>

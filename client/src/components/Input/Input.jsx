@@ -8,7 +8,7 @@ const Input = ({ extend, full, className, nBorder, tBorder, mask, error, bBorder
         mask
             ?
             <InputMask
-                {...props}
+
                 className={[inputClasses.input,
                 extend && inputClasses.extend,
                 full && inputClasses.full,
@@ -17,10 +17,10 @@ const Input = ({ extend, full, className, nBorder, tBorder, mask, error, bBorder
                 error && inputClasses.errorValid,
                 bBorder && inputClasses.bottomBorder].join(' ')}
                 mask="+7 999 999-99-99"
+                {...props}
             />
             :
             <input
-                {...props}
                 className={[inputClasses.input,
                 extend && inputClasses.extend,
                 full && inputClasses.full,
@@ -28,6 +28,7 @@ const Input = ({ extend, full, className, nBorder, tBorder, mask, error, bBorder
                 nBorder && inputClasses.notBorder,
                 error && inputClasses.errorValid,
                 bBorder && inputClasses.bottomBorder].join(' ')}
+                {...props}
             />
     );
 };

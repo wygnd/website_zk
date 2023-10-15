@@ -22,7 +22,7 @@
 }
 
 .leftSide {
-  padding-top: 60px;
+  padding: 60px 0;
   width: 40%;
 }
 
@@ -35,7 +35,8 @@
   margin-bottom: 10px;
 }
 
-.phonesHolder {
+.phonesHolder,
+.emailsHolder {
   margin-bottom: 20px;
 }
 

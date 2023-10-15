@@ -1,0 +1,78 @@
+/*============= FUNCTIONS ===============*/
+/*============= MIXINS ===============*/
+.emailsName {
+  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 130%;
+  color: var(--black);
+  margin-bottom: 10px;
+}
+
+.notFound {
+  font-size: calc(0.0075 * 100vw + 13.6px);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+  color: var(--black);
+  text-align: center;
+}
+
+.emailItem {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.changeHolderItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.itemChange {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.4s ease-out;
+}
+.itemChange:hover {
+  color: var(--primary);
+}
+
+.itemDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.4s ease-out;
+}
+.itemDelete:hover {
+  color: red;
+}
+
+.emailsHolder {
+  display: flex;
+  flex-direction: column;
+}
+
+.emailsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.addEmailHolder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modalHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}/*# sourceMappingURL=EmailsHolder.module.css.map */

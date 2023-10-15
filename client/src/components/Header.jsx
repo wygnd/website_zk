@@ -25,14 +25,16 @@ const Header = observer(() => {
         history(MAIN_ROUTE);
     }
 
-   
+
 
     return (
         <header className={[headerClasses.header, !isMainPage && headerClasses.header_home].join(' ')}>
             <div className="container">
                 <div className={headerClasses.header_holder}>
                     <Logo />
-                    <NavBar mobile={false} />
+                    {isMainPage &&
+                        <NavBar mobile={false} />
+                    }
                     {userStore.isAuth
                         ?
                         <div className={headerClasses.btns}>

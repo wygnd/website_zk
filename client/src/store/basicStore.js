@@ -5,6 +5,7 @@ export default class BasicStore {
         this._logo = {};
         this._phones = [];
         this._socials = [];
+        this._emails = [];
         this._update = false;
 
         makeAutoObservable(this);
@@ -30,12 +31,15 @@ export default class BasicStore {
         this._socials = socials;
     }
 
-    get phones() {
-        return this._phones;
-    }
-
     getPhone(id) {
         return this.phones.filter(p => p.id !== id);
+    }
+    setEmails(emails) {
+        this._emails = emails;
+    }
+
+    get phones() {
+        return this._phones;
     }
 
     get update() {
@@ -48,5 +52,9 @@ export default class BasicStore {
 
     get socials() {
         return this._socials;
+    }
+
+    get emails() {
+        return this._emails;
     }
 }
