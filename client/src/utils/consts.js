@@ -7,3 +7,7 @@ export const SERVER_URL = 'http://localhost:5000';
 export const MAIN_BLOCK_ITEM_ROUTE = '/mainItem';
 export const TOUR_BLOCK_ITEM_ROUTE = '/toutItem';
 export const PRIVACY_ROUTE = '/privacy-policy';
+export const ADMIN_ROUTE_BREADCRUMB = 'админ-панель'
+export const LOGIN_ROUTE_BREADCRUMB = 'авторизация'
+export const NOTFOUND_ROUTE_BREADCRUMB = '404'
+export const PRIVACY_ROUTE_BREADCRUMB = 'политика конфиденциальности'

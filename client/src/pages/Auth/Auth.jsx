@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import authPageStyles from './Auth.module.css';
 import Button from '../../components/Button';
 import Input from '../../components/Input/Input';
@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { ContextMain } from '../..';
 import { useNavigate } from 'react-router-dom';
 import { ADMIN_ROUTE } from '../../utils/consts';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const Auth = observer(() => {
     const { userStore, galleryStore } = useContext(ContextMain);
@@ -13,6 +14,18 @@ const Auth = observer(() => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    useEffect(() => {
+        function handlerEnter(e) {
+            if (e.key == "Enter") {
+                clickHandler();
+            }
+        }
+
+        document.addEventListener('keyup', handlerEnter);
+        return function () {
+            document.removeEventListener('keyup', handlerEnter);
+        }
+    }, []);
 
     const clickHandler = async () => {
         try {
@@ -44,6 +57,7 @@ const Auth = observer(() => {
     return (
         <div className={authPageStyles.page_auth_wrapper}>
             <div className="container">
+                <Breadcrumbs />
                 <div className={authPageStyles.page_auth_holder}>
                     <h2 className={authPageStyles.page_title}>Авторизация</h2>
                     <div className={authPageStyles.auth_holder}>
@@ -53,7 +67,7 @@ const Auth = observer(() => {
                             onChange={(e) => setEmail(e.target.value)}
                             type="text"
                             placeholder="example@email.ru"
-                            autocomplete="on"
+                            autoComplete="on"
                             required />
                         <Input
                             value={password}

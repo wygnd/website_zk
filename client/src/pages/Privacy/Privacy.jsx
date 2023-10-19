@@ -5,9 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 const Privacy = () => {
     return (
         <div className='container'>
-            <div className={cl.breadcrumb}>
-                <Breadcrumbs />
-            </div>
+            <Breadcrumbs />
             <h2 className={cl.pageTitle}>
                 Политика в отношении обработки персональных данных
             </h2>
