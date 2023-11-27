@@ -1,112 +1,111 @@
-@import '../../../styles/includes';
+@import "../../../styles/includes";
 
 .tourItem {
+  width: 100%;
+  min-height: 410px;
+  height: 410px;
+  border-radius: 5px;
+  overflow: hidden;
+  text-decoration: none;
+
+  .image {
     width: 100%;
-    min-height: 410px;
-    height: 410px;
-    border-radius: 5px;
-    overflow: hidden;
+    height: 70%;
+    transition: height 0.4s ease-out;
 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.4s ease;
+    }
+  }
 
-    .image {
-        width: 100%;
-        height: 70%;
-        transition: height .4s ease-out;
+  .bodyItem {
+    padding: 35px 30px;
+    background: var(--bg5);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 30%;
+    transition: background 0.4s ease-out, height 0.4s ease-out;
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: filter .4s ease;
+    .topSide {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      svg {
+        flex-shrink: 0;
+        transition: transform 0.4s ease-out;
+
+        path {
+          transition: stroke 0.4s ease-out;
         }
+      }
+    }
+
+    .nameItem {
+      @include bodyM;
+      color: var(--text1);
+
+      transition: color 0.4s ease-out;
+    }
+
+    .linkButton {
+      text-decoration: none;
+      @include assistant;
+      color: var(--bg1);
+      text-decoration: none;
+      width: fit-content;
+      transform: translateY(100px) scale(0);
+      transition: transform 0.4s ease-out;
+    }
+  }
+
+  &:hover {
+    .image {
+      height: 60%;
+
+      img {
+        filter: grayscale(1);
+      }
     }
 
     .bodyItem {
-        padding: 35px 30px;
-        background: var(--bg5);
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        height: 30%;
-        transition: background .4s ease-out, height .4s ease-out;
-
-        .topSide {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-
-            svg {
-                flex-shrink: 0;
-                transition: transform .4s ease-out;
-
-                path {
-                    transition: stroke .4s ease-out;
-                }
-            }
-        }
-
-
-        .nameItem {
-            @include bodyM;
-            color: var(--text1);
-            transition: color .4s ease-out;
-        }
-
-        .linkButton {
-            @include assistant;
-            color: var(--bg1);
-            text-decoration: none;
-            width: fit-content;
-            transform: translateY(100px) scale(0);
-            transition: transform .4s ease-out;
-        }
-
+      height: 40%;
+      background: var(--primary);
     }
 
-    &:hover {
-        .image {
-            height: 60%;
+    .topSide {
+      svg {
+        transform: rotate(-90deg);
 
-            img {
-                filter: grayscale(1);
-            }
+        path {
+          stroke: var(--bg1);
         }
-
-        .bodyItem {
-            height: 40%;
-            background: var(--primary);
-        }
-
-        .topSide {
-            svg {
-                transform: rotate(-90deg);
-
-                path {
-                    stroke: var(--bg1);
-                }
-            }
-        }
-
-        .nameItem {
-            color: var(--bg1);
-        }
-
-        .linkButton {
-            transform: translateY(0) scale(1);
-        }
+      }
     }
+
+    .nameItem {
+      color: var(--bg1);
+    }
+
+    .linkButton {
+      transform: translateY(0) scale(1);
+    }
+  }
 }
 
-
 @media (max-width: 992px) {
-    .tourItem {
-        min-height: 310px;
-        height: 310px;
-        
-        .bodyItem {
-            padding: 20px 15px;
-        }
+  .tourItem {
+    min-height: 310px;
+    height: 310px;
+
+    .bodyItem {
+      padding: 20px 15px;
     }
+  }
 }

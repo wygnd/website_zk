@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { SERVER_URL } from '../utils/consts';
 import { getImageById } from '../http/galleryAPI';
+import { Link } from 'react-router-dom';
 
 const SocialItem = observer(({ link, imageId, className }) => {
 
@@ -15,11 +16,11 @@ const SocialItem = observer(({ link, imageId, className }) => {
     }, []);
 
     return (
-        <a href={link} className={className} target='_blank'>
+        <Link to={link} className={className} target='_blank'>
             {fileName &&
                 <img src={`${SERVER_URL}/${fileName.full}`} alt="" />
             }
-        </a>
+        </Link>
     );
 });
 
