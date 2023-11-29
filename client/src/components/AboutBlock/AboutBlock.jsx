@@ -18,7 +18,7 @@ const AboutBlock = observer(() => {
                     {about.image.size &&
                         <Fancybox className={cl.leftSide}>
                             <img
-                                src={`${SERVER_URL}/${about?.image?.size?.medium}`}
+                                src={`${SERVER_URL}/${about?.image?.size?.full}`}
                                 data-src={`${SERVER_URL}/${about?.image?.size?.full}`}
                                 data-fancybox="imageAbout"
                                 alt={about?.image?.size?.fileName}

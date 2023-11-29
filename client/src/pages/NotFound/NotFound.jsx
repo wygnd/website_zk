@@ -3,11 +3,13 @@ import cl from './NotFound.module.css';
 import { Link } from 'react-router-dom';
 import { MAIN_ROUTE } from '../../utils/consts';
 import Button from '../../components/Button';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 
 const NotFound = () => {
     return (
         <div className={cl.NotFoundHolder}>
             <div className='container'>
+            <Breadcrumbs />
                 <div className={cl.errorHolder}>
                     <div className={cl.holderTop}>404</div>
                     <div className={cl.holderBottom}>

@@ -63,7 +63,7 @@ const CollectionsBlock = observer(() => {
                                                 className={cl.imageItem}
                                             >
                                                 <img
-                                                    src={`${SERVER_URL}/${item.size.medium}`}
+                                                    src={`${SERVER_URL}/${item.size.full}`}
                                                     alt={item.size.fileName}
                                                     className='swiper-lazy'
                                                 />
