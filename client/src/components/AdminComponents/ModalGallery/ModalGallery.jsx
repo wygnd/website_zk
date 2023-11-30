@@ -70,9 +70,9 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
         <Modal open={open} clickHandler={() => {
             clickHandler()
             galleryStore.setPage(1);
-            galleryStore.setLoaded(12);
+            galleryStore.setLoaded(48);
             setImages([]);
-        }} className={cl.modal}>
+        }} className={'modal_gallery'}>
             <div className={cl.modalTop}>
                 <h4 className={cl.modalTitle}>{title}</h4>
                 <label className={cl.input_file}>
@@ -110,7 +110,7 @@ const ModalGallery = observer(({ open, clickHandler, setOpen, title = 'Гале�
                     )
                 }
             </div>
-            {galleryStore.totalCount > 12 &&
+            {galleryStore.totalCount > 48 &&
                 <div className={cl.moreImages}>
                     <div className={cl.countLoadedImages}>
                         Загружено {galleryStore.loaded} из {galleryStore.totalCount}

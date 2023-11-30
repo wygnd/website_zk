@@ -6,8 +6,8 @@ export default class GalleryStore {
         this._update = false;
         this._page = 1;
         this._totalCount = 0;
-        this._limit = 12;
-        this._loaded = 12;
+        this._limit = 48;
+        this._loaded = 48;
         this._modal = false;
         this._sucModal = false;
         this._errModal = false;

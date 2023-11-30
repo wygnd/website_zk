@@ -39,6 +39,10 @@
 .modalContent.overflowY {
   overflow-y: auto;
 }
+.modalContent.modalGallery {
+  width: 100%;
+  height: 100%;
+}
 
 @media (max-width: 640px) {
   .modalContent {
