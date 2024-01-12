@@ -3,7 +3,7 @@
 /*============= MIXINS ===============*/
 .pageTitle {
   margin: 60px 0;
-  font-size: calc(0.0075 * 100vw + 13.6px);
+  font-size: clamp(16px, 0.0075 * 100vw + 13.6px, 28px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;
@@ -26,7 +26,7 @@
 }
 
 .nameItem {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
@@ -34,7 +34,7 @@
   color: var(--black);
 }
 .nameItem::-moz-placeholder {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
@@ -42,7 +42,7 @@
   color: var(--black);
 }
 .nameItem::placeholder {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
@@ -51,7 +51,7 @@
 }
 
 .textItem {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 600;
   line-height: 130%;
@@ -59,7 +59,7 @@
   color: var(--black);
 }
 .textItem::-moz-placeholder {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 600;
   line-height: 130%;
@@ -67,7 +67,7 @@
   color: var(--black);
 }
 .textItem::placeholder {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 600;
   line-height: 130%;

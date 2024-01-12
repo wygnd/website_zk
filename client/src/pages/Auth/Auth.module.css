@@ -18,7 +18,7 @@
 }
 
 .page_title {
-  font-size: calc(0.01625 * 100vw + 14.8px);
+  font-size: clamp(20px, 0.01625 * 100vw + 14.8px, 46px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;

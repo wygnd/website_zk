@@ -1,7 +1,7 @@
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
 .emailsName {
-  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-size: clamp(14px, 0.00375 * 100vw + 12.8px, 20px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
@@ -10,7 +10,7 @@
 }
 
 .notFound {
-  font-size: calc(0.0075 * 100vw + 13.6px);
+  font-size: clamp(16px, 0.0075 * 100vw + 13.6px, 28px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;

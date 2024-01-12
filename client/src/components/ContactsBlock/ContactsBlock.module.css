@@ -7,7 +7,7 @@
 }
 
 .blockTitle {
-  font-size: calc(0.01625 * 100vw + 14.8px);
+  font-size: clamp(20px, 0.01625 * 100vw + 14.8px, 46px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;
@@ -18,16 +18,15 @@
 .blockHolder {
   position: relative;
   display: flex;
-  padding-left: calc((100% - 1260px) / 2);
 }
 
 .leftSide {
   padding: 60px 0;
-  width: 40%;
+  width: 50%;
 }
 
 .nameHolder {
-  font-size: calc(0 * 100vw + 14px);
+  font-size: clamp(14px, 0 * 100vw + 14px, 14px);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;

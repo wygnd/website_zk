@@ -70,6 +70,10 @@ body {
   /* цвет бегунка и зоны отслеживания */
 }
 
+p {
+  text-indent: 30px;
+}
+
 .swiper.swiperGalleryBlock .swiper-slide {
   border-radius: 10px;
   overflow: hidden;

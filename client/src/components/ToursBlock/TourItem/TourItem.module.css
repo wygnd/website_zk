@@ -44,7 +44,7 @@
   transition: stroke 0.4s ease-out;
 }
 .tourItem .bodyItem .nameItem {
-  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-size: clamp(14px, 0.00375 * 100vw + 12.8px, 20px);
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
@@ -53,7 +53,7 @@
 }
 .tourItem .bodyItem .linkButton {
   text-decoration: none;
-  font-size: calc(0 * 100vw + 14px);
+  font-size: clamp(14px, 0 * 100vw + 14px, 14px);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;

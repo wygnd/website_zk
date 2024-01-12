@@ -45,25 +45,42 @@
 .mainItem {
   position: relative;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .itemHolder {
-  max-width: 980px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 40px;
+  position: relative;
+  z-index: 10;
+}
+.itemHolder::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding-top: 150px;
+  height: 100%;
+  background: rgba(63, 60, 60, 0.6549019608);
+  z-index: -1;
+  border-radius: 20px;
 }
 
 .titleItem {
-  font-size: calc(0.034375 * 100vw + 14px);
+  max-width: 680px;
+  font-size: clamp(25px, 0.015625 * 100vw + 20px, 50px);
   font-style: normal;
   font-weight: 900;
   line-height: 90%;
+  width: 100%;
   color: var(--bg1);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .descItem {
-  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-size: clamp(14px, 0.00375 * 100vw + 12.8px, 20px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
@@ -80,7 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 600;
   line-height: 130%;
@@ -111,7 +128,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--black);
   opacity: 0.4;
   z-index: 1;
 }
@@ -127,8 +143,15 @@
   .swiper {
     height: 700px;
   }
+  .itemHolder {
+    padding: 20px 10px;
+  }
   .titleItem {
     width: 90%;
+    margin-bottom: 20px;
+  }
+  .linkItem {
+    margin-top: 20px;
   }
   .descItem {
     width: 90%;

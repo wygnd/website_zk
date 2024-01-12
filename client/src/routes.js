@@ -55,9 +55,9 @@ export const publicRoutes = [
     component: <NotFound />,
     breadcrumb: NOTFOUND_ROUTE_BREADCRUMB,
   },
-  {
-    path: PANORAMA_ROUTE,
-    component: <Panorama />,
-    breadcrumb: PANORAMA_ROUTE_BREADCRUMB,
-  },
+  // {
+  //   path: PANORAMA_ROUTE,
+  //   component: <Panorama />,
+  //   breadcrumb: PANORAMA_ROUTE_BREADCRUMB,
+  // },
 ];

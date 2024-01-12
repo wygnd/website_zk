@@ -5,7 +5,7 @@
 }
 
 .item {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
@@ -18,7 +18,7 @@
 }
 
 .currentItem {
-  font-size: calc(0.00125 * 100vw + 13.6px);
+  font-size: clamp(14px, 0.00125 * 100vw + 13.6px, 16px);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;

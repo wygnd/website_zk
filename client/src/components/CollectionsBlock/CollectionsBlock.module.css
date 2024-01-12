@@ -5,7 +5,7 @@
 }
 
 .blockTitle {
-  font-size: calc(0.01625 * 100vw + 14.8px);
+  font-size: clamp(20px, 0.01625 * 100vw + 14.8px, 46px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;
@@ -19,14 +19,42 @@
 }
 
 .leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 50%;
 }
 .leftSide p {
-  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-size: clamp(14px, 0.00375 * 100vw + 12.8px, 20px);
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   color: var(--text1);
+  text-align: justify;
+}
+.leftSide .moreText {
+  margin-top: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: transparent;
+  border: transparent;
+  font-size: clamp(14px, 0 * 100vw + 14px, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
+  color: var(--text1);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.4s ease-out;
+}
+.leftSide .moreText:hover {
+  color: var(--primary);
+}
+.leftSide.hidden p {
+  -webkit-line-clamp: 14;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .rightSide {
@@ -79,7 +107,7 @@
   align-items: center;
   justify-content: center;
   color: var(--bg1);
-  font-size: calc(0.00375 * 100vw + 12.8px);
+  font-size: clamp(14px, 0.00375 * 100vw + 12.8px, 20px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;

@@ -5,7 +5,7 @@
 }
 
 .blockTitle {
-  font-size: calc(0.01625 * 100vw + 14.8px);
+  font-size: clamp(20px, 0.01625 * 100vw + 14.8px, 46px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;
@@ -29,7 +29,7 @@
   text-decoration: none;
 }
 .lastItem .lastItemName {
-  font-size: calc(0.00875 * 100vw + 15.2px);
+  font-size: clamp(18px, 0.00875 * 100vw + 15.2px, 32px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;

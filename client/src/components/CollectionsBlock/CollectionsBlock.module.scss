@@ -1,144 +1,172 @@
-@import '../../styles/includes';
+@import "../../styles/includes";
 
 .collectionsBlock {
-    padding: 30px 0
+  padding: 30px 0;
 }
 
 .blockTitle {
-    @include h2;
-    color: var(--text1);
-    margin-bottom: 40px;
+  @include h2;
+  color: var(--text1);
+  margin-bottom: 40px;
 }
 
 .collectionsHolder {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .leftSide {
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
 
+  p {
+    @include bodyM;
+    color: var(--text1);
+    text-align: justify;
+  }
 
-    p {
-        @include bodyM;
-        color: var(--text1);
+  .moreText {
+    margin-top: auto;
+    width: fit-content;
+    background: transparent;
+    border: transparent;
+    @include assistant;
+    color: var(--text1);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.4s ease-out;
+
+    &:hover {
+      color: var(--primary);
     }
+  }
+
+  &.hidden {
+    p {
+      -webkit-line-clamp: 14;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
 }
 
 .rightSide {
-    width: 50%;
+  width: 50%;
 }
 
 .imageItem {
-    display: block;
+  display: block;
+  width: 100%;
+  height: 385px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 385px;
-    border-radius: 5px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
+    height: 100%;
+    background: var(--primary);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+  }
 
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:hover {
     &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--primary);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .3s ease-out;
+      opacity: 0.8;
     }
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
+    .hoverImage {
+      transform: translate(-50%, -50%) scale(1);
     }
-
-    &:hover {
-        &::before {
-            opacity: .8;
-        }
-
-        .hoverImage {
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
+  }
 }
 
 .hoverImage {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    display: flex;
-    flex-direction: column;
-    gap: 10x;
-    align-items: center;
-    justify-content: center;
-    color: var(--bg1);
-    @include h5;
-    pointer-events: none;
-    transition: transform .3s ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  display: flex;
+  flex-direction: column;
+  gap: 10x;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg1);
+  @include h5;
+  pointer-events: none;
+  transition: transform 0.3s ease-out;
 }
 
 .sliderTheme {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .slidePrev,
 .slideNext {
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background .4s ease-out;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.4s ease-out;
 
-    &:hover {
-        background: var(--primaryH);
-    }
+  &:hover {
+    background: var(--primaryH);
+  }
 
-    &.swiperDisabled {
-        background: var(--bg2);
-    }
+  &.swiperDisabled {
+    background: var(--bg2);
+  }
 }
 
-@media (max-width:992px) {
-    .collectionsBlock {
-        padding: 20px 0;
-    }
+@media (max-width: 992px) {
+  .collectionsBlock {
+    padding: 20px 0;
+  }
 
-    .collectionsHolder {
-        display: block;
-    }
+  .collectionsHolder {
+    display: block;
+  }
 
-    .blockTitle {
-        margin-bottom: 20px;
-    }
+  .blockTitle {
+    margin-bottom: 20px;
+  }
 
-    .leftSide {
-        width: 100%;
-        margin-bottom: 20px;
-    }
+  .leftSide {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-    .rightSide {
-        width: 100%;
-    }
+  .rightSide {
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
-    .imageItem {
-        height: 285px;
-    }
+  .imageItem {
+    height: 285px;
+  }
 }

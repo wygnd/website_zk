@@ -1,7 +1,7 @@
 /*============= FUNCTIONS ===============*/
 /*============= MIXINS ===============*/
 .titleBlock {
-  font-size: calc(0.00875 * 100vw + 15.2px);
+  font-size: clamp(18px, 0.00875 * 100vw + 15.2px, 32px);
   font-style: normal;
   font-weight: 800;
   line-height: 130%;
@@ -11,7 +11,7 @@
 }
 
 .notFound {
-  font-size: calc(0.0075 * 100vw + 13.6px);
+  font-size: clamp(16px, 0.0075 * 100vw + 13.6px, 28px);
   font-style: normal;
   font-weight: 800;
   line-height: 120%;

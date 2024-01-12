@@ -13,7 +13,7 @@
 }
 
 .privacyLink {
-  font-size: calc(0 * 100vw + 14px);
+  font-size: clamp(14px, 0 * 100vw + 14px, 14px);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
@@ -28,7 +28,7 @@
 
 .copyWrite,
 .comment {
-  font-size: calc(0 * 100vw + 14px);
+  font-size: clamp(14px, 0 * 100vw + 14px, 14px);
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
