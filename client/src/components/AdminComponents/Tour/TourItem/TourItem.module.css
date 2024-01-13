@@ -1,9 +1,0 @@
-/*============= FUNCTIONS ===============*/
-/*============= MIXINS ===============*/
-.name {
-  font-size: calc(0.00125 * 100vw + 13.6px);
-  font-style: normal;
-  font-weight: 800;
-  line-height: 130%;
-  color: var(--text1);
-}/*# sourceMappingURL=TourItem.module.css.map */
