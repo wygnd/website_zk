@@ -1,0 +1,134 @@
+@import '../../../styles/includes';
+
+.modalTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    gap: 60px;
+}
+
+.modalTitle {
+    @include h3;
+    color: var(--black);
+    font-weight: 400;
+}
+
+.galleryHolder {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.galleryItem {
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--bg2);
+    cursor: pointer;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4906337535014006) 33%, rgba(0, 0, 0, 0.6530987394957983) 88%);
+        opacity: 0;
+        transition: opacity .4s ease-out;
+    }
+
+    .hoverHolder {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 0) scale(0);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform .4s ease-out;
+    }
+
+    &:hover {
+        &::before {
+            opacity: 1;
+        }
+
+        .hoverHolder {
+            transform: translate(-50%, 0) scale(1);
+        }
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+        display: block;
+    }
+}
+
+.deleteItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg1);
+    padding: 5px;
+    border-radius: 5px;
+    transition: background .4s ease-out;
+
+    &:hover {
+        background: var(--bg2);
+    }
+}
+
+.input_file {
+    position: relative;
+    display: inline-block;
+
+
+    div {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        text-decoration: none;
+        color: var(--bg1);
+        border-radius: 5px;
+        background: var(--primary);
+        padding: 10px 30px;
+        box-sizing: border-box;
+        border: none;
+        margin: 0;
+        @include body;
+        transition: background 0.4s, color .4s ease-out;
+
+        &:hover {
+            background: var(--primaryH);
+        }
+    }
+
+    input[type=file] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: block;
+        width: 0;
+        height: 0;
+    }
+}
+
+.moreImages {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.countLoadedImages {
+    @include bodyM;
+    color: var(--text2);
+}

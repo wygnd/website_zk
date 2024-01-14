@@ -1,0 +1,22 @@
+@import '../../styles/includes';
+
+.breadcrumb {
+    padding: 20px 0;
+}
+
+.item {
+    @include body;
+    color: var(--text1);
+    text-decoration: none;
+    transition: color .4s ease-out;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.currentItem {
+    @include body;
+    color: var(--primary);
+    text-decoration: none;
+}

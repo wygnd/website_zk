@@ -1,0 +1,69 @@
+@import '../../../styles/includes';
+
+.socialWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.socItemHolder {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.socItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+        width: 30px;
+        height: 30px;
+        display: block;
+        object-fit: contain;
+    }
+}
+
+.linkItem {
+    @include bodyS;
+    color: var(--text);
+}
+
+.changeSoc {
+    margin-left: auto;
+    cursor: pointer;
+    transition: color .4s ease-out;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.deleteSoc {
+    cursor: pointer;
+    transition: color .4s ease-out;
+
+    &:hover {
+        color: red;
+    }
+}
+
+.modalHolder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    img {
+        max-width: 100px;
+        max-height: 100px;
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        object-fit: scale-down;
+    }
+
+    button {
+        margin-top: 20px;
+    }
+}

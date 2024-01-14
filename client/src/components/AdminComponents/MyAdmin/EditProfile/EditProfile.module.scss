@@ -1,0 +1,7 @@
+@import "../../../../styles/includes";
+
+.edit {
+  &_title {
+    @include h2;
+  }
+}
