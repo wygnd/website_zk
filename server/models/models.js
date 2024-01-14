@@ -50,6 +50,13 @@ const Users = sequelize.define(
     email: { type: DataTypes.STRING, unique: true, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
     role: { type: DataTypes.STRING, defaultValue: "ADMIN" },
+    name: { type: DataTypes.STRING, allowNull: false },
+    last_name: { type: DataTypes.STRING, allowNull: false },
+    access: {
+      type: DataTypes.ENUM("full", "partial"),
+      defaultValue: "full",
+      allowNull: false,
+    },
   },
   {
     timestamps: false,
@@ -92,7 +99,7 @@ const Settings = sequelize.define(
   "settings",
   {
     metaKey: { type: DataTypes.STRING, allowNull: false },
-    metaValue: { type: DataTypes.STRING, allowNull: false },
+    metaValue: { type: DataTypes.TEXT("medium"), allowNull: false },
   },
   {
     timestamps: false,
