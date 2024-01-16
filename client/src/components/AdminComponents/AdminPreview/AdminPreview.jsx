@@ -47,7 +47,9 @@ const AdminPreview = observer(() => {
   return (
     <div className={styles.user_holder}>
       <div className={styles.user_holder_top} onClick={togglerHandler}>
-        <div className={styles.user_email}>{userStore?.user?.email}</div>
+        <div className={styles.user_email}>
+          {userStore?.user?.name + " " + userStore?.user?.last_name}
+        </div>
         <div className={`${styles.user_toggler}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

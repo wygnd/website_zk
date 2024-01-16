@@ -79,3 +79,10 @@
   font-weight: 400;
   line-height: 130%;
 }
+
+@mixin p2 {
+    font-size: calcFluidFontSize(14, 16);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}

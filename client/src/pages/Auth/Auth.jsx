@@ -18,17 +18,6 @@ const Auth = observer(() => {
     if (userStore.isAuth) {
       history(ADMIN_ROUTE);
     }
-
-    function handlerEnter(e) {
-      if (e.key === "Enter") {
-        clickHandler();
-      }
-    }
-
-    document.addEventListener("keyup", handlerEnter);
-    return function () {
-      document.removeEventListener("keyup", handlerEnter);
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
