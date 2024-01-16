@@ -11,8 +11,13 @@ class UsersController {
       if (!errors.isEmpty()) {
         return next(ApiError.BadRequest("Ошибка валидации", errors.array()));
       }
-      const { email, password } = req.body;
-      const userData = await userService.registration(email, password);
+      const { email, password, name, last_name } = req.body;
+      const userData = await userService.registration(
+        email,
+        password,
+        name,
+        last_name
+      );
       res.cookie("tokenRef", userData.refreshToken, {
         maxAge: 30 * 24 * 60 * 60 * 1000,
         httpOnly: true,
@@ -56,7 +61,7 @@ class UsersController {
       const token = generateJwt(req.user.id, req.user.email, req.user.role);
       return res.json({ token });
     } catch (error) {
-      next(ApiError.badRequest(error.message));
+      next(error.message);
     }
   }
 
@@ -70,7 +75,7 @@ class UsersController {
       });
       return res.json(userData);
     } catch (error) {
-      next(ApiError.BadRequest(error.message));
+      next(error.message);
     }
   }
 
@@ -79,7 +84,40 @@ class UsersController {
       const userData = await userService.getAll();
       return res.json(userData);
     } catch (error) {
-      next(ApiError.BadRequest(error.message));
+      next(error.message);
+    }
+  }
+
+  async validatePassword(req, res, next) {
+    try {
+      const { email, password } = req.body;
+      if (!password) {
+        return next(ApiError.BadRequest(`Пароль пустой`));
+      }
+      const data = await userService.validatePassword(email, password);
+      return res.json(data);
+    } catch (error) {
+      next(error.message);
+    }
+  }
+
+  async changeData(req, res, next) {
+    try {
+      const { email, name, last_name } = req.body;
+      const user = await userService.changeInfo(email, name, last_name);
+      return res.json(user);
+    } catch (error) {
+      next(error.message);
+    }
+  }
+
+  async changePass(req, res, next) {
+    try {
+      const { email, old_pass, new_pass } = req.body;
+      const data = await userService.changePass(email, old_pass, new_pass);
+      return res.json(data);
+    } catch (error) {
+      next(error.message);
     }
   }
 }

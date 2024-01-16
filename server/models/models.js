@@ -70,7 +70,7 @@ const Tokens = sequelize.define(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     userId: { type: DataTypes.INTEGER },
-    refreshToken: { type: DataTypes.STRING },
+    refreshToken: { type: DataTypes.TEXT("medium") },
   },
   {
     timestamps: false,
