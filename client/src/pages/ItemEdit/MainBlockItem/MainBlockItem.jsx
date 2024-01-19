@@ -8,8 +8,15 @@ import Input from "../../../components/Input/Input";
 import { getImageById } from "../../../http/galleryAPI";
 import { SERVER_URL } from "../../../utils/consts";
 import Fancybox from "../../../components/Fancybox";
-import Button from "../../../components/Button";
+// import Button from "../../../components/Button";
 import ModalGallery from "../../../components/AdminComponents/ModalGallery/ModalGallery";
+
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Figure from "react-bootstrap/Figure";
 
 const MainBlockItem = observer(() => {
   const { mainBlockStore, galleryStore } = useContext(ContextMain);
@@ -22,6 +29,8 @@ const MainBlockItem = observer(() => {
   const [galleryId, setGalleryId] = useState("");
   const [image, setImage] = useState("");
   const [modalImages, setModalImages] = useState(false);
+  const [show, setShow] = useState(false);
+  const [validated, setValidated] = useState(null);
 
   useEffect(() => {
     fetchOneSlide(id).then((data) => {
@@ -36,7 +45,7 @@ const MainBlockItem = observer(() => {
         setImage(dataImage?.size)
       );
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getImageId = (id) => {
@@ -45,6 +54,9 @@ const MainBlockItem = observer(() => {
       setGalleryId(data.id);
     });
   };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const closeGalleryModal = () => {
     setModalImages(false);
@@ -67,22 +79,22 @@ const MainBlockItem = observer(() => {
       return;
     }
     try {
-      await saveSlide(
-        id,
-        title,
-        desc,
-        buttonVisible,
-        textButton,
-        linkButton,
-        galleryId
-      ).then((response) => {
-        mainBlockStore.setUpdate(!mainBlockStore.update);
-        galleryStore.setModalSucc(true);
-        galleryStore.setModalMsg("Запись успешно сохранена");
-        setTimeout(() => {
-          galleryStore.setModalSucc(false);
-        }, 2000);
-      });
+      // await saveSlide(
+      //   id,
+      //   title,
+      //   desc,
+      //   buttonVisible,
+      //   textButton,
+      //   linkButton,
+      //   galleryId
+      // ).then((response) => {
+      //   mainBlockStore.setUpdate(!mainBlockStore.update);
+      //   galleryStore.setModalSucc(true);
+      //   galleryStore.setModalMsg("Запись успешно сохранена");
+      //   setTimeout(() => {
+      //     galleryStore.setModalSucc(false);
+      //   }, 2000);
+      // });
     } catch (error) {
       galleryStore.setModalMsg(
         "Произошла непредвиденная ошибка " + error.message
@@ -96,73 +108,91 @@ const MainBlockItem = observer(() => {
 
   return (
     <main className="container">
-      <div className={cl.itemHolder}>
-        <Input
-          className={cl.itemTitle}
-          placeholder={title}
-          full
-          tBorder
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <Input
-          className={cl.itemDesc}
-          placeholder={desc}
-          full
-          tBorder
-          value={desc}
-          onChange={(e) => setDesc(e.target.value)}
-        />
-        <div className={cl.itemLabel}>
-          <Input
-            id="buttonVisible"
-            type="checkbox"
-            checked={buttonVisible}
-            onChange={() => setButtonVisible(!buttonVisible)}
+      <Form
+        noValidate
+        validated={validated}
+        onSubmit={saveItem}
+        className="d-flex flex-column"
+      >
+        <Form.Group as={Col} controlId="formTitle" className="mb-3">
+          <Form.Label>Заголовок</Form.Label>
+          <Form.Control
+            type="text"
+            required
+            placeholder={title}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
-          <label htmlFor="buttonVisible">Кнопка</label>
-        </div>
-        {buttonVisible && (
-          <>
-            <Input
-              className={cl.itemDesc}
-              placeholder="Текст кнопки"
-              value={textButton}
-              onChange={(e) => setTextButton(e.target.value)}
-            />
-            <Input
-              className={cl.itemDesc}
-              placeholder="Ссылка кнопки"
-              value={linkButton}
-              onChange={(e) => setLinkButton(e.target.value)}
-            />
-          </>
-        )}
-        <Button className={cl.itemButton} onClick={() => setModalImages(true)}>
-          Выбрать изображение
-        </Button>
-        <ModalGallery
-          open={modalImages}
-          clickHandler={closeGalleryModal}
-          setOpen={setModalImages}
-          getImageId={getImageId}
+        </Form.Group>
+        <Form.Group as={Col} controlId="formDesc" className="mb-4">
+          <Form.Label>Описание</Form.Label>
+          <Form.Control
+            as="textarea"
+            placeholder={desc}
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Check
+          className="mb-2"
+          type="switch"
+          id="button-visible"
+          label="Кнопка"
+          checked={buttonVisible}
+          onChange={() => setButtonVisible(!buttonVisible)}
         />
-        {image && (
-          <Fancybox>
-            <div className={cl.itemImage}>
-              <img
-                src={`${SERVER_URL}/${image?.medium}`}
-                alt={image?.medium}
-                data-src={`${SERVER_URL}/${image?.full}`}
-                data-fancybox={`postItem-${id}`}
-              />
-            </div>
-          </Fancybox>
+        {buttonVisible && (
+          <Row className="mb-4">
+            <Col>
+              <Form.Group
+                as={Col}
+                controlId="FormButonText"
+                className="p-0"
+                required
+              >
+                <Form.Control
+                  placeholder="Текст кнопки"
+                  value={textButton}
+                  onChange={(e) => setTextButton(e.target.value)}
+                  required
+                />
+              </Form.Group>
+            </Col>
+            <Col className="ps-0">
+              <Form.Group as={Col} controlId="formButtonDesc" className="p-0">
+                <Form.Control
+                  required
+                  placeholder="Ссылка кнопки"
+                  value={linkButton}
+                  onChange={(e) => setLinkButton(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
         )}
-        <Button className={cl.itemButton} onClick={saveItem}>
-          Сохранить
+        <Figure as={Col} className="mx-auto mb-3">
+          <Figure.Image
+            width={140}
+            height={140}
+            className="mb-0 me-3"
+            alt={image.fileName || "post-image"}
+            src={`${
+              image.thumbnail
+                ? SERVER_URL + "/" + image.thumbnail
+                : "/assets/images/placeholder.png"
+            }`}
+          />
+          <Button variant="secondary" onClick={() => setModalImages(true)}>
+            Выбрать изображение
+          </Button>
+        </Figure>
+        <Button variant="danger" onClick={handleClose}>
+          Закрыть
         </Button>
-      </div>
+        <Button variant="success" type="submit">
+          Создать
+        </Button>
+      </Form>
     </main>
   );
 });

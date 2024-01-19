@@ -6,6 +6,7 @@ import ModalError from "../AdminComponents/ModalError/ModalError";
 import ModalSuccess from "../AdminComponents/ModalSuccess/ModalSuccess";
 import { Link } from "react-router-dom";
 import { PRIVACY_ROUTE } from "../../utils/consts";
+import ModalGallery from "../AdminComponents/ModalGallery/ModalGallery";
 
 const Footer = observer(() => {
   const { galleryStore } = useContext(ContextMain);
@@ -38,6 +39,7 @@ const Footer = observer(() => {
       >
         {galleryStore.messageModal}
       </ModalSuccess>
+     
     </>
   );
 });

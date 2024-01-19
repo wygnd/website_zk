@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { authRoutes, publicRoutes } from "../../routes";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import cl from "./Breadcrumbs.module.scss";
 import { MAIN_ROUTE } from "../../utils/consts";
 import { observer } from "mobx-react-lite";
@@ -11,7 +11,6 @@ const Breadcrumbs = observer(() => {
   const { basicStore, userStore } = useContext(ContextMain);
   const breadcrumbsPublic = useBreadcrumbs(publicRoutes);
   const breadcrumbsAuth = useBreadcrumbs(authRoutes);
-
 
   return (
     <div className={cl.breadcrumb}>

@@ -13,7 +13,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import Button from "../../Button";
 
 const ModalGallery = observer(
-  ({ open, clickHandler, setOpen, title = "Галерея", getImageId }) => {
+  ({ open, setOpen, title = "Галерея", getImageId }) => {
     const { galleryStore } = useContext(ContextMain);
     const [images, setImages] = useState([]);
 
@@ -71,7 +71,7 @@ const ModalGallery = observer(
       <Modal
         open={open}
         clickHandler={() => {
-          clickHandler();
+          setOpen();
           galleryStore.setPage(1);
           galleryStore.setLoaded(12);
           setImages([]);

@@ -1,18 +1,18 @@
-@import '../../../styles/includes';
+@import "../../../styles/includes";
 
 .titleBlock {
-    @include h3;
-    color: var(--text1);
-    margin-bottom: 20px;
-    text-align: center;
+  @include h3;
+  color: var(--text1);
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .notFound {
-    @include h4;
-    color: var(--black);
-    text-align: center;
+  @include h4;
+  color: var(--black);
+  text-align: center;
 }
 
 .btnCreatePost {
-    width: fit-content;
+  width: fit-content;
 }

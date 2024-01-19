@@ -80,7 +80,6 @@ const App = observer(() => {
       };
       tourStore.setLastItem(dataItem);
     });
-
   }, [tourStore.updateLastItem]);
 
   useEffect(() => {
@@ -163,7 +162,7 @@ const App = observer(() => {
       basicStore.setSiteDesc(data);
       setSiteDesc(data.metaValue);
     });
-  });
+  }, [basicStore.update]);
 
   if (userStore.isLoading) {
     return <h1>Загрузка...</h1>;

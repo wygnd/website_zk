@@ -1,4 +1,5 @@
 @import "_includes.scss";
+@import "~bootstrap/scss/bootstrap";
 
 /*============= COLORS ===============*/
 :root {
@@ -12,7 +13,9 @@
   --bg5: #f2f3f4;
   --black: #000;
   --error: red;
-  --bgLight: #F7F7F7;
+  --bgLight: #f7f7f7;
+  --blue1: #2f80ed;
+  --bgBlue01: rgba(47, 128, 237, 0.1);
 }
 
 html {
@@ -47,6 +50,11 @@ body {
 
 main {
   min-height: 83vh;
+
+  &.page-admin {
+    background: var(--bgLight);
+    padding-bottom: 80px;
+  }
 }
 
 body::-webkit-scrollbar {
@@ -109,6 +117,12 @@ body {
 }
 
 @media (max-width: 992px) {
+  main {
+    &.page-admin {
+      padding-bottom: 40px;
+    }
+  }
+
   .swiper {
     &.swiperGalleryBlock {
       .swiper-slide {
