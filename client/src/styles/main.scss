@@ -4,8 +4,8 @@
 /*============= COLORS ===============*/
 :root {
   // --primary: #cf7b3e;
-  --primary: #da6c22;
-  --primaryH: #aa5a32;
+  --primary: #CF7B3E;
+  --primaryH: #af6017;
   --text1: #0a1c27;
   --text2: #47555d;
   --bg1: #fff;
@@ -50,11 +50,7 @@ body {
 
 main {
   min-height: 83vh;
-
-  &.page-admin {
-    background: var(--bgLight);
-    padding-bottom: 80px;
-  }
+  padding-bottom: 80px;
 }
 
 body::-webkit-scrollbar {
@@ -118,9 +114,7 @@ body {
 
 @media (max-width: 992px) {
   main {
-    &.page-admin {
-      padding-bottom: 40px;
-    }
+    padding-bottom: 40px;
   }
 
   .swiper {

@@ -26,13 +26,13 @@ const LogoInput = observer(() => {
   return (
     <>
       <div className={classes.inputFile}>
-        {basicStore?.logo?.medium && (
+        {basicStore?.logo?.file_name && (
           <>
             <Col xs={6} md={4}>
               <Image
-                src={`${SERVER_URL}/${basicStore?.logo?.thumbnail}`}
+                src={`${SERVER_URL}/${basicStore?.logo?.file_name}`}
                 className={classes.logoItem}
-                alt={`${SERVER_URL}/${basicStore?.logo?.fileName}`}
+                alt={basicStore?.logo?.file_name}
                 rounded
               />
             </Col>

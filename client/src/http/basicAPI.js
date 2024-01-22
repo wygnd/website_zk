@@ -5,7 +5,7 @@ export async function fetchItem(metaKey) {
     const { data } = await $api.post("/settings/setting", { metaKey });
     return data;
   } catch (error) {
-    return error.message;
+    throw error.message;
   }
 }
 
@@ -17,7 +17,7 @@ export async function setItem(metaKey, metaValue) {
     });
     return data;
   } catch (error) {
-    return error.message;
+    throw error.message;
   }
 }
 
@@ -26,7 +26,7 @@ export async function fetchItems(metaKey) {
     const { data } = await $api.post("/settings", { name: metaKey });
     return data;
   } catch (error) {
-    return error.message;
+    throw error.message;
   }
 }
 
@@ -38,7 +38,7 @@ export async function createItem(metaKey, metaValue) {
     });
     return data;
   } catch (error) {
-    return error.message;
+    throw error.message;
   }
 }
 
@@ -47,6 +47,6 @@ export async function removeItem(metaKey) {
     const { data } = await $apiAuth.post(`/settings/remove/${metaKey}`);
     return data;
   } catch (error) {
-    return error.message;
+    throw error.message;
   }
 }

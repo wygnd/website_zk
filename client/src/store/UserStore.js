@@ -1,8 +1,8 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 import AuthService from "../service/AuthService";
 import axios from "axios";
-import { API_URL } from "../utils/consts";
-import { $apiAuth } from "../http";
+import {API_URL} from "../utils/consts";
+import {$apiAuth} from "../http";
 
 export default class UserStore {
   constructor() {
@@ -32,21 +32,21 @@ export default class UserStore {
       localStorage.setItem("token", response.data.accessToken);
       this.setIsAuth(true);
       this.setUser(response.data.user);
-    } catch (error) {
-      console.log(error.response?.data?.message);
+    } catch(error) {
+      throw error.response?.data?.message;
     }
   }
 
-  async registration(email, password) {
-    try {
-      const response = await AuthService.registration(email, password);
-      localStorage.setItem("token", response.data.accessToken);
-      this.setIsAuth(true);
-      this.setUser(response.data.user);
-    } catch (error) {
-      console.log(error.response?.data?.message);
-    }
-  }
+  // async registration(email, password) {
+  //   try {
+  //     const response = await AuthService.registration(email, password);
+  //     localStorage.setItem("token", response.data.accessToken);
+  //     this.setIsAuth(true);
+  //     this.setUser(response.data.user);
+  //   } catch(error) {
+  //     throw error.response?.data?.message;
+  //   }
+  // }
 
   async logout() {
     try {
@@ -56,8 +56,8 @@ export default class UserStore {
       this.setIsAuth(false);
       this.setUser({});
       return response.data.message;
-    } catch (error) {
-      console.log(error.response?.data?.message);
+    } catch(error) {
+      throw error.response?.data?.message;
     }
   }
 
@@ -70,8 +70,8 @@ export default class UserStore {
       localStorage.setItem("token", response.data.accessToken);
       this.setIsAuth(true);
       this.setUser(response.data.user);
-    } catch (error) {
-      console.log(error.response?.data?.message);
+    } catch(error) {
+      throw error.response?.data?.message;
     } finally {
       this.setLoading(false);
     }
@@ -84,8 +84,8 @@ export default class UserStore {
         password,
       });
       return data;
-    } catch (error) {
-      console.log(error.response?.data?.message);
+    } catch(error) {
+      throw error.response?.data?.message;
     }
   }
 
@@ -97,8 +97,8 @@ export default class UserStore {
         new_pass,
       });
       return response;
-    } catch (error) {
-      console.log(error.response?.data?.message);
+    } catch(error) {
+      throw error.response?.data?.message;
     }
   }
 
@@ -110,8 +110,8 @@ export default class UserStore {
         last_name,
       });
       return response;
-    } catch (error) {
-      console.log(error.response?.data?.message);
+    } catch(error) {
+      throw error.response?.data?.message;
     }
   }
 

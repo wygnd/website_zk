@@ -18,6 +18,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      filter: grayscale(1);
       transition: filter 0.4s ease;
     }
   }
@@ -70,7 +71,7 @@
       height: 60%;
 
       img {
-        filter: grayscale(1);
+        filter: grayscale(0);
       }
     }
 

@@ -15,17 +15,15 @@ const AppRouter = observer(() => {
   }
 
   return (
-    <main className={`page-${replacePathname}`}>
-      <Routes>
-        {userStore.isAuth &&
-          authRoutes.map(({ path, component }) => (
-            <Route key={path} path={path} element={component} />
-          ))}
-        {publicRoutes.map(({ path, component }) => (
+    <Routes>
+      {userStore.isAuth &&
+        authRoutes.map(({ path, component }) => (
           <Route key={path} path={path} element={component} />
         ))}
-      </Routes>
-    </main>
+      {publicRoutes.map(({ path, component }) => (
+        <Route key={path} path={path} element={component} />
+      ))}
+    </Routes>
   );
 });
 

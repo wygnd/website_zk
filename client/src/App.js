@@ -10,7 +10,7 @@ import { fetchSlides } from "./http/mainBlockAPI";
 import { fetchItem, fetchItems } from "./http/basicAPI";
 import { fetchTours } from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
-import { getImageById } from "./http/galleryAPI";
+import {getFullImageById, getImageById} from "./http/galleryAPI";
 import uuid from "react-uuid";
 import { fetchGallery } from "./http/galleryBlockAPI";
 
@@ -34,16 +34,16 @@ const App = observer(() => {
     }
   }, []);
 
-  useEffect(() => {
-    fetchSlides().then((data) => {
-      mainBlockStore.setSlides(data);
-    });
-  }, [mainBlockStore.update]);
-
+  // useEffect(() => {
+  //   fetchSlides().then((data) => {
+  //     mainBlockStore.setSlides(data);
+  //   });
+  // }, [mainBlockStore.update]);
+  //
   useEffect(() => {
     fetchItem("logo").then((data) => {
-      getImageById(data.metaValue).then((res) => {
-        basicStore.setLogo(res.size);
+      getFullImageById(data.metaValue).then((res) => {
+        basicStore.setLogo(res);
       });
     });
     fetchItems("phone").then((data) => {
@@ -63,95 +63,95 @@ const App = observer(() => {
       basicStore.setSocials(dataRequest);
     });
   }, [basicStore.update]);
-
-  useEffect(() => {
-    fetchTours().then((data) => {
-      tourStore.setTours(data);
-    });
-  }, [tourStore.update]);
-
-  useEffect(() => {
-    fetchItem("lastItemTour").then((data) => {
-      const dataItem = {
-        metaKey: data.metaKey,
-        name: data.metaValue.split("+")[0],
-        link: data.metaValue.split("+")[1],
-        imageId: data.metaValue.split("+")[2],
-      };
-      tourStore.setLastItem(dataItem);
-    });
-  }, [tourStore.updateLastItem]);
-
-  useEffect(() => {
-    fetchItem("lastItemTourVisible").then((data) => {
-      if (data.metaValue === "0") {
-        tourStore.setLastItemVisible(false);
-      } else {
-        tourStore.setLastItemVisible(true);
-      }
-    });
-  }, [tourStore.lastItemVisible]);
-
-  useEffect(() => {
-    fetchItem("collectionsDesc").then((data) => {
-      collections.setDesc(data.metaValue);
-    });
-
-    fetchItem("collectionsImages").then((data) => {
-      const arrayImages = data.metaValue.split("+");
-      arrayImages.map((img) =>
-        getImageById(img).then((response) => {
-          collections.setGallery([
-            ...collections.gallery,
-            { imageId: response?.id, size: response?.size, uuId: uuid() },
-          ]);
-        })
-      );
-
-      collections.setCountImages(data.metaValue.split("+").length);
-    });
-  }, [collections.update]);
-
-  useEffect(() => {
-    fetchItem("aboutDesc").then((data) => {
-      about.setDesc(data.metaValue);
-    });
-
-    fetchItem("aboutImage").then((data) => {
-      getImageById(data.metaValue).then((res) => {
-        about.setImage({ id: res?.id, size: res?.size });
-      });
-    });
-  }, [about.update]);
-
-  useEffect(() => {
-    fetchGallery().then((res) => {
-      res.map((el) =>
-        getImageById(el?.galleryId).then((res) => {
-          galleryBlock.setGallery([
-            ...galleryBlock.images,
-            { id: el?.id, size: res?.size },
-          ]);
-        })
-      );
-    });
-  }, [galleryBlock.update]);
-
-  useEffect(() => {
-    fetchItem("map").then((res) => {
-      contactsStore.setMap([
-        res.metaValue.split("+")[0],
-        res.metaValue.split("+")[1],
-      ]);
-    });
-  }, []);
-
-  useEffect(() => {
-    fetchItems("email").then((data) => {
-      basicStore.setEmails(data);
-    });
-  }, [basicStore.update]);
-
+  //
+  // useEffect(() => {
+  //   fetchTours().then((data) => {
+  //     tourStore.setTours(data);
+  //   });
+  // }, [tourStore.update]);
+  //
+  // useEffect(() => {
+  //   fetchItem("lastItemTour").then((data) => {
+  //     const dataItem = {
+  //       metaKey: data.metaKey,
+  //       name: data.metaValue.split("+")[0],
+  //       link: data.metaValue.split("+")[1],
+  //       imageId: data.metaValue.split("+")[2],
+  //     };
+  //     tourStore.setLastItem(dataItem);
+  //   });
+  // }, [tourStore.updateLastItem]);
+  //
+  // useEffect(() => {
+  //   fetchItem("lastItemTourVisible").then((data) => {
+  //     if (data.metaValue === "0") {
+  //       tourStore.setLastItemVisible(false);
+  //     } else {
+  //       tourStore.setLastItemVisible(true);
+  //     }
+  //   });
+  // }, [tourStore.lastItemVisible]);
+  //
+  // useEffect(() => {
+  //   fetchItem("collectionsDesc").then((data) => {
+  //     collections.setDesc(data.metaValue);
+  //   });
+  //
+  //   fetchItem("collectionsImages").then((data) => {
+  //     const arrayImages = data.metaValue.split("+");
+  //     arrayImages.map((img) =>
+  //       getImageById(img).then((response) => {
+  //         collections.setGallery([
+  //           ...collections.gallery,
+  //           { imageId: response?.id, size: response?.size, uuId: uuid() },
+  //         ]);
+  //       })
+  //     );
+  //
+  //     collections.setCountImages(data.metaValue.split("+").length);
+  //   });
+  // }, [collections.update]);
+  //
+  // useEffect(() => {
+  //   fetchItem("aboutDesc").then((data) => {
+  //     about.setDesc(data.metaValue);
+  //   });
+  //
+  //   fetchItem("aboutImage").then((data) => {
+  //     getImageById(data.metaValue).then((res) => {
+  //       about.setImage({ id: res?.id, size: res?.size });
+  //     });
+  //   });
+  // }, [about.update]);
+  //
+  // useEffect(() => {
+  //   fetchGallery().then((res) => {
+  //     res.map((el) =>
+  //       getImageById(el?.galleryId).then((res) => {
+  //         galleryBlock.setGallery([
+  //           ...galleryBlock.images,
+  //           { id: el?.id, size: res?.size },
+  //         ]);
+  //       })
+  //     );
+  //   });
+  // }, [galleryBlock.update]);
+  //
+  // useEffect(() => {
+  //   fetchItem("map").then((res) => {
+  //     contactsStore.setMap([
+  //       res.metaValue.split("+")[0],
+  //       res.metaValue.split("+")[1],
+  //     ]);
+  //   });
+  // }, []);
+  //
+  // useEffect(() => {
+  //   fetchItems("email").then((data) => {
+  //     basicStore.setEmails(data);
+  //   });
+  // }, [basicStore.update]);
+  //
   useEffect(() => {
     fetchItem("siteTitle").then((data) => {
       basicStore.setSiteTitle(data);
@@ -160,6 +160,7 @@ const App = observer(() => {
 
     fetchItem("siteDesc").then((data) => {
       basicStore.setSiteDesc(data);
+      console.log(data);
       setSiteDesc(data.metaValue);
     });
   }, [basicStore.update]);
@@ -182,9 +183,9 @@ const App = observer(() => {
         />
         <meta
           property="og:description"
-          content="Экспозиция «В бутылочку» - пролог современного музейного пространства, посвященного гастрокультуре Русского Севера."
+          content={siteDesc}
         />
-        <meta property="og:title" content="Заречный квартал" />
+        <meta property="og:title" content={siteTitle}/>
       </Helmet>
       <BrowserRouter>
         <Header />

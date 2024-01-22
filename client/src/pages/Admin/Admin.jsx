@@ -15,34 +15,36 @@ import Main from "../../components/AdminComponents/Main/Main";
 
 const Admin = observer(() => {
   return (
-    <Container width={1290}>
-      <h1 className={styles.page__title}>Панель администратора</h1>
+    <main className={styles.page_admin}>
+      <Container width={1290}>
+        <h1 className={styles.page__title}>Панель администратора</h1>
 
-      <Tabs
-        disableUpDownKeys={true}
-        focusTabOnClick={false}
-        selectedTabClassName={styles.admin__holder_navigation_item__active}
-        selectedTabPanelClassName={styles.admin__holder_content__active}
-        className={styles.admin__holder}
-      >
-        <TabList className={styles.admin__holder_navigation}>
-          <Tab className={styles.admin__holder_navigation_item}>
-            <IoMdSettings size={24} />
-            Основные
-          </Tab>
-          <Tab className={styles.admin__holder_navigation_item}>
-            <TfiLayoutSliderAlt size={24} />
-            Главный блок
-          </Tab>
-        </TabList>
-        <TabPanel className={styles.admin__holder_content}>
-          <Basic />
-        </TabPanel>
-        <TabPanel className={styles.admin__holder_content}>
-          <Main />
-        </TabPanel>
-      </Tabs>
-    </Container>
+        <Tabs
+          disableUpDownKeys={true}
+          focusTabOnClick={false}
+          selectedTabClassName={styles.admin__holder_navigation_item__active}
+          selectedTabPanelClassName={styles.admin__holder_content__active}
+          className={styles.admin__holder}
+        >
+          <TabList className={styles.admin__holder_navigation}>
+            <Tab className={styles.admin__holder_navigation_item}>
+              <IoMdSettings size={24} />
+              Основные
+            </Tab>
+            <Tab className={styles.admin__holder_navigation_item}>
+              <TfiLayoutSliderAlt size={24} />
+              Главный блок
+            </Tab>
+          </TabList>
+          <TabPanel className={styles.admin__holder_content}>
+            <Basic />
+          </TabPanel>
+          <TabPanel className={styles.admin__holder_content}>
+            <Main />
+          </TabPanel>
+        </Tabs>
+      </Container>
+    </main>
   );
 });
 

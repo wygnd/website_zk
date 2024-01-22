@@ -1,21 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import authPageStyles from "./Auth.module.scss";
 import Button from "../../components/Button";
 import Input from "../../components/Input/Input";
-import { observer } from "mobx-react-lite";
-import { ContextMain } from "../..";
-import { useNavigate } from "react-router-dom";
-import { ADMIN_ROUTE } from "../../utils/consts";
+import {observer} from "mobx-react-lite";
+import {ContextMain} from "../..";
+import {useNavigate} from "react-router-dom";
+import {ADMIN_ROUTE} from "../../utils/consts";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 const Auth = observer(() => {
-  const { userStore, galleryStore } = useContext(ContextMain);
+  const {userStore, galleryStore} = useContext(ContextMain);
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    if (userStore.isAuth) {
+    if(userStore.isAuth) {
       history(ADMIN_ROUTE);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,28 +29,26 @@ const Auth = observer(() => {
         setTimeout(() => {
           galleryStore.setModalErr(false);
         }, 2000);
-        return;
       });
-      if (userStore.isAuth) {
+      if(userStore.isAuth) {
         history(ADMIN_ROUTE);
       } else {
         setEmail("");
         setPassword("");
       }
-    } catch (error) {
+    } catch(error) {
       galleryStore.setModalErr(true);
       galleryStore.setModalMsg(error);
       setTimeout(() => {
         galleryStore.setModalErr(false);
       }, 2000);
-      return;
     }
   };
 
   return (
-    <div className={authPageStyles.page_auth_wrapper}>
+    <main className={authPageStyles.page_auth_wrapper}>
       <div className="container">
-        <Breadcrumbs />
+        <Breadcrumbs/>
         <div className={authPageStyles.page_auth_holder}>
           <h2 className={authPageStyles.page_title}>Авторизация</h2>
           <div className={authPageStyles.auth_holder}>
@@ -74,7 +72,7 @@ const Auth = observer(() => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 });
 

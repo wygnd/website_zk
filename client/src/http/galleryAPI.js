@@ -32,6 +32,15 @@ export async function getImageById(id) {
   }
 }
 
+export async function getFullImageById(id) {
+  try {
+    const { data } = await $apiAuth.get(`/gallery/${id}`);
+    return data;
+  } catch (error) {
+    return error.message;
+  }
+}
+
 export async function removeImageByID(id) {
   try {
     const { data } = await $apiAuth.post(`/gallery/remove/${id}`);

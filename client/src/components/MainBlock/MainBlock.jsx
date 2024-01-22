@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { observer } from "mobx-react-lite";
@@ -12,11 +12,16 @@ import { ContextMain } from "../..";
 const MainBlock = observer(() => {
   const { mainBlockStore } = useContext(ContextMain);
   const [swiperMainBlock, setSwiperMainBlock] = useState({});
+  const [slides, setSlides] = useState([]);
 
-  if (mainBlockStore.slides.length === 0) {
+  if (mainBlockStore?.slides?.length === 0) {
     return;
   }
-  
+
+  useEffect(() => {
+      if(!mainBlockStore.slides) return;
+  }, [mainBlockStore.slides, mainBlockStore.update]);
+
   return (
     <section className={cl.mainBlock}>
       <Swiper
@@ -40,7 +45,7 @@ const MainBlock = observer(() => {
         }}
         modules={[Autoplay, Navigation]}
       >
-        {mainBlockStore.slides.map(
+        {mainBlockStore?.slides?.map(
           (slide) =>
             slide?.gallery?.size?.full && (
               <SwiperSlide key={slide.id}>

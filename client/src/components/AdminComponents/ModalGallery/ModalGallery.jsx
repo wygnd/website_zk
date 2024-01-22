@@ -1,24 +1,26 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import cl from "./ModalGallery.module.scss";
-import { SERVER_URL } from "../../../utils/consts";
-import { observer } from "mobx-react-lite";
-import { ContextMain } from "../../..";
+import {SERVER_URL} from "../../../utils/consts";
+import {observer} from "mobx-react-lite";
+import {ContextMain} from "../../..";
 import {
   addImage,
   fetchImages,
   removeImageByID,
 } from "../../../http/galleryAPI";
-import Modal from "../../Modal/Modal";
-import { BsFillTrashFill } from "react-icons/bs";
-import Button from "../../Button";
+// import Modal from "../../Modal/Modal";
+import {BsFillTrashFill} from "react-icons/bs";
+// import Button from "../../Button";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const ModalGallery = observer(
-  ({ open, setOpen, title = "Галерея", getImageId }) => {
-    const { galleryStore } = useContext(ContextMain);
+  ({open, setOpen, title = "Галерея", getImageId}) => {
+    const {galleryStore} = useContext(ContextMain);
     const [images, setImages] = useState([]);
 
     useMemo(() => {
-      if (!open) return;
+      if(!open) return;
       fetchImages(1, galleryStore.limit).then((response) => {
         galleryStore.setImages(response.rows);
         galleryStore.setTotalCount(response.count);
@@ -27,8 +29,8 @@ const ModalGallery = observer(
     }, [open, galleryStore.update]);
 
     useEffect(() => {
-      if (!open) return;
-      if (galleryStore.page === 1) return;
+      if(!open) return;
+      if(galleryStore.page === 1) return;
       fetchImages(galleryStore.page, galleryStore.limit).then((response) => {
         galleryStore.setLoaded(galleryStore.loaded + response.rows.length);
         setImages([...images, ...response.rows]);
@@ -58,7 +60,7 @@ const ModalGallery = observer(
         await removeImageByID(e.currentTarget.dataset.id).then((data) => {
           galleryStore.setUpdate(!galleryStore.update);
         });
-      } catch (error) {
+      } catch(error) {
         galleryStore.setModalErr(true);
         galleryStore.setModalMsg(error.message);
         setTimeout(() => {
@@ -68,71 +70,76 @@ const ModalGallery = observer(
     };
 
     return (
-      <Modal
-        open={open}
-        clickHandler={() => {
-          setOpen();
-          galleryStore.setPage(1);
-          galleryStore.setLoaded(12);
-          setImages([]);
-        }}
-        className={cl.modal}
-      >
-        <div className={cl.modalTop}>
-          <h4 className={cl.modalTitle}>{title}</h4>
-          <label className={cl.input_file}>
-            <input type="file" name="file" onChange={inputChangeHandler} />
-            <div>Новое изображение</div>
-          </label>
-        </div>
-        <div className={cl.galleryHolder}>
-          {galleryStore.gallery.map((el) => (
-            <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
-              <img data-id={el.id} src={`${SERVER_URL}/${el?.size?.full}`} alt={`${el?.size?.fileName}`} />
-              <div className={cl.hoverHolder}>
-                <BsFillTrashFill
-                  color="red"
-                  size="35"
-                  className={cl.deleteItem}
-                  onClick={deleteItem}
-                  data-id={el.id}
-                />
-              </div>
-            </div>
-          ))}
-          {images &&
-            images.map((el) => (
-              <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
-                <img data-id={el.id} src={`${SERVER_URL}/${el?.size?.full}`} alt={`${el?.size?.fileName}`} />
-                <div className={cl.hoverHolder}>
-                  <BsFillTrashFill
-                    color="red"
-                    size="35"
-                    className={cl.deleteItem}
-                    onClick={deleteItem}
-                    data-id={el.id}
-                  />
+      <>
+        <Modal
+          show={open}
+          size="xl"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          onHide={() => setOpen(false)}
+        >
+          <Modal.Header>
+            <Modal.Title id="contained-modal-title-vcenter" className={`${cl.modalTop} w-100`}>
+              <h4 className={cl.modalTitle}>{title}</h4>
+              <label className={cl.input_file}>
+                <input type="file" name="file" onChange={inputChangeHandler}/>
+                <div>Новое изображение</div>
+              </label>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className={cl.galleryHolder}>
+              {galleryStore.gallery.map((el) => (
+                <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
+                  <img data-id={el.id} src={`${SERVER_URL}/${el?.file_name}`} alt={`${el?.file_name}`}/>
+                  <div className={cl.hoverHolder}>
+                    <BsFillTrashFill
+                      color="red"
+                      size="30"
+                      className={cl.deleteItem}
+                      onClick={deleteItem}
+                      data-id={el.id}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-        </div>
-        {galleryStore.totalCount > 12 && (
-          <div className={cl.moreImages}>
-            <div className={cl.countLoadedImages}>
-              Загружено {galleryStore.loaded} из {galleryStore.totalCount}
+              ))}
+              {images &&
+                images.map((el) => (
+                  <div key={el.id} className={cl.galleryItem} onClick={selectImage}>
+                    <img data-id={el.id} src={`${SERVER_URL}/${el?.file_name}`} alt={`${el?.file_name}`}/>
+                    <div className={cl.hoverHolder}>
+                      <BsFillTrashFill
+                        color="red"
+                        size="30"
+                        className={cl.deleteItem}
+                        onClick={deleteItem}
+                        data-id={el.id}
+                      />
+                    </div>
+                  </div>
+                ))}
             </div>
-            {galleryStore.loaded !== galleryStore.totalCount && (
-              <Button
-                onClick={() => {
-                  galleryStore.setPage(galleryStore.page + 1);
-                }}
-              >
-                Загрузить еще
-              </Button>
+          </Modal.Body>
+          <Modal.Footer>
+            {galleryStore.totalCount > 12 && (
+              <div className={cl.moreImages}>
+                <div className={cl.countLoadedImages}>
+                  Загружено {galleryStore.loaded} из {galleryStore.totalCount}
+                </div>
+                {galleryStore.loaded !== galleryStore.totalCount && (
+                  <Button
+                    onClick={() => {
+                      galleryStore.setPage(galleryStore.page + 1);
+                    }}
+                  >
+                    Загрузить еще
+                  </Button>
+                )}
+              </div>
             )}
-          </div>
-        )}
-      </Modal>
+          </Modal.Footer>
+        </Modal>
+      </>
     );
   }
 );

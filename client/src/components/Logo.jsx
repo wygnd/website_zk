@@ -10,9 +10,9 @@ const Logo = observer(() => {
 
   return (
     <Link to="/" className={headerClasses.logo_holder}>
-      {basicStore?.logo?.medium && (
+      {basicStore?.logo?.file_name && (
         <img
-          src={`${SERVER_URL}/${basicStore?.logo?.medium}`}
+          src={`${SERVER_URL}/${basicStore?.logo?.file_name}`}
           alt={`${basicStore?.logo?.fileName}`}
         />
       )}
