@@ -2,7 +2,7 @@ module.exports = class userDto {
   id;
   email;
   name;
-  last_namel;
+  last_name;
   access;
 
   constructor(model) {

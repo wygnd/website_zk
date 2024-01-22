@@ -1,13 +1,13 @@
 const sequelize = require("../db");
-const { DataTypes } = require("sequelize");
+const {DataTypes} = require("sequelize");
 
 const Tours = sequelize.define(
   "tours",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    textButton: { type: DataTypes.STRING },
-    linkButton: { type: DataTypes.STRING },
+    tour_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    tour_name: {type: DataTypes.TEXT('tiny'), allowNull: false},
+    textButton: {type: DataTypes.STRING, defaultValue: null},
+    linkButton: {type: DataTypes.STRING, defaultValue: null},
   },
   {
     timestamps: false,
@@ -19,22 +19,15 @@ const Tours = sequelize.define(
 const Gallery = sequelize.define(
   "gallery",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  },
-  {
-    timestamps: false,
-    createdAt: false,
-    updatedAt: false,
-  }
-);
-
-const Sizes = sequelize.define(
-  "sizes",
-  {
-    fileName: { type: DataTypes.STRING },
-    full: { type: DataTypes.STRING },
-    medium: { type: DataTypes.STRING },
-    thumbnail: { type: DataTypes.STRING },
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    file_name: {type: DataTypes.TEXT('tiny'), allowNull: false},
+    author_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "users",
+        key: "id",
+      },
+    },
   },
   {
     timestamps: false,
@@ -46,12 +39,12 @@ const Sizes = sequelize.define(
 const Users = sequelize.define(
   "users",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    email: { type: DataTypes.STRING, unique: true, allowNull: false },
-    password: { type: DataTypes.STRING, allowNull: false },
-    role: { type: DataTypes.STRING, defaultValue: "ADMIN" },
-    name: { type: DataTypes.STRING, allowNull: false },
-    last_name: { type: DataTypes.STRING, allowNull: false },
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    email: {type: DataTypes.STRING, unique: true, allowNull: false},
+    password: {type: DataTypes.STRING, allowNull: false},
+    role: {type: DataTypes.STRING, defaultValue: "ADMIN"},
+    name: {type: DataTypes.STRING, allowNull: false},
+    last_name: {type: DataTypes.STRING, allowNull: false},
     access: {
       type: DataTypes.ENUM("full", "partial"),
       defaultValue: "full",
@@ -68,9 +61,9 @@ const Users = sequelize.define(
 const Tokens = sequelize.define(
   "tokens",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    userId: { type: DataTypes.INTEGER },
-    refreshToken: { type: DataTypes.TEXT("medium") },
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    userId: {type: DataTypes.INTEGER},
+    refreshToken: {type: DataTypes.TEXT("medium")},
   },
   {
     timestamps: false,
@@ -82,11 +75,11 @@ const Tokens = sequelize.define(
 const MainBlock = sequelize.define(
   "mainBock",
   {
-    title: { type: DataTypes.STRING },
-    desc: { type: DataTypes.STRING },
-    buttonVisible: { type: DataTypes.BOOLEAN, defaultValue: true },
-    textButton: { type: DataTypes.STRING },
-    linkButton: { type: DataTypes.STRING },
+    title: {type: DataTypes.STRING},
+    desc: {type: DataTypes.STRING},
+    buttonVisible: {type: DataTypes.BOOLEAN, defaultValue: true},
+    textButton: {type: DataTypes.STRING},
+    linkButton: {type: DataTypes.STRING},
   },
   {
     timestamps: false,
@@ -98,8 +91,8 @@ const MainBlock = sequelize.define(
 const Settings = sequelize.define(
   "settings",
   {
-    metaKey: { type: DataTypes.STRING, allowNull: false },
-    metaValue: { type: DataTypes.TEXT("medium"), allowNull: false },
+    metaKey: {type: DataTypes.STRING, allowNull: false},
+    metaValue: {type: DataTypes.TEXT("medium"), allowNull: false},
   },
   {
     timestamps: false,
@@ -119,8 +112,7 @@ MainBlock.belongsTo(Gallery);
 Gallery.hasOne(Tours);
 Tours.belongsTo(Gallery);
 
-Sizes.hasOne(Gallery);
-Gallery.belongsTo(Sizes);
+Gallery.hasOne(Users, {foreignKey: "id"})
 
 Gallery.hasOne(GalleryBlock);
 GalleryBlock.belongsTo(Gallery);
@@ -128,7 +120,7 @@ GalleryBlock.belongsTo(Gallery);
 module.exports = {
   Tours,
   Gallery,
-  Sizes,
+  // Sizes,
   Users,
   Tokens,
   MainBlock,
