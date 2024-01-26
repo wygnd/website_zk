@@ -21,6 +21,7 @@ const Gallery = sequelize.define(
   {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     file_name: {type: DataTypes.TEXT('tiny'), allowNull: false},
+    file_ext: {type: DataTypes.STRING, allowNull: false},
     author_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -40,7 +41,7 @@ const Users = sequelize.define(
   "users",
   {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    email: {type: DataTypes.STRING, unique: true, allowNull: false},
+    email: {type: DataTypes.STRING, allowNull: false},
     password: {type: DataTypes.STRING, allowNull: false},
     role: {type: DataTypes.STRING, defaultValue: "ADMIN"},
     name: {type: DataTypes.STRING, allowNull: false},
@@ -120,7 +121,6 @@ GalleryBlock.belongsTo(Gallery);
 module.exports = {
   Tours,
   Gallery,
-  // Sizes,
   Users,
   Tokens,
   MainBlock,

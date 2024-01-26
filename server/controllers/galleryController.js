@@ -1,14 +1,14 @@
 const ApiError = require('../error/ApiError');
 const galleryService = require('../service/galleryService');
-const userService = require('../service/userService');
+const tokenService = require('../service/tokenService');
 
 class GalleryController {
   async create(req, res, next) {
     try {
-      const {file} = req.files;
+      const {fileName} = req.files;
       const {tokenRef} = req.cookies;
-      const User = await userService.refresh(tokenRef);
-      const galleryData = await galleryService.create(file, User?.user);
+      const userData = await tokenService.validateRefreshToken(tokenRef);
+      const galleryData = await galleryService.create(fileName, userData.id);
       return res.json(galleryData);
     } catch(error) {
       next(ApiError.BadRequest(error.message));
@@ -31,6 +31,7 @@ class GalleryController {
       const {id} = req.params;
       const galleryData = await galleryService.getOne(id);
       return res.json(galleryData);
+
     } catch(e) {
       next(ApiError.BadRequest(e.message));
     }

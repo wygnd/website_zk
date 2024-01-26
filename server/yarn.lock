@@ -495,6 +495,13 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
 
+exif-stripper@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/exif-stripper/-/exif-stripper-0.0.5.tgz#da9db7c58df194b6adf6192d51f43fec62572cba"
+  integrity sha512-viOKw+/WMs1S0jvqlTbi1b4HwVxVw09mbZDtWh7NLxgKj50Bl5xzsC3VZflA5H5nTEzRdWAHcueAqrFc6M+YVA==
+  dependencies:
+    jquery "^3.0.0"
+
 express-fileupload@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/express-fileupload/-/express-fileupload-1.4.3.tgz#32cbb405ba12f541d445838464e081defba4ef61"
@@ -795,6 +802,11 @@ isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==
+
+jquery@^3.0.0:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
+  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 jsonwebtoken@^9.0.2:
   version "9.0.2"

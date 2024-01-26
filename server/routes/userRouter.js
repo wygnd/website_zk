@@ -9,6 +9,8 @@ router.post(
   "/registration",
   body("email").isEmail(),
   body("password").isLength({ min: 3, max: 32 }),
+  body("name").notEmpty(),
+  body("last_name").notEmpty(),
   UserController.registration
 );
 router.post("/login", UserController.login);

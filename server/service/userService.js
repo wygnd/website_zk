@@ -64,11 +64,20 @@ class UserService {
   }
 
   async getAll() {
-    const usersData = Users.findAll();
+    const usersData = await Users.findAll();
     if (!usersData) {
       throw ApiError.BadRequest("Пользователей не найдено");
     }
     return usersData;
+  }
+
+  async getUserById(user_id) {
+    const userData = await Users.findByPk(user_id);
+    if(!userData) {
+      throw ApiError.BadRequest(`Пользователя с id=${user_id} не найдено`);
+    }
+    const user = new UserDto(userData);
+    return user;
   }
 
   async validatePassword(email, password) {
