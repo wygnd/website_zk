@@ -5,10 +5,10 @@ const tokenService = require('../service/tokenService');
 class GalleryController {
   async create(req, res, next) {
     try {
-      const {fileName} = req.files;
+      const {file} = req.files;
       const {tokenRef} = req.cookies;
       const userData = await tokenService.validateRefreshToken(tokenRef);
-      const galleryData = await galleryService.create(fileName, userData.id);
+      const galleryData = await galleryService.create(file, userData.id);
       return res.json(galleryData);
     } catch(error) {
       next(ApiError.BadRequest(error.message));

@@ -40,7 +40,7 @@ class SettingsService {
     return dataSettings;
   }
 
-  async findAll(name) {
+  async findBeforeName(name) {
     const dataSettings = await Settings.findAll({
       where: {
         metaKey: {
@@ -48,6 +48,9 @@ class SettingsService {
         },
       },
     });
+    if(!dataSettings) {
+      throw ApiError.BadRequest(`Натсроект начинающиеся на ${name} не найдено`);
+    }
     return dataSettings;
   }
 
@@ -79,12 +82,19 @@ class SettingsService {
 
   async changeOne(metaKey, metaValue) {
     const [candidate, isCreated] = await Settings.findOrCreate({where: {metaKey}, defaults: {metaValue}});
-    console.log(candidate, isCreated);
     if(!isCreated) {
       await candidate.update({metaValue});
       await candidate.save();
     }
     return candidate;
+  }
+
+  async getAllSettings() {
+    const response = await Settings.findAll();
+    if(!response) {
+      return ApiError.BadRequest("Записей не найдено");
+    }
+    return response;
   }
 }
 

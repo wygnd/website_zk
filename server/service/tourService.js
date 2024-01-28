@@ -1,54 +1,63 @@
 const ApiError = require("../error/ApiError");
-const { Tours, Gallery } = require("../models/models");
+const sequelize = require('sequelize');
+const {Tours, Gallery} = require("../models/models");
+const {Op} = require("sequelize");
 
 class TourService {
-    async create(name, textButton, linkButton, galleryId) {
-        const candidate = await Tours.findOne({ where: { name } });
-        if (candidate) {
-            throw ApiError.badRequest('Запись с таким именем уже существует');
-        }
-        const dataGallery = await Gallery.findByPk(galleryId);
-        if (!dataGallery) {
-            throw ApiError.badRequest('Такого изображения не найдено');
-        }
-        const tour = await Tours.create({ name, textButton, linkButton, galleryId })
-        return tour;
-    }
+	async create(tour_name, textButton, linkButton, galleryId) {
+		const allTours = await Tours.findAndCountAll();
+		const candidate = await Tours.findOne({where: {tour_name}});
+		if(candidate) {
+			throw ApiError.BadRequest('Запись с таким именем уже существует');
+		}
+		const dataGallery = await Gallery.findByPk(galleryId);
+		if(!dataGallery) {
+			throw ApiError.BadRequest('Такого изображения не найдено');
+		}
+		return await Tours.create({tour_name, textButton, linkButton, galleryId, order:  allTours.count + 1})
+	}
 
-    async getOne(id) {
-        const dataTour = await Tours.findByPk(id);
-        if (!dataTour) {
-            throw ApiError.badRequest(`Записи с таким id-${id} не обнаружено`);
-        }
-        return dataTour;
-    }
+	async getOne(id) {
+		const dataTour = await Tours.findByPk(id);
+		if(!dataTour) {
+			throw ApiError.BadRequest(`Записи с таким id-${id} не обнаружено`);
+		}
+		return dataTour;
+	}
 
-    async getAll() {
-        const dataTour = await Tours.findAll();
-        return dataTour;
-    }
+	async getAll() {
+		return await Tours.findAll({
+			where: {
+				order: {[Op.ne]: 0}
+			},
+			order: [
+				['order', 'asc']
+			]
+		});
+	}
 
-    async change(id, name, textButton, linkButton, galleryId) {
-        const tour = await Tours.findByPk(id);
-        if (!tour) {
-            throw ApiError.badRequest(`Записи с таким id-${id} не обнаружено`);
-        }
-        tour.name = name;
-        tour.textButton = textButton;
-        tour.linkButton = linkButton;
-        tour.galleryId = galleryId;
-        await tour.save();
-        return tour;
-    }
+	async change(id, galleryId, args) {
+		const tour = await Tours.findByPk(id);
+		const image = await Gallery.findByPk(galleryId);
+		if(!tour) {
+			throw ApiError.BadRequest(`Записи с таким id-${id} не обнаружено`);
+		}
+		if(!image) {
+			throw ApiError.BadRequest(`Изображения с id=${galleryId} не найдено`);
+		}
+		await tour.update({galleryId, ...args})
+		await tour.save();
+		return tour;
+	}
 
-    async remove(id) {
-        const tour = await Tours.destroy({ where: { id } });
-        if (tour) {
-            return { message: "Итем удален успешно" };
-        } else {
-            return { message: "Что-то пошло не так" };
-        }
-    }
+	async removeTour(id) {
+		const tour = await Tours.destroy({where: {id}});
+		if(tour) {
+			return {message: "Итем удален успешно"};
+		} else {
+			return {message: "Что-то пошло не так"};
+		}
+	}
 }
 
 module.exports = new TourService();

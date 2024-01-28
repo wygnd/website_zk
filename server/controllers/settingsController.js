@@ -21,13 +21,22 @@ class SettingsController {
     }
   }
 
-  async findAll(req, res, next) {
+  async findBeforeName(req, res, next) {
     try {
-      const {name} = req.body;
-      const responseSettings = await settingsService.findAll(name);
+      const {name} = req.params;
+      const responseSettings = await settingsService.findBeforeName(name);
       return res.json(responseSettings);
     } catch(error) {
       next(error);
+    }
+  }
+
+  async getAll(req, res, next) {
+    try {
+        const settings = await settingsService.getAllSettings();
+        return res.json(settings);
+    }catch(e) {
+      next(e);
     }
   }
 
@@ -53,7 +62,7 @@ class SettingsController {
 
   async findOne(req, res, next) {
     try {
-      const {metaKey} = req.body;
+      const {metaKey} = req.params;
       const response = await settingsService.findOne(metaKey);
       return res.json(response);
     } catch(error) {

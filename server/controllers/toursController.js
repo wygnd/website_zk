@@ -4,8 +4,8 @@ const tourService = require('../service/tourService');
 class ToursController {
     async createTour(req, res, next) {
         try {
-            const { name, textButton, linkButton, galleryId } = req.body;
-            const dataTour = await tourService.create(name, textButton, linkButton, galleryId);
+            const { tour_name, textButton, linkButton, galleryId } = req.body;
+            const dataTour = await tourService.create(tour_name, textButton, linkButton, galleryId);
             res.json(dataTour);
         } catch (error) {
             next(error)
@@ -33,8 +33,8 @@ class ToursController {
 
     async changeTour(req, res, next) {
         try {
-            const { id, name, textButton, linkButton, galleryId } = req.body;
-            const dataTour = await tourService.change(id, name, textButton, linkButton, galleryId);
+            const { id, galleryId, ...args } = req.body;
+            const dataTour = await tourService.change(id, galleryId, args);
             return res.json(dataTour);
         } catch (error) {
             next(error)
@@ -44,7 +44,7 @@ class ToursController {
     async removeTour(req, res, next) {
         try {
             const { id } = req.params;
-            const dataTour = await tourService.remove(id);
+            const dataTour = await tourService.removeTour(id);
             return res.json(dataTour);
         } catch (error) {
             next(error)

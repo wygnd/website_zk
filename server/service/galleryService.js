@@ -157,7 +157,7 @@ class GalleryService {
     } else {
       message = "Что-то пошлно не так";
     }
-    return {message, galleryData, errorDelete};
+    return {message, galleryData};
   }
 
 }

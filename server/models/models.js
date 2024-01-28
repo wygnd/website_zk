@@ -8,6 +8,7 @@ const Tours = sequelize.define(
     tour_name: {type: DataTypes.TEXT('tiny'), allowNull: false},
     textButton: {type: DataTypes.STRING, defaultValue: null},
     linkButton: {type: DataTypes.STRING, defaultValue: null},
+    order: {type: DataTypes.INTEGER, defaultValue: 0}
   },
   {
     timestamps: false,
