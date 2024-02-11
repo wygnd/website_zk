@@ -8,10 +8,14 @@ import { TfiLayoutSliderAlt } from "react-icons/tfi";
 import Basic from "../../components/AdminComponents/basic/Basic";
 import Container from "../../components/Container/Container";
 import Main from "../../components/AdminComponents/Main/Main";
-// import Tour from "../../components/AdminComponents/Tour/Tour";
-// import Collections from "../../components/AdminComponents/Collections/Collections";
-// import About from "../../components/AdminComponents/About/About";
-// import Gallery from "../../components/AdminComponents/Gallery/Gallery";
+import Tour from "../../components/AdminComponents/Tour/Tour";
+import { VscArchive } from "react-icons/vsc";
+import { MdOutlineCollectionsBookmark } from "react-icons/md";
+import Collections from "../../components/AdminComponents/Collections/Collections";
+import { RiOrganizationChart } from "react-icons/ri";
+import About from "../../components/AdminComponents/About/About";
+import { GrGallery } from "react-icons/gr";
+import Gallery from "../../components/AdminComponents/Gallery/Gallery";
 
 const Admin = observer(() => {
   return (
@@ -35,12 +39,40 @@ const Admin = observer(() => {
               <TfiLayoutSliderAlt size={24} />
               Главный блок
             </Tab>
+            <Tab className={styles.admin__holder_navigation_item}>
+              <VscArchive size={24} />
+              Экскурсии
+            </Tab>
+            <Tab className={styles.admin__holder_navigation_item}>
+              <MdOutlineCollectionsBookmark size={24} />
+              Коллеция
+            </Tab>
+            <Tab className={styles.admin__holder_navigation_item}>
+              <RiOrganizationChart size={24} />
+              О проекте
+            </Tab>
+            <Tab className={styles.admin__holder_navigation_item}>
+              <GrGallery size={24} />
+              Галерея
+            </Tab>
           </TabList>
           <TabPanel className={styles.admin__holder_content}>
             <Basic />
           </TabPanel>
           <TabPanel className={styles.admin__holder_content}>
             <Main />
+          </TabPanel>
+          <TabPanel className={styles.admin__holder_content}>
+            <Tour />
+          </TabPanel>
+          <TabPanel className={styles.admin__holder_content}>
+            <Collections />
+          </TabPanel>
+          <TabPanel className={styles.admin__holder_content}>
+            <About />
+          </TabPanel>
+          <TabPanel className={styles.admin__holder_content}>
+            <Gallery />
           </TabPanel>
         </Tabs>
       </Container>

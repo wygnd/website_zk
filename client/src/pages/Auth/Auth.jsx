@@ -9,15 +9,17 @@ import {ADMIN_ROUTE} from "../../utils/consts";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
 const Auth = observer(() => {
-  const {userStore, galleryStore} = useContext(ContextMain);
+  const {userStore, galleryStore, basicStore} = useContext(ContextMain);
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    basicStore.setLoading(true);
     if(userStore.isAuth) {
       history(ADMIN_ROUTE);
     }
+    basicStore.setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

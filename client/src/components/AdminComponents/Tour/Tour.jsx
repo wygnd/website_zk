@@ -1,30 +1,25 @@
-import React, { useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-import { ContextMain } from '../../..';
+import React, {useContext} from 'react';
+import {observer} from 'mobx-react-lite';
+import {ContextMain} from '../../..';
 import TourItems from './TourItems/TourItems';
 import cl from './Tour.module.scss';
 import CreateTour from './CreateTour/CreateTour';
-import LastItem from './LastItem/LastItem';
 
-const Tour = observer(({ className }) => {
+const Tour = observer(({className}) => {
 
-    const { tourStore } = useContext(ContextMain);
+	const {tourStore} = useContext(ContextMain);
 
-    return (
-        <div className={className}>
-            <h2 className={cl.titleBlock}>Блок: Экскурсии</h2>
-            {tourStore.tours.length === 0
-                ?
-                <h4 className={cl.notFound}>Записей на нейдено</h4>
-                :
-                <>
-                    <TourItems />
-                </>
-            }
-            <CreateTour />
-            <LastItem />
-        </div>
-    );
+	return (
+		<div className={cl.admin_tours}>
+			{tourStore.tours.length === 0
+				?
+				<h4 className={cl.notFound}>Туров на нейдено</h4>
+				:
+				<TourItems/>
+			}
+			<CreateTour/>
+		</div>
+	);
 });
 
 export default Tour;

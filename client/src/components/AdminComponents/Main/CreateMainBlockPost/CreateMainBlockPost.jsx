@@ -1,19 +1,16 @@
-import React, { useContext, useState } from "react";
-import cl from "./CreateMainBlockPost.module.scss";
-import { SERVER_URL } from "../../../../utils/consts";
-// import Button from "../../../Button";
+import React, {useContext, useState} from "react";
 import ModalGallery from "../../ModalGallery/ModalGallery";
-import { observer } from "mobx-react-lite";
-import { getImageById } from "../../../../http/galleryAPI";
+import {observer} from "mobx-react-lite";
+import {getImageById} from "../../../../http/galleryAPI";
 import ModalSuccess from "../../ModalSuccess/ModalSuccess";
-import { ContextMain } from "../../../..";
+import {ContextMain} from "../../../..";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Figure from "react-bootstrap/Figure";
-import { createSlide } from "../../../../http/mainBlockAPI";
+import {createSlide} from "../../../../http/mainBlockAPI";
 
 const CreateMainBlockPost = observer(() => {
   const [title, setTitle] = useState("");
@@ -25,9 +22,9 @@ const CreateMainBlockPost = observer(() => {
   const [open, setOpen] = useState(false);
   const [image, setImage] = useState("");
   const [isCreatedSucces, setIsCreatedSucces] = useState(false);
-  const { mainBlockStore } = useContext(ContextMain);
+  const {mainBlockStore} = useContext(ContextMain);
   const [show, setShow] = useState(false);
-  const [validated, setValidated] = useState(null);
+  const [validated, setValidated] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,8 +34,8 @@ const CreateMainBlockPost = observer(() => {
   };
 
   const selectHandler = async (id) => {
-    const dataImage = await getImageById(id);
-    setImage(dataImage.size);
+    const dataImage = await getImageById(id, 'medium');
+    setImage(dataImage);
     setGalleryId(id);
   };
 
@@ -47,14 +44,14 @@ const CreateMainBlockPost = observer(() => {
       const form = event.currentTarget;
       event.preventDefault();
       event.stopPropagation();
-      if (!form.checkValidity()) {
+      if(!form.checkValidity()) {
         setValidated(true);
         return;
       }
 
       setValidated(true);
 
-      if (!galleryId) {
+      if(!galleryId) {
         return alert("Изображение не выбрано");
       }
       await createSlide(
@@ -80,7 +77,7 @@ const CreateMainBlockPost = observer(() => {
           setIsCreatedSucces(false);
         }, 1500);
       });
-    } catch (error) {
+    } catch(error) {
       alert(error);
     }
   };
@@ -105,7 +102,7 @@ const CreateMainBlockPost = observer(() => {
             onSubmit={addPost}
             className="d-flex flex-column"
           >
-            <Form.Group as={Col} controlId="formTitle" className="mb-3">
+            <Form.Group controlId="formTitle" className="mb-3">
               <Form.Label>Заголовок</Form.Label>
               <Form.Control
                 type="text"
@@ -115,7 +112,7 @@ const CreateMainBlockPost = observer(() => {
                 required
               />
             </Form.Group>
-            <Form.Group as={Col} controlId="formDesc" className="mb-4">
+            <Form.Group controlId="formDesc" className="mb-4">
               <Form.Label>Описание</Form.Label>
               <Form.Control
                 placeholder="Описание"
@@ -136,7 +133,6 @@ const CreateMainBlockPost = observer(() => {
               <Row className="mb-4">
                 <Col>
                   <Form.Group
-                    as={Col}
                     controlId="FormButonText"
                     className="p-0"
                     required
@@ -151,7 +147,6 @@ const CreateMainBlockPost = observer(() => {
                 </Col>
                 <Col className="ps-0">
                   <Form.Group
-                    as={Col}
                     controlId="formButtonDesc"
                     className="p-0"
                   >
@@ -165,15 +160,15 @@ const CreateMainBlockPost = observer(() => {
                 </Col>
               </Row>
             )}
-            <Figure as={Col} className="mx-auto mb-3">
+            <Figure className="mx-auto mb-3">
               <Figure.Image
                 width={140}
                 height={140}
                 className="mb-0 me-3"
-                alt={image.fileName || "post-image"}
+                alt={image.file_name || "post-image"}
                 src={`${
-                  image.thumbnail
-                    ? SERVER_URL + "/" + image.thumbnail
+                  image.file_path
+                    ? image.file_path
                     : "/assets/images/placeholder.png"
                 }`}
               />

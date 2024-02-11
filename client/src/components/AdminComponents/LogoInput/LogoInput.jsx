@@ -26,18 +26,17 @@ const LogoInput = observer(() => {
   return (
     <>
       <div className={classes.inputFile}>
-        {basicStore?.logo?.file_name && (
           <>
             <Col xs={6} md={4}>
               <Image
-                src={`${SERVER_URL}/${basicStore?.logo?.file_name}`}
+                src={basicStore?.logo?.file_path ? basicStore?.logo?.file_path : "/assets/images/placeholder.png"}
                 className={classes.logoItem}
+                loading="lazy"
                 alt={basicStore?.logo?.file_name}
                 rounded
               />
             </Col>
           </>
-        )}
 
         <Button onClick={() => setModalGallery(true)}>Выбрать логотип</Button>
       </div>

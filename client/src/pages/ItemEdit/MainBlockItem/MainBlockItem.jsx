@@ -5,10 +5,7 @@ import {ContextMain} from "../../..";
 import {useNavigate, useParams} from "react-router-dom";
 import cl from "./MainBlockItem.module.scss";
 import {getImageById} from "../../../http/galleryAPI";
-import {SERVER_URL} from "../../../utils/consts";
-// import Fancybox from "../../../components/Fancybox";
 import ModalGallery from "../../../components/AdminComponents/ModalGallery/ModalGallery";
-
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -41,7 +38,7 @@ const MainBlockItem = observer(() => {
       setLinkButton(data.linkButton);
       setGalleryId(data.galleryId);
       getImageById(data.galleryId).then((dataImage) =>
-        setImage(dataImage?.size)
+        setImage(dataImage)
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -199,8 +196,8 @@ const MainBlockItem = observer(() => {
               <Figure className="d-flex flex-column-reverse align-items-center mb-0 gap-2">
                 <a
                   href={`${
-                    image?.full
-                      ? SERVER_URL + "/" + image?.full
+                    image?.file_path
+                      ? image?.file_path
                       : "/assets/images/placeholder.png"
                   }`}
                   data-fancybox="post-image">
@@ -208,10 +205,10 @@ const MainBlockItem = observer(() => {
                     width={320}
                     height={320}
                     className="mb-0"
-                    alt={image?.fileName || "post-image"}
+                    alt={image?.file_name || "post-image"}
                     src={`${
-                      image?.medium
-                        ? SERVER_URL + "/" + image?.medium
+                      image?.file_path
+                        ? image?.file_path
                         : "/assets/images/placeholder.png"
                     }`}
                   />

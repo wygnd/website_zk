@@ -33,13 +33,10 @@ const GalleryBlock = observer(() => {
         >
           <Swiper
             modules={[Navigation, A11y]}
-            centeredSlides={true}
             loop={true}
-            lazy={true.toString()}
-            speed={600}
+            lazy="true"
+            speed="600"
             className={[cl.swiperGalleryBlock, "swiperGalleryBlock"].join(" ")}
-            slidesPerView={3}
-            spaceBetween={30}
             navigation={{
               nextEl: "#gallery__block .arrow__next",
               prevEl: "#gallery__block .arrow__prev",
@@ -64,16 +61,16 @@ const GalleryBlock = observer(() => {
           >
             {galleryBlock.images.map(
               (item) =>
-                item?.size?.full && (
+                item?.file_path && (
                   <SwiperSlide className={cl.swiperSlide} key={item.id}>
                     <a
-                      href={`${SERVER_URL}/${item?.size?.full}`}
+                      href={item?.file_path}
                       data-fancybox="galleryBlock"
                       className={cl.imageItem}
                     >
                       <img
-                        src={`${SERVER_URL}/${item?.size?.full}`}
-                        alt={item?.size?.fileName}
+                        src={item?.file_path}
+                        alt={item?.file_name}
                         className="swiper-lazy"
                       />
                       <div className={cl.hoverImage}>

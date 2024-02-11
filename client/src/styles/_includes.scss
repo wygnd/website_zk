@@ -17,6 +17,13 @@
   line-height: 90%;
 }
 
+@mixin h1v2 {
+  font-size: calcFluidFontSize(25, 60);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 90%;
+}
+
 @mixin h2 {
   font-size: calcFluidFontSize(20, 46);
   font-style: normal;

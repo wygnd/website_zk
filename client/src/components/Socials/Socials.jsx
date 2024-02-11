@@ -6,10 +6,15 @@ import SocialItem from '../SocialItem';
 
 const Socials = observer(({ mobile }) => {
     const { basicStore } = useContext(ContextMain);
-    
+
+    if(!basicStore.socials) {
+      return;
+    }
+
     return (
         mobile
             ?
+          basicStore.socials &&
             <div className={cl.socHolderMobile}>
                 {basicStore.socials.map(soc =>
                     <SocialItem
@@ -21,6 +26,7 @@ const Socials = observer(({ mobile }) => {
                 )}
             </div>
             :
+          basicStore.socials &&
             <div className={cl.socHolder}>
                 {basicStore.socials.map(soc =>
                     <SocialItem

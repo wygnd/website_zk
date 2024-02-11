@@ -7,9 +7,10 @@ import ModalSuccess from "../AdminComponents/ModalSuccess/ModalSuccess";
 import { Link } from "react-router-dom";
 import { PRIVACY_ROUTE } from "../../utils/consts";
 import ModalGallery from "../AdminComponents/ModalGallery/ModalGallery";
+import Loading from "../Loading/Loading";
 
 const Footer = observer(() => {
-  const { galleryStore } = useContext(ContextMain);
+  const { galleryStore, basicStore } = useContext(ContextMain);
 
   return (
     <>
@@ -39,7 +40,9 @@ const Footer = observer(() => {
       >
         {galleryStore.messageModal}
       </ModalSuccess>
-     
+      {basicStore.loading && (
+        <Loading title="Загрузка..." />
+      )}
     </>
   );
 });

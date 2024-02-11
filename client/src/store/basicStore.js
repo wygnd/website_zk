@@ -9,6 +9,8 @@ export default class BasicStore {
         this._siteTitle = {};
         this._siteDesc = {};
         this._update = false;
+        this._loading = false;
+        this._loadingPage = true;
 
         makeAutoObservable(this);
     }
@@ -48,6 +50,14 @@ export default class BasicStore {
         this._siteDesc = data;
     }
 
+    setLoading(boolean) {
+        this._loading = boolean;
+    }
+
+    setLoadingPage(boolean) {
+        this._loadingPage = boolean;
+    }
+
     get phones() {
         return this._phones;
     }
@@ -74,5 +84,13 @@ export default class BasicStore {
 
     get siteDesc() {
         return this._siteDesc;
+    }
+
+    get loading() {
+        return this._loading;
+    }
+
+    get loadingPage() {
+        return this._loadingPage;
     }
 }

@@ -12,10 +12,10 @@ const Main = observer(() => {
   return (
     <main className={cl.home}>
       <MainBlock />
-      {/*<ToursBlock />*/}
-      {/*<CollectionsBlock />*/}
-      {/*<AboutBlock />*/}
-      {/*<GalleryBlock />*/}
+      <ToursBlock />
+      <CollectionsBlock />
+      <AboutBlock />
+      <GalleryBlock />
       {/*<ContactsBlock />*/}
     </main>
   );

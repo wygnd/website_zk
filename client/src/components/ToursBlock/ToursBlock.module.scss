@@ -138,8 +138,8 @@
     }
 
     .toursHolder {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        //grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 
     .lastItem {
@@ -148,6 +148,12 @@
 
     .lastItemImage {
         margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 920px) {
+    .toursHolder {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 

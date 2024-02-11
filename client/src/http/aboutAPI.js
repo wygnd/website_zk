@@ -3,7 +3,7 @@ import { $apiAuth } from "./index";
 export async function saveBlockDesc(metaValue) {
   try {
     const { data } = $apiAuth.post("/settings/change", {
-      metaKey: "aboutDesc",
+      metaKey: "about_desc",
       metaValue,
     });
     return { data };
@@ -15,7 +15,7 @@ export async function saveBlockDesc(metaValue) {
 export async function saveBlockGallery(metaValue) {
   try {
     const { data } = $apiAuth.post("/settings/change", {
-      metaKey: "aboutImage",
+      metaKey: "about_image",
       metaValue,
     });
     return { data };

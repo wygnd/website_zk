@@ -55,7 +55,7 @@
 
     &:hover {
         &::before {
-            opacity: .8;
+            opacity: .5;
         }
 
         .hoverHolder {
@@ -97,18 +97,13 @@
         outline: none;
         text-decoration: none;
         color: var(--bg1);
-        border-radius: 5px;
-        background: var(--primary);
-        padding: 10px 30px;
+        //border-radius: 5px;
+        //background: var(--primary);
+        //padding: 10px 30px;
         box-sizing: border-box;
         border: none;
         margin: 0;
         @include body;
-        transition: background 0.4s, color .4s ease-out;
-
-        &:hover {
-            background: var(--primaryH);
-        }
     }
 
     input[type=file] {

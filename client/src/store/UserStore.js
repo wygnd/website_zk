@@ -52,7 +52,6 @@ export default class UserStore {
     try {
       const response = await AuthService.logout();
       localStorage.removeItem("token");
-      console.log(response);
       this.setIsAuth(false);
       this.setUser({});
       return response.data.message;
@@ -67,11 +66,14 @@ export default class UserStore {
       const response = await axios.get(`${API_URL}/users/refresh`, {
         withCredentials: true,
       });
+
       localStorage.setItem("token", response.data.accessToken);
       this.setIsAuth(true);
       this.setUser(response.data.user);
+      return true;
     } catch(error) {
-      throw error.response?.data?.message;
+      console.log(error);
+      return {status: false, message: error.response?.data?.message};
     } finally {
       this.setLoading(false);
     }
