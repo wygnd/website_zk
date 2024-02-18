@@ -16,7 +16,7 @@ const Main = observer(() => {
       <CollectionsBlock />
       <AboutBlock />
       <GalleryBlock />
-      {/*<ContactsBlock />*/}
+      <ContactsBlock />
     </main>
   );
 });

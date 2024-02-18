@@ -14,7 +14,7 @@ const SocialsHolder = observer(() => {
             <div className={cl.socialsHolder}>
                 {basicStore.socials.length === 0
                     ?
-                    <h4>Соц. сетей не найдено</h4>
+                    <h4 className={cl.not_found}>Соц. сетей не найдено</h4>
                     :
                     basicStore.socials.map(el =>
                         <SocialItem

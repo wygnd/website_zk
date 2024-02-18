@@ -103,8 +103,7 @@ const EmailsHolder = observer(() => {
 
     return (
         <div className={cl.emailsHolder}>
-            <div className={cl.emailsName}>Электронная почта</div>
-            {basicStore.emails
+            {basicStore.emails.length !== 0
                 ?
                 <div className={cl.emailsWrapper}>
                     {basicStore.emails.map(el =>
@@ -137,7 +136,7 @@ const EmailsHolder = observer(() => {
                     )}
                 </div>
                 :
-                <div className={cl.notFound}>Записей нет</div>
+                <h4 className={cl.notFound}>Записей нет</h4>
             }
             <div className={cl.addEmailHolder}>
                 <Input

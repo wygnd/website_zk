@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, {createContext, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserStore from './store/UserStore';
@@ -12,23 +12,31 @@ import CollectionsStore from './store/collectionsStore';
 import aboutStore from './store/aboutStore';
 import GalleryBlockStore from './store/galleryBlockStore';
 import ContactsStore from './store/contactsStore';
+import Loading from "./components/Loading/Loading";
 
 export const ContextMain = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
-    <ContextMain.Provider value={{
-        userStore: new UserStore(),
-        menuElements: new NavBarStore(),
-        galleryStore: new GalleryStore(),
-        basicStore: new BasicStore(),
-        mainBlockStore: new MainBlockStore(),
-        tourStore: new TourStore(),
-        collections: new CollectionsStore(),
-        about: new aboutStore(),
-        galleryBlock: new GalleryBlockStore(),
-        contactsStore: new ContactsStore(),
-    }}>
-        <App />
-    </ContextMain.Provider>
+	<ContextMain.Provider value={{
+		userStore: new UserStore(),
+		menuElements: new NavBarStore(),
+		galleryStore: new GalleryStore(),
+		basicStore: new BasicStore(),
+		mainBlockStore: new MainBlockStore(),
+		tourStore: new TourStore(),
+		collections: new CollectionsStore(),
+		about: new aboutStore(),
+		galleryBlock: new GalleryBlockStore(),
+		contactsStore: new ContactsStore(),
+	}}>
+		<App/>
+	</ContextMain.Provider>
 );
+
+
+
+
+
+

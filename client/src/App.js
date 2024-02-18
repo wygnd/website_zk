@@ -14,6 +14,7 @@ import {createFilePath, getFullImageById, getImageById} from "./http/galleryAPI"
 import uuid from "react-uuid";
 import {fetchGallery} from "./http/galleryBlockAPI";
 import Loading from "./components/Loading/Loading";
+import {YMaps} from "@pbe/react-yandex-maps";
 
 const App = observer(() => {
 	const {
@@ -65,7 +66,7 @@ const App = observer(() => {
 		fetchItems("soc").then((res) => {
 			const dataRequest = [];
 			if(res.data.length === 0) {
-				basicStore.setSocials(null);
+				basicStore.setSocials([]);
 				return;
 			}
 			res.data.forEach((soc) => {
@@ -133,24 +134,16 @@ const App = observer(() => {
 	}, [about.update]);
 
 	useEffect(() => {
-	  fetchGallery().then((res) => {
-	    res.map((el) =>
-	      getImageById(el?.galleryId).then((res) => {
-	        galleryBlock.setGallery([...galleryBlock.images, res,]);
-	      })
-	    );
-	  });
+		fetchGallery().then((res) => {
+			res.map((el) =>
+				getImageById(el?.galleryId).then((res) => {
+					galleryBlock.setGallery([...galleryBlock.images, res,]);
+				})
+			);
+		});
 	}, [galleryBlock.update]);
-	//
-	// useEffect(() => {
-	//   fetchItem("map").then((res) => {
-	//     contactsStore.setMap([
-	//       res.metaValue.split("+")[0],
-	//       res.metaValue.split("+")[1],
-	//     ]);
-	//   });
-	// }, []);
-	//
+
+
 	// useEffect(() => {
 	//   fetchItems("email").then((data) => {
 	//     basicStore.setEmails(data);
@@ -169,21 +162,6 @@ const App = observer(() => {
 		});
 	}, [basicStore.update]);
 
-	function loadingPage() {
-		basicStore.setLoadingPage(false);
-	}
-
-	useEffect(() => {
-		window.addEventListener('load', loadingPage)
-
-		return () => {
-			window.removeEventListener('load', loadingPage)
-		}
-	}, [userStore.isLoading])
-
-	if(basicStore.loadingPage) {
-		return <Loading/>
-	}
 
 	if(userStore.isLoading) {
 		return <Loading/>
@@ -209,7 +187,14 @@ const App = observer(() => {
 			</Helmet>
 			<BrowserRouter>
 				<Header/>
-				<AppRouter/>
+				<YMaps query={{
+					lang: "ru_RU",
+					suggest_apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
+					apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
+
+				}}>
+					<AppRouter/>
+				</YMaps>
 				<Footer/>
 			</BrowserRouter>
 		</>

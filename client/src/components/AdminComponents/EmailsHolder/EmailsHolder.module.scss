@@ -7,9 +7,8 @@
 }
 
 .notFound {
-    @include h4;
-    color: var(--black);
-    text-align: center;
+    @include h6;
+    color: var(--text1);
 }
 
 .emailItem {

@@ -1,96 +1,106 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 
 export default class BasicStore {
-    constructor() {
-        this._logo = {};
-        this._phones = [];
-        this._socials = [];
-        this._emails = [];
-        this._siteTitle = {};
-        this._siteDesc = {};
-        this._update = false;
-        this._loading = false;
-        this._loadingPage = true;
+	constructor() {
+		this._logo = {};
+		this._phones = [];
+		this._socials = [];
+		this._emails = [];
+		this._siteTitle = {};
+		this._siteDesc = {};
+		this._update = false;
+		this._loading = false;
+		this._loadingPage = true;
+		this._map = [59.230757, 39.898394];
 
-        makeAutoObservable(this);
-    }
+		makeAutoObservable(this);
+	}
 
-    setPhones(phones) {
-        this._phones = phones;
-    }
+	setMap(map) {
+		this._map = map;
+	}
 
-    setUpdate(bool) {
-        this._update = bool;
-    }
+	get map() {
+		return this._map;
+	}
 
-    addPhone(phone) {
-        this._phones = this._phones.push(phone);
-    }
+	setPhones(phones) {
+		this._phones = phones;
+	}
 
-    setLogo(logo) {
-        this._logo = logo;
-    }
+	setUpdate(bool) {
+		this._update = bool;
+	}
 
-    setSocials(socials) {
-        this._socials = socials;
-    }
+	addPhone(phone) {
+		this._phones = this._phones.push(phone);
+	}
 
-    getPhone(id) {
-        return this.phones.filter(p => p.id !== id);
-    }
-    setEmails(emails) {
-        this._emails = emails;
-    }
+	setLogo(logo) {
+		this._logo = logo;
+	}
 
-    setSiteTitle(data) {
-        this._siteTitle = data;
-    }
+	setSocials(socials) {
+		this._socials = socials;
+	}
 
-    setSiteDesc(data) {
-        this._siteDesc = data;
-    }
+	getPhone(id) {
+		return this.phones.filter(p => p.id !== id);
+	}
 
-    setLoading(boolean) {
-        this._loading = boolean;
-    }
+	setEmails(emails) {
+		this._emails = emails;
+	}
 
-    setLoadingPage(boolean) {
-        this._loadingPage = boolean;
-    }
+	setSiteTitle(data) {
+		this._siteTitle = data;
+	}
 
-    get phones() {
-        return this._phones;
-    }
+	setSiteDesc(data) {
+		this._siteDesc = data;
+	}
 
-    get update() {
-        return this._update;
-    }
+	setLoading(boolean) {
+		this._loading = boolean;
+	}
 
-    get logo() {
-        return this._logo;
-    }
+	setLoadingPage(boolean) {
+		this._loadingPage = boolean;
+	}
 
-    get socials() {
-        return this._socials;
-    }
+	get phones() {
+		return this._phones;
+	}
 
-    get emails() {
-        return this._emails;
-    }
+	get update() {
+		return this._update;
+	}
 
-    get siteTitle() {
-        return this._siteTitle;
-    }
+	get logo() {
+		return this._logo;
+	}
 
-    get siteDesc() {
-        return this._siteDesc;
-    }
+	get socials() {
+		return this._socials;
+	}
 
-    get loading() {
-        return this._loading;
-    }
+	get emails() {
+		return this._emails;
+	}
 
-    get loadingPage() {
-        return this._loadingPage;
-    }
+	get siteTitle() {
+		return this._siteTitle;
+	}
+
+	get siteDesc() {
+		return this._siteDesc;
+	}
+
+	get loading() {
+		return this._loading;
+	}
+
+	get loadingPage() {
+		return this._loadingPage;
+	}
 }
