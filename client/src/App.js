@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Helmet} from "react-helmet";
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
@@ -10,7 +10,7 @@ import {fetchSlides} from "./http/mainBlockAPI";
 import {fetchItem, fetchItems} from "./http/basicAPI";
 import {fetchLastTour, fetchTours} from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
-import {createFilePath, getFullImageById, getImageById} from "./http/galleryAPI";
+import {getImageById} from "./http/galleryAPI";
 import uuid from "react-uuid";
 import {fetchGallery} from "./http/galleryBlockAPI";
 import Loading from "./components/Loading/Loading";
@@ -25,11 +25,10 @@ const App = observer(() => {
 		collections,
 		about,
 		galleryBlock,
-		contactsStore,
 	} = useContext(ContextMain);
 	const [siteTitle, setSiteTitle] = useState("");
 	const [siteDesc, setSiteDesc] = useState("");
-
+	
 	useEffect(() => {
 		if(localStorage.getItem("token")) {
 			userStore.checkAuth().then(data => {
@@ -41,7 +40,7 @@ const App = observer(() => {
 			});
 		}
 	}, []);
-
+	
 	useEffect(() => {
 		fetchSlides().then((data) => {
 			if(data.length === 0) {
@@ -51,7 +50,7 @@ const App = observer(() => {
 			mainBlockStore.setSlides(data);
 		});
 	}, [mainBlockStore.update]);
-
+	
 	useEffect(() => {
 		fetchItem("logo").then((data) => {
 			getImageById(data.metaValue, "full").then((res) => {
@@ -75,25 +74,28 @@ const App = observer(() => {
 					metaValue: soc.metaValue.split("+")[0],
 					iconId: soc.metaValue.split("+")[1],
 				};
-
+				
 				dataRequest.push(dataSoc);
 			});
 			basicStore.setSocials(dataRequest);
 		});
+		fetchItems("email").then((res) => {
+			basicStore.setEmails(res.data);
+		});
 	}, [basicStore.update]);
-
+	
 	useEffect(() => {
 		fetchTours().then((data) => {
 			tourStore.setTours(data || []);
 		});
 	}, [tourStore.update]);
-
+	
 	useEffect(() => {
 		fetchLastTour().then(data => {
 			if(!data) return;
 			tourStore.setLastItem(data);
 		})
-
+		
 		fetchItem("lastTourVisible").then((data) => {
 			if(data.metaValue === "0") {
 				tourStore.setLastItemVisible(false);
@@ -102,12 +104,12 @@ const App = observer(() => {
 			}
 		});
 	}, [tourStore.updateLastItem]);
-
+	
 	useEffect(() => {
 		fetchItem("collections_desc").then((data) => {
 			collections.setDesc(data);
 		});
-
+		
 		fetchItem("collections_images").then((data) => {
 			if(!data) return;
 			collections.setGallery([]);
@@ -120,19 +122,19 @@ const App = observer(() => {
 			collections.setCountImages(data.metaValue.split("+").length);
 		});
 	}, [collections.update]);
-
+	
 	useEffect(() => {
 		fetchItem("about_desc").then((data) => {
 			about.setDesc(data.metaValue);
 		});
-
+		
 		fetchItem("about_image").then((data) => {
 			getImageById(data.metaValue).then((res) => {
 				about.setImage(res);
 			});
 		});
 	}, [about.update]);
-
+	
 	useEffect(() => {
 		fetchGallery().then((res) => {
 			res.map((el) =>
@@ -142,31 +144,25 @@ const App = observer(() => {
 			);
 		});
 	}, [galleryBlock.update]);
-
-
-	// useEffect(() => {
-	//   fetchItems("email").then((data) => {
-	//     basicStore.setEmails(data);
-	//   });
-	// }, [basicStore.update]);
-	//
+	
+	
 	useEffect(() => {
 		fetchItem("siteTitle").then((data) => {
 			basicStore.setSiteTitle(data);
 			setSiteTitle(data?.metaValue);
 		});
-
+		
 		fetchItem("siteDesc").then((data) => {
 			basicStore.setSiteDesc(data);
 			setSiteDesc(data?.metaValue);
 		});
 	}, [basicStore.update]);
-
-
+	
+	
 	if(userStore.isLoading) {
 		return <Loading/>
 	}
-
+	
 	return (
 		<>
 			<Helmet>
@@ -191,7 +187,7 @@ const App = observer(() => {
 					lang: "ru_RU",
 					suggest_apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
 					apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
-
+					
 				}}>
 					<AppRouter/>
 				</YMaps>

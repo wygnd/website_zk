@@ -39,6 +39,7 @@ const MyMap = observer(({className}) => {
 						center: [59.220501, 39.891525],
 						zoom: 13,
 						controls: [],
+
 					}}
 					width=""
 					height="400px"
@@ -54,18 +55,19 @@ const MyMap = observer(({className}) => {
 	} else {
 		return (
 			<Map
+				className={className}
 				defaultState={{
 					center: [59.220501, 39.891525],
 					zoom: 13,
 					controls: [],
 				}}
-				width=""
 				height="400px"
 			>
 				<Placemark geometry={basicStore.map}/>
 				<FullscreenControl/>
 				<ZoomControl/>
 				<TypeSelector/>
+				
 			</Map>
 		);
 	}

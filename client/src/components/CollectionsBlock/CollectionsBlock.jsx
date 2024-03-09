@@ -1,14 +1,13 @@
 import {observer} from "mobx-react-lite";
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 import cl from "./CollectionsBlock.module.scss";
 import {ContextMain} from "../..";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Navigation} from "swiper/modules";
-import {SERVER_URL} from "../../utils/consts";
 import Fancybox from "../Fancybox";
-import {AiOutlineEye} from "react-icons/ai";
 import "swiper/css";
 import "swiper/css/navigation";
+import Container from "../Container/Container";
 
 const CollectionsBlock = observer(() => {
 	const {collections} = useContext(ContextMain);
@@ -17,8 +16,8 @@ const CollectionsBlock = observer(() => {
 	const [textBtn, setTextBtn] = useState('Показать еще');
 	const navigationNextRef = useRef(null);
 	const navigationPrevRef = useRef(null);
-
-	const handlerButton = (e) => {
+	
+	const handlerButton = () => {
 		setHidden(!hidden);
 		if(textBtn === "Показать еще") {
 			setTextBtn("Скрыть");
@@ -26,10 +25,10 @@ const CollectionsBlock = observer(() => {
 			setTextBtn("Показать еще")
 		}
 	}
-
+	
 	return (
 		<div id="collections__block" className={cl.collectionsBlock}>
-			<div className="container">
+			<Container>
 				<h2 className={cl.blockTitle}>Коллекция</h2>
 				<div className={cl.collectionsHolder}>
 					{collections?.desc && (
@@ -82,10 +81,13 @@ const CollectionsBlock = observer(() => {
 														alt={item?.file_name}
 														className="swiper-lazy"
 													/>
-													<div className={cl.hoverImage}>
-														<AiOutlineEye size={40} color="white"/>
-														Посмотреть
-													</div>
+													<span className={cl.imageItem__hover}>
+														<svg width="35" height="35" viewBox="0 0 35 35" fill="none"
+														     xmlns="http://www.w3.org/2000/svg">
+															<path d="M30.367 17.2C30.367 18.9 24.7003 25.7 17.617 25.7C10.5337 25.7 4.867 18.9 4.867 17.2C4.867 15.5 10.5337 8.70001 17.617 8.70001C24.7003 8.70001 30.367 15.5 30.367 17.2Z" stroke="white" strokeWidth="2"/>
+															<path d="M21.867 17.2C21.867 18.3272 21.4192 19.4082 20.6222 20.2052C19.8252 21.0022 18.7442 21.45 17.617 21.45C16.4898 21.45 15.4088 21.0022 14.6118 20.2052C13.8148 19.4082 13.367 18.3272 13.367 17.2C13.367 16.0728 13.8148 14.9918 14.6118 14.1948C15.4088 13.3978 16.4898 12.95 17.617 12.95C18.7442 12.95 19.8252 13.3978 20.6222 14.1948C21.4192 14.9918 21.867 16.0728 21.867 17.2Z" stroke="white" strokeWidth="2"/>
+														</svg>
+													</span>
 												</a>
 											</SwiperSlide>
 									)}
@@ -132,7 +134,7 @@ const CollectionsBlock = observer(() => {
 						)}
 					</div>
 				</div>
-			</div>
+			</Container>
 		</div>
 	);
 });

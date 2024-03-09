@@ -16,6 +16,11 @@
     align-items: center;
     gap: 30px;
     justify-content: space-between;
+
+    &__value {
+        @include h6;
+        color: var(--text1);
+    }
 }
 
 .changeHolderItem {
@@ -57,8 +62,8 @@
 .emailsWrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
 .addEmailHolder {

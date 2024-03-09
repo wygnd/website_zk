@@ -6,7 +6,7 @@
 
 .blockTitle {
     @include h2;
-    color: var(--text1);
+    color: var(--head);
     margin-bottom: 40px;
 }
 
@@ -17,7 +17,7 @@
 
 .aboutHolder {
     display: flex;
-    gap: 30px;
+    gap: 40px;
 }
 
 .leftSide {
@@ -79,7 +79,7 @@
 
     p {
         text-align: justify;
-        @include bodyM;
+        @include p40020_130;
         color: var(--text1);
         margin: 0;
     }

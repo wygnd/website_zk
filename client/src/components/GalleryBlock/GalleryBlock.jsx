@@ -6,9 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { SERVER_URL } from "../../utils/consts";
 import Fancybox from "../Fancybox";
 import { AiOutlineEye } from "react-icons/ai";
+import Container from "../Container/Container";
 
 const GalleryBlock = observer(() => {
   const { galleryBlock } = useContext(ContextMain);
@@ -21,7 +21,7 @@ const GalleryBlock = observer(() => {
 
   return (
     <div id="gallery__block" className={cl.galleryBlock}>
-      <div className="container">
+      <Container>
         <h2 className={cl.blockTitle}>Галерея</h2>
         <Fancybox
           options={{
@@ -125,7 +125,7 @@ const GalleryBlock = observer(() => {
             </div>
           </div>
         </Fancybox>
-      </div>
+      </Container>
     </div>
   );
 });

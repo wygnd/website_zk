@@ -3,7 +3,7 @@
 	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 400;
-	src: url("TildaSans-Black-Regular.otf") format("OpenType");
+	src: url("TildaSans-Regular.ttf") format("TrueType");
 }
 
 @font-face {
@@ -11,7 +11,7 @@
 	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 500;
-	src: url("TildaSans-Black-Medium.otf") format("OpenType");
+	src: url("TildaSans-Medium.ttf") format("TrueType");
 }
 
 @font-face {
@@ -19,7 +19,7 @@
 	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 600;
-	src: url("TildaSans-Black-SemiBold.otf") format("OpenType");
+	src: url("TildaSans-Semibold.ttf") format("TrueType");
 }
 
 @font-face {
@@ -27,7 +27,7 @@
 	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 700;
-	src: url("TildaSans-Black-Bold.otf") format("OpenType");
+	src: url("TildaSans-Bold.ttf") format("TrueType");
 }
 
 @font-face {
@@ -35,5 +35,5 @@
 	font-family: "TildaSans";
 	font-style: normal;
 	font-weight: 900;
-	src: url("TildaSans-Black-ExtraBold.otf") format("OpenType");
+	src: url("TildaSans-ExtraBold.ttf") format("TrueType");
 }

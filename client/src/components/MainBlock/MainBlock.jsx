@@ -7,6 +7,7 @@ import cl from "./MainBlock.module.scss";
 import "swiper/css";
 import {ContextMain} from "../..";
 import {createFilePath} from "../../http/galleryAPI";
+import Container from "../Container/Container";
 
 const MainBlock = observer(() => {
 	const {mainBlockStore} = useContext(ContextMain);
@@ -48,7 +49,7 @@ const MainBlock = observer(() => {
 						return file_path_full &&
 							<SwiperSlide key={slide.id}>
 								<div className={cl.mainItem}>
-									<div className="container">
+									<Container>
 										<div className={cl.itemHolder}>
 											<div className={cl.titleItem}>{slide.title}</div>
 											<div className={cl.descItem}>{slide.desc}</div>
@@ -59,11 +60,11 @@ const MainBlock = observer(() => {
 													target="_blank"
 													rel="noreferrer"
 												>
-													В бутылочку
+													{slide.textButton}
 												</a>
 											)}
 										</div>
-									</div>
+									</Container>
 									<div className={cl.imageBackground}>
 										<picture>
 											<source srcSet={file_path_medium} media="(max-width: 992px)"/>

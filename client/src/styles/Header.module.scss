@@ -60,7 +60,7 @@
 .navLink {
     cursor: pointer;
     @include body;
-    color: var(--text1);
+    color: var(--head);
     text-decoration: none;
     position: relative;
     transition: color .4s ease-out;

@@ -108,7 +108,7 @@ const EmailsHolder = observer(() => {
                 <div className={cl.emailsWrapper}>
                     {basicStore.emails.map(el =>
                         <div key={el.id} className={cl.emailItem}>
-                            <div className={cl.valueItem}>{el.metaValue}</div>
+                            <div className={cl.emailItem__value}>{el.metaValue}</div>
                             <div className={cl.changeHolderItem}>
                                 <FaPen
                                     className={cl.itemChange}

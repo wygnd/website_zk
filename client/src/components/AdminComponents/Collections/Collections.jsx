@@ -2,18 +2,15 @@ import React, {useContext, useEffect, useMemo, useState} from "react";
 import cl from "./Collections.module.scss";
 import {observer} from "mobx-react-lite";
 import {ContextMain} from "../../..";
-import Textarea from "../../Textarea/Textarea";
 import ModalGallery from "../ModalGallery/ModalGallery";
 import {createFilePath, getImageById} from "../../../http/galleryAPI";
-import {BsFillPlusSquareFill, BsFillTrashFill} from "react-icons/bs";
 import uuid from "react-uuid";
-// import Button from "../../Button";
 import {saveBlockDesc, saveBlockGallery} from "../../../http/collectionsAPI";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import {CiSquarePlus} from "react-icons/ci";
 import Form from "react-bootstrap/Form";
-
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const Collections = observer(({className}) => {
 	const {collections, galleryStore} = useContext(ContextMain);
@@ -21,16 +18,16 @@ const Collections = observer(({className}) => {
 	const [modal, setModal] = useState(false);
 	const [imageId, setImageId] = useState(null);
 	const [validate, setValidate] = useState(false);
-
+	
 	useEffect(() => {
 		setDesc(collections?.desc?.metaValue);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
+	
 	useEffect(() => {
-
+	
 	}, [collections.update])
-
+	
 	useMemo(() => {
 		if(!imageId) return;
 		getImageById(imageId).then((response) => {
@@ -38,7 +35,7 @@ const Collections = observer(({className}) => {
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageId]);
-
+	
 	const saveSettings = async (event) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -65,7 +62,7 @@ const Collections = observer(({className}) => {
 					galleryStore.setModalErr(false);
 				}, 2000);
 			});
-
+		
 		await saveBlockDesc(desc).catch((error) => {
 			galleryStore.setModalErr(true);
 			galleryStore.setModalMsg(error.message);
@@ -73,7 +70,7 @@ const Collections = observer(({className}) => {
 				galleryStore.setModalErr(false);
 			}, 2000);
 		});
-
+		
 		collections.setUpdate(!collections.update);
 		galleryStore.setModalSucc(true);
 		galleryStore.setModalMsg("Блок успешно сохранен");
@@ -82,10 +79,11 @@ const Collections = observer(({className}) => {
 			galleryStore.setModalSucc(false);
 		}, 2000);
 	};
-
+	
 	const removeItem = async (e) => {
 		const arrayImages = collections.removeImageGallery(e.currentTarget.dataset.id);
 		const imageIds = [];
+		// eslint-disable-next-line
 		arrayImages.map(img => {
 			imageIds.push(img.id);
 		});
@@ -104,10 +102,11 @@ const Collections = observer(({className}) => {
 					galleryStore.setModalErr(false);
 				}, 2000);
 			});
-
+		
 		collections.setUpdate(!collections.update);
 	};
-
+	
+	
 	return (
 		<>
 			<Form noValidate validated={validate} onSubmit={saveSettings} className="d-flex flex-column">
@@ -121,6 +120,7 @@ const Collections = observer(({className}) => {
 						required
 					/>
 				</Form.Group>
+				
 				{collections.gallery ? (
 					<div className={cl.galleryHolder}>
 						{collections.gallery.map((el) => {

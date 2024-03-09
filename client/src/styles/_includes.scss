@@ -93,3 +93,21 @@
   font-weight: 400;
   line-height: 150%;
 }
+
+@mixin p40020 {
+  font-size: calcFluidFontSize(16, 20);
+  font-weight: 400;
+  line-height: 120%;
+}
+
+@mixin p40020_130 {
+  font-size: calcFluidFontSize(16, 20);
+  font-weight: 400;
+  line-height: 130%
+}
+
+@mixin p40020_100 {
+  font-size: calcFluidFontSize(16, 20);
+  font-weight: 400;
+  line-height: 100%
+}
