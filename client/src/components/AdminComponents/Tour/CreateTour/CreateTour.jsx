@@ -1,26 +1,20 @@
 import React, {useContext, useEffect, useState} from 'react';
 import cl from './CreateTour.module.scss';
-import {FaArrowDown} from 'react-icons/fa'
-import Input from '../../../Input/Input';
 import ModalGallery from '../../ModalGallery/ModalGallery';
-import {SERVER_URL} from '../../../../utils/consts';
 import {getImageById} from '../../../../http/galleryAPI';
 import {createTour} from '../../../../http/toursAPI';
 import ModalSuccess from '../../ModalSuccess/ModalSuccess';
-import ModalError from '../../ModalError/ModalError';
 import {observer} from 'mobx-react-lite';
 import {ContextMain} from '../../../..';
 import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import Figure from "react-bootstrap/Figure";
 
 const CreateTour = observer(() => {
 
   const {tourStore, galleryStore} = useContext(ContextMain);
-  const [acc, setAcc] = useState(false);
+  // const [acc, setAcc] = useState(false);
   const [name, setName] = useState('');
   const [linkButton, setLinkButton] = useState('');
   const [textButton, setTextButton] = useState('');
@@ -29,7 +23,7 @@ const CreateTour = observer(() => {
   const [messageModal, setMessageModal] = useState('');
   const [openModal, setOpenModal] = useState(false);
   const [modalSucc, setModalSucc] = useState(false);
-  const [modalErr, setModalErr] = useState(false);
+  // const [modalErr, setModalErr] = useState(false);
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
 

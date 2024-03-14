@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import cl from "./Main.module.scss";
 import { ContextMain } from "../../..";
 import CreateMainBlockPost from "./CreateMainBlockPost/CreateMainBlockPost";

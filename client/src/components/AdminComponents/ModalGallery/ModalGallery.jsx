@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useMemo, useState} from "react";
 import cl from "./ModalGallery.module.scss";
-import {SERVER_URL} from "../../../utils/consts";
 import {observer} from "mobx-react-lite";
 import {ContextMain} from "../../..";
 import {

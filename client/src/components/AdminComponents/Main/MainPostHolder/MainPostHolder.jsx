@@ -18,6 +18,7 @@ const MainPostHolder = observer(() => {
 
 	useEffect(() => {
 		if(mainBlockStore.slides.length === 0) return false;
+		// eslint-disable-next-line
 	}, [mainBlockStore.updateSlide]);
 
 	const removeitem = async (e) => {

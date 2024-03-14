@@ -4,7 +4,6 @@ import { observer } from "mobx-react-lite";
 import { ContextMain } from "../../..";
 import ModalGallery from "../ModalGallery/ModalGallery";
 import { setItem } from "../../../http/basicAPI";
-import { SERVER_URL } from "../../../utils/consts";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";

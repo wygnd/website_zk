@@ -3,7 +3,6 @@ import {ContextMain} from '../..';
 import cl from './Socials.module.scss';
 import {observer} from 'mobx-react-lite';
 import SocialItem from '../SocialItem';
-import {getImageById} from "../../http/galleryAPI";
 
 const Socials = observer(({mobile}) => {
 	const {basicStore} = useContext(ContextMain);

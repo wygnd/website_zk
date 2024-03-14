@@ -2,37 +2,35 @@ import React, {useContext, useEffect, useState} from 'react';
 import cl from './LastItem.module.scss';
 import {observer} from 'mobx-react-lite';
 import {ContextMain} from '../../../..';
-import {createFilePath, getImageById} from '../../../../http/galleryAPI';
+import {getImageById} from '../../../../http/galleryAPI';
 import {FaPen} from 'react-icons/fa';
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai';
 import {changeOne, changeTour} from '../../../../http/toursAPI';
 import ModalGallery from '../../ModalGallery/ModalGallery';
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import Figure from "react-bootstrap/Figure";
 
 const LastItem = observer(() => {
-
+	
 	const {tourStore, galleryStore} = useContext(ContextMain);
 	const [name, setName] = useState('');
 	const [link, setLink] = useState('');
 	const [imageId, setImageId] = useState();
 	const [image, setImage] = useState('');
-	const [modal, setModal] = useState(false);
+	const [, setModal] = useState(false);
 	const [modalGallery, setModalGallery] = useState(false);
 	const [show, setShow] = useState(false);
 	const [validated, setValidated] = useState(false);
-
+	
 	useEffect(() => {
 		setName(tourStore.lastItem.tour_name);
 		setLink(tourStore.lastItem.linkButton);
 		setImageId(tourStore.lastItem.galleryId);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [tourStore.update]);
-
+	
 	useEffect(() => {
 		if(!imageId) return;
 		getImageById(imageId, 'thumbnail')
@@ -40,7 +38,7 @@ const LastItem = observer(() => {
 				setImage(res);
 			})
 	}, [imageId]);
-
+	
 	const setVisibleLastItem = async () => {
 		await changeOne('lastTourVisible', !tourStore.lastItemVisible)
 			.then(() => {
@@ -48,7 +46,7 @@ const LastItem = observer(() => {
 				tourStore.setUpdate(!tourStore.update);
 			})
 	}
-
+	
 	const saveLastItem = async (event) => {
 		event.preventDefault();
 		event.stopPropagation();
@@ -57,7 +55,7 @@ const LastItem = observer(() => {
 			setValidated(true);
 			return;
 		}
-
+		
 		setValidated(false);
 		if(name === tourStore.lastItem.tour_name && link === tourStore.lastItem.linkButton && imageId === tourStore.lastItem.galleryId) {
 			setModal(false);
@@ -68,7 +66,7 @@ const LastItem = observer(() => {
 			}, 2000);
 			return;
 		}
-
+		
 		await changeTour(tourStore.lastItem.tour_id, name, null, link, imageId)
 			.then(() => {
 				setShow(false);
@@ -88,10 +86,10 @@ const LastItem = observer(() => {
 				}, 2000);
 			})
 	}
-
+	
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-
+	
 	return (
 		<>
 			<div

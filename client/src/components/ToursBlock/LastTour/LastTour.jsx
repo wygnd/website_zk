@@ -5,18 +5,19 @@ import {getImageById} from "../../../http/galleryAPI";
 import {ContextMain} from "../../../index";
 
 const LastTour = observer(() => {
-
+	
 	const {tourStore} = useContext(ContextMain);
 	const [file, setFile] = useState('');
-
+	
 	useEffect(() => {
-		if(!tourStore?.lastItem) return;
-		getImageById(tourStore?.lastItem?.galleryId)
+		if(!tourStore.lastItem) return;
+		getImageById(tourStore.lastItem.galleryId)
 			.then(res => {
 				setFile(res)
 			});
+		// eslint-disable-next-line
 	}, [tourStore.updateLastItem])
-
+	
 	return (
 		<a href={tourStore.lastItem.linkButton} className={cl.lastItem} target="_blank" rel="noreferrer">
 			<div className={cl.lastItemName}>{tourStore?.lastItem?.tour_name}</div>

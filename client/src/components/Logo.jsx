@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 import headerClasses from "../styles/Header.module.scss";
 import {observer} from "mobx-react-lite";
 import {ContextMain} from "..";
-import {SERVER_URL} from "../utils/consts";
-import {createFilePath} from "../http/galleryAPI";
 
 const Logo = observer(() => {
 	const {basicStore} = useContext(ContextMain);

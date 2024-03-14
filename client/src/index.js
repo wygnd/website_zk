@@ -1,4 +1,4 @@
-import React, {createContext, useEffect} from 'react';
+import React, {createContext} from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserStore from './store/UserStore';
@@ -12,7 +12,6 @@ import CollectionsStore from './store/collectionsStore';
 import aboutStore from './store/aboutStore';
 import GalleryBlockStore from './store/galleryBlockStore';
 import ContactsStore from './store/contactsStore';
-import Loading from "./components/Loading/Loading";
 
 export const ContextMain = createContext(null);
 

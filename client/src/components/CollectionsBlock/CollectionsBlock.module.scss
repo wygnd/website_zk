@@ -7,7 +7,7 @@
 .blockTitle {
   @include h2;
   color: var(--head);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .collectionsHolder {
@@ -18,7 +18,7 @@
 .leftSide {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  //justify-content: space-between;
   gap: 20px;
   width: 50%;
 

@@ -2,12 +2,10 @@ import {observer} from 'mobx-react-lite';
 import React, {useContext, useEffect, useMemo, useState} from 'react';
 import cl from './About.module.scss';
 import {ContextMain} from '../../..';
-import {SERVER_URL} from '../../../utils/consts';
 import {getImageById} from '../../../http/galleryAPI';
 import ModalGallery from '../ModalGallery/ModalGallery';
 import {saveBlockDesc, saveBlockGallery} from '../../../http/aboutAPI';
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 const About = observer(({className}) => {

@@ -1,116 +1,135 @@
 @import '../../styles/includes';
 
 .aboutBlock {
-    padding: 30px 0
+  padding: 30px 0
 }
 
 .blockTitle {
-    @include h2;
-    color: var(--head);
-    margin-bottom: 40px;
+  @include h2;
+  color: var(--head);
+  margin-bottom: 20px;
 }
 
 .collectionsHolder {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .aboutHolder {
-    display: flex;
-    gap: 40px;
+  display: flex;
+  gap: 40px;
 }
 
 .leftSide {
-    width: 50%;
-    min-height: 385px;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
+  width: 50%;
+  min-height: 385px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--primary);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .3s ease-out;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    &:hover {
-        &::before {
-            opacity: .8;
-        }
-
-        .hoverImage {
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-}
-
-.hoverImage {
+  &__hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background: var(--primary);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--bg1);
-    @include h5;
+    opacity: 0;
+    transition: opacity .4s ease-out;
+
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--head);
+    opacity: 0;
     pointer-events: none;
-    transition: transform .3s ease-out;
+    transition: opacity .4s ease-out;
+  }
+
+  &:hover {
+    &::before {
+      opacity: .6;
+    }
+
+    .leftSide {
+      &__hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.hoverImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg1);
+  @include h5;
+  pointer-events: none;
+  transition: transform .3s ease-out;
 }
 
 .rightSide {
-    width: 50%;
+  width: 50%;
 
-    p {
-        text-align: justify;
-        @include p40020_130;
-        color: var(--text1);
-        margin: 0;
-    }
+  p {
+    text-align: justify;
+    @include p40020_130;
+    color: var(--text1);
+    margin: 0;
+  }
 }
 
 @media (max-width: 992px) {
-    .aboutBlock {
-        padding: 20px 0;
-    }
+  .aboutBlock {
+    padding: 20px 0;
+  }
 
-    .blockTitle {
-        margin-bottom: 20px;
-    }
+  .blockTitle {
+    margin-bottom: 20px;
+  }
 
-    .aboutHolder {
-        flex-direction: column-reverse;
-        gap: 20px;
-    }
+  .aboutHolder {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
 
-    .leftSide {
-        width: 100%;
-        height: 385px;
-    }
+  .leftSide {
+    width: 100%;
+    height: 385px;
+  }
 
-    .rightSide {
-        width: 100%;
-    }
+  .rightSide {
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
-    .leftSide {
-        height: 285px;
-    }
+  .leftSide {
+    height: 285px;
+  }
 }

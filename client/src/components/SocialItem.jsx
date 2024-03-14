@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { SERVER_URL } from '../utils/consts';
 import { getImageById } from '../http/galleryAPI';
 import { Link } from 'react-router-dom';
 

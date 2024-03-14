@@ -1,6 +1,5 @@
 import React, {useContext} from 'react';
 import cl from './ContactsBlock.module.scss';
-import {YMaps, Map, Placemark} from '@pbe/react-yandex-maps';
 import Phones from '../Phones/Phones';
 import Socials from '../Socials/Socials';
 import {observer} from 'mobx-react-lite';
@@ -11,7 +10,7 @@ import Container from "../Container/Container";
 
 const ContactsBlock = observer(() => {
 	
-	const {contactsStore, basicStore} = useContext(ContextMain);
+	const {basicStore} = useContext(ContextMain);
 	
 	
 	return (
