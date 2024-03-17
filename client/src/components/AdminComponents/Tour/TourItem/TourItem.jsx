@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from './TourItem.module.scss';
 
-const TourItem = ({ name, textButton, linkButton, galleryId, className }) => {
+const TourItem = ({ name, className }) => {
     return (
         <div className={className}>
             <div className={cl.name}>{name}</div>

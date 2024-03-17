@@ -49,7 +49,7 @@ class SettingsService {
       },
     });
     if(!dataSettings) {
-      throw ApiError.BadRequest(`Натсроект начинающиеся на ${name} не найдено`);
+      throw ApiError.BadRequest(`Настроект начинающиеся на ${name} не найдено`);
     }
     return dataSettings;
   }
