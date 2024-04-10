@@ -6,8 +6,7 @@
     left: 0;
     width: 100%;
     height: fit-content;
-    z-index: 100;
-    padding: 20px 0;
+    padding: 10px 0;
     box-shadow: none;
     background: var(--bg1);
     z-index: 999;
@@ -26,7 +25,7 @@
 }
 
 .logo_holder {
-    width: 200px;
+    width: 100px;
 
     img {
         width: 100%;

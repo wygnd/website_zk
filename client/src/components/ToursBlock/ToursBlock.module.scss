@@ -24,6 +24,7 @@
     flex-direction: column;
     justify-content: space-between;
     text-decoration: none;
+    min-height: 400px;
 
     .lastItemName {
         @include h3;

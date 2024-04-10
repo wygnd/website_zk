@@ -5,22 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1c1ba9a-fe30-4162-8c06-3d9e3490d26f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/TeamList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/TeamListItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/http/teamsApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/pages/Admin/AdminTabs.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/controllers/teamController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/teamRouter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/service/teamService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamsBlock.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamsBlock.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/textBlock/TextBlock.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/store/TeamsStore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItem/TourItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItem/TourItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AboutBlock/AboutBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AboutBlock/AboutBlock.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Fancybox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Fancybox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NavBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ToursBlock/TourItem/TourItem.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ToursBlock/TourItem/TourItem.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ToursBlock/ToursBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ToursBlock/ToursBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/pages/Admin/Admin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Admin/Admin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/settingsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/settingsController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/models.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/settingsService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/settingsService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Main/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Main/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/NavBarStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/NavBarStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/tourService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/tourService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +41,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;wygnd&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wygnd/website_zk.git&quot;,
+    &quot;accountId&quot;: &quot;f3144d47-c982-40ec-b7c4-bb998fff5f30&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -52,30 +68,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;prod__2&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.JavaScript&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\WebStorm\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "#3 on prod__2",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Visual code/website_zk/client/src/store",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.JavaScript",
+    "ts.external.directory.path": "D:\\WebStorm\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Visual code\website_zk\client\src\store" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Visual code\website_zk\client\src\styles" />
       <recent name="D:\Visual code\website_zk\client\src\components" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-WS-241.14494.235" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">

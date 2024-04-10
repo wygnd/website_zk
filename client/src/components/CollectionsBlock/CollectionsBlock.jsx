@@ -29,7 +29,7 @@ const CollectionsBlock = observer(() => {
 	return (
 		<div id="collections__block" className={cl.collectionsBlock}>
 			<Container>
-				<h2 className={cl.blockTitle}>Коллекция</h2>
+				<h2 className={cl.blockTitle}>Бар музей</h2>
 				<div className={cl.collectionsHolder}>
 					{collections?.desc && (
 						<div className={cl.leftSide}>

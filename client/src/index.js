@@ -12,6 +12,7 @@ import CollectionsStore from './store/collectionsStore';
 import aboutStore from './store/aboutStore';
 import GalleryBlockStore from './store/galleryBlockStore';
 import ContactsStore from './store/contactsStore';
+import TeamsStore from "./store/TeamsStore";
 
 export const ContextMain = createContext(null);
 
@@ -29,6 +30,7 @@ root.render(
 		about: new aboutStore(),
 		galleryBlock: new GalleryBlockStore(),
 		contactsStore: new ContactsStore(),
+		teamsStore: new TeamsStore(),
 	}}>
 		<App/>
 	</ContextMain.Provider>

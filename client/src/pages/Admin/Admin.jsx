@@ -35,14 +35,19 @@ const Admin = observer(() => {
 			text: "Главный блок",
 		},
 		{
-			id: 3,
-			icon: <MdOutlineCollectionsBookmark size={24}/>,
-			text: "Коллеция"
+			id: 7,
+			icon: <RiOrganizationChart size={24}/>,
+			text: "О проекте"
 		},
 		{
 			id: 4,
 			icon: <VscArchive size={24}/>,
 			text: "Экскурсии"
+		},
+		{
+			id: 3,
+			icon: <MdOutlineCollectionsBookmark size={24}/>,
+			text: "Бар-музей"
 		},
 		{
 			id: 5,
@@ -53,11 +58,6 @@ const Admin = observer(() => {
 			id: 6,
 			icon: <RiTeamFill size={24}/>,
 			text: "Команда"
-		},
-		{
-			id: 7,
-			icon: <RiOrganizationChart size={24}/>,
-			text: "О проекте"
 		},
 		{
 			id: 8,
@@ -76,12 +76,16 @@ const Admin = observer(() => {
 			content: <Main/>,
 		},
 		{
-			id: 3,
-			content: <Collections/>,
+			id: 7,
+			content: <About/>,
 		},
 		{
 			id: 4,
 			content: <Tour/>,
+		},
+		{
+			id: 3,
+			content: <Collections/>,
 		},
 		{
 			id: 5,
@@ -90,10 +94,8 @@ const Admin = observer(() => {
 		}, {
 			id: 6,
 			content: <TeamList/>,
-		}, {
-			id: 7,
-			content: <About/>,
-		}, {
+		},
+		{
 			id: 8,
 			content: <Contacts/>
 		}
