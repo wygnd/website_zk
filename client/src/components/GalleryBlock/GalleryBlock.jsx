@@ -75,7 +75,7 @@ const GalleryBlock = observer(() => {
 					className={cl.blockHolder}
 				>
 					<Swiper
-						modules={[Navigation, A11y]}
+						modules={[Navigation]}
 						loop={true}
 						lazy="true"
 						speed="800"

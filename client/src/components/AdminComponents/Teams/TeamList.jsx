@@ -1,38 +1,66 @@
-import React, {useEffect, useState} from 'react';
-import ListGroup from "react-bootstrap/ListGroup";
-import {getTeams} from "../../../http/teamsApi";
+import React, {useContext, useEffect, useState} from 'react';
+import {getTeams, saveTeam} from "../../../http/teamsApi";
 import TeamListItem from "./TeamListItem";
+import "./Team.scss";
+import {ContextMain} from "../../../index";
+import AddNewTeamItem from "./AddNewTeamItem";
+import {observer} from "mobx-react-lite";
+import {Reorder} from 'framer-motion';
 
-const TeamList = () => {
+const TeamList = observer(() => {
 	
+	const {teamsStore} = useContext(ContextMain);
 	const [teams, setTeams] = useState([]);
 	
-	const getDataTeams = async () => {
-		const data = await getTeams();
-		setTeams(data);
+	useEffect(() => {
+		if(teamsStore.teams.length === 0) {
+			getTeams().then(data => {
+				teamsStore.setTeams(data);
+				setTeams(data);
+			});
+		} else {
+			setTeams(teamsStore.teams);
+		}
+	}, [teamsStore.teams]);
+	
+	if(teamsStore.teams.length === 0) {
+		return null;
 	}
 	
-	useEffect(() => {
-		getDataTeams();
-	}, []);
+	const handleDragEnd = async () => {
+		teams.map((t, index) => {
+			t.order = index;
+		})
+		teamsStore.setTeams(teams);
+		try {
+			await saveTeam(teams);
+		} catch(err) {
+			console.log(err);
+		}
+	}
 	
 	return (
 		<>
-			{teams.length !== 0 &&
-				<ListGroup className="d-grid col-3 mb-4" as="ul">
-					{teams.map(team =>
-						<TeamListItem
-							key={team.id}
-							team_id={team.id}
-							title={team.title}
-							description={team.description}
-							image_id={team.image_id}
-						/>
-					)}
-				</ListGroup>
-			}
+			<div className="teams-holder__header">
+				<AddNewTeamItem/>
+			</div>
+			<Reorder.Group
+				axis="y"
+				values={teams}
+				onReorder={setTeams}
+				className="teams-holder"
+				onPanEnd={handleDragEnd}
+			>
+				{teams.map((team, index) =>
+					<TeamListItem
+						key={team.id}
+						team={team}
+						index={index}
+					/>
+				)}
+			</Reorder.Group>
 		</>
 	);
-};
+});
 
 export default TeamList;

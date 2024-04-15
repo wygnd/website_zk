@@ -4,6 +4,22 @@
 .teams {
   &Block {
     padding: 40px 0;
+
+    &__holder {
+      position: relative;
+    }
+
+    &__title {
+      @include h2;
+      margin-bottom: 40px;
+    }
+
+    &__theme {
+      margin-top: 40px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+    }
   }
 }
 
@@ -28,8 +44,18 @@
     }
 
     &__desc {
-      @include bodyM;
+      @include body;
       color: var(--text1);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .teams {
+    &Block {
+      &__title {
+        margin-bottom: 20px;
+      }
     }
   }
 }

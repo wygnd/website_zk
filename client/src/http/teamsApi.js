@@ -49,3 +49,13 @@ export async function changeTeam(id, options) {
 		throw e?.message;
 	}
 }
+
+export async function saveTeam(teams) {
+	try {
+		const response = await $apiAuth.post(`/teams/save`, {
+			teams
+		})
+	} catch(e) {
+		throw e?.message;
+	}
+}

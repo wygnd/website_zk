@@ -3,7 +3,11 @@ const ApiError = require("../error/ApiError");
 
 class TeamService {
 	async getTeams() {
-		return await Teams.findAll();
+		return await Teams.findAll({
+			order: [
+				["order", "asc"]
+			]
+		});
 	}
 	
 	async getTeamById(team_id) {
@@ -41,8 +45,6 @@ class TeamService {
 		if(!candidate) {
 			throw ApiError.BadRequest("Записи не найдено");
 		}
-		
-		console.log(options)
 		
 		return await candidate.update(options)
 	}

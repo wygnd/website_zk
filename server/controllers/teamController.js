@@ -51,6 +51,17 @@ class TeamController {
 		}
 	}
 	
+	async saveTeams(req, res, next) {
+		try {
+			const {teams} = req.body;
+			await Promise.all(teams.map(async (team) => {
+				await teamService.changeTeamItem(team.id, {order: team.order});
+			}))
+			return res.json({status: true});
+		} catch(e) {
+			next(e);
+		}
+	}
 }
 
 module.exports = new TeamController();
