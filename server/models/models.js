@@ -82,6 +82,7 @@ const MainBlock = sequelize.define(
 		buttonVisible: {type: DataTypes.BOOLEAN, defaultValue: true},
 		textButton: {type: DataTypes.STRING},
 		linkButton: {type: DataTypes.STRING},
+		order: {type: DataTypes.INTEGER, defaultValue: 0},
 	},
 	{
 		timestamps: false,

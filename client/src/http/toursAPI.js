@@ -11,7 +11,7 @@ export async function fetchTours() {
 
 export async function fetchLastTour() {
 	try {
-    const {data} = await $api.get("/tours/tour/6");
+		const {data} = await $api.get("/tours/tour/6");
 		return data;
 	} catch(e) {
 		throw e;
@@ -74,5 +74,14 @@ export async function changeOne(metaKey, metaValue) {
 		return data;
 	} catch(error) {
 		return error.message;
+	}
+}
+
+export async function saveTours(items) {
+	try {
+		const {data} = await $apiAuth.post("/tours/save", {items});
+		return data;
+	} catch(e) {
+		return e.message;
 	}
 }

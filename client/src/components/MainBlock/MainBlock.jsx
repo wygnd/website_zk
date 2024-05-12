@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation} from "swiper/modules";
 import {observer} from "mobx-react-lite";
@@ -8,16 +8,29 @@ import "swiper/css";
 import {ContextMain} from "../..";
 import {createFilePath} from "../../http/galleryAPI";
 import Container from "../Container/Container";
+import {fetchSlides} from "../../http/mainBlockAPI";
 
 const MainBlock = observer(() => {
 	const {mainBlockStore} = useContext(ContextMain);
 	const [swiperMainBlock, setSwiperMainBlock] = useState({});
 	// const [slides, setSlides] = useState([]);
-
+	
+	useEffect(() => {
+		if(mainBlockStore.slides.length === 0) {
+			fetchSlides().then((data) => {
+				if(data.length === 0) {
+					mainBlockStore.setSlides([]);
+					return false;
+				}
+				mainBlockStore.setSlides(data);
+			});
+		}
+	}, [mainBlockStore.slides]);
+	
 	if(mainBlockStore.slides.length === 0) {
 		return;
 	}
-
+	
 	return (
 		<section className={cl.mainBlock}>
 			<Swiper

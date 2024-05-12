@@ -26,24 +26,23 @@ const TourItem = observer(() => {
 	const [imageId, setImageId] = useState(null);
 	const [validated, setValidated] = useState(false);
 	const history = useNavigate();
-
+	
 	useEffect(() => {
 		fetchOneTour(id).then((data) => {
-			// setTourData(data);
 			setName(data.tour_name);
 			setLinkButton(data.linkButton);
 			setTextButton(data.textButton);
 			setImageId(data.galleryId);
 		});
-	}, [id, tourStore.update]);
-
+	}, [id]);
+	
 	useEffect(() => {
 		if(!imageId) return;
 		getImageById(imageId).then((dataImage) => {
 			setFile(dataImage);
 		});
-	}, [imageId, tourStore.update]);
-
+	}, [imageId]);
+	
 	const saveTour = async (event) => {
 		const form = event.currentTarget;
 		event.preventDefault();
@@ -53,36 +52,20 @@ const TourItem = observer(() => {
 			return;
 		}
 		if(!imageId) {
-			galleryStore.setModalErr(true);
-			galleryStore.setModalMsg("Пожалуйста, выберите изображение");
-			setTimeout(() => {
-				galleryStore.setModalErr(false);
-			}, 3000)
+			galleryStore.callModalError('Пожалуйста, выберите изображение');
 			return;
 		}
 		await changeTour(id, name, textButton, linkButton, imageId)
 			.then((data) => {
-				console.log(data);
-				setName("");
-				setLinkButton("");
-				setTextButton("");
-				setFile(null);
-				galleryStore.setModalSucc(true);
-				galleryStore.setModalMsg("Экскурсия успешно изменена");
-				tourStore.setUpdate(!tourStore.update);
-				setTimeout(() => {
-					galleryStore.setModalSucc(false);
-				}, 2000);
+				tourStore.changeTour(data);
+				// console.log(data);
+				galleryStore.callModalSuccess('Запись успешно изменена')
 			})
 			.catch((error) => {
-				galleryStore.setModalMsg(error.message);
-				galleryStore.setModalErr(true);
-				setTimeout(() => {
-					galleryStore.setModalErr(false);
-				}, 2000);
+				galleryStore.callModalError('Что-то пошло не так', error?.message);
 			});
 	};
-
+	
 	return (
 		<main>
 			<Container>
@@ -90,52 +73,6 @@ const TourItem = observer(() => {
 					<h1 className={cl.itemTitle}>Изменить тур</h1>
 					<Button variant="outline-primary" onClick={() => history(-1)}>вернуться назад</Button>
 				</div>
-				{/*<div className={cl.itemHolder}>*/}
-				{/*	<div className={cl.leftItem}>*/}
-				{/*		<Input*/}
-				{/*			placeholder={name}*/}
-				{/*			full*/}
-				{/*			bBorder*/}
-				{/*			className={cl.nameItem}*/}
-				{/*			value={name}*/}
-				{/*			onChange={(e) => setName(e.target.value)}*/}
-				{/*		/>*/}
-				{/*		<Input*/}
-				{/*			placeholder={linkButton}*/}
-				{/*			full*/}
-				{/*			bBorder*/}
-				{/*			className={cl.textItem}*/}
-				{/*			value={linkButton}*/}
-				{/*			onChange={(e) => setLinkButton(e.target.value)}*/}
-				{/*		/>*/}
-				{/*		<Input*/}
-				{/*			placeholder={textButton}*/}
-				{/*			full*/}
-				{/*			bBorder*/}
-				{/*			className={cl.textItem}*/}
-				{/*			value={textButton}*/}
-				{/*			onChange={(e) => setTextButton(e.target.value)}*/}
-				{/*		/>*/}
-				{/*	</div>*/}
-				{/*	{fileName && (*/}
-				{/*		<div className={cl.imageHolder}>*/}
-				{/*			<Fancybox className={cl.imageItem}>*/}
-				{/*				<img*/}
-				{/*					src={`${SERVER_URL}/${fileName.medium}`}*/}
-				{/*					data-src={`${SERVER_URL}/${fileName.full}`}*/}
-				{/*					data-fancybox="tourImage"*/}
-				{/*					alt=""*/}
-				{/*				/>*/}
-				{/*			</Fancybox>*/}
-				{/*			<Button*/}
-				{/*				className={cl.buttonChoice}*/}
-				{/*				onClick={() => setOpenModal(true)}*/}
-				{/*			>*/}
-				{/*				Выбрать изображение*/}
-				{/*			</Button>*/}
-				{/*		</div>*/}
-				{/*	)}*/}
-				{/*</div>*/}
 				<Form
 					onSubmit={saveTour}
 					noValidate

@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 
 export default class aboutStore {
     constructor() {
-        this._image = {};
+        this._image = null;
         this._desc = '';
         this._update = false;
 

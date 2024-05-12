@@ -8,13 +8,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Fancybox from "../Fancybox";
 import Container from "../Container/Container";
+import {useFetchGalleryBlock} from "../../hooks/useFetchGalleryBlock";
 
 const GalleryBlock = observer(() => {
+	
+	useFetchGalleryBlock();
+	
 	const {galleryBlock} = useContext(ContextMain);
 	const navigationNextRef = useRef(null);
 	const navigationPrevRef = useRef(null);
 	
-	if(!galleryBlock.images) {
+	if(!galleryBlock?.images) {
 		return;
 	}
 	

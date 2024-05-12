@@ -1,0 +1,47 @@
+@import '../../styles/includes';
+
+.dev {
+  &_page {
+    position: relative;
+  }
+
+  &_holder {
+    max-width: 1200px;
+    width: 100%;
+    margin-inline: auto;
+    padding-top: 100px;
+
+    &__title {
+      text-align: center;
+      @include  h1;
+      color: var(--head);
+    }
+
+    &__desc {
+      text-align: center;
+      margin-top: 40px;
+      @include bodyM;
+      color: var(--text1);
+    }
+
+    &__buttons {
+      margin-top: 40px;
+      margin-inline: auto;
+      width: fit-content;
+    }
+ }
+}
+
+@media (max-width: 992px) {
+  .dev {
+    &_holder {
+      &__desc {
+        margin-top: 20px;
+      }
+
+      &__buttons {
+        margin-top: 20px;
+      }
+    }
+  }
+}

@@ -31,7 +31,7 @@
 
       span {
         @include h6;
-        color: var(--text1);
+        color: var(--head);
         display: flex;
         gap: 10px;
 
@@ -48,11 +48,11 @@
         border: 1px solid var(--bg2);
         outline: none;
         @include p2;
-        color: var(--text2);
+        color: var(--text1);
 
         &::placeholder {
           @include p2;
-          color: var(--text2);
+          color: var(--text1);
         }
       }
 

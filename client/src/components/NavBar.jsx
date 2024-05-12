@@ -8,13 +8,22 @@ const NavBar = observer(({mobile, closeMenu}) => {
 	const {menuElements} = useContext(ContextMain);
 	
 	const clickMenuHandler = (event) => {
-		const hash = event.target.hash;
+		const target = event.target;
+		const hash = target.hash;
 		
-		const block = document.getElementById(hash);
+		const block = document.querySelector(hash);
 		
 		if(!block) {
-			return null;
+			return;
 		}
+		
+		const liElements = document.querySelectorAll('header .menu ul li a');
+		
+		liElements.forEach((liElement) => {
+			liElement.classList.remove(headerClasses.navLink__active);
+		})
+		
+		target.classList.add(headerClasses.navLink__active);
 		
 		block.scrollIntoView({
 			behavior: "smooth",
@@ -24,7 +33,7 @@ const NavBar = observer(({mobile, closeMenu}) => {
 	return (
 		mobile
 			?
-			<nav className="mobile-menu">
+			<nav className="menu mobile-menu">
 				<ul className={headerClasses.modileVersion}>
 					{menuElements.elements.map(el =>
 						<li key={el.id} className={headerClasses.nav_menu_element}>
@@ -42,7 +51,7 @@ const NavBar = observer(({mobile, closeMenu}) => {
 				</ul>
 			</nav>
 			:
-			<nav className="desctop-menu">
+			<nav className="menu desctop-menu">
 				<ul className={headerClasses.menu}>
 					{menuElements.elements.map(el =>
 						<li key={el.id} className={headerClasses.nav_menu_element}>
@@ -50,7 +59,9 @@ const NavBar = observer(({mobile, closeMenu}) => {
 								onClick={clickMenuHandler}
 								href={el.link}
 								className={headerClasses.navLink}
-							>{el.title}</a>
+							>
+								{el.title}
+							</a>
 						</li>
 					)}
 				</ul>

@@ -13,10 +13,12 @@ import aboutStore from './store/aboutStore';
 import GalleryBlockStore from './store/galleryBlockStore';
 import ContactsStore from './store/contactsStore';
 import TeamsStore from "./store/TeamsStore";
+import TextStore from "./store/textBlock";
 
 export const ContextMain = createContext(null);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 
 root.render(
 	<ContextMain.Provider value={{
@@ -31,6 +33,7 @@ root.render(
 		galleryBlock: new GalleryBlockStore(),
 		contactsStore: new ContactsStore(),
 		teamsStore: new TeamsStore(),
+		textBlock: new TextStore(),
 	}}>
 		<App/>
 	</ContextMain.Provider>

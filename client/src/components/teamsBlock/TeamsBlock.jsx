@@ -11,9 +11,7 @@ import {A11y, Navigation} from "swiper/modules";
 
 const TeamsBlock = observer(() => {
 	const {teamsStore} = useContext(ContextMain);
-	const navigationNextRef = useRef(null);
-	const navigationPrevRef = useRef(null);
-	
+
 	useEffect(() => {
 		if(teamsStore.teams.length === 0) {
 			getTeams().then(res => {
@@ -26,22 +24,41 @@ const TeamsBlock = observer(() => {
 		return null;
 	}
 	
-	console.log(navigationNextRef.current);
-	
 	return (
-		<div id="teams-block" className={styles.teamsBlock}>
+		<div id="teams__block" className={styles.teamsBlock}>
 			<Container>
 				<h2 className={styles.teamsBlock__title}>Наша команда</h2>
 				<div className={styles.teamsBlock__holder}>
 					<Swiper
 						modules={[Navigation, A11y]}
-						slidesPerView={5}
-						spaceBetween={20}
+						speed={800}
 						lazy={"true"}
 						navigation={{
-							nextEl: navigationNextRef.current,
-							prevEl: navigationPrevRef.current,
+							nextEl: "#teams__block .arrow__next",
+							prevEl: "#teams__block .arrow__prev",
 							disabledClass: ".swiper-button-disabled",
+						}}
+						breakpoints={{
+							0: {
+								slidesPerView: 2,
+								spaceBetween: 10,
+							},
+							460: {
+								slidesPerView: 3,
+								spaceBetween: 10,
+							},
+							520: {
+								slidesPerView: 3,
+								spaceBetween: 10,
+							},
+							760: {
+								slidesPerView: 4,
+								spaceBetween: 10,
+							},
+							992: {
+								slidesPerView: 5,
+								spaceBetween: 20,
+							},
 						}}
 					>
 						{teamsStore.teams.map((team) => (
@@ -52,10 +69,7 @@ const TeamsBlock = observer(() => {
 					</Swiper>
 				</div>
 				<div className={styles.teamsBlock__theme}>
-					<div
-						ref={navigationPrevRef}
-						className={[cl.slidePrev, "arrow__prev"].join(" ")}
-					>
+					<div className={[cl.slidePrev, "arrow__prev"].join(" ")}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="24"
@@ -72,10 +86,7 @@ const TeamsBlock = observer(() => {
 							/>
 						</svg>
 					</div>
-					<div
-						ref={navigationNextRef}
-						className={[cl.slideNext, "arrow__next"].join(" ")}
-					>
+					<div className={[cl.slideNext, "arrow__next"].join(" ")}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="24"

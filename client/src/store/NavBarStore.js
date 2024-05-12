@@ -6,7 +6,7 @@ export default class NavBarStore {
 		{id: 1, title: 'О проекте', link: '#about__block'},
 		{id: 2, title: 'Экскурсии', link: '#tours__block'},
 		{id: 3, title: 'Бар-музей', link: '#collections__block'},
-		{id: 4, title: 'Деловые ужины', link: '#collections__block'},
+		{id: 4, title: 'Деловые ужины', link: '#text_block'},
 		{id: 5, title: 'Галлерея', link: '#gallery__block'},
 		{id: 6, title: 'Команда', link: '#teams__block'},
 		{id: 7, title: 'Контакты', link: '#contacts__block'},

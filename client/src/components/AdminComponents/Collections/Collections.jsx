@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card';
 import {CiSquarePlus} from "react-icons/ci";
 import Form from "react-bootstrap/Form";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import {useFetchCollections} from "../../../hooks/useFetchCollections";
 
 const Collections = observer(({className}) => {
 	const {collections, galleryStore} = useContext(ContextMain);
@@ -19,21 +20,16 @@ const Collections = observer(({className}) => {
 	const [imageId, setImageId] = useState(null);
 	const [validate, setValidate] = useState(false);
 	
+	useFetchCollections();
+	
 	useEffect(() => {
 		setDesc(collections?.desc?.metaValue);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-	
-	useEffect(() => {
-	
-	}, [collections.update])
-	
-	useMemo(() => {
+		
 		if(!imageId) return;
 		getImageById(imageId).then((response) => {
 			collections.addGallery({...response, uuId: uuid()});
 		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageId]);
 	
 	const saveSettings = async (event) => {
@@ -45,39 +41,24 @@ const Collections = observer(({className}) => {
 			return;
 		}
 		if(!imageId && collections.desc.metaValue === desc) {
-			galleryStore.setModalErr(true);
-			galleryStore.setModalMsg("Вы ничего не изменили");
-			setTimeout(() => {
-				galleryStore.setModalErr(false);
-			}, 2000);
+			galleryStore.callModalError('Вы ничего не изменили');
 			return;
 		}
 		const galleryIdsArray = [];
 		collections.gallery.map((el) => galleryIdsArray.push(el.id));
 		await saveBlockGallery(galleryIdsArray.join("+"))
 			.catch((error) => {
-				galleryStore.setModalErr(true);
-				galleryStore.setModalMsg(error.message);
-				setTimeout(() => {
-					galleryStore.setModalErr(false);
-				}, 2000);
+				galleryStore.callModalError('Что то пошло не так ', error.message);
 			});
 		
-		await saveBlockDesc(desc).catch((error) => {
-			galleryStore.setModalErr(true);
-			galleryStore.setModalMsg(error.message);
-			setTimeout(() => {
-				galleryStore.setModalErr(false);
-			}, 2000);
-		});
-		
-		collections.setUpdate(!collections.update);
-		galleryStore.setModalSucc(true);
-		galleryStore.setModalMsg("Блок успешно сохранен");
-		setImageId(null);
-		setTimeout(() => {
-			galleryStore.setModalSucc(false);
-		}, 2000);
+		await saveBlockDesc(desc)
+			.then(() => {
+				collections.setDesc({...collections.desc, metaValue: desc});
+			})
+			.catch((error) => {
+				galleryStore.callModalError('Что то пошло не так ', error.message);
+			});
+		galleryStore.callModalSuccess("Блок успешно сохранен");
 	};
 	
 	const removeItem = async (e) => {
@@ -88,24 +69,12 @@ const Collections = observer(({className}) => {
 			imageIds.push(img.id);
 		});
 		await saveBlockGallery(imageIds.join("+"))
-			.then(() => {
-				galleryStore.setModalSucc(true);
-				galleryStore.setModalMsg("Изображение удалено");
-				setTimeout(() => {
-					galleryStore.setModalSucc(false);
-				}, 2000);
-			})
 			.catch((error) => {
-				galleryStore.setModalErr(true);
-				galleryStore.setModalMsg(error.message);
-				setTimeout(() => {
-					galleryStore.setModalErr(false);
-				}, 2000);
+				galleryStore.callModalError('Что-то пошло не так ', error?.message);
 			});
 		
 		collections.setUpdate(!collections.update);
 	};
-	
 	
 	return (
 		<>

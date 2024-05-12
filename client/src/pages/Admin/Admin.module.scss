@@ -8,7 +8,7 @@
   padding-top: 20px;
   margin-bottom: 50px;
   @include h2;
-  color: var(--text1);
+  color: var(--head);
 }
 
 .admin__holder {
@@ -39,7 +39,7 @@
       border-radius: 5px;
       @include body;
       cursor: pointer;
-      color: var(--text1);
+      color: var(--head);
       transition: background 0.4s ease-out, color 0.4s ease-out;
 
       &__active {
@@ -57,23 +57,10 @@
     border-radius: 10px;
     padding: 16px 24px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    //height: 100%;
+    overflow: hidden;
 
     &__active {
       display: block;
     }
   }
 }
-
-// .admin__item {
-//     width: 100%;
-//     height: -moz-fit-content;
-//     height: fit-content;
-//     padding: 40px;
-//     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-//     border-radius: 20px;
-//     display: flex;
-//     flex-direction: column;
-//     gap: 40px;
-//     overflow: hidden;
-// }

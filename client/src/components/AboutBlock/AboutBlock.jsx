@@ -1,13 +1,22 @@
 import {observer} from 'mobx-react-lite';
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {ContextMain} from '../..';
 import cl from './AboutBlock.module.scss';
 import Fancybox from '../Fancybox';
 import Container from "../Container/Container";
+import clsx from "clsx";
+import {useFetchAbout} from "../../hooks/useFetchAbout";
 
 const AboutBlock = observer(() => {
 	
 	const {about} = useContext(ContextMain);
+	const [hidden, setHidden] = useState(true);
+	
+	useFetchAbout();
+	
+	if(!about.image || !about.desc) {
+		return null;
+	}
 	
 	return (
 		<div id="about__block" className={cl.aboutBlock}>
@@ -21,6 +30,7 @@ const AboutBlock = observer(() => {
 								data-src={about?.image?.file_path}
 								data-fancybox="imageAbout"
 								alt={about?.image?.size?.fileName}
+								loading="lazy" decoding="async"
 							/>
 							<span className={cl.leftSide__hover}>
 														<svg width="35" height="35" viewBox="0 0 35 35" fill="none"
@@ -38,8 +48,12 @@ const AboutBlock = observer(() => {
 					{about.desc &&
 						<div className={cl.rightSide}>
 							<p
+								className={clsx(cl.rightSide__text, hidden && cl.hidden)}
 								dangerouslySetInnerHTML={{__html: about?.desc}}>
 							</p>
+							<button className={cl.rightSide__more} onClick={() => setHidden(!hidden)}>
+								{hidden ? "Показать еще" : "Скрыть"}
+							</button>
 						</div>
 					}
 				</div>

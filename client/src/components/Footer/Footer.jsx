@@ -19,7 +19,7 @@ const Footer = observer(() => {
 							Проект реализуется при поддержке Президентского фонда культурных
 							инициатив.
 						</p>
-						<div className={cl.copyWrite}>© 2023. Компания «СЗД-СТРОЙ»</div>
+						<div className={cl.copyWrite}>© {new Date().getFullYear()} Заречный квартал</div>
 					</div>
 				</Container>
 			</div>

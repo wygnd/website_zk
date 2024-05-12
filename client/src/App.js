@@ -1,30 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useContext, useEffect, useState} from "react";
+import React, {lazy, Suspense, useContext, useEffect, useState} from "react";
 import {Helmet} from "react-helmet";
 import {BrowserRouter} from "react-router-dom";
-import AppRouter from "./components/AppRouter";
 import Header from "./components/Header";
 import {observer} from "mobx-react-lite";
 import {ContextMain} from ".";
-import {fetchSlides} from "./http/mainBlockAPI";
 import {fetchItem, fetchItems} from "./http/basicAPI";
-import {fetchLastTour, fetchTours} from "./http/toursAPI";
 import Footer from "./components/Footer/Footer";
 import {getImageById} from "./http/galleryAPI";
-import uuid from "react-uuid";
-import {fetchGallery} from "./http/galleryBlockAPI";
-import Loading from "./components/Loading/Loading";
 import {YMaps} from "@pbe/react-yandex-maps";
+import Loading from "./components/Loading/Loading";
+
+const AppRouter = lazy(() => import("./components/AppRouter"));
 
 const App = observer(() => {
 	const {
 		userStore,
-		mainBlockStore,
 		basicStore,
-		tourStore,
-		collections,
-		about,
-		galleryBlock,
 	} = useContext(ContextMain);
 	const [siteTitle, setSiteTitle] = useState("");
 	const [siteDesc, setSiteDesc] = useState("");
@@ -40,16 +32,6 @@ const App = observer(() => {
 			});
 		}
 	}, []);
-	
-	useEffect(() => {
-		fetchSlides().then((data) => {
-			if(data.length === 0) {
-				mainBlockStore.setSlides([]);
-				return false;
-			}
-			mainBlockStore.setSlides(data);
-		});
-	}, [mainBlockStore.update]);
 	
 	useEffect(() => {
 		fetchItem("logo").then((data) => {
@@ -84,67 +66,6 @@ const App = observer(() => {
 		});
 	}, [basicStore.update]);
 	
-	useEffect(() => {
-		fetchTours().then((data) => {
-			tourStore.setTours(data || []);
-		});
-	}, [tourStore.update]);
-	
-	useEffect(() => {
-		fetchLastTour().then(data => {
-			if(!data) return;
-			tourStore.setLastItem(data);
-		})
-		
-		fetchItem("lastTourVisible").then((data) => {
-			if(data.metaValue === "0") {
-				tourStore.setLastItemVisible(false);
-			} else {
-				tourStore.setLastItemVisible(true);
-			}
-		});
-	}, [tourStore.updateLastItem]);
-	
-	useEffect(() => {
-		fetchItem("collections_desc").then((data) => {
-			collections.setDesc(data);
-		});
-		
-		fetchItem("collections_images").then((data) => {
-			if(!data) return;
-			collections.setGallery([]);
-			const arrayImages = data.metaValue.split("+");
-			arrayImages.map((img) =>
-				getImageById(img).then((response) => {
-					collections.addGallery({...response, uuId: uuid()});
-				})
-			);
-			collections.setCountImages(data.metaValue.split("+").length);
-		});
-	}, [collections.update]);
-	
-	useEffect(() => {
-		fetchItem("about_desc").then((data) => {
-			about.setDesc(data.metaValue);
-		});
-		
-		fetchItem("about_image").then((data) => {
-			getImageById(data.metaValue).then((res) => {
-				about.setImage(res);
-			});
-		});
-	}, [about.update]);
-	
-	useEffect(() => {
-		fetchGallery().then((res) => {
-			res.map((el) =>
-				getImageById(el?.galleryId).then((res) => {
-					galleryBlock.setGallery([...galleryBlock.images, res,]);
-				})
-			);
-		});
-	}, [galleryBlock.update]);
-	
 	
 	useEffect(() => {
 		fetchItem("siteTitle").then((data) => {
@@ -159,17 +80,13 @@ const App = observer(() => {
 	}, [basicStore.update]);
 	
 	
-	if(userStore.isLoading) {
-		return <Loading/>
-	}
-	
 	return (
 		<>
 			<Helmet>
-				<title>{siteTitle}</title>
+				<title>{siteTitle || "Заголовок сайта"}</title>
 				<html lang="ru"/>
 				<meta name="author" content="Denis Nekrasov"/>
-				<meta name="description" content={siteDesc}/>
+				<meta name="description" content={siteDesc || "Описание сайта"}/>
 				<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 				<meta
 					property="og:image"
@@ -180,19 +97,25 @@ const App = observer(() => {
 					content={siteDesc}
 				/>
 				<meta property="og:title" content={siteTitle}/>
+				<meta httpEquiv="Content-Language" content="ru"/>
+				<meta name="robots" content="index"/>
+				<meta name="keywords"
+				      content="заречный квартал, заречный квартал вологда, заречный квартал 1840, заречный квартал чернышевского 56, заречный квартал 1840 ул чернышевского 56"/>
 			</Helmet>
-			<BrowserRouter>
-				<Header/>
-				<YMaps query={{
-					lang: "ru_RU",
-					suggest_apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
-					apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
-					
-				}}>
-					<AppRouter/>
-				</YMaps>
-				<Footer/>
-			</BrowserRouter>
+			<Suspense fallback={<Loading title="Загрузка"/>}>
+				<BrowserRouter>
+					<Header/>
+					<YMaps query={{
+						lang: "ru_RU",
+						suggest_apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
+						apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
+						
+					}}>
+						<AppRouter/>
+					</YMaps>
+					<Footer/>
+				</BrowserRouter>
+			</Suspense>
 		</>
 	);
 });

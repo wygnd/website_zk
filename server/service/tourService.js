@@ -28,7 +28,7 @@ class TourService {
 	async getAll() {
 		return await Tours.findAll({
 			where: {
-				order: {[Op.ne]: 0}
+				order: {[Op.ne]: -1}
 			},
 			order: [
 				['order', 'asc']

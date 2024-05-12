@@ -5,26 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1c1ba9a-fe30-4162-8c06-3d9e3490d26f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/AddNewTeamItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/ChangeTeamItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/RemoveTeamItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/Team.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/textBlock/TextBlock.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useFetchAbout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useFetchCollections.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useFetchGalleryBlock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useFetchTextblock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useFetchTours.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Developing/Developing.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/pages/Developing/Developing.module.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/store/textBlock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/ModalGallery/ModalGallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/ModalGallery/ModalGallery.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/TeamList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/TeamList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/TeamListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Teams/TeamListItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AboutBlock/AboutBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AboutBlock/AboutBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AboutBlock/AboutBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AboutBlock/AboutBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/About/About.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/About/About.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/About/About.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/About/About.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Collections/Collections.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Collections/Collections.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Gallery/Gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Gallery/Gallery.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainItemPreview/MainItemPreview.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainItemPreview/MainItemPreview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainItemPreview/MainItemPreview.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainItemPreview/MainItemPreview.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainPostHolder/MainPostHolder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainPostHolder/MainPostHolder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainPostHolder/MainPostHolder.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Main/MainPostHolder/MainPostHolder.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/MyAdmin/MyAdmin.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/MyAdmin/MyAdmin.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/Tour.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/Tour.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItem/TourItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItem/TourItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItem/TourItem.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItem/TourItem.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItems/TourItems.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItems/TourItems.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItems/TourItems.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Tour/TourItems/TourItems.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Burger/Burger.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Burger/Burger.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Footer/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/GalleryBlock/GalleryBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GalleryBlock/GalleryBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/GalleryBlock/GalleryBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GalleryBlock/GalleryBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainBlock/MainBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainBlock/MainBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/NavBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ToursBlock/ToursBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ToursBlock/ToursBlock.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamsBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamsBlock.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamsBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/teamsBlock/TeamsBlock.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/http/teamsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/teamsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/TeamsStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/TeamsStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/galleryStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/galleryStore.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/main.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/galleryController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/galleryController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/teamController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/teamController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/teamRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/teamRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/service/teamService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/teamService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/textBlock/TextBlock.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/textBlock/TextBlock.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/mainBlockAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/mainBlockAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/http/toursAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/http/toursAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Admin/Admin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Admin/Admin.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Admin/Admin.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Admin/Admin.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/ItemEdit/MainBlockItem/MainBlockItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/ItemEdit/MainBlockItem/MainBlockItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/ItemEdit/TourItem/TourItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/ItemEdit/TourItem/TourItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Main/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Main/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotFound/NotFound.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotFound/NotFound.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/NotFound/NotFound.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/NotFound/NotFound.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/NavBarStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/NavBarStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/TourStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/TourStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/aboutStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/aboutStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/mainBlockStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/mainBlockStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/Header.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/utils/consts.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/utils/consts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/mainBlockController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/mainBlockController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/toursController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/toursController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/models.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/mainBlockRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/mainBlockRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/toursRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/toursRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/mainBlockService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/mainBlockService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/service/tourService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/service/tourService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,15 +183,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/store/mainBlockStore.js</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

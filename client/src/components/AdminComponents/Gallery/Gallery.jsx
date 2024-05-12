@@ -8,13 +8,16 @@ import {createFilePath, getImageById} from '../../../http/galleryAPI';
 import {CiSquarePlus} from "react-icons/ci";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import {useFetchGalleryBlock} from "../../../hooks/useFetchGalleryBlock";
 
 const Gallery = observer(({className}) => {
-
+	
+	useFetchGalleryBlock();
+	
 	const {galleryBlock, galleryStore} = useContext(ContextMain);
 	const [modal, setModal] = useState(false);
 	const [imageId, setImageId] = useState();
-
+	
 	useMemo(() => {
 		if(!imageId) return;
 		getImageById(imageId)
@@ -33,7 +36,7 @@ const Gallery = observer(({className}) => {
 			})
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [imageId])
-
+	
 	const removeItem = async (e) => {
 		await removeGalleryItem(e.currentTarget.dataset.id)
 			.then(() => {
@@ -49,7 +52,7 @@ const Gallery = observer(({className}) => {
 				}, 2000);
 			})
 	}
-
+	
 	return (
 		<div className={className}>
 			{galleryBlock.images.length === 0 &&

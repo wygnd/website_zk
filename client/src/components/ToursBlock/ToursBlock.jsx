@@ -1,20 +1,22 @@
 import {observer} from 'mobx-react-lite';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import cl from './ToursBlock.module.scss';
 import {ContextMain} from '../..';
 import TourItem from './TourItem/TourItem';
 import LastTour from "./LastTour/LastTour";
 import Container from "../Container/Container";
+import {fetchLastTour, fetchTours} from "../../http/toursAPI";
+import {fetchItem} from "../../http/basicAPI";
+import {useFetchTours} from "../../hooks/useFetchTours";
 
 const ToursBlock = observer(() => {
+	
+	useFetchTours();
 	
 	const {tourStore} = useContext(ContextMain);
 	
 	if(tourStore.tours.length === 0) return;
-	
-	if(tourStore.tours.length === 0) {
-		return;
-	}
+
 	return (
 		<section id='tours__block' className={cl.tourBlock}>
 			<Container>

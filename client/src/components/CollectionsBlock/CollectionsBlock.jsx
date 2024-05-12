@@ -8,9 +8,17 @@ import Fancybox from "../Fancybox";
 import "swiper/css";
 import "swiper/css/navigation";
 import Container from "../Container/Container";
+import {useFetchCollections} from "../../hooks/useFetchCollections";
 
 const CollectionsBlock = observer(() => {
 	const {collections} = useContext(ContextMain);
+	
+	useFetchCollections();
+	
+	if(!collections?.desc && !collections?.gallery) {
+		return null;
+	}
+	
 	const [swiperCollections, setSwiperCollections] = useState({});
 	const [hidden, setHidden] = useState(false);
 	const [textBtn, setTextBtn] = useState('Показать еще');
@@ -41,7 +49,7 @@ const CollectionsBlock = observer(() => {
 						</div>
 					)}
 					<div className={cl.rightSide}>
-						{collections.gallery && (
+						{collections?.gallery && (
 							<Fancybox
 								options={{
 									animated: true,

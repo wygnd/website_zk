@@ -13,6 +13,10 @@
   text-align: center;
 }
 
+.blockForm {
+  position: relative;
+}
+
 .blockHolder {
   display: flex;
   gap: 20px;
@@ -47,7 +51,7 @@
 }
 
 .descBlock {
-  height: 200px;
+  height: 358px;
 }
 
 .image {

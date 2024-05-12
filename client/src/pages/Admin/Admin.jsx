@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {observer} from "mobx-react-lite";
 import styles from "./Admin.module.scss";
 import "../../styles/main.scss";
@@ -20,6 +20,8 @@ import Contacts from "../../components/AdminComponents/Contacts/Contacts";
 import {RiTeamFill} from "react-icons/ri";
 import AdminTabs from "./AdminTabs";
 import TeamList from "../../components/AdminComponents/Teams/TeamList";
+import {useNavigate} from "react-router-dom";
+import {DEV_ROUTE} from "../../utils/consts";
 
 const Admin = observer(() => {
 	
@@ -100,6 +102,27 @@ const Admin = observer(() => {
 			content: <Contacts/>
 		}
 	]
+	
+	const [width, setWidth] = useState(window.innerWidth);
+	const history = useNavigate();
+	
+	function handleWindowSizeChange() {
+		setWidth(window.innerWidth);
+	}
+	
+	useEffect(() => {
+		window.addEventListener('resize', handleWindowSizeChange);
+		const isMobile = width <= 1280
+		
+		if(isMobile) {
+			history(DEV_ROUTE);
+		}
+		
+		return () => {
+			window.removeEventListener('resize', handleWindowSizeChange);
+		}
+	}, []);
+	
 	
 	return (
 		<main className={styles.page_admin}>
