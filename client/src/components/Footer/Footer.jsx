@@ -15,11 +15,14 @@ const Footer = observer(() => {
 			<div id={cl.footer} onClick={() => galleryStore.setModal(true)}>
 				<Container>
 					<div className={cl.footerHolder}>
-						<p className={cl.comment}>
-							Проект реализуется при поддержке Президентского фонда культурных
-							инициатив.
-						</p>
-						<div className={cl.copyWrite}>© {new Date().getFullYear()} Заречный квартал</div>
+						{basicStore.footerDesc &&
+							<p className={cl.comment}>
+								{basicStore.footerDesc}
+							</p>
+						}
+						{basicStore.copyright &&
+							<div className={cl.copyWrite}>{"© " + new Date().getFullYear() + " " + basicStore.copyright}</div>
+						}
 					</div>
 				</Container>
 			</div>

@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import {getImageById} from "./http/galleryAPI";
 import {YMaps} from "@pbe/react-yandex-maps";
 import Loading from "./components/Loading/Loading";
+import {useFetchSiteMeta} from "./hooks/useFetchSiteMeta";
 
 const AppRouter = lazy(() => import("./components/AppRouter"));
 
@@ -66,38 +67,29 @@ const App = observer(() => {
 		});
 	}, [basicStore.update]);
 	
+	useFetchSiteMeta();
 	
 	useEffect(() => {
-		fetchItem("siteTitle").then((data) => {
-			basicStore.setSiteTitle(data);
-			setSiteTitle(data?.metaValue);
-		});
-		
-		fetchItem("siteDesc").then((data) => {
-			basicStore.setSiteDesc(data);
-			setSiteDesc(data?.metaValue);
-		});
-	}, [basicStore.update]);
-	
+		setSiteTitle(basicStore.siteTitle?.metaValue);
+		setSiteDesc(basicStore.siteDesc?.metaValue);
+	}, [basicStore.siteTitle, basicStore.siteDesc]);
 	
 	return (
 		<>
 			<Helmet>
 				<title>{siteTitle || "Заголовок сайта"}</title>
+				<meta name="description" content={siteDesc || "Описание сайта"}/>
+				<meta httpEquiv="Content-Language" content="ru"/>
 				<html lang="ru"/>
 				<meta name="author" content="Denis Nekrasov"/>
-				<meta name="description" content={siteDesc || "Описание сайта"}/>
-				<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-				<meta
-					property="og:image"
-					content="https://developer.mozilla.org/mdn-social-share.png"
-				/>
-				<meta
-					property="og:description"
-					content={siteDesc}
-				/>
 				<meta property="og:title" content={siteTitle}/>
-				<meta httpEquiv="Content-Language" content="ru"/>
+				<meta property="og:description" content={siteDesc}/>
+				<meta property="og:image" content="../public/logo.png"/>
+				<meta property="og:url" content={`${window.location.origin}`}/>
+				<meta property="og:site_name" content={`${siteTitle || "Заречный кварталъ 1840"}`}/>
+				<meta itemProp="name" content={`${siteTitle || "Заречный кварталъ 1840"}`}/>
+				<meta itemProp="description" content={siteDesc}/>
+				<meta itemProp="image" content="../public/logo.png"/>
 				<meta name="robots" content="index"/>
 				<meta name="keywords"
 				      content="заречный квартал, заречный квартал вологда, заречный квартал 1840, заречный квартал чернышевского 56, заречный квартал 1840 ул чернышевского 56"/>
@@ -109,7 +101,6 @@ const App = observer(() => {
 						lang: "ru_RU",
 						suggest_apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
 						apikey: "40148efb-4df5-4e4a-a765-589233b94b6c",
-						
 					}}>
 						<AppRouter/>
 					</YMaps>
