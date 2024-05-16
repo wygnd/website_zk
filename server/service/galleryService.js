@@ -1,89 +1,164 @@
-const { Gallery, Sizes } = require("../models/models");
+const {Gallery} = require("../models/models");
 const uuid = require('uuid');
 const path = require('path');
 const fs = require('fs');
+const crypto = require("crypto");
+const {mkdir} = require('node:fs/promises');
+const ApiError = require("../error/ApiError");
 const sharp = require('sharp');
+
 
 class GalleryService {
 
-    async create(img) {
-        let fileName = uuid.v4();
-        img.mv(path.resolve(__dirname, '..', 'static', (`${fileName}.webp`)));
-        sharp(img.data)
-            .resize(150)
-            .toFile(path.resolve(__dirname, '..', 'static', (`${fileName}_thumbnail.webp`)))
-            .then(info => console.log(info))
-            .catch(err => {
-                return err;
-            });
+  createProjectFolderPath(hashLine) {
+    const first2Letters = hashLine.substring(0, 2);
+    const second2Letters = hashLine.substring(2, 4);
 
-        sharp(img.data)
-            .resize(300)
-            .toFile(path.resolve(__dirname, '..', 'static', (`${fileName}_medium.webp`)))
-            .then(info => console.log(info))
-            .catch(err => {
-                return err;
-            });
+    return {
+      projectFolder: path.resolve(__dirname, '..', 'static', first2Letters, second2Letters),
+      first2Letters,
+      second2Letters
+    }
+  }
 
-        const sizeData = await Sizes.create({
-            fileName,
-            full: `${fileName}.webp`,
-            medium: `${fileName}_medium.webp`,
-            thumbnail: `${fileName}_thumbnail.webp`
-        })
-        const galleryData = await Gallery.create({ sizeId: sizeData.id });
+  deleteFolderRecursive(directoryPath, file_name) {
+    if(fs.existsSync(directoryPath)) {
+      fs.readdirSync(directoryPath).forEach((file, index) => {
+        const curPath = path.join(directoryPath, file);
+        if(fs.lstatSync(curPath).isDirectory()) {
+          // recurse
+          this.deleteFolderRecursive(curPath, file_name);
+        } else {
+          // delete file
+          const {name} = path.parse(curPath);
+          const fileNameWithoutExtAndSize = name.split('_'[0])[0];
+          if(fileNameWithoutExtAndSize === file_name) {
+            fs.unlinkSync(curPath);
+          }
+        }
+      });
+      fs.rmdirSync(directoryPath);
+    }
+  };
 
-        return {
-            sizeData,
-            galleryData,
-            message: "Изображение успешно загружено"
-        };
+  async create(img, user_id) {
+    const fileParse = path.parse(img.name);
+    const fileExtInst = fileParse.ext.replace('.', '');
+    const fileExt = ".webp";
+    const fileHashLine = img.md5;
+    const {projectFolder} = this.createProjectFolderPath(fileHashLine);
+    let fileName = fileHashLine;
+
+    if(!fs.existsSync(projectFolder)) {
+      try {
+        fs.mkdir(projectFolder,
+          {recursive: true},
+          (err) => {
+            if(err) {
+              throw err;
+            }
+          });
+      } catch(err) {
+        throw ApiError.BadRequest(err);
+      }
+    }
+    await sharp(img.data)
+      .resize({
+          width: 300,
+          fit: "cover"
+        }
+      )
+      .webp({
+        quality: 100,
+        lossless: true,
+        nearLossless: true
+      })
+      .toFile(`${projectFolder}/${fileName}_300${fileExt}`)
+      .catch((err) => {
+        return err;
+      });
+    await sharp(img.data)
+      .resize({
+        width: 150,
+        fit: "cover"
+      })
+      .webp({
+        quality: 100,
+        lossless: true,
+        nearLossless: true
+      })
+      .toFile(`${projectFolder}/${fileName}_150${fileExt}`)
+      .catch((err) => {
+        return err;
+      });
+    await sharp(img.data)
+      .resize({
+        width: 1024,
+        fit: "cover"
+      })
+      .webp({
+        quality: 100,
+        lossless: true,
+        nearLossless: true
+      })
+      .toFile(`${projectFolder}/${fileName}_1024${fileExt}`)
+      .catch((err) => {
+        return err;
+      });
+    await sharp(img.data)
+      .webp({
+        quality: 100,
+        lossless: true,
+        nearLossless: true
+      })
+      .toFile(`${projectFolder}/${fileName + fileExt}`)
+      .catch((err) => {
+        return err;
+      });
+    const galleryData = await Gallery.create({file_name: fileName, file_ext: fileExt, author_id: user_id});
+    return {
+      galleryData,
+      message: "Изображение успешно загружено"
+    };
+  }
+
+  async getAll(page, limit) {
+    page = page || 1;
+    limit = limit || 12;
+    let offset = page * limit - limit;
+    const gallery = await Gallery.findAndCountAll({
+      offset: offset,
+      limit: Number(limit),
+    });
+
+    return gallery;
+  }
+
+  async getOne(id) {
+    const gallery = await Gallery.findByPk(id);
+    if(!gallery) {
+      throw ApiError.BadRequest(`Изображения с id=${id} не найдено`);
+    }
+    return gallery;
+  }
+
+  async remove(id) {
+    const image = await Gallery.findByPk(id);
+    const {projectFolder, first2Letters, second2Letters} = this.createProjectFolderPath(image.file_name);
+    if(!image) {
+      throw ApiError.BadRequest(`Изображения с id=${image.id} не найдено`);
     }
 
-    async getAll(page, limit) {
-        page = page || 1;
-        limit = limit || 12;
-        let offset = page * limit - limit;
-        const gallery = await Gallery.findAndCountAll({
-            offset: offset,
-            limit: Number(limit),
-            include: [{
-                model: Sizes,
-            }]
-        });
-
-        return gallery;
+    this.deleteFolderRecursive(path.resolve(projectFolder, '..'), image.file_name);
+    const galleryData = await Gallery.destroy({where: {id}});
+    let message = "";
+    if(galleryData) {
+      message = "Изображение успешно удалено";
+    } else {
+      message = "Что-то пошлно не так";
     }
-
-    async getOne(id) {
-        const gallery = await Gallery.findOne({
-            where: {
-                id
-            },
-            include: [{
-                model: Sizes,
-            }]
-        });
-        return gallery;
-    }
-
-    async remove(id) {
-        const image = await Gallery.findByPk(id);
-        const sizeImage = await Sizes.findByPk(image.sizeId);
-        let errorDelete = {};
-        fs.unlink(path.resolve(__dirname, '..', 'static', sizeImage.full), err => {
-            if (err) errorDelete = { ...errorDelete, err };
-        })
-        fs.unlink(path.resolve(__dirname, '..', 'static', sizeImage.medium), err => {
-            if (err) errorDelete = { ...errorDelete, err };
-        })
-        fs.unlink(path.resolve(__dirname, '..', 'static', sizeImage.thumbnail), err => {
-            if (err) errorDelete = { ...errorDelete, err };
-        })
-        const sizeData = await Sizes.destroy({ where: { id: image.sizeId } })
-        const galleryData = await Gallery.destroy({ where: { id } });
-        return { galleryData, sizeData, errorDelete };
-    }
+    return {message, galleryData};
+  }
 
 }
 

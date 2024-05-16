@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b1c1ba9a-fe30-4162-8c06-3d9e3490d26f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/hooks/useFetchSiteMeta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/Meta/Meta.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/Meta/Meta.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/PhonesHolder/PhonesHolder.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/PhonesHolder/PhonesHolder.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/SocialItem/SocialItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/SocialItem/SocialItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/SocialsHolder/SocialsHolder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/SocialsHolder/SocialsHolder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminComponents/basic/Basic.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminComponents/basic/Basic.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Footer/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Footer/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Input/Input.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Input/Input.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/NavBarStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/NavBarStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/basicStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/basicStore.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;wygnd&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wygnd/website_zk.git&quot;,
+    &quot;accountId&quot;: &quot;f3144d47-c982-40ec-b7c4-bb998fff5f30&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2X70GKFD9ViuHOjeR5fJVeanR2o" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#3 on prod__2&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/WebStorm/Projects/site-ffglobal&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\WebStorm\\WebStorm 2023.2.1\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Visual code\website_zk\client\src\store" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Visual code\website_zk\client\src\styles" />
+      <recent name="D:\Visual code\website_zk\client\src\components" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-WS-241.14494.235" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b1c1ba9a-fe30-4162-8c06-3d9e3490d26f" name="Changes" comment="" />
+      <created>1697964714982</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697964714982</updated>
+      <workItem from="1697964719052" duration="8000" />
+      <workItem from="1705589823905" duration="46000" />
+      <workItem from="1705590252956" duration="140000" />
+      <workItem from="1705594046304" duration="3000" />
+      <workItem from="1705595336394" duration="966000" />
+      <workItem from="1705849103393" duration="29000" />
+      <workItem from="1705939285908" duration="34949000" />
+      <workItem from="1706241476326" duration="523000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

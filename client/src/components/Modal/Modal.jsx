@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from './Modal.module.css';
+import cl from './Modal.module.scss';
 import { observer } from 'mobx-react-lite';
 
 const Modal = observer(({ open, clickHandler, children, overflowY }) => {

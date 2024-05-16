@@ -1,5 +1,5 @@
 import React from 'react';
-import headerClasses from '../styles/Header.module.css';
+import headerClasses from '../styles/Header.module.scss';
 
 const Button = ({ children, invert, error, className, svg, ...props }) => {
 

@@ -15,7 +15,7 @@
 }
 
 .holderTop {
-    font-size: calcFluidFontSize(120, 320, 320, 1920);
+    font-size: calcFluidFontSize(120, 320);
     font-style: normal;
     font-weight: 900;
     line-height: 90%;
@@ -30,7 +30,7 @@
 
 .nameBottom {
     @include h3;
-    color: var(--text1);
+    color: var(--head);
     text-align: center;
     margin-bottom: 20px;
 }
@@ -38,7 +38,7 @@
 .descBottom {
     text-align: center;
     @include h6;
-    color: var(--text2);
+    color: var(--text1);
 }
 
 .linkBottom {

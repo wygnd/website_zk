@@ -1,7 +1,7 @@
 @import '../../../../styles/includes';
 
 .titleBlock {
-    @include h3;
+    @include h5;
     color: var(--text1);
     margin-bottom: 20px;
     text-align: center;
@@ -9,15 +9,20 @@
 
 .lastItemHolder {
     position: relative;
+    transition: opacity .4s ease-out;
+
+    &_Hidden {
+        opacity: .6;
+    }
 }
 
 .lastItemWrapper {
     display: grid;
     grid-template-columns: 2fr 1fr;
     background: transparent;
-    border: 2px solid var(--bg5);
-    padding: 20px;
-    border-radius: 5px;
+    //border: 2px solid var(--bg5);
+    //padding: 20px;
+    //border-radius: 5px;
 }
 
 .leftItem {
@@ -40,7 +45,7 @@
 .imageItem {
     width: 60px;
     height: 60px;
-    background: var(--bg2);
+    background: var(--blue1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,6 +65,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-left: 30px;
+    border-left: 1px solid var(--bg2);
+
 
     svg {
         width: 60px;

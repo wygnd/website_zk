@@ -1,144 +1,182 @@
 @import '../../styles/includes';
 
 .collectionsBlock {
-    padding: 30px 0
+  padding: 30px 0
 }
 
 .blockTitle {
-    @include h2;
-    color: var(--text1);
-    margin-bottom: 40px;
+  @include h2;
+  color: var(--head);
+  margin-bottom: 20px;
 }
 
 .collectionsHolder {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 40px;
 }
 
 .leftSide {
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  //justify-content: space-between;
+  gap: 20px;
+  width: 50%;
 
 
-    p {
-        @include bodyM;
-        color: var(--text1);
+  .desc {
+    text-align: justify;
+    @include p40020_130;
+    color: var(--text1);
+    margin-bottom: 0;
+
+    &_hidden {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -moz-box;
+      -moz-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: 13;
+      -webkit-box-orient: vertical;
+      line-clamp: 13;
+      box-orient: vertical;
     }
+  }
+
+  .button_more {
+    width: fit-content;
+    background: none;
+    border: none;
+    @include h5;
+    color: var(--head);
+    transition: color .4s ease-out, background .4s ease-out, border .4s ease-out;
+
+    &:hover {
+      background: transparent;
+      color: var(--primary);
+    }
+  }
 }
 
 .rightSide {
-    width: 50%;
+  width: 50%;
+  height: fit-content;
+  position: sticky;
+  top: 120px;
 }
 
 .imageItem {
-    display: block;
-    width: 100%;
-    height: 385px;
-    border-radius: 5px;
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
+  display: block;
+  width: 100%;
+  height: 385px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--primary);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity .3s ease-out;
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    &:hover {
-        &::before {
-            opacity: .8;
-        }
-
-        .hoverImage {
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-}
-
-.hoverImage {
+  &__hover {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background: var(--primary);
     display: flex;
-    flex-direction: column;
-    gap: 10x;
     align-items: center;
     justify-content: center;
-    color: var(--bg1);
-    @include h5;
+    opacity: 0;
+    transition: opacity .4s ease-out;
+
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--head);
+    opacity: 0;
     pointer-events: none;
-    transition: transform .3s ease-out;
+    transition: opacity .4s ease-out;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:hover {
+    &::before {
+      opacity: .6;
+    }
+
+    .imageItem {
+      &__hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .sliderTheme {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .slidePrev,
 .slideNext {
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background .4s ease-out;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background .4s ease-out;
 
-    &:hover {
-        background: var(--primaryH);
-    }
+  &:hover {
+    background: var(--primaryH);
+  }
 
-    &.swiperDisabled {
-        background: var(--bg2);
-    }
+  &.swiperDisabled {
+    background: var(--bg2);
+  }
 }
 
-@media (max-width:992px) {
-    .collectionsBlock {
-        padding: 20px 0;
-    }
+@media (max-width: 992px) {
+  .collectionsBlock {
+    padding: 20px 0;
+  }
 
-    .collectionsHolder {
-        display: block;
-    }
+  .collectionsHolder {
+    display: block;
+  }
 
-    .blockTitle {
-        margin-bottom: 20px;
-    }
+  .blockTitle {
+    margin-bottom: 20px;
+  }
 
-    .leftSide {
-        width: 100%;
-        margin-bottom: 20px;
-    }
+  .leftSide {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-    .rightSide {
-        width: 100%;
-    }
+  .rightSide {
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
-    .imageItem {
-        height: 285px;
-    }
+  .imageItem {
+    height: 285px;
+  }
 }

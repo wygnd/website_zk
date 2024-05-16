@@ -7,6 +7,6 @@ const router = new Router();
 router.post('/create', authMiddleware, GalleryController.create);
 router.get('/', GalleryController.getAll);
 router.get('/:id', GalleryController.getOne);
-router.post('/remove/:id', authMiddleware, GalleryController.remove);
+router.delete('/remove/:id', authMiddleware, GalleryController.remove);
 
 module.exports = router;

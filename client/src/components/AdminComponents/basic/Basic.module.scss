@@ -1,20 +1,11 @@
-@import '../../../styles/includes';
+@import "../../../styles/includes";
 
 .basicHolder {
-   position: relative;
-}
-
-.titleHolder {
-   @include h3;
-   color: var(--text1);
-   margin-bottom: 20px;
-   text-align: center;
-
+  position: relative;
 }
 
 .basicWrapper {
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-between;
-   gap: 60px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
 }

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext, useState } from 'react';
 import { ContextMain } from '../../..';
-import cl from './PhonesHolder.module.css';
+import cl from './PhonesHolder.module.scss';
 import Input from '../../Input/Input';
 import Button from '../../Button';
 import { createItem, setItem, removeItem } from '../../../http/basicAPI';

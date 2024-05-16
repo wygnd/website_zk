@@ -1,0 +1,86 @@
+@import "../../../styles/includes";
+
+.edit {
+  &_section {
+    margin-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  &_title {
+    @include h2;
+    margin-bottom: 40px;
+  }
+
+  &_form {
+    padding: 30px;
+    background: var(--bg1);
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+    &.first_form {
+      margin-top: 0;
+    }
+
+    &__label {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      span {
+        @include h6;
+        color: var(--head);
+        display: flex;
+        gap: 10px;
+
+        .invalid {
+          @include assistant;
+          color: var(--error);
+        }
+      }
+
+      input {
+        padding: 17px 20px;
+        border-radius: 10px;
+        background: var(--card);
+        border: 1px solid var(--bg2);
+        outline: none;
+        @include p2;
+        color: var(--text1);
+
+        &::placeholder {
+          @include p2;
+          color: var(--text1);
+        }
+      }
+
+      &_error {
+        input {
+          border-color: var(--error);
+        }
+      }
+
+      &_second {
+        grid-column: 1;
+      }
+    }
+  }
+
+  &_btn {
+    margin: 40px auto 80px auto;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .edit {
+    &_section {
+      padding-bottom: 40px;
+    }
+  }
+}

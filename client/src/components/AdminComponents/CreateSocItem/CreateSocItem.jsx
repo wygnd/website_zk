@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, useState } from 'react';
-import cl from './CreateSocItem.module.css';
+import cl from './CreateSocItem.module.scss';
 import { observer } from 'mobx-react-lite';
 import { ContextMain } from '../../..';
 import Button from '../../Button';

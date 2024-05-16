@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../../Modal/Modal';
-import cl from './ModalError.module.css';
+import cl from './ModalError.module.scss';
 import { BiErrorCircle } from 'react-icons/bi';
 
 const ModalError = ({ isError, clickCloseModal, children }) => {

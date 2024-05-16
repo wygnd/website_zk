@@ -6,6 +6,7 @@ const mainBlockRouter = require('./mainBlockRouter');
 const settingsRouter = require('./settingsRouter');
 const toursRouter = require('./toursRouter');
 const galleryBlockRouter = require('./galleryBlockRouter');
+const teamRouter = require('./teamRouter');
 
 router.use('/gallery', galleryRouter);
 router.use('/mainBlock', mainBlockRouter);
@@ -13,5 +14,6 @@ router.use('/users', userRouter);
 router.use('/settings', settingsRouter);
 router.use('/tours', toursRouter);
 router.use('/galleryBlock', galleryBlockRouter);
+router.use('/teams', teamRouter);
 
 module.exports = router;

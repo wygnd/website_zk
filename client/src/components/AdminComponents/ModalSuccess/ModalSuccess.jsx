@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../../Modal/Modal';
-import cl from './ModalSuccess.module.css';
+import cl from './ModalSuccess.module.scss';
 import { CiCircleCheck } from 'react-icons/ci';
 
 const ModalSuccess = ({ isSuccess, clickHandlerModalSuccess, children }) => {

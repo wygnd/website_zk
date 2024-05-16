@@ -1,0 +1,74 @@
+@import "../../styles/_includes";
+
+
+.teams {
+  &Block {
+    padding: 40px 0;
+
+    &__holder {
+      position: relative;
+    }
+
+    &__title {
+      @include h2;
+      margin-bottom: 40px;
+    }
+
+    &__theme {
+      margin-top: 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+}
+
+.team {
+  &Item {
+    &__image {
+      width: 100%;
+      height: 250px;
+      margin-bottom: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    }
+
+    &__name {
+      @include h5;
+      color: var(--head);
+    }
+
+    &__desc {
+      margin-top: 15px;
+      @include body;
+      color: var(--text1);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .teams {
+    &Block {
+      padding: 20px 0;
+
+      &__title {
+        margin-bottom: 20px;
+      }
+
+      &__theme {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .teamItem{
+    &__image {
+      height: 180px;
+    }
+  }
+}

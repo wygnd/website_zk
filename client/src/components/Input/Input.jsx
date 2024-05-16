@@ -1,5 +1,5 @@
 import React from 'react';
-import inputClasses from './Input.module.css';
+import inputClasses from './Input.module.scss';
 import InputMask from 'react-input-mask';
 
 const Input = ({ extend, full, className, nBorder, tBorder, mask, error, bBorder, ...props }) => {

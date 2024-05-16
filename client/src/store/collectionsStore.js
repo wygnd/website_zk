@@ -1,52 +1,62 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 
 export default class CollectionsStore {
-    constructor() {
-        this._name = '';
-        this._desc = '';
-        this._gallery = [];
-        this._countImages = 0;
-        this._blockUpdate = false;
-        makeAutoObservable(this);
-    }
+	constructor() {
+		this._name = '';
+		this._desc = '';
+		this._gallery = [];
+		this._countImages = 0;
+		this._blockUpdate = false;
+		makeAutoObservable(this);
+	}
 
-    setName(name) {
-        this._name = name;
-    }
+	setName(name) {
+		this._name = name;
+	}
 
-    setDesc(desc) {
-        this._desc = desc;
-    }
+	setDesc(desc) {
+		this._desc = desc;
+	}
 
-    setGallery(gallery) {
-        this._gallery = gallery;
-    }
+	setGallery(gallery) {
+		this._gallery = gallery;
+	}
 
-    setCountImages(count) {
-        this._countImages = count;
-    }
+	addGallery(image) {
+		this._gallery.push(image);
+	}
 
-    setUpdate(bool) {
-        this._blockUpdate = bool;
-    }
+	setCountImages(count) {
+		this._countImages = count;
+	}
 
-    get name() {
-        return this._name;
-    }
+	removeImageGallery(image_id) {
+		const imageId = Number(image_id);
+		this.setGallery(this._gallery.filter((el) => el.id !== imageId));
+		return this._gallery;
+	}
 
-    get desc() {
-        return this._desc;
-    }
+	setUpdate(bool) {
+		this._blockUpdate = bool;
+	}
 
-    get gallery() {
-        return this._gallery;
-    }
+	get name() {
+		return this._name;
+	}
 
-    get countImages() {
-        return this._countImages;
-    }
+	get desc() {
+		return this._desc;
+	}
 
-    get update() {
-        return this._blockUpdate;
-    }
+	get gallery() {
+		return this._gallery;
+	}
+
+	get countImages() {
+		return this._countImages;
+	}
+
+	get update() {
+		return this._blockUpdate;
+	}
 }

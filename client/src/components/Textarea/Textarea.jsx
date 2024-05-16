@@ -1,5 +1,5 @@
 import React from 'react';
-import cl from './Textarea.module.css';
+import cl from './Textarea.module.scss';
 
 const Textarea = ({ children, full, h200, className, ...props }) => {
     return (

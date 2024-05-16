@@ -1,6 +1,6 @@
 import React from 'react';
 import { SERVER_URL } from '../../../../utils/consts';
-import cl from './CollectionsItem.module.css';
+import cl from './CollectionsItem.module.scss';
 
 const CollectionsItem = ({ image, fileName, id }) => {
 

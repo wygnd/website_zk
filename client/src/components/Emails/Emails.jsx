@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useContext } from 'react';
-import cl from './Emails.module.css';
+import cl from './Emails.module.scss';
 import { ContextMain } from '../..';
 
 const Emails = observer(() => {

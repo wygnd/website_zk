@@ -1,84 +1,40 @@
-@import '../../styles/_includes';
+@import "../../styles/_includes";
 
 .input {
-    padding: 20px 30px;
-    background: var(--bg1);
-    border-radius: 5px;
-    border: 1px solid var(--primary);
+  padding: 20px 30px;
+  background: var(--bg1);
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+  @include bodyS;
+  transition: border 0.4s ease-out;
+
+  &:focus {
+    outline: none;
+    transition: border 0.4s ease-out;
+  }
+
+  &::placeholder {
     @include bodyS;
-    transition: border .4s ease-out;
+    color: var(--text1);
+  }
 
-    &:focus {
-        outline: none;
-        transition: border .4s ease-out;
-    }
+  &.extend {
+    max-width: 700px;
+    width: 100%;
+  }
 
-    &::placeholder {
-        @include bodyS;
-        color: var(--text2);
-    }
+  &.full {
+    width: 100%;
+    max-width: 100%;
+  }
 
-    &.extend {
-        max-width: 700px;
-        width: 100%;
-    }
+  &.notBorder {
+    border: none;
+  }
 
-    &.full {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    &.notBorder {
-        border: none;
-    }
-
-    &.bottomBorder {
-        border: none;
-        border-bottom: 1px solid var(--primary);
-    }
+  &.bottomBorder {
+    border: none;
+    border-bottom: 1px solid var(--primary);
+  }
 }
 
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    position: relative;
-    display: flex;
-    flex-shrink: 0;
-    margin: 0;
-    width: 20px;
-    min-width: 20px;
-    height: 20px;
-    background: transparent;
-    border-radius: 50%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--primary);
-    box-shadow: none;
-    cursor: pointer;
-    padding: 0;
-
-    &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        width: 10px;
-        height: 10px;
-        border-radius: 100%;
-        background: var(--primary);
-        transition: transform .2s ease-out;
-    }
-
-    &:checked {
-        &::after {
-            transform: translate(-50%, -50%) scale(1);
-        }
-    }
-
-    &.errorValid {
-        border-color: var(--error);
-    }
-
-   
-}
