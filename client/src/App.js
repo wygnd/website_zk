@@ -70,8 +70,8 @@ const App = observer(() => {
 	useFetchSiteMeta();
 	
 	useEffect(() => {
-		setSiteTitle(basicStore.siteTitle?.metaValue);
-		setSiteDesc(basicStore.siteDesc?.metaValue);
+		setSiteTitle(basicStore.siteTitle);
+		setSiteDesc(basicStore.siteDesc);
 	}, [basicStore.siteTitle, basicStore.siteDesc]);
 	
 	return (
