@@ -1,6 +1,5 @@
 import Admin from "./pages/Admin/Admin";
 import Auth from "./pages/Auth/Auth";
-import Main from "./pages/Main/Main";
 import Pirvacy from "./pages/Privacy/Privacy";
 import NotFound from "./pages/NotFound/NotFound";
 import {
@@ -21,13 +20,17 @@ import {
 } from "./utils/consts";
 import MainBlockItem from "./pages/ItemEdit/MainBlockItem/MainBlockItem";
 import TourItem from "./pages/ItemEdit/TourItem/TourItem";
-import MyAdmin from "./components/AdminComponents/MyAdmin/MyAdmin";
 import Developing from "./pages/Developing/Developing";
+import {lazy, Suspense} from "react";
+import Loading from "./components/Loading/Loading";
+
+const Main = lazy(() => import("./pages/Main/Main"));
+const MyAdmin =  lazy(() => import("./components/AdminComponents/MyAdmin/MyAdmin"));
 
 export const authRoutes = [
 	{path: ADMIN_ROUTE, component: <Admin/>, breadcrumb: ADMIN_ROUTE_BREADCRUMB},
-	{path: ADMIN_ACCOUNT_ROUTE + "/:id", component: <MyAdmin/>},
-	{path: MAIN_ROUTE, component: <Main/>, breadcrumb: null},
+	{path: ADMIN_ACCOUNT_ROUTE + "/:id", component: <Suspense fallback={<Loading/>}><MyAdmin/></Suspense>},
+	{path: MAIN_ROUTE, component: <Suspense fallback={<Loading/>}><Main/></Suspense>, breadcrumb: null},
 	{
 		path: LOGIN_ROUTE,
 		component: <Auth/>,
@@ -48,7 +51,7 @@ export const authRoutes = [
 ];
 
 export const publicRoutes = [
-	{path: MAIN_ROUTE, component: <Main/>, breadcrumb: null},
+	{path: MAIN_ROUTE, component: <Suspense fallback={<Loading/>}><Main/></Suspense>, breadcrumb: null},
 	{
 		path: LOGIN_ROUTE,
 		component: <Auth/>,

@@ -38,7 +38,7 @@
     left: 0;
     height: 100%;
     width: 320px;
-    background-color: #f1f2f3;
+    background-color: var(--bg1);
     padding: 30px;
     transition: all 0.3s ease-in;
     transform: translateX(-350px);

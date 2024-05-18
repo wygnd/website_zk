@@ -90,6 +90,10 @@ span {
   @include body;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 @media (max-width: 992px) {
   main {
     padding-bottom: 40px;

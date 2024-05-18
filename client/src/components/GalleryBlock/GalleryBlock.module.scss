@@ -135,5 +135,12 @@
   .imageItem {
     height: 300px;
   }
+}
 
+@media (max-width: 520px) {
+  .slidePrev,
+  .slideNext {
+    width: 40px;
+    height: 40px;
+  }
 }

@@ -5,10 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1c1ba9a-fe30-4162-8c06-3d9e3490d26f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Burger/Burger.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Burger/Burger.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/CollectionsBlock/CollectionsBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ContactsBlock/ContactsBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ContactsBlock/ContactsBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/GalleryBlock/GalleryBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/GalleryBlock/GalleryBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainBlock/MainBlock.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainBlock/MainBlock.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/galleryBlockRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/galleryBlockRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/galleryRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/galleryRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/mainBlockRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/mainBlockRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/settingsRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/settingsRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/teamRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/teamRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/toursRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/toursRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/server/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +75,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "prod__2",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/WebStorm/Projects/site-ffglobal",
     "node.js.detected.package.eslint": "true",
