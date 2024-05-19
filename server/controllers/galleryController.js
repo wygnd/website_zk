@@ -9,10 +9,15 @@ class GalleryController {
 			const {tokenRef} = req.cookies;
 			const userData = await tokenService.validateRefreshToken(tokenRef);
 			let resultData = [];
-			await Promise.all(file.map(async f => {
-				const data = await galleryService.create(f, userData.id);
+			if(file.length) {
+				await Promise.all(file.map(async f => {
+					const data = await galleryService.create(f, userData.id);
+					resultData.push(data);
+				}));
+			} else {
+				const data = await galleryService.create(file, userData.id);
 				resultData.push(data);
-			}));
+			}
 			return res.json(resultData);
 		} catch(error) {
 			next(ApiError.BadRequest(error.message));

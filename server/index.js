@@ -15,9 +15,9 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(compression())
 app.use(cors({
-  credentials: true,
-  origin: process.env.CLIENT_URL,
-  optionSuccessStatus: 200
+	credentials: true,
+	origin: process.env.CLIENT_URL,
+	optionSuccessStatus: 200
 }));
 app.use(express.json());
 app.use(cookieParser());
@@ -29,13 +29,17 @@ app.use('/api', router);
 app.use(errorHandler);
 
 const start = async () => {
-  try {
-    await sequelize.authenticate();
-    await sequelize.sync({alter: false});
-    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-  } catch(error) {
-    console.log(error);
-  }
+	try {
+		await sequelize.authenticate();
+		await sequelize.sync({
+			alter: {
+				drop: false,
+			}
+		});
+		app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+	} catch(error) {
+		console.log(error);
+	}
 }
 
 start();

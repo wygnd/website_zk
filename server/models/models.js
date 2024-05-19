@@ -33,7 +33,6 @@ const Gallery = sequelize.define(
 	},
 	{
 		timestamps: false,
-		createdAt: false,
 		updatedAt: false,
 	}
 );
