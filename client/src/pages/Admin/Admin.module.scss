@@ -1,14 +1,27 @@
 @import "../../styles/_includes";
 
-.page_admin {
-  background: var(--bgLight);
-}
+.page {
+  &_admin {
+    background: var(--bgLight);
+  }
 
-.page__title {
-  padding-top: 20px;
-  margin-bottom: 50px;
-  @include h2;
-  color: var(--head);
+  &__title {
+    @include h2;
+    color: var(--head);
+  }
+
+  &__header {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 50px;
+  }
+
+  &__clear_cache {
+  }
 }
 
 .admin__holder {

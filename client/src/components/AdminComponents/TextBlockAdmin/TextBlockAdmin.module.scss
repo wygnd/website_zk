@@ -1,0 +1,16 @@
+.text {
+  &_admin {
+    &__holder {
+      display: flex;
+      gap: 20px;
+    }
+
+    &__desc {
+      width: 80%;
+    }
+
+    &__image {
+      width: 20%;
+    }
+  }
+}

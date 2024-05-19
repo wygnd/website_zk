@@ -19,8 +19,10 @@ const TourItems = observer(() => {
 	const [posts, setPosts] = useState(null);
 	
 	useEffect(() => {
+		if(!tourStore.tours) return;
+		
 		setPosts(tourStore?.tours);
-	}, []);
+	}, [tourStore.tours]);
 	
 	if(!posts) {
 		return null;

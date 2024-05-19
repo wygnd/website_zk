@@ -62,7 +62,7 @@ export async function getImageById(id, size = "large") {
 
 export async function removeImageByID(id) {
 	try {
-		const {data} = await $apiAuth.post(`/gallery/remove/${id}`);
+		const {data} = await $apiAuth.delete(`/gallery/remove/${id}`);
 		return data;
 	} catch(error) {
 		return error.message;

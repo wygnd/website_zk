@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import cl from "./Collections.module.scss";
 import {observer} from "mobx-react-lite";
 import {ContextMain} from "../../..";
@@ -13,7 +13,7 @@ import Form from "react-bootstrap/Form";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {useFetchCollections} from "../../../hooks/useFetchCollections";
 
-const Collections = observer(({className}) => {
+const Collections = observer(() => {
 	const {collections, galleryStore} = useContext(ContextMain);
 	const [desc, setDesc] = useState("");
 	const [modal, setModal] = useState(false);
@@ -23,14 +23,16 @@ const Collections = observer(({className}) => {
 	useFetchCollections();
 	
 	useEffect(() => {
-		setDesc(collections?.desc?.metaValue);
+		if(collections.desc.metaValue) {
+			setDesc(collections.desc.metaValue);
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 		
 		if(!imageId) return;
 		getImageById(imageId).then((response) => {
 			collections.addGallery({...response, uuId: uuid()});
 		});
-	}, [imageId]);
+	}, [imageId, collections.desc.metaValue]);
 	
 	const saveSettings = async (event) => {
 		event.preventDefault();

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {observer} from "mobx-react-lite";
 import styles from "./Admin.module.scss";
 import "../../styles/main.scss";
@@ -22,6 +22,11 @@ import AdminTabs from "./AdminTabs";
 import TeamList from "../../components/AdminComponents/Teams/TeamList";
 import {useNavigate} from "react-router-dom";
 import {DEV_ROUTE} from "../../utils/consts";
+import Button from "react-bootstrap/Button";
+import {clearCache} from "../../http/chacheApi";
+import {ContextMain} from "../../index";
+import { FaBusinessTime } from "react-icons/fa";
+import TextBlockAdmin from "../../components/AdminComponents/TextBlockAdmin/TextBlockAdmin";
 
 const Admin = observer(() => {
 	
@@ -50,6 +55,11 @@ const Admin = observer(() => {
 			id: 3,
 			icon: <MdOutlineCollectionsBookmark size={24}/>,
 			text: "Бар-музей"
+		},
+		{
+			id: 9,
+			icon: <FaBusinessTime size={24}/>,
+			text: "Деловые ужины"
 		},
 		{
 			id: 5,
@@ -90,6 +100,10 @@ const Admin = observer(() => {
 			content: <Collections/>,
 		},
 		{
+			id: 9,
+			content: <TextBlockAdmin />,
+		},
+		{
 			id: 5,
 			content: <Gallery/>,
 			
@@ -105,6 +119,7 @@ const Admin = observer(() => {
 	
 	const [width, setWidth] = useState(window.innerWidth);
 	const history = useNavigate();
+	const {galleryStore} = useContext(ContextMain);
 	
 	function handleWindowSizeChange() {
 		setWidth(window.innerWidth);
@@ -123,11 +138,12 @@ const Admin = observer(() => {
 		}
 	}, []);
 	
-	
 	return (
 		<main className={styles.page_admin}>
 			<Container width={1290}>
-				<h1 className={styles.page__title}>Панель администратора</h1>
+				<div className={styles.page__header}>
+					<h1 className={styles.page__title}>Панель администратора</h1>
+				</div>
 				<AdminTabs tabs={tabs} contents={contents}/>
 			</Container>
 		</main>

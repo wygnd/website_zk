@@ -125,7 +125,7 @@ const ModalGallery = observer(
 						</div>
 					</Modal.Body>
 					<Modal.Footer>
-						{galleryStore.totalCount > 12 && (
+						{galleryStore.totalCount > galleryStore.limit && (
 							<div className={cl.moreImages}>
 								<div className={cl.countLoadedImages}>
 									Загружено {galleryStore.loaded} из {galleryStore.totalCount}

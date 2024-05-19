@@ -6,22 +6,24 @@ import {useFetchTextBlock} from "../../hooks/useFetchTextblock";
 import {ContextMain} from "../../index";
 import './TextBlock.scss';
 import Fancybox from "../Fancybox";
+import {observer} from "mobx-react-lite";
 
-const TextBlock = ({className}) => {
+const TextBlock = observer(({className}) => {
 	
 	useFetchTextBlock();
 	
 	const {textBlock} = useContext(ContextMain);
 	const [image, setImage] = useState(null);
-	const {title, desc, image_id} = textBlock.block;
+	const {title, desc} = textBlock.block;
 	
 	useEffect(() => {
+		if(!textBlock.block.image_id) return;
 		
-		getImageById(image_id).then((data) => {
+		getImageById(textBlock.block.image_id).then((data) => {
 			setImage(data);
 		});
 		
-	}, [image_id]);
+	}, [textBlock.block.image_id]);
 	
 	return (
 		<div id="text_block" className={clsx(className, "text-block")}>
@@ -54,6 +56,6 @@ const TextBlock = ({className}) => {
 			</Container>
 		</div>
 	);
-};
+});
 
 export default TextBlock;

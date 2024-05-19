@@ -15,7 +15,7 @@ const Breadcrumbs = observer(() => {
   return (
     <div className={cl.breadcrumb}>
       <NavLink to={MAIN_ROUTE} className={cl.item}>
-        {basicStore?.siteTitle.metaValue}
+        {basicStore?.siteTitle}
       </NavLink>
       {userStore?.isAuth
         ? breadcrumbsPublic.map(({ match, breadcrumb }) => (

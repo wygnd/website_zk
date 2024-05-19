@@ -9,9 +9,10 @@ import {useNavigate} from "react-router-dom";
 import ListGroup from "react-bootstrap/ListGroup";
 import {Reorder, useDragControls} from "framer-motion";
 import {MdDragIndicator} from "react-icons/md";
+import {observer} from "mobx-react-lite";
 
 
-const TourItem = ({item}) => {
+const TourItem = observer(({item}) => {
 	
 	const {tour_name, tour_id} = item;
 	const {tourStore, galleryStore} = useContext(ContextMain);
@@ -58,6 +59,6 @@ const TourItem = ({item}) => {
 			</ListGroup.Item>
 		</Reorder.Item>
 	);
-};
+});
 
 export default TourItem;

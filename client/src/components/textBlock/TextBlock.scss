@@ -31,6 +31,7 @@
     overflow: hidden;
     cursor: pointer;
     position: relative;
+    max-height: 400px;
 
     &-hover {
       position: absolute;
