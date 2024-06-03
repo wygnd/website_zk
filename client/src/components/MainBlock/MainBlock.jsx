@@ -81,7 +81,7 @@ const MainBlock = observer(() => {
 									<div className={cl.imageBackground}>
 										<picture>
 											<source srcSet={file_path_medium} media="(max-width: 992px)"/>
-											<img src={file_path_full} loading="lazy" alt={file_name}/>
+											<img src={file_path_full} loading="lazy" decoding="async" alt={file_name}/>
 										</picture>
 									</div>
 								</div>
