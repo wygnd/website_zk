@@ -10,7 +10,7 @@ const TeamItem = ({className, team}) => {
 	const [image, setImage] = useState(null);
 	
 	useEffect(() => {
-		getImageById(image_id).then((image) => {
+		getImageById(image_id, 'medium').then((image) => {
 			setImage(image);
 		})
 	}, [image_id]);

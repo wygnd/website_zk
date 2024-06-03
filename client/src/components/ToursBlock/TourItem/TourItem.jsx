@@ -8,7 +8,7 @@ const TourItem = ({name, textButton, linkButton, galleryId}) => {
 
 	useEffect(() => {
 		getImageById(galleryId).then((data) => {
-			const file_path_medium = createFilePath(data.file_name, data.file_ext, 'medium');
+			const file_path_medium = createFilePath(data.file_name, data.file_ext, 'thumnail');
 			setFile({...data, file_path_medium});
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -20,7 +20,7 @@ const TourItem = ({name, textButton, linkButton, galleryId}) => {
 				<div className={cl.image}>
 					<picture>
 						<source srcSet={file?.file_path_medium} media="(max-width: 992px)"/>
-						<img src={file?.file_path} alt={file?.file_name} loading="lazy"/>
+						<img src={file?.file_path_medium} alt={file?.file_name} loading="lazy" decoding="async"/>
 					</picture>
 				</div>
 			)}

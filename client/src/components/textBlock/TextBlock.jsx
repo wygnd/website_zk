@@ -19,7 +19,7 @@ const TextBlock = observer(({className}) => {
 	useEffect(() => {
 		if(!textBlock.block.image_id) return;
 		
-		getImageById(textBlock.block.image_id).then((data) => {
+		getImageById(textBlock.block.image_id, 'medium').then((data) => {
 			setImage(data);
 		});
 		

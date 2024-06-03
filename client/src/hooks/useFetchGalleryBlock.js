@@ -14,7 +14,7 @@ export function useFetchGalleryBlock() {
 		fetchGallery()
 			.then((res) => {
 				res.map((el) =>
-					getImageById(el?.galleryId).then((res) => {
+					getImageById(el?.galleryId, 'medium').then((res) => {
 						galleryBlock.setGallery([...galleryBlock?.images, res,]);
 					})
 				);
