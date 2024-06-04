@@ -15,7 +15,7 @@ class GalleryService {
 		const second2Letters = hashLine.substring(2, 4);
 		
 		return {
-			projectFolder: path.resolve(__dirname, '..', 'static', first2Letters, second2Letters),
+			projectFolder: path.resolve(__dirname, '..', 'uploads', first2Letters, second2Letters),
 			first2Letters,
 			second2Letters
 		}
