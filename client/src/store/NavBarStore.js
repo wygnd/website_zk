@@ -8,7 +8,7 @@ export default class NavBarStore {
 			{id: 2, title: 'Экскурсии', link: '#tours__block', order: 2},
 			{id: 3, title: 'Бар-музей', link: '#collections__block', order: 3},
 			{id: 4, title: 'Деловые ужины', link: '#text_block', order: 4},
-			{id: 5, title: 'Галлерея', link: '#gallery__block', order: 5},
+			{id: 5, title: 'Галерея', link: '#gallery__block', order: 5},
 			{id: 6, title: 'Команда', link: '#teams__block', order: 6},
 			{id: 7, title: 'Контакты', link: '#contacts__block', order: 7},
 		];
