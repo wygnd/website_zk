@@ -25,6 +25,8 @@ const Developing = () => {
 			setDesc("Страница находится в разработке или не доступна, пожалуйста, вернитесь на главную страницу")
 		}
 		
+		setDesc("Сайт находится на техническом обслуживании");
+		
 		return () => {
 			window.removeEventListener('resize', handleWindowSizeChange);
 		}
@@ -37,7 +39,7 @@ const Developing = () => {
 	return (
 		<>
 			<Helmet>
-				<title>Страница находтся в разработке</title>
+				<title>{desc ? desc : "Страница находтся в разработке"}</title>
 				<meta name="description" content="Эта страница временно недоступна"/>
 			</Helmet>
 			<main className={styles.dev_page}>
