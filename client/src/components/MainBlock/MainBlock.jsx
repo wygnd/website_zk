@@ -58,7 +58,7 @@ const MainBlock = observer(() => {
 					(slide) => {
 						const {file_name, file_ext} = slide?.gallery;
 						const file_path_full = createFilePath(file_name, file_ext, "large");
-						const file_path_medium = createFilePath(file_name, file_ext, 'medium');
+						const file_path_medium = createFilePath(file_name, file_ext, 'large');
 						return file_path_full &&
 							<SwiperSlide key={slide.id}>
 								<div className={cl.mainItem}>

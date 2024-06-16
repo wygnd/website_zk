@@ -1,6 +1,6 @@
 export const ADMIN_ROUTE = '/admin';
 export const ADMIN_ACCOUNT_ROUTE = '/admin';
-export const LOGIN_ROUTE = '/login';
+export const LOGIN_ROUTE = '/authorization';
 export const MAIN_ROUTE = '/';
 export const NOTFOUND_ROUTE = '*';
 export const API_URL = `${process.env.REACT_APP_API_URL}/api`;

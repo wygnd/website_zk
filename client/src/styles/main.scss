@@ -99,3 +99,12 @@ p {
     padding-bottom: 40px;
   }
 }
+
+.scroll-snap-slider {
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: auto;
+}
+
+.scroll-snap-slide {
+  scroll-snap-stop: always;
+}

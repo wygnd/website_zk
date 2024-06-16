@@ -1,29 +1,52 @@
-import React from "react";
-import MainBlock from "../../components/MainBlock/MainBlock";
+import React, {lazy, Suspense, useEffect, useState} from "react";
 import cl from "./Main.module.scss";
-import ToursBlock from "../../components/ToursBlock/ToursBlock";
-import CollectionsBlock from "../../components/CollectionsBlock/CollectionsBlock";
-import AboutBlock from '../../components/AboutBlock/AboutBlock';
-import GalleryBlock from "../../components/GalleryBlock/GalleryBlock";
-import ContactsBlock from '../../components/ContactsBlock/ContactsBlock';
 import {observer} from "mobx-react-lite";
-import TeamsBlock from "../../components/teamsBlock/TeamsBlock";
-import TextBlock from "../../components/textBlock/TextBlock";
-import Developing from "../Developing/Developing";
+// import Developing from "../Developing/Developing";
+import Loading from "../../components/Loading/Loading";
+import {InView} from "react-intersection-observer";
+
+const MainBlock = lazy(() => import("../../components/MainBlock/MainBlock"));
+const AboutBlock = lazy(() => import("../../components/AboutBlock/AboutBlock"));
+const ToursBlock = lazy(() => import("../../components/ToursBlock/ToursBlock"));
+const CollectionsBlock = lazy(() => import("../../components/CollectionsBlock/CollectionsBlock"));
+const TextBlock = lazy(() => import("../../components/textBlock/TextBlock"));
+const GalleryBlock = lazy(() => import("../../components/GalleryBlock/GalleryBlock"));
+const TeamsBlock = lazy(() => import("../../components/teamsBlock/TeamsBlock"));
+const ContactsBlock = lazy(() => import("../../components/ContactsBlock/ContactsBlock"));
 
 const Main = observer(() => {
 	
+	const [showComponents, setShowComponents] = useState(false);
+	
 	return (
 		<main className={cl.home}>
-			{/*<MainBlock/>*/}
-			{/*<AboutBlock/>*/}
-			{/*<ToursBlock/>*/}
-			{/*<CollectionsBlock/>*/}
-			{/*<TextBlock/>*/}
-			{/*<GalleryBlock/>*/}
-			{/*<TeamsBlock/>*/}
-			{/*<ContactsBlock/>*/}
-			<Developing />
+			<Suspense fallback={<Loading/>}>
+				<Suspense fallback={<Loading/>}>
+					<MainBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<AboutBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<ToursBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<CollectionsBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<TextBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<GalleryBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<TeamsBlock/>
+				</Suspense>
+				<Suspense fallback={<Loading/>}>
+					<ContactsBlock/>
+				</Suspense>
+			</Suspense>
+			{/*<Developing />*/}
 		</main>
 	
 	);

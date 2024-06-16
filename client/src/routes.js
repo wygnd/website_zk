@@ -51,25 +51,25 @@ export const authRoutes = [
 ];
 
 export const publicRoutes = [
-	{path: '*', component: <Suspense fallback={<Loading/>}><Main/></Suspense>, breadcrumb: null},
-	// {
-	// 	path: LOGIN_ROUTE,
-	// 	component: <Auth/>,
-	// 	breadcrumb: LOGIN_ROUTE_BREADCRUMB,
-	// },
-	// {
-	// 	path: PRIVACY_ROUTE,
-	// 	component: <Pirvacy/>,
-	// 	breadcrumb: PRIVACY_ROUTE_BREADCRUMB,
-	// },
-	// {
-	// 	path: NOTFOUND_ROUTE,
-	// 	component: <NotFound/>,
-	// 	breadcrumb: NOTFOUND_ROUTE_BREADCRUMB,
-	// },
-	// {
-	// 	path: DEV_ROUTE,
-	// 	component: <Developing/>,
-	// 	breadcrumb: DEV_ROUTE_BREADCRUMB,
-	// },
+	{path: MAIN_ROUTE, component: <Suspense fallback={<Loading/>}><Main/></Suspense>, breadcrumb: null},
+	{
+		path: LOGIN_ROUTE,
+		component: <Auth/>,
+		breadcrumb: LOGIN_ROUTE_BREADCRUMB,
+	},
+	{
+		path: PRIVACY_ROUTE,
+		component: <Pirvacy/>,
+		breadcrumb: PRIVACY_ROUTE_BREADCRUMB,
+	},
+	{
+		path: NOTFOUND_ROUTE,
+		component: <NotFound/>,
+		breadcrumb: NOTFOUND_ROUTE_BREADCRUMB,
+	},
+	{
+		path: DEV_ROUTE,
+		component: <Developing/>,
+		breadcrumb: DEV_ROUTE_BREADCRUMB,
+	},
 ];

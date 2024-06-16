@@ -33,7 +33,10 @@ const ModalGallery = observer(
 				formData.append("file", files[prop]);
 			}
 			basicStore.setLoading(true);
-			addImage(formData).then(() => {
+			addImage(formData).then((data_array) => {
+				data_array.map(item => {
+					galleryStore.addGallery(item.galleryData);
+				})
 				galleryStore.setUpdate(!galleryStore.update);
 				basicStore.setLoading(false);
 			});
@@ -50,7 +53,10 @@ const ModalGallery = observer(
 		const deleteItem = async (e) => {
 			e.stopPropagation();
 			try {
-				await removeImageByID(e.currentTarget.dataset.id);
+				const image_removed_id = e.currentTarget.dataset.id;
+				await removeImageByID(image_removed_id).then(() => {
+					galleryStore.removeImageById(image_removed_id);
+				});
 				galleryStore.setUpdate(!galleryStore.update);
 			} catch(error) {
 				galleryStore.callModalError(`Что-то пошло не так. ${error?.message}`);

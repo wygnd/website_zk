@@ -2,13 +2,13 @@ import {observer} from "mobx-react-lite";
 import React, {useContext, useRef} from "react";
 import cl from "./GalleryBlock.module.scss";
 import {ContextMain} from "../..";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, A11y} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Fancybox from "../Fancybox";
 import Container from "../Container/Container";
 import {useFetchGalleryBlock} from "../../hooks/useFetchGalleryBlock";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {Autoplay, Navigation} from "swiper/modules";
 
 const GalleryBlock = observer(() => {
 	
@@ -70,17 +70,14 @@ const GalleryBlock = observer(() => {
 						</div>
 					</div>
 				</div>
-				<Fancybox
-					options={{
-						Carousel: {
-							infinite: false,
-						},
-					}}
-					className={cl.blockHolder}
-				>
+				
+				<Fancybox options={{
+					Carousel: {
+						infinite: false,
+					},
+				}} className={cl.blockHolder}>
 					<Swiper
 						modules={[Navigation]}
-						loop={true}
 						lazy="true"
 						speed="800"
 						className={[cl.swiperGalleryBlock, "swiperGalleryBlock"].join(" ")}
@@ -99,8 +96,8 @@ const GalleryBlock = observer(() => {
 								spaceBetween: 20,
 							},
 							992: {
-								slidesPerView: 2,
-								spaceBetween: 40,
+								slidesPerView: 3,
+								spaceBetween: 30,
 							},
 						}}
 					>
@@ -109,7 +106,7 @@ const GalleryBlock = observer(() => {
 								item?.file_path && (
 									<SwiperSlide className={cl.swiperSlide} key={item.id}>
 										<a
-											href={item?.file_path}
+											href={item?.file_path_full}
 											data-fancybox="galleryBlock"
 											className={cl.imageItem}
 										>
@@ -134,7 +131,6 @@ const GalleryBlock = observer(() => {
 								)
 						)}
 					</Swiper>
-				
 				</Fancybox>
 			</Container>
 		</div>

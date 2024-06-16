@@ -1,3 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+User-agent: *
+Crawl-delay: 5
+Host: https://xn--1840-43d4ams9a2a2f5b.xn--p1ai/
+Disallow: /admin
+Disallow: /login
+Sitemap: https://xn--1840-43d4ams9a2a2f5b.xn--p1ai/sitemap.xml
+
+Host: xn--1840-43d4ams9a2a2f5b.xn--p1ai

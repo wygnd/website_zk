@@ -13,11 +13,14 @@ export function useFetchGalleryBlock() {
 		}
 		fetchGallery()
 			.then((res) => {
-				res.map((el) =>
-					getImageById(el?.galleryId, 'medium').then((res) => {
-						galleryBlock.setGallery([...galleryBlock?.images, res,]);
-					})
+				res.map((el) => {
+						getImageById(el?.galleryId, 'medium').then((res) => {
+							getImageById(el?.galleryId, 'full').then((data) => {
+								galleryBlock.setGallery([...galleryBlock?.images, {...res, file_path_full: data.file_path},]);
+							})
+						});
+					}
 				);
 			});
-	}, []);
+	}, [galleryBlock.update]);
 }

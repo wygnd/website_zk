@@ -73,6 +73,14 @@ export default class GalleryStore {
 		}, 3000)
 	}
 	
+	addImage(image) {
+		this._gallery.unshift(image);
+	}
+	
+	removeImageById(image_id) {
+		this._gallery.filter(i => i.id !== image_id);
+	}
+	
 	get gallery() {
 		return this._gallery;
 	}

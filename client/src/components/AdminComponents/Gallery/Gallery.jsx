@@ -51,6 +51,9 @@ const Gallery = observer(({className}) => {
 					galleryStore.setModalErr(false);
 				}, 2000);
 			})
+			// .finally(() => {
+			// 	setModal(false);
+			// })
 	}
 	
 	return (
