@@ -36,7 +36,7 @@ const start = async () => {
 				drop: false,
 			}
 		});
-		app.listen(PORT, () => console.log(`Server started on port ${PORT}, ${process.env.DB_NAME}`));
+		app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 	} catch(error) {
 		console.log(error);
 	}
