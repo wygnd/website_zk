@@ -16,7 +16,7 @@ const app = express();
 app.use(compression())
 app.use(cors({
 	credentials: true,
-	origin: process.env.CLIENT_URL,
+	origin: "http://localhost:3000",
 	optionSuccessStatus: 200
 }));
 app.use(express.json());
